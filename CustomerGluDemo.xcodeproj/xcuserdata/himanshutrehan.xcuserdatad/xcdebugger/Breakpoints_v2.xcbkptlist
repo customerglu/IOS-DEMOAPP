@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "5AC1D166-EBF5-4F34-85EA-7F32F0E41A7D"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A15EEC2-F8F3-4406-AA7D-256E9AB2DA71"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Library/Developer/Xcode/DerivedData/CustomerGluDemo-amluaatddybkjkafbebqysqdojca/SourcePackages/checkouts/CustomerGlu/Sources/CustomerGlu/ViewModel/CustomerGluRegistration.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5"
+            endingLineNumber = "5"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "73D21572-F8E0-46C3-A59D-BD7B2DDD87CD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Library/Developer/Xcode/DerivedData/CustomerGluDemo-amluaatddybkjkafbebqysqdojca/SourcePackages/checkouts/CustomerGlu/Sources/CustomerGlu/View/CustomerWebView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "CustomerWebView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "73D21572-F8E0-46C3-A59D-BD7B2DDD87CD - 3fd9c16e87552805"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CustomerGlu.CustomerWebView.loadCampaigns(cus_token: Swift.String) -&gt; ()"
+                  moduleName = "CustomerGluDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/himanshutrehan/Library/Developer/Xcode/DerivedData/CustomerGluDemo-amluaatddybkjkafbebqysqdojca/SourcePackages/checkouts/CustomerGlu/Sources/CustomerGlu/View/CustomerWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "73D21572-F8E0-46C3-A59D-BD7B2DDD87CD - 502a3991f9973726"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (CustomerGlu.CampaignsModel) -&gt; () in CustomerGlu.CustomerWebView.loadCampaigns(cus_token: Swift.String) -&gt; ()"
+                  moduleName = "CustomerGluDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/himanshutrehan/Library/Developer/Xcode/DerivedData/CustomerGluDemo-amluaatddybkjkafbebqysqdojca/SourcePackages/checkouts/CustomerGlu/Sources/CustomerGlu/View/CustomerWebView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "260">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "157E3CEC-9F85-43C1-A3CF-CCF8CF958AF2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Library/Developer/Xcode/DerivedData/CustomerGluDemo-amluaatddybkjkafbebqysqdojca/SourcePackages/checkouts/CustomerGlu/Sources/CustomerGlu/View/LoadAllCampaigns.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0FC1C44-B891-42E1-8BE6-AE72D13063F1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CustomerGluDemo/CustomerGluDemoApp.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "72648727-E740-406C-8338-8FD4715BC7D5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CustomerGluDemo/Views/HomeScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
