@@ -24,7 +24,7 @@ import Firebase
 
         print("my fcm")
         print(fcmRegTokenMessage)
-        var parameters = [
+        let parameters = [
             "userId": "testuser2008",
             "deviceId": "deviceb",
             "deviceName": "GreyS3",
@@ -113,7 +113,7 @@ import Firebase
           
             Spacer()
         }.onAppear(perform: {
-            getFcmToken()
+          //  getFcmToken()
             initializeGlu()
         })
         }.ignoresSafeArea(.all)
