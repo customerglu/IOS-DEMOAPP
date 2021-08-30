@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import FirebaseAnalytics
+import CustomerGlu
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -44,6 +45,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
       if let messageID = userInfo[gcmMessageIDKey] {
         print("Message ID: \(messageID)")
       }
+        print("usernotification wqq")
 
       print(userInfo)
 
@@ -75,11 +77,26 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     if let messageID = userInfo[gcmMessageIDKey] {
         print("Message ID: \(messageID)")
     }
+    print("usernotification ")
+    print(userInfo["aps"] as Any)
+    
+    CustomerGlu().displayNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["xz":"d"])
 
-    print(userInfo)
+//    let msgdata = userInfo["aps"] as? [String:AnyHashable]
+//    let myalert = msgdata?["alert"] as? [String:AnyHashable]
+//    let Type = myalert?["type"]
+//    if Type as! String == "CustomerGlu"
+//    {
+//        print("CustomerGlu")
+//        CustomerGlu().openUiKitWallet(cus_token: "s")
+//
+//    }
+    
+    
+    
 
     // Change this to your preferred presentation option
-    completionHandler([[.banner, .badge, .sound]])
+  //  completionHandler([[.banner, .badge, .sound]])
   }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -103,8 +120,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID from userNotificationCenter didReceive: \(messageID)")
     }
+    
+    print("background click")
+
 
     print(userInfo)
+    CustomerGlu().displayNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["xz":"d"])
 
     completionHandler()
   }

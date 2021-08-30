@@ -25,7 +25,7 @@ import Firebase
         print("my fcm")
         print(fcmRegTokenMessage)
         let parameters = [
-            "userId": "testuser2008",
+            "userId": "testuser2010",
             "deviceId": "deviceb",
             "deviceName": "GreyS3",
             "deviceType": "ios",
