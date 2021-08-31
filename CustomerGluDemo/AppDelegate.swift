@@ -79,8 +79,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     print("usernotification ")
     print(userInfo["aps"] as Any)
-    
-    CustomerGlu().displayNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["xz":"d"])
+    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["customerglu":"d"]))
+    {
+    CustomerGlu().displayNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["customerglu":"d"])
+    }
+    else
+    {
+        completionHandler([[.banner, .badge, .sound]])
+
+    }
 
 //    let msgdata = userInfo["aps"] as? [String:AnyHashable]
 //    let myalert = msgdata?["alert"] as? [String:AnyHashable]
@@ -96,7 +103,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     
 
     // Change this to your preferred presentation option
-  //  completionHandler([[.banner, .badge, .sound]])
   }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -105,6 +111,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         print("APNS")
      //   print(Messaging.messaging().apnsToken)
         print("APNs token retrieved: \(deviceToken)")
+   //     UserDefaults.standard.set(devToken, forKey: "fcmtoken")
+
 
     }
 

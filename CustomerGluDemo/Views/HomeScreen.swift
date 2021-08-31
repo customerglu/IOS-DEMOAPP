@@ -36,7 +36,8 @@ import Firebase
         customerglu.doRegister(body: parameters) { RegistrationModel in
         token = (RegistrationModel.data?.token)!
             print("dssd")
-        print(token)
+     //   print(token)
+            print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
                 
             }
     }
@@ -72,7 +73,7 @@ import Firebase
             {
          
                 NavigationLink(
-                 destination: OpenWallet(cus_token: token),
+                 destination: OpenWallet(),
                  label: {
                     ProductCard(image: "purse", title: "Wallet")
                      
