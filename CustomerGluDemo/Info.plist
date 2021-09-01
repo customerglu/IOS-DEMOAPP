@@ -60,6 +60,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>FirebaseDynamicLinksCustomDomains</key>
+	<array>
+  		<string>https://https://www.customerglu.com/</string>
+ 		<string>https://modpod.page.link/userId</string>
+	</array>	
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

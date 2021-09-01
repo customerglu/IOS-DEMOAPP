@@ -28,7 +28,6 @@ import Firebase
             "userId": "testuser2010",
             "deviceId": "deviceb",
             "deviceName": "GreyS3",
-            "deviceType": "ios",
             "writeKey": "G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy",
             "firebaseToken": fcmRegTokenMessage
         ]

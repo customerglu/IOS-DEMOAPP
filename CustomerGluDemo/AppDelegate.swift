@@ -115,6 +115,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 
     }
+  
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
 
@@ -133,7 +134,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 
     print(userInfo)
-    CustomerGlu().displayNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["xz":"d"])
+    CustomerGlu().displayBackgroundNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["xz":"d"])
 
     completionHandler()
   }
