@@ -27,7 +27,6 @@ import Firebase
         let parameters = [
             "userId": "testuser2010",
             "deviceId": "deviceb",
-            "deviceName": "GreyS3",
             "writeKey": "G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy",
             "firebaseToken": fcmRegTokenMessage
         ]

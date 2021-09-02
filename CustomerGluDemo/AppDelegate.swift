@@ -78,10 +78,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         print("Message ID: \(messageID)")
     }
     print("usernotification ")
-    print(userInfo["aps"] as Any)
-    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["customerglu":"d"]))
+   // print(userInfo["aps"] as Any)
+    print(userInfo["data"] as Any)
+
+    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"]))
     {
-    CustomerGlu().displayNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["customerglu":"d"])
+    CustomerGlu().displayNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"])
     }
     else
     {
@@ -134,7 +136,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 
     print(userInfo)
-    CustomerGlu().displayBackgroundNotification(remoteMessage: userInfo["aps"]as? [String:AnyHashable] ?? ["xz":"d"])
+    CustomerGlu().displayBackgroundNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["xz":"d"])
 
     completionHandler()
   }
