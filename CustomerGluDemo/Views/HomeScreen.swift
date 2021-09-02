@@ -4,10 +4,12 @@
 //
 //  Created by Himanshu Trehan on 20/07/21.
 //
-
 import SwiftUI
 import CustomerGlu
 import Firebase
+
+@available(iOS 13.0, *)
+
  struct HomeScreen: View {
     @State var active = false
     var height = UIScreen.main.bounds.height

@@ -78,18 +78,18 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         print("Message ID: \(messageID)")
     }
     print("usernotification ")
-   // print(userInfo["aps"] as Any)
-    print(userInfo["data"] as Any)
+    print(userInfo)
+   // print(userInfo["data"] as Any)
 
-    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"]))
-    {
-    CustomerGlu().displayNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"])
-    }
-    else
-    {
-        completionHandler([[.banner, .badge, .sound]])
-
-    }
+//    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"]))
+//    {
+//    CustomerGlu().displayNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"])
+//    }
+//    else
+//    {
+//        completionHandler([[.banner, .badge, .sound]])
+//
+//    }
 
 //    let msgdata = userInfo["aps"] as? [String:AnyHashable]
 //    let myalert = msgdata?["alert"] as? [String:AnyHashable]
@@ -106,7 +106,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     // Change this to your preferred presentation option
   }
-
+  
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 
         Messaging.messaging().apnsToken = deviceToken
@@ -127,7 +127,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               didReceive response: UNNotificationResponse,
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     let userInfo = response.notification.request.content.userInfo
-
     if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID from userNotificationCenter didReceive: \(messageID)")
     }
