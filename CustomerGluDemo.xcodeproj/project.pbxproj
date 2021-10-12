@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B0CA98D26D8D0400094A277 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B0CA98C26D8D0400094A277 /* GoogleService-Info.plist */; };
+		1819AD182715ED8C00DA3BF6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1819AD172715ED8C00DA3BF6 /* GoogleService-Info.plist */; };
 		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
 		1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */; };
@@ -30,8 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1819AD172715ED8C00DA3BF6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomerGluDemo.entitlements; sourceTree = "<group>"; };
-		1B0CA98C26D8D0400094A277 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B3A357426B7C57500A2C713 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomerGluDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoApp.swift; sourceTree = "<group>"; };
@@ -85,12 +85,11 @@
 		1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */ = {
 			isa = PBXGroup;
 			children = (
-				1B0CA98C26D8D0400094A277 /* GoogleService-Info.plist */,
+				1819AD172715ED8C00DA3BF6 /* GoogleService-Info.plist */,
 				1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */,
 				1B3D7CCF26A6CAF700EA1587 /* Modifiers */,
 				1B3D7CCA26A6C17200EA1587 /* Cells */,
 				1B3D7CC326A6BE2300EA1587 /* Views */,
-				1B3D7CC226A6BE1700EA1587 /* Model */,
 				1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */,
 				1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */,
 				1B3D7CB726A6BDDC00EA1587 /* Assets.xcassets */,
@@ -107,13 +106,6 @@
 				1B3D7CBA26A6BDDC00EA1587 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1B3D7CC226A6BE1700EA1587 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1B3D7CC326A6BE2300EA1587 /* Views */ = {
@@ -215,7 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3D7CBB26A6BDDC00EA1587 /* Preview Assets.xcassets in Resources */,
-				1B0CA98D26D8D0400094A277 /* GoogleService-Info.plist in Resources */,
+				1819AD182715ED8C00DA3BF6 /* GoogleService-Info.plist in Resources */,
 				1B3D7CB826A6BDDC00EA1587 /* Assets.xcassets in Resources */,
 				1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */,
 			);
