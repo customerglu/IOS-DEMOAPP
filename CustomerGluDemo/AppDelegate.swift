@@ -14,6 +14,59 @@ import CustomerGlu
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     let gcmMessageIDKey = "gcm.message_id"
+    
+    func handleDynamicLink(_ dynamicLink:DynamicLink)
+    {
+        print("my dynamic url");
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+      let handled = DynamicLinks.dynamicLinks()
+        .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, error in
+          print("dynamic")
+            print(dynamiclink as Any)
+            
+            if dynamiclink != nil
+            {
+                self.handleDynamicLink(dynamiclink!)
+            }
+        }
+        
+        
+        
+        if handled
+        {
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    
+    
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+      return application(app, open: url,
+                         sourceApplication: options[UIApplication.OpenURLOptionsKey
+                           .sourceApplication] as? String,
+                         annotation: "")
+    }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                     annotation: Any) -> Bool {
+      if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+        // Handle the deep link. For example, show the deep-linked content or
+        // apply a promotional offer to the user's account.
+        // ...
+        print("dynamic")
+        print(dynamicLink)
+        return true
+      }
+        
+      return false
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
@@ -48,8 +101,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("usernotification wqq")
 
       print(userInfo)
-
-      completionHandler(UIBackgroundFetchResult.newData)
+        CustomerGlu().displayNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["xz":"d"])
+        if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"]))
+        {
+        CustomerGlu().displayNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
+        }
+        else
+        {
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
+     // completionHandler(UIBackgroundFetchResult.newData)
     }
 }
 extension AppDelegate: MessagingDelegate {
@@ -81,26 +142,16 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     print(userInfo)
    // print(userInfo["data"] as Any)
 
-//    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"]))
-//    {
-//    CustomerGlu().displayNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["customerglu":"d"])
-//    }
-//    else
-//    {
-//        completionHandler([[.banner, .badge, .sound]])
-//
-//    }
+    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"]))
+    {
+    CustomerGlu().displayNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
+    }
+    else
+    {
+        completionHandler([[.banner, .badge, .sound]])
 
-//    let msgdata = userInfo["aps"] as? [String:AnyHashable]
-//    let myalert = msgdata?["alert"] as? [String:AnyHashable]
-//    let Type = myalert?["type"]
-//    if Type as! String == "CustomerGlu"
-//    {
-//        print("CustomerGlu")
-//        CustomerGlu().openUiKitWallet(cus_token: "s")
-//
-//    }
-    
+    }
+
     
     
 
@@ -122,6 +173,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
 
     }
+ 
 
   func userNotificationCenter(_ center: UNUserNotificationCenter,
                               didReceive response: UNNotificationResponse,
@@ -135,8 +187,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 
     print(userInfo)
-    CustomerGlu().displayBackgroundNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["xz":"d"])
+    CustomerGlu().displayBackgroundNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["glu_message_type":"glu"])
 
     completionHandler()
+    
   }
 }

@@ -34,7 +34,7 @@ import CustomerGlu
 //                    })
                 Text("Add to Cart")
                     .onTapGesture {
-                        CustomerGlu().sendEvents(writeKey: "G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy", eventName: "shop", user_id: "testuser2002", eventProperties: ["state":"1"]
+                        CustomerGlu().sendEvents( eventName: "shop", eventProperties: ["state":"1"]
                         )
                     }
                         .font(.system(size: 15))
