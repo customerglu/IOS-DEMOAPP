@@ -192,4 +192,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     completionHandler()
     
   }
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("-------------")
+       print(fcmToken)
+
+    }
 }
