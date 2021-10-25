@@ -21,10 +21,19 @@
       },
       {
         "package": "CustomerGlu",
+        "repositoryURL": "https://github.com/customerglu/CG-iOS-SDK",
+        "state": {
+          "branch": "testing",
+          "revision": "3fb55e0b5e028939550ca6989f32452168fce8c5",
+          "version": null
+        }
+      },
+      {
+        "package": "CustomerGlu",
         "repositoryURL": "https://github.com/HimanshuTrehan/CustomerGlu.git",
         "state": {
           "branch": "main",
-          "revision": "308ec5ff19b0a201f0b7e54ac43ae7504ddc8fca",
+          "revision": "b192e2540b7a3b29a6ad3beb93c1c8a65442babd",
           "version": null
         }
       },
@@ -33,8 +42,8 @@
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": null,
-          "revision": "2f972249c520cbf87ac8856f176ebc994cb1c9a6",
-          "version": "8.7.0"
+          "revision": "81b568348ab4e113dd8bcef5a83c5dd431741ae4",
+          "version": "8.8.1"
         }
       },
       {
@@ -42,8 +51,8 @@
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {
           "branch": null,
-          "revision": "4901bde146b0269da35470d261f741f0e910d8df",
-          "version": "8.7.0"
+          "revision": "06add56b27b88ae5180e92d4ee21a1199ee888a1",
+          "version": "8.8.0"
         }
       },
       {
@@ -51,8 +60,8 @@
         "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
         "state": {
           "branch": null,
-          "revision": "7fb27ea49414b9c5483503cd06baa821c8654d1e",
-          "version": "9.1.1"
+          "revision": "15ccdfd25ac55b9239b82809531ff26605e7556e",
+          "version": "9.1.2"
         }
       },
       {
@@ -60,8 +69,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "616fac2626b6b2d1424d79a6f786b4e2ed1cfb49",
-          "version": "7.5.2"
+          "revision": "797005ad8a1f0614063933e2fa010a5d13cb09d0",
+          "version": "7.6.0"
         }
       },
       {
@@ -114,8 +123,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "1f62db409f2c9b0223a3f68567b4a01333aae778",
-          "version": "1.17.0"
+          "revision": "7e2c5f3cbbeea68e004915e3a8961e20bd11d824",
+          "version": "1.18.0"
         }
       }
     ]

@@ -26,7 +26,6 @@
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
 		1BA57F1626EF7E270011573C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BA57F1526EF7E270011573C /* GoogleService-Info.plist */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
-		1BF062E126AA9B3B00DAFCB9 /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF062E026AA9B3B00DAFCB9 /* CustomerGlu */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +57,6 @@
 			files = (
 				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
-				1BF062E126AA9B3B00DAFCB9 /* CustomerGlu in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,7 +162,6 @@
 			);
 			name = CustomerGluDemo;
 			packageProductDependencies = (
-				1BF062E026AA9B3B00DAFCB9 /* CustomerGlu */,
 				1B77ADB726CBDF100086859F /* FirebaseAnalytics */,
 				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
 				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
@@ -199,6 +196,7 @@
 			packageReferences = (
 				1BF062DF26AA9B3B00DAFCB9 /* XCRemoteSwiftPackageReference "CustomerGlu" */,
 				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1B5622D52726F1DF00D3A866 /* XCRemoteSwiftPackageReference "CG-iOS-SDK" */,
 			);
 			productRefGroup = 1B3D7CB126A6BDDC00EA1587 /* Products */;
 			projectDirPath = "";
@@ -436,6 +434,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1B5622D52726F1DF00D3A866 /* XCRemoteSwiftPackageReference "CG-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/customerglu/CG-iOS-SDK";
+			requirement = {
+				branch = testing;
+				kind = branch;
+			};
+		};
 		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -469,11 +475,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
-		};
-		1BF062E026AA9B3B00DAFCB9 /* CustomerGlu */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1BF062DF26AA9B3B00DAFCB9 /* XCRemoteSwiftPackageReference "CustomerGlu" */;
-			productName = CustomerGlu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
