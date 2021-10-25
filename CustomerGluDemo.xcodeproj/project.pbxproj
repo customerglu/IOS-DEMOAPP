@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1827E7682726C09D00A7B38B /* GoogleService-Info.plist */; };
+		188DE0942726CBAA002DA85D /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 188DE0932726CBAA002DA85D /* CustomerGlu */; };
 		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
 		1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */; };
@@ -24,12 +26,12 @@
 		1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB926CBDF100086859F /* FirebaseMessaging */; };
 		1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */; };
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
-		1BA57F1626EF7E270011573C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BA57F1526EF7E270011573C /* GoogleService-Info.plist */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
-		1BF062E126AA9B3B00DAFCB9 /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF062E026AA9B3B00DAFCB9 /* CustomerGlu */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1827E7682726C09D00A7B38B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		188DE0912726CAA6002DA85D /* CG-iOS-SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CG-iOS-SDK"; sourceTree = "<group>"; };
 		1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomerGluDemo.entitlements; sourceTree = "<group>"; };
 		1B3A357426B7C57500A2C713 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomerGluDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +49,6 @@
 		1B3D7CD226A6E17C00EA1587 /* CartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreen.swift; sourceTree = "<group>"; };
 		1B73372626A7005500F93795 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		1B77ADBF26CBE05B0086859F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1BA57F1526EF7E270011573C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,8 +58,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
+				188DE0942726CBAA002DA85D /* CustomerGlu in Frameworks */,
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
-				1BF062E126AA9B3B00DAFCB9 /* CustomerGlu in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,11 +67,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1835AEC52726C3A40084C5B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1B3D7CA726A6BDDC00EA1587 = {
 			isa = PBXGroup;
 			children = (
+				188DE0912726CAA6002DA85D /* CG-iOS-SDK */,
 				1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */,
 				1B3D7CB126A6BDDC00EA1587 /* Products */,
+				1835AEC52726C3A40084C5B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,12 +95,11 @@
 		1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */ = {
 			isa = PBXGroup;
 			children = (
-				1BA57F1526EF7E270011573C /* GoogleService-Info.plist */,
+				1827E7682726C09D00A7B38B /* GoogleService-Info.plist */,
 				1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */,
 				1B3D7CCF26A6CAF700EA1587 /* Modifiers */,
 				1B3D7CCA26A6C17200EA1587 /* Cells */,
 				1B3D7CC326A6BE2300EA1587 /* Views */,
-				1B3D7CC226A6BE1700EA1587 /* Model */,
 				1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */,
 				1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */,
 				1B3D7CB726A6BDDC00EA1587 /* Assets.xcassets */,
@@ -107,13 +116,6 @@
 				1B3D7CBA26A6BDDC00EA1587 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1B3D7CC226A6BE1700EA1587 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1B3D7CC326A6BE2300EA1587 /* Views */ = {
@@ -164,10 +166,10 @@
 			);
 			name = CustomerGluDemo;
 			packageProductDependencies = (
-				1BF062E026AA9B3B00DAFCB9 /* CustomerGlu */,
 				1B77ADB726CBDF100086859F /* FirebaseAnalytics */,
 				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
 				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
+				188DE0932726CBAA002DA85D /* CustomerGlu */,
 			);
 			productName = CustomerGluDemo;
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
@@ -197,7 +199,6 @@
 			);
 			mainGroup = 1B3D7CA726A6BDDC00EA1587;
 			packageReferences = (
-				1BF062DF26AA9B3B00DAFCB9 /* XCRemoteSwiftPackageReference "CustomerGlu" */,
 				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 1B3D7CB126A6BDDC00EA1587 /* Products */;
@@ -215,7 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3D7CBB26A6BDDC00EA1587 /* Preview Assets.xcassets in Resources */,
-				1BA57F1626EF7E270011573C /* GoogleService-Info.plist in Resources */,
+				1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */,
 				1B3D7CB826A6BDDC00EA1587 /* Assets.xcassets in Resources */,
 				1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */,
 			);
@@ -444,17 +445,13 @@
 				minimumVersion = 8.5.0;
 			};
 		};
-		1BF062DF26AA9B3B00DAFCB9 /* XCRemoteSwiftPackageReference "CustomerGlu" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/HimanshuTrehan/CustomerGlu.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		188DE0932726CBAA002DA85D /* CustomerGlu */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CustomerGlu;
+		};
 		1B77ADB726CBDF100086859F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -469,11 +466,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
-		};
-		1BF062E026AA9B3B00DAFCB9 /* CustomerGlu */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1BF062DF26AA9B3B00DAFCB9 /* XCRemoteSwiftPackageReference "CustomerGlu" */;
-			productName = CustomerGlu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

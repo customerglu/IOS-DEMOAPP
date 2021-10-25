@@ -29,7 +29,7 @@ import Firebase
      //   let mykey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMER_WRITE_KEY")
       //  print(mykey)
         let parameters = [
-            "userId": "testuser2015",
+            "userId": "testuser2018",
             "deviceId": "deviceb",
             
            // "writeKey": "G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy",

@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "CustomerGlu",
-        "repositoryURL": "https://github.com/HimanshuTrehan/CustomerGlu.git",
-        "state": {
-          "branch": "main",
-          "revision": "308ec5ff19b0a201f0b7e54ac43ae7504ddc8fca",
-          "version": null
-        }
-      },
-      {
         "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
