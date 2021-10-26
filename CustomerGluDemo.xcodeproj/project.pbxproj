@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1827E7682726C09D00A7B38B /* GoogleService-Info.plist */; };
+		18D8243527281E3F00F014AC /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 18D8243427281E3F00F014AC /* SwiftLintFramework */; };
 		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
 		1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */; };
@@ -61,6 +62,7 @@
 				1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */,
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
+				18D8243527281E3F00F014AC /* SwiftLintFramework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +172,7 @@
 				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
 				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
 				1BDFB29D2727CB870095CF4E /* CustomerGlu */,
+				18D8243427281E3F00F014AC /* SwiftLintFramework */,
 			);
 			productName = CustomerGluDemo;
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
@@ -200,6 +203,7 @@
 			mainGroup = 1B3D7CA726A6BDDC00EA1587;
 			packageReferences = (
 				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				18D8243327281E3E00F014AC /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 1B3D7CB126A6BDDC00EA1587 /* Products */;
 			projectDirPath = "";
@@ -437,6 +441,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		18D8243327281E3E00F014AC /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.45.0;
+			};
+		};
 		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -448,6 +460,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		18D8243427281E3F00F014AC /* SwiftLintFramework */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18D8243327281E3E00F014AC /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = SwiftLintFramework;
+		};
 		1B77ADB726CBDF100086859F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
