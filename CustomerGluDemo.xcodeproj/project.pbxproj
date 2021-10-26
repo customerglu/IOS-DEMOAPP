@@ -21,12 +21,12 @@
 		1B3D7CD126A6CB1400EA1587 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CD026A6CB1400EA1587 /* CardModifier.swift */; };
 		1B3D7CD326A6E17C00EA1587 /* CartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CD226A6E17C00EA1587 /* CartScreen.swift */; };
 		1B73372726A7005500F93795 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73372626A7005500F93795 /* CartCell.swift */; };
-		1B77ADB826CBDF100086859F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB726CBDF100086859F /* SwiftPackageProductDependency */; };
-		1B77ADBA26CBDF100086859F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB926CBDF100086859F /* SwiftPackageProductDependency */; };
-		1B77ADBC26CBDF100086859F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* SwiftPackageProductDependency */; };
+		1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB726CBDF100086859F /* FirebaseAnalytics */; };
+		1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB926CBDF100086859F /* FirebaseMessaging */; };
+		1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */; };
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
-		1BDFB29E2727CB870095CF4E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* SwiftPackageProductDependency */; };
+		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
 		BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,10 +61,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B77ADBA26CBDF100086859F /* BuildFile in Frameworks */,
-				1BDFB29E2727CB870095CF4E /* BuildFile in Frameworks */,
-				1B77ADB826CBDF100086859F /* BuildFile in Frameworks */,
-				1B77ADBC26CBDF100086859F /* BuildFile in Frameworks */,
+				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
+				1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */,
+				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
+				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
 				BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,7 +162,6 @@
 				89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */,
 				26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -177,6 +176,7 @@
 				1B3D7CAC26A6BDDC00EA1587 /* Sources */,
 				1B3D7CAD26A6BDDC00EA1587 /* Frameworks */,
 				1B3D7CAE26A6BDDC00EA1587 /* Resources */,
+				822A396027286C5E000CD097 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -184,10 +184,10 @@
 			);
 			name = CustomerGluDemo;
 			packageProductDependencies = (
-				1B77ADB726CBDF100086859F /* SwiftPackageProductDependency */,
-				1B77ADB926CBDF100086859F /* SwiftPackageProductDependency */,
-				1B77ADBB26CBDF100086859F /* SwiftPackageProductDependency */,
-				1BDFB29D2727CB870095CF4E /* SwiftPackageProductDependency */,
+				1B77ADB726CBDF100086859F /* FirebaseAnalytics */,
+				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
+				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
+				1BDFB29D2727CB870095CF4E /* CustomerGlu */,
 			);
 			productName = CustomerGluDemo;
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
@@ -217,7 +217,7 @@
 			);
 			mainGroup = 1B3D7CA726A6BDDC00EA1587;
 			packageReferences = (
-				1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */,
+				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 1B3D7CB126A6BDDC00EA1587 /* Products */;
 			projectDirPath = "";
@@ -243,6 +243,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		822A396027286C5E000CD097 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		D21A056112D2D185C711B92C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -482,7 +499,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */ = {
+		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -493,22 +510,22 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1B77ADB726CBDF100086859F /* SwiftPackageProductDependency */ = {
+		1B77ADB726CBDF100086859F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		1B77ADB926CBDF100086859F /* SwiftPackageProductDependency */ = {
+		1B77ADB926CBDF100086859F /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
-		1B77ADBB26CBDF100086859F /* SwiftPackageProductDependency */ = {
+		1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
 		};
-		1BDFB29D2727CB870095CF4E /* SwiftPackageProductDependency */ = {
+		1BDFB29D2727CB870095CF4E /* CustomerGlu */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CustomerGlu;
 		};
