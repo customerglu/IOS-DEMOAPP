@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1827E7682726C09D00A7B38B /* GoogleService-Info.plist */; };
-		18D8243527281E3F00F014AC /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 18D8243427281E3F00F014AC /* SwiftLintFramework */; };
 		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
 		1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */; };
@@ -22,12 +21,13 @@
 		1B3D7CD126A6CB1400EA1587 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CD026A6CB1400EA1587 /* CardModifier.swift */; };
 		1B3D7CD326A6E17C00EA1587 /* CartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CD226A6E17C00EA1587 /* CartScreen.swift */; };
 		1B73372726A7005500F93795 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73372626A7005500F93795 /* CartCell.swift */; };
-		1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB726CBDF100086859F /* FirebaseAnalytics */; };
-		1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB926CBDF100086859F /* FirebaseMessaging */; };
-		1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */; };
+		1B77ADB826CBDF100086859F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB726CBDF100086859F /* SwiftPackageProductDependency */; };
+		1B77ADBA26CBDF100086859F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB926CBDF100086859F /* SwiftPackageProductDependency */; };
+		1B77ADBC26CBDF100086859F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* SwiftPackageProductDependency */; };
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
-		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
+		1BDFB29E2727CB870095CF4E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* SwiftPackageProductDependency */; };
+		BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +51,9 @@
 		1B73372626A7005500F93795 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		1B77ADBF26CBE05B0086859F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
+		89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomerGluDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +61,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
-				1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */,
-				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
-				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
-				18D8243527281E3F00F014AC /* SwiftLintFramework in Frameworks */,
+				1B77ADBA26CBDF100086859F /* BuildFile in Frameworks */,
+				1BDFB29E2727CB870095CF4E /* BuildFile in Frameworks */,
+				1B77ADB826CBDF100086859F /* BuildFile in Frameworks */,
+				1B77ADBC26CBDF100086859F /* BuildFile in Frameworks */,
+				BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +75,7 @@
 		1835AEC52726C3A40084C5B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,6 +87,7 @@
 				1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */,
 				1B3D7CB126A6BDDC00EA1587 /* Products */,
 				1835AEC52726C3A40084C5B8 /* Frameworks */,
+				AA131C89172E64D9FABAC320 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +156,16 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		AA131C89172E64D9FABAC320 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */,
+				26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,6 +173,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B3D7CBF26A6BDDC00EA1587 /* Build configuration list for PBXNativeTarget "CustomerGluDemo" */;
 			buildPhases = (
+				D21A056112D2D185C711B92C /* [CP] Check Pods Manifest.lock */,
 				1B3D7CAC26A6BDDC00EA1587 /* Sources */,
 				1B3D7CAD26A6BDDC00EA1587 /* Frameworks */,
 				1B3D7CAE26A6BDDC00EA1587 /* Resources */,
@@ -168,11 +184,10 @@
 			);
 			name = CustomerGluDemo;
 			packageProductDependencies = (
-				1B77ADB726CBDF100086859F /* FirebaseAnalytics */,
-				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
-				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
-				1BDFB29D2727CB870095CF4E /* CustomerGlu */,
-				18D8243427281E3F00F014AC /* SwiftLintFramework */,
+				1B77ADB726CBDF100086859F /* SwiftPackageProductDependency */,
+				1B77ADB926CBDF100086859F /* SwiftPackageProductDependency */,
+				1B77ADBB26CBDF100086859F /* SwiftPackageProductDependency */,
+				1BDFB29D2727CB870095CF4E /* SwiftPackageProductDependency */,
 			);
 			productName = CustomerGluDemo;
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
@@ -202,8 +217,7 @@
 			);
 			mainGroup = 1B3D7CA726A6BDDC00EA1587;
 			packageReferences = (
-				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				18D8243327281E3E00F014AC /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 1B3D7CB126A6BDDC00EA1587 /* Products */;
 			projectDirPath = "";
@@ -227,6 +241,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D21A056112D2D185C711B92C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CustomerGluDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1B3D7CAC26A6BDDC00EA1587 /* Sources */ = {
@@ -369,6 +408,7 @@
 		};
 		1B3D7CC026A6BDDC00EA1587 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -394,6 +434,7 @@
 		};
 		1B3D7CC126A6BDDC00EA1587 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -441,46 +482,33 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		18D8243327281E3E00F014AC /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.45.0;
-			};
-		};
-		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.5.0;
+				kind = exactVersion;
+				version = 8.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		18D8243427281E3F00F014AC /* SwiftLintFramework */ = {
+		1B77ADB726CBDF100086859F /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 18D8243327281E3E00F014AC /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = SwiftLintFramework;
-		};
-		1B77ADB726CBDF100086859F /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */;
 			productName = FirebaseAnalytics;
 		};
-		1B77ADB926CBDF100086859F /* FirebaseMessaging */ = {
+		1B77ADB926CBDF100086859F /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */;
 			productName = FirebaseMessaging;
 		};
-		1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */ = {
+		1B77ADBB26CBDF100086859F /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 1B77ADB626CBDF100086859F /* RemoteSwiftPackageReference */;
 			productName = FirebaseDynamicLinks;
 		};
-		1BDFB29D2727CB870095CF4E /* CustomerGlu */ = {
+		1BDFB29D2727CB870095CF4E /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CustomerGlu;
 		};

@@ -34,38 +34,6 @@
             endingLineNumber = "122"
             landmarkName = "retrieveData(customer_token:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "56CA2DDC-9A11-4608-80AE-AB1AD0576C43 - 9c8fe123a52d7b08"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.retrieveData(customer_token: Swift.String, completion: (CustomerGlu.CampaignsModel) -&gt; ()) -&gt; ()"
-                  moduleName = "CustomerGluDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git/Customerglu/Debugging/IOS-DEMOAPP/CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "122"
-                  endingLineNumber = "122"
-                  offsetFromSymbolStart = "1003">
-               </Location>
-               <Location
-                  uuid = "56CA2DDC-9A11-4608-80AE-AB1AD0576C43 - e72d3c7b484225b9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.retrieveData(customer_token: Swift.String, completion: (CustomerGlu.CampaignsModel) -&gt; ()) -&gt; ()"
-                  moduleName = "CustomerGluDemo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git/Customerglu/Debugging/IOS-DEMOAPP/CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "124"
-                  endingLineNumber = "124"
-                  offsetFromSymbolStart = "409">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
