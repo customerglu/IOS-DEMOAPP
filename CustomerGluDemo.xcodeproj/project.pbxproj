@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1827E7682726C09D00A7B38B /* GoogleService-Info.plist */; };
-		188DE0942726CBAA002DA85D /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 188DE0932726CBAA002DA85D /* CustomerGlu */; };
 		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
 		1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */; };
@@ -27,6 +26,7 @@
 		1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */; };
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
+		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
-				188DE0942726CBAA002DA85D /* CustomerGlu in Frameworks */,
+				1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */,
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
 			);
@@ -169,7 +169,7 @@
 				1B77ADB726CBDF100086859F /* FirebaseAnalytics */,
 				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
 				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
-				188DE0932726CBAA002DA85D /* CustomerGlu */,
+				1BDFB29D2727CB870095CF4E /* CustomerGlu */,
 			);
 			productName = CustomerGluDemo;
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
@@ -448,10 +448,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		188DE0932726CBAA002DA85D /* CustomerGlu */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CustomerGlu;
-		};
 		1B77ADB726CBDF100086859F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -466,6 +462,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
+		};
+		1BDFB29D2727CB870095CF4E /* CustomerGlu */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CustomerGlu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

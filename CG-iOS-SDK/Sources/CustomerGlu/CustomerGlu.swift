@@ -22,16 +22,13 @@ extension UIViewController{
 @available(iOS 13.0, *)
 
 public class CustomerGlu:ObservableObject {
-    
+    var constant = Constants();
     @available(iOS 13.0, *)
     public init(){
     }
     var text = "Hello World !"
    @Published var apidata = RegistrationModel()
     @Published var campaigndata = CampaignsModel()
-    var register_url = "https://api.customerglu.com/user/v1/user/sdk?token=true"
-    var load_campaigns_url = "https://api.customerglu.com/reward/v1.1/user"
-   var send_events = "https://stream.customerglu.com/v3/server"
     
     func machineName() -> String {
       var systemInfo = utsname()
@@ -65,7 +62,7 @@ public class CustomerGlu:ObservableObject {
         
           let jsonData = try! JSONSerialization.data(withJSONObject: userdata, options: .fragmentsAllowed)
 
-           let myurl = URL(string: register_url)
+        let myurl = URL(string: self.constant.DEVICE_REGISTER)
           var request = URLRequest(url: myurl!)
           request.httpMethod="POST"
           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -83,23 +80,25 @@ public class CustomerGlu:ObservableObject {
                       do{
                           let mydata = try JSONDecoder().decode(RegistrationModel.self, from: data!)
                           print("data")
+                        print("-------------------")
+
                           DispatchQueue.main.async{
                             self.apidata = mydata
                             let token = self.apidata.data?.token
-                            UserDefaults.standard.set(token, forKey: "CustomerGlu_Token")
+                            UserDefaults.standard.set(token, forKey: self.constant.CUSTOMERGLU_TOKEN)
                             let user_id = self.apidata.data?.token
-                            UserDefaults.standard.set(user_id, forKey: "CustomerGlu_user_id")
+                            UserDefaults.standard.set(user_id, forKey: self.constant.CUSTOMERGLU_USERID)
                               completion(self.apidata)
                           }
                           
                       }
                       catch
                       {
-                          print("json parsing error:\(error)")
+                        print(self.constant.JSON_ERROR+"\(error)")
                       }
 
                   } catch  {
-                      print("error: \(error)")
+                    print(self.constant.ERROR+"\(error)")
                   }
               }
            
@@ -111,7 +110,7 @@ public class CustomerGlu:ObservableObject {
     {
     
         let token = "Bearer "+customer_token
-         let myurl = URL(string: load_campaigns_url)
+        let myurl = URL(string: self.constant.LOAD_CAMPAIGNS)
         var request = URLRequest(url: myurl!)
         request.httpMethod="GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -128,8 +127,6 @@ public class CustomerGlu:ObservableObject {
 //                    as?[String:Any]
 //                    print(dictonary as Any)
                     do{
-//                        print(String(decoding: data, as: UTF8.self))
-                        print(String(data: data!, encoding: String.Encoding.utf8))
                         let mydata = try JSONDecoder().decode(CampaignsModel.self, from: data!)
                         print("data")
                         DispatchQueue.main.async{
@@ -141,7 +138,7 @@ public class CustomerGlu:ObservableObject {
                     }
                     catch
                     {
-                        print("json parsing error:\(error)")
+                        print(self.constant.ERROR+"\(error)")
                     }
 
              //   } catch  {
@@ -201,7 +198,7 @@ public class CustomerGlu:ObservableObject {
 
             if ((remoteMessage["glu_message_type"]  as? String) == "in-app") {
                 print(notification_type as Any)
-                if notification_type as! String == "bottom-slider"
+                if notification_type as! String == self.constant.BOTTOM_SHEET_NOTIFICATION
                 {
                     let swiftUIView = NotificationHandler(my_url: nudge_url as! String)
          
@@ -213,7 +210,7 @@ public class CustomerGlu:ObservableObject {
                            topController.present(hostingController, animated: true, completion: nil)
                     
                 }
-                else   if notification_type as! String == "bottom-default"{
+                else   if notification_type as! String == self.constant.BOTTOM_DEFAULT_NOTIFICATION{
                     let swiftUIView = NotificationHandler(my_url: nudge_url as! String)
          
                     let hostingController = UIHostingController(rootView: swiftUIView)
@@ -224,7 +221,7 @@ public class CustomerGlu:ObservableObject {
                                       return
                                   }
                            topController.present(hostingController, animated: true, completion: nil)                }
-                else  if notification_type as! String == "middle-default"{
+                else  if notification_type as! String == self.constant.MIDDLE_NOTIFICATIONS{
                     let swiftUIView = NotificationHandler(my_url: nudge_url as! String, ismiddle:true)
          
                     let hostingController = UIHostingController(rootView: swiftUIView)
@@ -294,10 +291,10 @@ public class CustomerGlu:ObservableObject {
         let date = Date()
         let event_id = UUID().uuidString
         let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateformatter.dateFormat = self.constant.DATE_FORMAT
         let timestamp = dateformatter.string(from: date)
         let evp = String(describing: eventProperties)
-        let user_id = UserDefaults.standard.string(forKey: "CustomerGlu_user_id")
+        let user_id = UserDefaults.standard.string(forKey: self.constant.CUSTOMERGLU_USERID)
         print(evp)
         let eventData = [
             "event_id": event_id,
@@ -311,7 +308,7 @@ public class CustomerGlu:ObservableObject {
         let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
           let jsonData = try! JSONSerialization.data(withJSONObject: eventData, options: .fragmentsAllowed)
             print(jsonData)
-           let myurl = URL(string: send_events)
+        let myurl = URL(string: self.constant.SEND_EVENTS)
           var request = URLRequest(url: myurl!)
           request.httpMethod="POST"
           request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -330,7 +327,7 @@ public class CustomerGlu:ObservableObject {
 
 
                   } catch  {
-                      print("error: \(error)")
+                    print(self.constant.ERROR+"\(error)")
                   }
               }
 
@@ -339,3 +336,4 @@ public class CustomerGlu:ObservableObject {
           
       }
 }
+
