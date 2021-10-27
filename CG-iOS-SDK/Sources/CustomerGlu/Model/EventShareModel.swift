@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct EventShareModel:Codable {
+struct EventShareModel: Codable {
     var eventName = ""
-    var data:EventShareData?
+    var data: EventShareData?
 }
 
-struct EventShareData:Codable {
-    
+struct EventShareData: Codable {
     var channelName = ""
     var text = ""
     var image = ""

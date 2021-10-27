@@ -13,8 +13,8 @@ struct MyModifier: ViewModifier {
             .cornerRadius(20)
             .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 0)
     }
-    
 }
+
 struct CartCell: View {
     
     var image: String
@@ -22,6 +22,7 @@ struct CartCell: View {
     var type: String
     var price: Double
     @State var liked = false
+    
     var body: some View {
         HStack(alignment: .center) {
             Image(image)
@@ -45,24 +46,20 @@ struct CartCell: View {
                 }
             }.padding(.trailing, 20)
             Spacer()
-            if liked
-            {
+            if liked {
                 Button(action: {
                     self.liked.toggle()
                 }, label: {
-                        Image(systemName: "heart.fill").resizable()
-                            .foregroundColor(.red)
-                            .frame(width: 30, height: 30, alignment: .center)                    })
-            }
-            else
-            {
+                    Image(systemName: "heart.fill").resizable()
+                        .foregroundColor(.red)
+                        .frame(width: 30, height: 30, alignment: .center)
+                })
+            } else {
                 Button(action: {
                     self.liked.toggle()
-
                 }, label: {
-                        Image(systemName: "heart").resizable()
-                            .frame(width: 30, height: 30, alignment: .center)                    })
-            
+                    Image(systemName: "heart").resizable()
+                    .frame(width: 30, height: 30, alignment: .center)                    })
             }
             Spacer()
         }
@@ -70,9 +67,9 @@ struct CartCell: View {
         .background(Color.white)
         .modifier(CardModifier())
         .padding(.all, 10)
-        
     }
 }
+
 struct CartCell_Previews: PreviewProvider {
     static var previews: some View {
         CartCell(image: "trolley", title: "f", type: "cl", price: 20.0)

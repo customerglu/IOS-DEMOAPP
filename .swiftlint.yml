@@ -1,5 +1,17 @@
+disabled_rules: # rule identifiers to exclude from running
+    - cyclomatic_complexity
+    - weak_delegate
+    - trailing_whitespace
+
 excluded: # paths to ignore during linting. Takes precedence over `included`.
     - Carthage
     - Pods
+    
+line_length:
+    - 300
+    - 350
+    
+identifier_name:
+  allowed_symbols: "_"
 
 reporter: "xcode"

@@ -7,13 +7,10 @@
 
 import Foundation
 
-struct EventModel:Codable {
+struct EventModel: Codable {
     var eventName = ""
-    var data:EventData?
+    var data: EventData?
 }
 
-struct EventData:Codable {
-    
-   
+struct EventData: Codable {
 }
-

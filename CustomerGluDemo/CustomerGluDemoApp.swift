@@ -17,5 +17,3 @@ struct CustomerGluDemoApp: App {
         }
     }
 }
-
-

@@ -8,12 +8,10 @@
 import Foundation
 import UIKit
 
-class TestScreen:UIViewController{
+class TestScreen: UIViewController {
     
     override func viewDidLoad() {
         print("test")
-       // addSwiftUIView()
+        // addSwiftUIView()
     }
-    
-    
 }

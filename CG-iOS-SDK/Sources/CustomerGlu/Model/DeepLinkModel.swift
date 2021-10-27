@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct DeepLinkModel:Codable {
+struct DeepLinkModel: Codable {
     var eventName = ""
-    var data:EventLinkData?
+    var data: EventLinkData?
 }
 
-struct EventLinkData:Codable {
-    
+struct EventLinkData: Codable {
     var screenName = ""
     var deepLink = ""
-
 }
