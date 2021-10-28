@@ -39,7 +39,32 @@ public class CustomerGlu: ObservableObject {
         }
     }
     
-    public func doRegister(body: [String: AnyHashable], completion: @escaping (RegistrationModel) -> Void) {
+    public func doRegister(body: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
+        
+        var userdata = body
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            print(uuid)
+            userdata["deviceId"] = uuid
+        }
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
+        userdata["deviceType"] = "ios"
+        let modelname = machineName()
+        userdata["deviceName"] = modelname
+        userdata["appVersion"] = appVersion
+        userdata["writeKey"] = writekey
+        
+        APIManager.userRegister(queryParameters: userdata as NSDictionary) { result in
+            switch result {
+                case .success(let data):
+                    completion(true, data)
+                    
+                case .failure(let error):
+                    completion(false, nil)
+            }
+        }
+                
+        /*
         var userdata = body
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
@@ -90,6 +115,7 @@ public class CustomerGlu: ObservableObject {
                 }
             }
         }.resume()
+        */
     }
     
     public func retrieveData(customer_token: String, completion: @escaping (CampaignsModel) -> Void) {
@@ -249,6 +275,7 @@ public class CustomerGlu: ObservableObject {
         let jsonData = try? JSONSerialization.data(withJSONObject: eventData, options: .fragmentsAllowed)
         print(jsonData as Any)
         let myurl = URL(string: self.constant.SEND_EVENTS)
+        
         var request = URLRequest(url: myurl!)
         request.httpMethod="POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

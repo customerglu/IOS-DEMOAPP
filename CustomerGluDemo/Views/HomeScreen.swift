@@ -32,11 +32,11 @@ struct HomeScreen: View {
             // "writeKey": "G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy",
             "firebaseToken": fcmRegTokenMessage]
         
-        customerglu.doRegister(body: parameters) { registrationModel in
-            token = (registrationModel.data?.token)!
-            print("dssd")
-            //   print(token)
-            print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
+        customerglu.doRegister(body: parameters) { registrationModel, success  in
+//            token = (registrationModel.data?.token)!
+//            print("dssd")
+//            //   print(token)
+//            print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
         }
     }
     
