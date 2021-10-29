@@ -26,7 +26,7 @@ struct OpenUiKitWallet: View {
     }
    
     public func getCampaigns() {
-        CustomerGlu.shared.getWalletRewards { success, campaignsModel in
+        CustomerGlu.single_instance.getWalletRewards { success, campaignsModel in
             if success {
                 my_url = campaignsModel!.defaultUrl
                 print(my_url)

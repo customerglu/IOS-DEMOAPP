@@ -18,7 +18,7 @@ struct LoadCampaignsUiKit: View {
     @State var campaigns: [Campaigns] = []
     
     public func getCampaign() {
-        CustomerGlu.shared.getWalletRewards { success, campaignsModel in
+        CustomerGlu.single_instance.getWalletRewards { success, campaignsModel in
             if success {
                 campaigns = (campaignsModel?.campaigns)!
             } else {

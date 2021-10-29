@@ -87,9 +87,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("usernotification wqq")
         
         print(userInfo)
-        CustomerGlu.shared.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["xz": "d"])
-        if CustomerGlu.shared.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
-            CustomerGlu.shared.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
+        CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["xz": "d"])
+        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
         } else {
             completionHandler(UIBackgroundFetchResult.newData)
         }
@@ -126,8 +126,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print(userInfo)
         // print(userInfo["data"] as Any)
         
-        if CustomerGlu.shared.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
-            CustomerGlu.shared.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
+        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
         } else {
             completionHandler([[.banner, .badge, .sound]])
         }
@@ -155,7 +155,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         print("background click")
         print(userInfo)
-        CustomerGlu.shared.displayBackgroundNotification(remoteMessage: userInfo["data"] as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
+        CustomerGlu.single_instance.displayBackgroundNotification(remoteMessage: userInfo["data"] as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
         completionHandler()
     }
     

@@ -34,32 +34,6 @@ class ImageLoader: ObservableObject {
     }
 }
 
-//extension String
-//{
-//    func load()-> UIImage
-//    {
-//
-//        do
-//        {
-//            guard let url = URL(string: self)
-//
-//            else
-//            {
-//                return UIImage()
-//            }
-//            let data:Foundation.Data = try Foundation.Data(contentsOf: url)
-//
-//            return UIImage(data: data)!
-//
-//        }
-//        catch
-//        {
-//            print("not found")
-//        }
-//        return UIImage()
-//    }
-//}
-
 @available(iOS 13.0, *)
 struct BannerCell: View {
     

@@ -8,16 +8,6 @@
 import Foundation
 import UIKit
 
-// Parameter Key's for all API's
-private struct APIParameterKey {
-    static let password = "password"
-    static let email = "email"
-    static let client = "client"
-    static let version = "version"
-    static let oldPassword = "oldPassword"
-    static let providerName = "providerName"
-}
-
 // HTTP Header Field's for API's
 private enum HTTPHeaderField: String {
     case contentType = "Content-Type"
@@ -178,19 +168,3 @@ class APIManager {
     }
 }
 
-extension Dictionary {
-    
-    var json: String {
-        let invalidJson = "Not a valid JSON"
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
-            return String(bytes: jsonData, encoding: String.Encoding.utf8) ?? invalidJson
-        } catch {
-            return invalidJson
-        }
-    }
-    
-    func printJson() {
-        print(json)
-    }
-}
