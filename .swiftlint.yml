@@ -2,10 +2,14 @@ disabled_rules: # rule identifiers to exclude from running
     - cyclomatic_complexity
     - weak_delegate
     - trailing_whitespace
+    - syntactic_sugar
+    - identifier_name
+
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
     - Carthage
     - Pods
+
     
 line_length:
     - 300

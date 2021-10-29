@@ -21,9 +21,13 @@ public struct LoadAllCampaigns: View {
     @State var campaigns: [Campaigns] = []
     
     public func getCampaign() {
-        CustomerGlu().retrieveData(customer_token: customer_token, completion: { campaignsModel in
-            campaigns = campaignsModel.campaigns!
-        })
+        CustomerGlu.shared.getWalletRewards { success, campaignsModel in
+            if success {
+                campaigns = (campaignsModel?.campaigns)!
+            } else {
+                print("error")
+            }
+        }
     }
     
     public var body: some View {
@@ -60,7 +64,7 @@ public struct LoadAllCampaigns: View {
                 }.background(Color.white)
                     .listStyle(PlainListStyle())
                 Spacer()
-            }.onAppear(perform: { getCampaign() })
+            }.onAppear(perform: getCampaign )
                 .background(Color.white)
         }
         .navigationBarHidden(true)

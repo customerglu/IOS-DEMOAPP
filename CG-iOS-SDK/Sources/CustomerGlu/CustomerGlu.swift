@@ -20,6 +20,9 @@ extension UIViewController {
 @available(iOS 13.0, *)
 public class CustomerGlu: ObservableObject {
     
+    // Singleton Instance
+    public static let shared = CustomerGlu()
+    
     var constant = Constants()
     @available(iOS 13.0, *)
     public init() {
@@ -37,112 +40,6 @@ public class CustomerGlu: ObservableObject {
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
-    }
-    
-    public func doRegister(body: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        
-        var userdata = body
-        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            print(uuid)
-            userdata["deviceId"] = uuid
-        }
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
-        userdata["deviceType"] = "ios"
-        let modelname = machineName()
-        userdata["deviceName"] = modelname
-        userdata["appVersion"] = appVersion
-        userdata["writeKey"] = writekey
-        
-        APIManager.userRegister(queryParameters: userdata as NSDictionary) { result in
-            switch result {
-                case .success(let data):
-                    completion(true, data)
-                    
-                case .failure(let error):
-                    completion(false, nil)
-            }
-        }
-                
-        /*
-        var userdata = body
-        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            print(uuid)
-            userdata["deviceId"] = uuid
-        }
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-        let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
-        userdata["deviceType"] = "ios"
-        let modelname = machineName()
-        userdata["deviceName"] = modelname
-        userdata["appVersion"] = appVersion
-        userdata["writeKey"] = writekey
-        
-        print(machineName())
-        
-        let jsonData = try? JSONSerialization.data(withJSONObject: userdata, options: .fragmentsAllowed)
-        
-        let myurl = URL(string: self.constant.DEVICE_REGISTER)
-        var request = URLRequest(url: myurl!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        request.httpBody = jsonData
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            print(response as Any)
-            if error == nil && data != nil {
-                do {
-                    let dictonary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: Any]
-                    print(dictonary as Any)
-                    do {
-                        let mydata = try JSONDecoder().decode(RegistrationModel.self, from: data!)
-                        print("data")
-                        print("-------------------")
-                        DispatchQueue.main.async {
-                            self.apidata = mydata
-                            let token = self.apidata.data?.token
-                            UserDefaults.standard.set(token, forKey: self.constant.CUSTOMERGLU_TOKEN)
-                            let user_id = self.apidata.data?.token
-                            UserDefaults.standard.set(user_id, forKey: self.constant.CUSTOMERGLU_USERID)
-                            completion(self.apidata)
-                        }
-                    } catch {
-                        print(self.constant.JSON_ERROR + "\(error)")
-                    }
-                } catch {
-                    print(self.constant.ERROR + "\(error)")
-                }
-            }
-        }.resume()
-        */
-    }
-    
-    public func retrieveData(customer_token: String, completion: @escaping (CampaignsModel) -> Void) {
-        
-        let token = "Bearer "+customer_token
-        let myurl = URL(string: self.constant.LOAD_CAMPAIGNS)
-        var request = URLRequest(url: myurl!)
-        request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(token, forHTTPHeaderField: "Authorization")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            print(response as Any)
-            if error == nil && data != nil {
-                do {
-                    let mydata = try JSONDecoder().decode(CampaignsModel.self, from: data!)
-                    print("data")
-                    DispatchQueue.main.async {
-                        self.campaigndata = mydata
-                        completion(self.campaigndata)
-                        print(self.campaigndata)
-                    }
-                } catch {
-                    print(self.constant.ERROR + "\(error)")
-                }
-            }
-        }.resume()
     }
     
     public func openUiKitWallet() {
@@ -254,7 +151,51 @@ public class CustomerGlu: ObservableObject {
         }
     }
     
-    public func sendEvents(eventName: String, eventProperties: [String: Any]) {
+    public func doRegister(body: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
+        
+        var userdata = body
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            print(uuid)
+            userdata["deviceId"] = uuid
+        }
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
+        userdata["deviceType"] = "ios"
+        let modelname = machineName()
+        userdata["deviceName"] = modelname
+        userdata["appVersion"] = appVersion
+        userdata["writeKey"] = writekey
+        
+        APIManager.userRegister(queryParameters: userdata as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                UserDefaults.standard.set(response.data?.token, forKey: self.constant.CUSTOMERGLU_TOKEN)
+                UserDefaults.standard.set(response.data?.token, forKey: self.constant.CUSTOMERGLU_USERID)
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func getWalletRewards(completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        APIManager.getWalletRewards(queryParameters: [:]) { result in
+            switch result {
+            case .success(let response):
+                self.campaigndata = response
+                completion(true, response)
+
+            case .failure(let error):
+                print(error)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func addToCart(eventName: String, eventProperties: [String: Any], completion: @escaping (Bool, AddCartModel?) -> Void) {
+        
         let date = Date()
         let event_id = UUID().uuidString
         let dateformatter = DateFormatter()
@@ -271,28 +212,15 @@ public class CustomerGlu: ObservableObject {
             "timestamp": timestamp,
             "event_properties": evp]
         
-        let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
-        let jsonData = try? JSONSerialization.data(withJSONObject: eventData, options: .fragmentsAllowed)
-        print(jsonData as Any)
-        let myurl = URL(string: self.constant.SEND_EVENTS)
-        
-        var request = URLRequest(url: myurl!)
-        request.httpMethod="POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue(writekey, forHTTPHeaderField: "x-api-key")
-        //  request.httpBody = eventData
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            print(response as Any)
-            if error == nil && data != nil {
-                do {
-                    let dictonary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                    as? [String: Any]
-                    print(dictonary as Any)
-                } catch {
-                    print(self.constant.ERROR + "\(error)")
-                }
+        APIManager.addToCart(queryParameters: eventData as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                completion(false, nil)
             }
-        }.resume()
-    }
+        }
+    }   
 }

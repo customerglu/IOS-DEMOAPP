@@ -30,15 +30,15 @@ public struct OpenWallet: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
-    //    public func closeView()
-    //    {
-    //        self.presentationMode.wrappedValue.dismiss()
-    //    }
+ 
     public func getCampaigns() {
-        let mytoken = UserDefaults.standard.string(forKey: "CustomerGlu_Token")
-        CustomerGlu().retrieveData(customer_token: mytoken ?? "sa") { campaignsModel in
-            my_url = campaignsModel.defaultUrl
-            print(my_url)
+        CustomerGlu.shared.getWalletRewards { success, campaignsModel in
+            if success {
+                my_url = campaignsModel!.defaultUrl
+                print(my_url)
+            } else {
+                print("error")
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ private struct APIParameterKey {
 private enum HTTPHeaderField: String {
     case contentType = "Content-Type"
     case authorization = "Authorization"
+    case xapikey = "x-api-key"
 }
 
 // HTTP Header Value's for API's
@@ -45,6 +46,14 @@ internal class MethodandPath: Codable {
 // Parameter Key's for all API's
 private struct MethodNameandPath {
     static let userRegister = MethodandPath(method: "POST", path: "user/v1/user/sdk?token=true")
+    static let getWalletRewards = MethodandPath(method: "GET", path: "reward/v1.1/user")
+    static let addToCart = MethodandPath(method: "POST", path: "v3/server")
+}
+
+// Parameter Key's for all API's
+private struct BaseUrls {
+    static let baseurl = ApplicationManager.baseUrl
+    static let streamurl = ApplicationManager.streamUrl
 }
 
 // Class contain Helper Methods Used in Overall Application Related to API Calls
@@ -53,12 +62,11 @@ class APIManager {
     // Singleton Instance
     static let shared = APIManager()
     
-    private static func performRequest<T: Decodable>(methodandpath: MethodandPath, parametersDict: NSDictionary?, completion: @escaping (Result<T, Error>) -> Void) {
-        
+    private static func performRequest<T: Decodable>(baseurl: String, methodandpath: MethodandPath, parametersDict: NSDictionary?, completion: @escaping (Result<T, Error>) -> Void) {
+
         var urlRequest: URLRequest!
         var url: URL!
-        
-        let strUrl = "https://" + ApplicationManager.baseUrl
+        let strUrl = "https://" + baseurl
         url = URL(string: strUrl + methodandpath.path)!
         urlRequest = URLRequest(url: url)
         print(urlRequest!)
@@ -69,20 +77,18 @@ class APIManager {
         // Common Headers
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         
-        if parametersDict != nil { // Check Parameters & Move Accordingly
+        if UserDefaults.standard.object(forKey: "CustomerGlu_Token") != nil {
+            urlRequest.setValue("Bearer "+UserDefaults.standard.string(forKey: "CustomerGlu_Token")!, forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
+            urlRequest.setValue(Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String, forHTTPHeaderField: HTTPHeaderField.xapikey.rawValue)
+        }
+        
+        if parametersDict!.count > 0 { // Check Parameters & Move Accordingly
             print(parametersDict as Any)
-            do {
-                // make sure this JSON is in the format we expect
-                urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: parametersDict as Any, options: .fragmentsAllowed)
-            } catch let error as NSError {
-                print("Failed to load: \(error.localizedDescription)")
-            }
+            urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: parametersDict as Any, options: .fragmentsAllowed)
         }
         
         URLSession.shared.dataTask(with: urlRequest) { data, _, error in
-            
             guard let data = data, error == nil else { return }
-            
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
                 // Get JSON, Clean it and Convert to Object
@@ -98,7 +104,17 @@ class APIManager {
     
     static func userRegister(queryParameters: NSDictionary, completion: @escaping (Result<RegistrationModel, Error>) -> Void) {
         // Call Login API with API Router
-        performRequest(methodandpath: MethodNameandPath.userRegister, parametersDict: queryParameters, completion: completion)
+        performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.userRegister, parametersDict: queryParameters, completion: completion)
+    }
+    
+    static func getWalletRewards(queryParameters: NSDictionary, completion: @escaping (Result<CampaignsModel, Error>) -> Void) {
+        // Call Get Wallet and Rewards List
+        performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.getWalletRewards, parametersDict: queryParameters, completion: completion)
+    }
+    
+    static func addToCart(queryParameters: NSDictionary, completion: @escaping (Result<AddCartModel, Error>) -> Void) {
+        // Call Get Wallet and Rewards List
+        performRequest(baseurl: BaseUrls.streamurl, methodandpath: MethodNameandPath.addToCart, parametersDict: queryParameters, completion: completion)
     }
     
     // MARK: - Private Class Methods

@@ -18,11 +18,13 @@ struct LoadCampaignsUiKit: View {
     @State var campaigns: [Campaigns] = []
     
     public func getCampaign() {
-        let mytoken = UserDefaults.standard.string(forKey: "CustomerGlu_Token")
-        
-        CustomerGlu().retrieveData(customer_token: mytoken ?? "sdas", completion: { campaignsModel in
-            campaigns = campaignsModel.campaigns!
-        })
+        CustomerGlu.shared.getWalletRewards { success, campaignsModel in
+            if success {
+                campaigns = (campaignsModel?.campaigns)!
+            } else {
+                print("error")
+            }
+        }
     }
     
     public var body: some View {

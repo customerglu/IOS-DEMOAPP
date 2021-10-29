@@ -87,9 +87,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("usernotification wqq")
         
         print(userInfo)
-        CustomerGlu().displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["xz": "d"])
-        if CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
-            CustomerGlu().displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
+        CustomerGlu.shared.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["xz": "d"])
+        if CustomerGlu.shared.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+            CustomerGlu.shared.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
         } else {
             completionHandler(UIBackgroundFetchResult.newData)
         }
@@ -106,7 +106,6 @@ extension AppDelegate: MessagingDelegate {
         // This token can be used for testing notifications on FCM
         UserDefaults.standard.set(fcmToken, forKey: "fcmtoken")
         let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken")
-        print("hg")
         print(fcmRegTokenMessage as Any)
     }
 }
@@ -127,8 +126,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print(userInfo)
         // print(userInfo["data"] as Any)
         
-        if CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
-            CustomerGlu().displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
+        if CustomerGlu.shared.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+            CustomerGlu.shared.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
         } else {
             completionHandler([[.banner, .badge, .sound]])
         }
@@ -156,7 +155,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         print("background click")
         print(userInfo)
-        CustomerGlu().displayBackgroundNotification(remoteMessage: userInfo["data"] as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
+        CustomerGlu.shared.displayBackgroundNotification(remoteMessage: userInfo["data"] as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
         completionHandler()
     }
     

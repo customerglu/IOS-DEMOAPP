@@ -14,7 +14,7 @@ struct HomeScreen: View {
     @State var active = false
     var height = UIScreen.main.bounds.height
     var width = UIScreen.main.bounds.width
-    var customerglu = CustomerGlu()
+    var customerglu = CustomerGlu.shared
     
     @State var token = ""
     @State var fcmRegTokenMessage = ""
@@ -22,8 +22,6 @@ struct HomeScreen: View {
     func initializeGlu() {
         
         fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
-        print("my fcm")
-        print(fcmRegTokenMessage)
         //   let mykey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMER_WRITE_KEY")
         //  print(mykey)
         let parameters = [
@@ -32,11 +30,13 @@ struct HomeScreen: View {
             // "writeKey": "G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy",
             "firebaseToken": fcmRegTokenMessage]
         
-        customerglu.doRegister(body: parameters) { registrationModel, success  in
-//            token = (registrationModel.data?.token)!
-//            print("dssd")
-//            //   print(token)
-//            print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
+        customerglu.doRegister(body: parameters) { success, registrationModel in
+            if success {
+                token = (registrationModel?.data?.token)!
+                print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
+            } else {
+                print("error")
+            }
         }
     }
     
