@@ -24,6 +24,14 @@ public class CustomerGlu: ObservableObject {
            
     @available(iOS 13.0, *)
     private init() {
+        NSSetUncaughtExceptionHandler { exception in
+            if exception.reason != nil {
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "")
+            } else {
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "Unknown")
+            }
+            
+        }
     }
     
     @Published var campaigndata = CampaignsModel()
@@ -40,7 +48,7 @@ public class CustomerGlu: ObservableObject {
     
     private func getReferralId(deepLink: URL) -> String {
         let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
-        let referrerUserId = queryItems?.filter({(item) in item.name == "userId"}).first?.value
+        let referrerUserId = queryItems?.filter({(item) in item.name == APIParameterKey.userId}).first?.value
         return referrerUserId ?? ""
     }
     
@@ -55,14 +63,14 @@ public class CustomerGlu: ObservableObject {
     }
     
     public func displayNotification(remoteMessage: [String: AnyHashable]) {
-        let nudge_url = remoteMessage["nudge_url"]
+        let nudge_url = remoteMessage[NotificationsKey.nudge_url]
         print(nudge_url as Any)
-        let notification_type = remoteMessage["notification_type"]
+        let notification_type = remoteMessage[NotificationsKey.notification_type]
         
-        if (remoteMessage["glu_message_type"] as? String) == "in-app" {
+        if (remoteMessage[NotificationsKey.glu_message_type] as? String) == NotificationsKey.in_app {
             print(notification_type as Any)
             
-            if notification_type as? String == Constants.shared.BOTTOM_SHEET_NOTIFICATION {
+            if notification_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
                 let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
                 let hostingController = UIHostingController(rootView: swiftUIView)
                 //      hostingController.modalPresentationStyle = .fullScreen
@@ -70,7 +78,7 @@ public class CustomerGlu: ObservableObject {
                     return
                 }
                 topController.present(hostingController, animated: true, completion: nil)
-            } else if notification_type as? String == Constants.shared.BOTTOM_DEFAULT_NOTIFICATION {
+            } else if notification_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
                 let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
                 let hostingController = UIHostingController(rootView: swiftUIView)
                 //     hostingController.modalPresentationStyle = .overFullScreen
@@ -81,7 +89,7 @@ public class CustomerGlu: ObservableObject {
                 }
                 topController.present(hostingController, animated: true, completion: nil)
                 
-            } else if notification_type as? String == Constants.shared.MIDDLE_NOTIFICATIONS {
+            } else if notification_type as? String == Constants.MIDDLE_NOTIFICATIONS {
                 let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
                 
                 let hostingController = UIHostingController(rootView: swiftUIView)
@@ -109,7 +117,7 @@ public class CustomerGlu: ObservableObject {
     
     public func displayBackgroundNotification(remoteMessage: [String: AnyHashable]) {
         
-        let nudge_url = remoteMessage["nudge_url"]
+        let nudge_url = remoteMessage[NotificationsKey.nudge_url]
         let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
         
         let hostingController = UIHostingController(rootView: swiftUIView)
@@ -122,9 +130,9 @@ public class CustomerGlu: ObservableObject {
     
     public func notificationFromCustomerGlu(remoteMessage: [String: AnyHashable]) -> Bool {
         
-        let strType = remoteMessage["type"] as? String
-        if strType == "CustomerGlu" {
-            if (remoteMessage["glu_message_type"] as? String) == "in-app" {
+        let strType = remoteMessage[NotificationsKey.type] as? String
+        if strType == NotificationsKey.CustomerGlu {
+            if (remoteMessage[NotificationsKey.glu_message_type] as? String) == NotificationsKey.in_app {
                 return true
             } else {
                 return false
@@ -140,21 +148,21 @@ public class CustomerGlu: ObservableObject {
         var userdata = body
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
-            userdata["deviceId"] = uuid
+            userdata[APIParameterKey.deviceId] = uuid
         }
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
-        userdata["deviceType"] = "ios"
-        userdata["deviceName"] = getDeviceName()
-        userdata["appVersion"] = appVersion
-        userdata["writeKey"] = writekey
+        userdata[APIParameterKey.deviceType] = "ios"
+        userdata[APIParameterKey.deviceName] = getDeviceName()
+        userdata[APIParameterKey.appVersion] = appVersion
+        userdata[APIParameterKey.writeKey] = writekey
         
         APIManager.userRegister(queryParameters: userdata as NSDictionary) { result in
             switch result {
             case .success(let response):
                 if response.success! {
-                    UserDefaults.standard.set(response.data?.token, forKey: Constants.shared.CUSTOMERGLU_TOKEN)
-                    UserDefaults.standard.set(response.data?.user?.userId, forKey: Constants.shared.CUSTOMERGLU_USERID)
+                    UserDefaults.standard.set(response.data?.token, forKey: Constants.CUSTOMERGLU_TOKEN)
+                    UserDefaults.standard.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
                     completion(true, response)
                 } else {
                     DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: "Not found")
@@ -187,18 +195,18 @@ public class CustomerGlu: ObservableObject {
         let date = Date()
         let event_id = UUID().uuidString
         let dateformatter = DateFormatter()
-        dateformatter.dateFormat = Constants.shared.DATE_FORMAT
+        dateformatter.dateFormat = Constants.DATE_FORMAT
         let timestamp = dateformatter.string(from: date)
         let evp = String(describing: eventProperties)
-        let user_id = UserDefaults.standard.string(forKey: Constants.shared.CUSTOMERGLU_USERID)
+        let user_id = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
         print(evp)
         
         let eventData = [
-            "event_id": event_id,
-            "event_name": eventName,
-            "user_id": user_id,
-            "timestamp": timestamp,
-            "event_properties": evp]
+            APIParameterKey.event_id: event_id,
+            APIParameterKey.event_name: eventName,
+            APIParameterKey.user_id: user_id,
+            APIParameterKey.timestamp: timestamp,
+            APIParameterKey.event_properties: evp]
         
         APIManager.addToCart(queryParameters: eventData as NSDictionary) { result in
             switch result {

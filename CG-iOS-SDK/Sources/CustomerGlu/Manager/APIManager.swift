@@ -67,8 +67,8 @@ class APIManager {
         // Common Headers
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         
-        if UserDefaults.standard.object(forKey: "CustomerGlu_Token") != nil {
-            urlRequest.setValue("Bearer "+UserDefaults.standard.string(forKey: "CustomerGlu_Token")!, forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
+        if UserDefaults.standard.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
+            urlRequest.setValue("\(APIParameterKey.bearer) " + UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!, forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
             urlRequest.setValue(Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String, forHTTPHeaderField: HTTPHeaderField.xapikey.rawValue)
         }
         

@@ -7,18 +7,42 @@
 
 import Foundation
 
-public class Constants {
+struct Constants {
+    static let ERROR = "CUSTOMERGLU Error:"
+    static let JSON_ERROR = "CUSTOMERGLU: json parsing error:"
+    static let CUSTOMERGLU_TOKEN = "CustomerGlu_Token"
+    static let CUSTOMERGLU_USERID = "CustomerGlu_user_id"
+    static let DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ"
+    static let MIDDLE_NOTIFICATIONS = "middle-default"
+    static let FULL_SCREEN_NOTIFICATION = "full-default"
+    static let BOTTOM_SHEET_NOTIFICATION = "bottom-slider"
+    static let BOTTOM_DEFAULT_NOTIFICATION = "bottom-default"
+}
+
+// Default APIParameterKey
+struct APIParameterKey {
+    static let deviceId = "deviceId"
+    static let deviceType = "deviceType"
+    static let deviceName = "deviceName"
+    static let appVersion = "appVersion"
+    static let writeKey = "writeKey"
+    static let event_id = "event_id"
+    static let event_name = "event_name"
+    static let user_id = "user_id"
+    static let timestamp = "timestamp"
+    static let event_properties = "event_properties"
+    static let userId = "userId"
+    static let bearer = "Bearer"
+
     
-    // Singleton Instance
-    public static var shared = Constants()
-    
-    var ERROR = "CUSTOMERGLU Error:"
-    var JSON_ERROR = "CUSTOMERGLU: json parsing error:"
-    var CUSTOMERGLU_TOKEN = "CustomerGlu_Token"
-    var CUSTOMERGLU_USERID = "CustomerGlu_user_id"
-    var DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ"
-    var MIDDLE_NOTIFICATIONS = "middle-default"
-    var FULL_SCREEN_NOTIFICATION = "full-default"
-    var BOTTOM_SHEET_NOTIFICATION = "bottom-slider"
-    var BOTTOM_DEFAULT_NOTIFICATION = "bottom-default"
+}
+
+// Default NotificationsKey
+struct NotificationsKey {
+    static let type = "type"
+    static let CustomerGlu = "CustomerGlu"
+    static let glu_message_type = "glu_message_type"
+    static let in_app = "in-app"
+    static let nudge_url = "nudge_url"
+    static let notification_type = "notification_type"
 }
