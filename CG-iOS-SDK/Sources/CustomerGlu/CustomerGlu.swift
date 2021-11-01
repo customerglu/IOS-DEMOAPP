@@ -152,12 +152,16 @@ public class CustomerGlu: ObservableObject {
         APIManager.userRegister(queryParameters: userdata as NSDictionary) { result in
             switch result {
             case .success(let response):
-                UserDefaults.standard.set(response.data?.token, forKey: Constants.shared.CUSTOMERGLU_TOKEN)
-                UserDefaults.standard.set(response.data?.token, forKey: Constants.shared.CUSTOMERGLU_USERID)
-                completion(true, response)
-                    
+                if response.success! {
+                    UserDefaults.standard.set(response.data?.token, forKey: Constants.shared.CUSTOMERGLU_TOKEN)
+                    UserDefaults.standard.set(response.data?.user?.userId, forKey: Constants.shared.CUSTOMERGLU_USERID)
+                    completion(true, response)
+                } else {
+                    DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: "Not found")
+                }
             case .failure(let error):
                 print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: error.localizedDescription)
                 completion(false, nil)
             }
         }
@@ -172,6 +176,7 @@ public class CustomerGlu: ObservableObject {
 
             case .failure(let error):
                 print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getWalletRewards", exception: error.localizedDescription)
                 completion(false, nil)
             }
         }
@@ -202,6 +207,7 @@ public class CustomerGlu: ObservableObject {
                     
             case .failure(let error):
                 print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "addToCart", exception: error.localizedDescription)
                 completion(false, nil)
             }
         }

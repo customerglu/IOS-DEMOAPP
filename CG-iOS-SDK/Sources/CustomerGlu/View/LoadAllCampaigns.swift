@@ -25,7 +25,7 @@ public struct LoadAllCampaigns: View {
             if success {
                 campaigns = (campaignsModel?.campaigns)!
             } else {
-                print("error")
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
             }
         }
     }

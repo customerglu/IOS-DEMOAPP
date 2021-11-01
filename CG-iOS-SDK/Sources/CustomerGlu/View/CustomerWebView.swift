@@ -73,6 +73,7 @@ public struct CustomerWebView: UIViewRepresentable {
                         if let url = URL(string: deep_link) {
                             UIApplication.shared.open(url)
                         } else {
+                            DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open deeplink")
                             print("Can't open deeplink")
                         }
                     }
@@ -85,6 +86,7 @@ public struct CustomerWebView: UIViewRepresentable {
                         if let url = URL(string: "whatsapp://send?text=\(text)") {
                             UIApplication.shared.open(url)
                         } else {
+                            DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open whatsapp")
                             print("Can't open whatsapp")
                         }
                     }

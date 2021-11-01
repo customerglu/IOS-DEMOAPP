@@ -31,7 +31,7 @@ struct OpenUiKitWallet: View {
                 my_url = campaignsModel!.defaultUrl
                 print(my_url)
             } else {
-                print("error")
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
             }
         }
     }
