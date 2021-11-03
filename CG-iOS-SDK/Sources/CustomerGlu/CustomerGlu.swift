@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 import UIKit
 @available(iOS 13.0, *)
-
+let gcmMessageIDKey = "gcm.message_id"
 extension UIViewController {
     static func topViewController() -> UIViewController? {
         let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
@@ -50,59 +50,167 @@ public class CustomerGlu: ObservableObject {
         let referrerUserId = queryItems?.filter({(item) in item.name == APIParameterKey.userId}).first?.value
         return referrerUserId ?? ""
     }
+ 
+    public func cgUserNotificationCenter(_ center: UNUserNotificationCenter,
+                                 willPresent notification: UNNotification,
+                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+         
+ //        let gcmMessageIDKey = "gcm.message_id"
+ //
+         let userInfo = notification.request.content.userInfo
+ //
+ //        if let messageID = userInfo[gcmMessageIDKey] {
+ //            print("Message ID: \(messageID)")
+ //        }
+ //        print("usernotification ")
+ //        print(userInfo)
+ //        // print(userInfo["data"] as Any)
+ //
+ //        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+ //            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
+ //        } else {
+ //            completionHandler([[.badge, .sound]])
+ ////            completionHandler(UNNotificationPresentationOptionAlert);
+ //        }
+ //        // Change this to your preferred presentation option
+         if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+             if (userInfo["glu_message_type"] as? String) == "push" {
+                 if (UIApplication.shared.applicationState == .active)
+                 {
+                     completionHandler([[.alert, .badge, .sound]])
+                 }
+             }
+         }
+         
+     }
+     
+     public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+         
+         if let messageID = userInfo[gcmMessageIDKey] {
+             print("Message ID: \(messageID)")
+         }
+         print("usernotification wqq")
+         
+         if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+             let nudge_url = userInfo["nudge_url"]
+             print(nudge_url as Any)
+             let notification_type = userInfo["notification_type"]
+             
+             if (userInfo["glu_message_type"] as? String) == "in-app" {
+                 print(notification_type as Any)
+                 
+                 if notification_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
+                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+                     let hostingController = UIHostingController(rootView: swiftUIView)
+                     //      hostingController.modalPresentationStyle = .fullScreen
+                     guard let topController = UIViewController.topViewController() else {
+                         return
+                     }
+                     topController.present(hostingController, animated: true, completion: nil)
+                 } else if notification_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
+                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+                     let hostingController = UIHostingController(rootView: swiftUIView)
+                     //     hostingController.modalPresentationStyle = .overFullScreen
+                     hostingController.isModalInPresentation = true
+                     
+                     guard let topController = UIViewController.topViewController() else {
+                         return
+                     }
+                     topController.present(hostingController, animated: true, completion: nil)
+                     
+                 } else if notification_type as? String == Constants.MIDDLE_NOTIFICATIONS {
+                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
+                     
+                     let hostingController = UIHostingController(rootView: swiftUIView)
+                     hostingController.modalPresentationStyle = .overCurrentContext
+                     hostingController.view.backgroundColor = .clear
+                     
+                     guard let topController = UIViewController.topViewController() else {
+                         return
+                     }
+                     topController.present(hostingController, animated: true, completion: nil)
+                 } else {
+                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+                     
+                     let hostingController = UIHostingController(rootView: swiftUIView)
+                     hostingController.modalPresentationStyle = .fullScreen
+                     guard let topController = UIViewController.topViewController() else {
+                         return
+                     }
+                     topController.present(hostingController, animated: true, completion: nil)
+                 }
+             } else {
+                 
+ //                if UIApplication.shared.applicationState == .active {
+ //                    var localNotification = UILocalNotification()
+ //                    localNotification.userInfo = userInfo
+ //                    localNotification.soundName = UILocalNotificationDefaultSoundName
+ //                    localNotification.alertBody = "abcd"
+ //                    localNotification.fireDate = Date()
+ //                    UIApplication.shared.scheduleLocalNotification(localNotification)
+ //                }
+                 
+                 print("Local Notification")
+                 return
+             }
+         }else{
+             
+         }
+     }
     
-    public func displayNotification(remoteMessage: [String: AnyHashable]) {
-        let nudge_url = remoteMessage[NotificationsKey.nudge_url]
-        print(nudge_url as Any)
-        let notification_type = remoteMessage[NotificationsKey.notification_type]
-        
-        if (remoteMessage[NotificationsKey.glu_message_type] as? String) == NotificationsKey.in_app {
-            print(notification_type as Any)
-            
-            if notification_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
-                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                let hostingController = UIHostingController(rootView: swiftUIView)
-                //      hostingController.modalPresentationStyle = .fullScreen
-                guard let topController = UIViewController.topViewController() else {
-                    return
-                }
-                topController.present(hostingController, animated: true, completion: nil)
-            } else if notification_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
-                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                let hostingController = UIHostingController(rootView: swiftUIView)
-                //     hostingController.modalPresentationStyle = .overFullScreen
-                hostingController.isModalInPresentation = true
-                
-                guard let topController = UIViewController.topViewController() else {
-                    return
-                }
-                topController.present(hostingController, animated: true, completion: nil)
-                
-            } else if notification_type as? String == Constants.MIDDLE_NOTIFICATIONS {
-                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
-                
-                let hostingController = UIHostingController(rootView: swiftUIView)
-                hostingController.modalPresentationStyle = .overCurrentContext
-                hostingController.view.backgroundColor = .clear
-                
-                guard let topController = UIViewController.topViewController() else {
-                    return
-                }
-                topController.present(hostingController, animated: true, completion: nil)
-            } else {
-                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                
-                let hostingController = UIHostingController(rootView: swiftUIView)
-                hostingController.modalPresentationStyle = .fullScreen
-                guard let topController = UIViewController.topViewController() else {
-                    return
-                }
-                topController.present(hostingController, animated: true, completion: nil)
-            }
-        } else {
-            return
-        }
-    }
+//    public func displayNotification(remoteMessage: [String: AnyHashable]) {
+//        let nudge_url = remoteMessage[NotificationsKey.nudge_url]
+//        print(nudge_url as Any)
+//        let notification_type = remoteMessage[NotificationsKey.notification_type]
+//
+//        if (remoteMessage[NotificationsKey.glu_message_type] as? String) == NotificationsKey.in_app {
+//            print(notification_type as Any)
+//
+//            if notification_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
+//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+//                let hostingController = UIHostingController(rootView: swiftUIView)
+//                //      hostingController.modalPresentationStyle = .fullScreen
+//                guard let topController = UIViewController.topViewController() else {
+//                    return
+//                }
+//                topController.present(hostingController, animated: true, completion: nil)
+//            } else if notification_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
+//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+//                let hostingController = UIHostingController(rootView: swiftUIView)
+//                //     hostingController.modalPresentationStyle = .overFullScreen
+//                hostingController.isModalInPresentation = true
+//
+//                guard let topController = UIViewController.topViewController() else {
+//                    return
+//                }
+//                topController.present(hostingController, animated: true, completion: nil)
+//
+//            } else if notification_type as? String == Constants.MIDDLE_NOTIFICATIONS {
+//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
+//
+//                let hostingController = UIHostingController(rootView: swiftUIView)
+//                hostingController.modalPresentationStyle = .overCurrentContext
+//                hostingController.view.backgroundColor = .clear
+//
+//                guard let topController = UIViewController.topViewController() else {
+//                    return
+//                }
+//                topController.present(hostingController, animated: true, completion: nil)
+//            } else {
+//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+//
+//                let hostingController = UIHostingController(rootView: swiftUIView)
+//                hostingController.modalPresentationStyle = .fullScreen
+//                guard let topController = UIViewController.topViewController() else {
+//                    return
+//                }
+//                topController.present(hostingController, animated: true, completion: nil)
+//            }
+//        } else {
+//            return
+//        }
+//    }
     
     public func displayBackgroundNotification(remoteMessage: [String: AnyHashable]) {
         
@@ -119,13 +227,14 @@ public class CustomerGlu: ObservableObject {
     
     public func notificationFromCustomerGlu(remoteMessage: [String: AnyHashable]) -> Bool {
         
-        let strType = remoteMessage[NotificationsKey.type] as? String
-        if strType == NotificationsKey.CustomerGlu {
-            if (remoteMessage[NotificationsKey.glu_message_type] as? String) == NotificationsKey.in_app {
-                return true
-            } else {
-                return false
-            }
+        let strType = remoteMessage["type"] as? String
+        if strType == "CustomerGlu" {
+//            if (remoteMessage["glu_message_type"] as? String) == "in-app" {
+//                return true
+//            } else {
+//                return false
+//            }
+            return true
         } else {
             return false
         }

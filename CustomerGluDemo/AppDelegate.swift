@@ -79,22 +79,24 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        print("usernotification wqq")
-        
-        print(userInfo)
-        CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["xz": "d"])
-        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
-            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
-        } else {
-            completionHandler(UIBackgroundFetchResult.newData)
-        }
-        // completionHandler(UIBackgroundFetchResult.newData)
-    }
+                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+   
+         print(userInfo)
+         CustomerGlu.single_instance.cgapplication(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+ //        if let messageID = userInfo[gcmMessageIDKey] {
+ //            print("Message ID: \(messageID)")
+ //        }
+ //        print("usernotification wqq")
+ //
+ //        print(userInfo)
+ ////        CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["xz": "d"])
+ //        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+ //            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
+ //        } else {
+ //            completionHandler(UIBackgroundFetchResult.newData)
+ //        }
+ //        // completionHandler(UIBackgroundFetchResult.newData)
+     }
 }
 
 extension AppDelegate: MessagingDelegate {
@@ -117,21 +119,25 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        print("usernotification ")
-        print(userInfo)
-        // print(userInfo["data"] as Any)
-        
-        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
-            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
-        } else {
-            completionHandler([[.banner, .badge, .sound]])
-        }
-        // Change this to your preferred presentation option
+
+//        let userInfo = notification.request.content.userInfo
+//
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            print("Message ID: \(messageID)")
+//        }
+//        print("usernotification ")
+//        print(userInfo)
+//        // print(userInfo["data"] as Any)
+//
+//        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
+//            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
+//        } else {
+//            completionHandler([[.banner, .badge, .sound]])
+//        }
+//        // Change this to your preferred presentation option
+
+        CustomerGlu.single_instance.cgUserNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
+
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

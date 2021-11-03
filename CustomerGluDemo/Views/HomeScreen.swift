@@ -73,7 +73,7 @@ struct HomeScreen: View {
     func initializeGlu() {
         fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
         let parameters = [
-            "userId": "testuser2018",
+            "userId": "hitesh11",
             "deviceId": "deviceb",
             "firebaseToken": fcmRegTokenMessage]
         
