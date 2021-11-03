@@ -26,11 +26,10 @@ public class CustomerGlu: ObservableObject {
     private init() {
         NSSetUncaughtExceptionHandler { exception in
             if exception.reason != nil {
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "")
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: exception.reason!.replace(string: ",", replacement: " "), code: exception.callStackSymbols.description.replace(string: ",", replacement: " "))
             } else {
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "Unknown")
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "Unknown", code: exception.callStackSymbols.description.replace(string: ",", replacement: " "))
             }
-            
         }
     }
     
@@ -50,16 +49,6 @@ public class CustomerGlu: ObservableObject {
         let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
         let referrerUserId = queryItems?.filter({(item) in item.name == APIParameterKey.userId}).first?.value
         return referrerUserId ?? ""
-    }
-    
-    public func openUiKitWallet() {
-        let swiftUIView = OpenUiKitWallet()
-        let hostingController = UIHostingController(rootView: swiftUIView)
-        hostingController.modalPresentationStyle = .fullScreen
-        guard let topController = UIViewController.topViewController() else {
-            return
-        }
-        topController.present(hostingController, animated: true, completion: nil)
     }
     
     public func displayNotification(remoteMessage: [String: AnyHashable]) {

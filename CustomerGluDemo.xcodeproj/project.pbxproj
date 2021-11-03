@@ -27,6 +27,7 @@
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
 		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
+		82946E9E2732725000C56E06 /* OpenWalletUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */; };
 		BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		1B77ADBF26CBE05B0086859F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
+		82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWalletUIKit.swift; sourceTree = "<group>"; };
 		89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomerGluDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 				1B3D7CD226A6E17C00EA1587 /* CartScreen.swift */,
 				1B3A357426B7C57500A2C713 /* Register.storyboard */,
 				1BB1792A26B9255B0058E02C /* ViewController.swift */,
+				82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				1B3D7CC926A6BF0000EA1587 /* WebView.swift in Sources */,
 				1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */,
 				1B3D7CCE26A6CA0800EA1587 /* ProductListCell.swift in Sources */,
+				82946E9E2732725000C56E06 /* OpenWalletUIKit.swift in Sources */,
 				1B3D7CC726A6BEB300EA1587 /* ShopScreen.swift in Sources */,
 				1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */,
 				1B3D7CC526A6BE4100EA1587 /* HomeScreen.swift in Sources */,

@@ -22,3 +22,10 @@ extension Dictionary {
         print(json)
     }
 }
+
+extension String {
+    // Replace Space between Strings
+    func replace(string: String, replacement: String) -> String {
+        return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
+    }
+}

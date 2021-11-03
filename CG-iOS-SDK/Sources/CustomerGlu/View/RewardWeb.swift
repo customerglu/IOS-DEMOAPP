@@ -13,6 +13,7 @@ struct RewardWeb: View {
     @State var url: String
     var body: some View {
         VStack {
+//            UIHostingController(rootView: CustomerWebViewNew())
             CustomerWebView(my_url: url)
         }.navigationViewStyle(StackNavigationViewStyle())
             .navigationBarBackButtonHidden(true)

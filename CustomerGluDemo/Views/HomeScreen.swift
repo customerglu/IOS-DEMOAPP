@@ -33,7 +33,8 @@ struct HomeScreen: View {
                     .navigationBarHidden(true)
                 HStack {
                     NavigationLink(
-                        destination: OpenWallet(),
+                        destination: OpenWalletUIKit(),
+//                        destination: OpenWallet(),
                         label: {
                             productCard(image: "purse", title: "Wallet")
                         })

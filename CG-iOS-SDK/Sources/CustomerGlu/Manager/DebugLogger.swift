@@ -37,7 +37,7 @@ class DebugLogger {
         return paths[0]
     }
     
-    func setErrorDebugLogger(functionName: String, description: String = "", exception: String = "") {
+    func setErrorDebugLogger(functionName: String, description: String = "", exception: String = "", code: String = "") {
         print("exception : \(exception)")
         /*
         if isEnabled {
