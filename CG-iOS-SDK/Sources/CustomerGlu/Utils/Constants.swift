@@ -33,7 +33,6 @@ struct APIParameterKey {
     static let event_properties = "event_properties"
     static let userId = "userId"
     static let bearer = "Bearer"
-
     
 }
 
@@ -44,5 +43,6 @@ struct NotificationsKey {
     static let glu_message_type = "glu_message_type"
     static let in_app = "in-app"
     static let nudge_url = "nudge_url"
-    static let notification_type = "notification_type"
+    static let page_type = "page_type"
+    
 }

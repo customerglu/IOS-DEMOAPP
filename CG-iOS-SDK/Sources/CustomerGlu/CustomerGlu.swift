@@ -95,12 +95,12 @@ public class CustomerGlu: ObservableObject {
          if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
              let nudge_url = userInfo["nudge_url"]
              print(nudge_url as Any)
-             let notification_type = userInfo["notification_type"]
+             let page_type = userInfo["page_type"]
              
              if (userInfo["glu_message_type"] as? String) == "in-app" {
-                 print(notification_type as Any)
+                 print(page_type as Any)
                  
-                 if notification_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
+                 if page_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
                      let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
                      let hostingController = UIHostingController(rootView: swiftUIView)
                      //      hostingController.modalPresentationStyle = .fullScreen
@@ -108,7 +108,7 @@ public class CustomerGlu: ObservableObject {
                          return
                      }
                      topController.present(hostingController, animated: true, completion: nil)
-                 } else if notification_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
+                 } else if page_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
                      let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
                      let hostingController = UIHostingController(rootView: swiftUIView)
                      //     hostingController.modalPresentationStyle = .overFullScreen
@@ -119,7 +119,7 @@ public class CustomerGlu: ObservableObject {
                      }
                      topController.present(hostingController, animated: true, completion: nil)
                      
-                 } else if notification_type as? String == Constants.MIDDLE_NOTIFICATIONS {
+                 } else if page_type as? String == Constants.MIDDLE_NOTIFICATIONS {
                      let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
                      
                      let hostingController = UIHostingController(rootView: swiftUIView)
@@ -154,8 +154,7 @@ public class CustomerGlu: ObservableObject {
                  print("Local Notification")
                  return
              }
-         }else{
-             
+         } else {
          }
      }
     

@@ -40,7 +40,8 @@ struct HomeScreen: View {
                         })
                     Spacer()
                     NavigationLink(
-                        destination: LoadAllCampaigns(customer_token: token),
+                        destination: RewardUIKit(),
+//                        destination: LoadAllCampaigns(customer_token: token),
                         label: {
                             productCard(image: "coin", title: "Rewards")
                         })

@@ -1,19 +1,19 @@
 //
-//  OpenWalletUIKit.swift
+//  RewardUIKit.swift
 //  CustomerGluDemo
 //
-//  Created by kapil on 03/11/21.
+//  Created by kapil on 09/11/21.
 //
 
 import Foundation
 import SwiftUI
 import CustomerGlu
 
-struct OpenWalletUIKit: UIViewControllerRepresentable {
+struct RewardUIKit: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
-        let openWalletVC = OpenWalletViewController.storyboardVC
-        return openWalletVC
+        let rewardVC = LoadAllCampaignsViewController.storyboardVC
+        return rewardVC
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

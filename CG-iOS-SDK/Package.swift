@@ -25,7 +25,7 @@ let package = Package(
             name: "CustomerGlu",
             dependencies: [],
             resources: [
-                .process("StoryBoards/CustomerGlu.storyboard")
+                .process("Resources")
             ]),
         .testTarget(
             name: "CustomerGluTests",
