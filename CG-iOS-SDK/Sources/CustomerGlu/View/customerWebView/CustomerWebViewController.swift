@@ -9,10 +9,18 @@ import Foundation
 import UIKit
 import WebKit
 
+protocol CustomerGluWebViewDelegate: AnyObject {
+    func closeClicked(_ success: Bool)
+}
+
 class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
         
     var webView = WKWebView()
     var urlStr = ""
+    var openWallet = false
+    var notificationHandler = false
+
+    weak var delegate: CustomerGluWebViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,18 +69,20 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
             
             if bodyStruct?.eventName == "CLOSE" {
                 print("close")
-//                if parent.fromWallet && parent.fromUikit {
-                    print("UIKIT")
-//                    guard let topController = UIViewController.topViewController() else {
-//                        return
-//                    }
-                    self.navigationController?.popToRootViewController(animated: true)
-//                    topController.dismiss(animated: true, completion: nil)
-                    //   UIApplication.keyWin?.rootViewController?.dismiss(animated: true, completion: nil)
-//                } else {
-//                    print("SwiftUI")
-//                    parent.presentation.wrappedValue.dismiss()
-//                }
+                //                if parent.fromWallet && parent.fromUikit {
+                print("UIKIT")
+                if openWallet {
+                    delegate?.closeClicked(true)
+                } else if notificationHandler {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                //   UIApplication.keyWin?.rootViewController?.dismiss(animated: true, completion: nil)
+                //                } else {
+                //                    print("SwiftUI")
+                //                    parent.presentation.wrappedValue.dismiss()
+                //                }
             }
             
             if bodyStruct?.eventName == "OPEN_DEEPLINK" {

@@ -9,6 +9,7 @@ import UIKit
 
 class BannerCellNew: UITableViewCell {
     
+    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
 
@@ -18,15 +19,16 @@ class BannerCellNew: UITableViewCell {
     }
     
     func setImageAndTitle(image_url: String, title: String) {
-        do {
-            let url = URL(string: image_url)
-            let data = try Data(contentsOf: url!)
-            imgView.image = UIImage(data: data)
+   //     shadowView.dropShadow()
+        DispatchQueue.main.async { // Make sure you're on the main thread here
+            do {
+                let url = URL(string: image_url)
+                let data = try Data(contentsOf: url!)
+                self.imgView.image = UIImage(data: data)
+            } catch {
+                print(error)
+            }
         }
-        catch{
-            print(error)
-        }
-        
         titleLbl.text = title
     }
         

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 public class OpenWalletViewController: UIViewController {
     
@@ -23,7 +24,7 @@ public class OpenWalletViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         getCampaigns()
     }
-    
+
     private func getCampaigns() {
         CustomerGlu.single_instance.getWalletRewards { success, campaignsModel in
             if success {
@@ -31,11 +32,22 @@ public class OpenWalletViewController: UIViewController {
                 DispatchQueue.main.async { // Make sure you're on the main thread here
                     let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
                     customerWebViewVC!.urlStr = self.my_url
-                    self.navigationController?.pushViewController(customerWebViewVC!, animated: false)
+                    customerWebViewVC!.openWallet = true
+                    customerWebViewVC!.delegate = self
+                    customerWebViewVC!.modalPresentationStyle = .overCurrentContext
+                    self.navigationController?.present(customerWebViewVC!, animated: false)
                 }
             } else {
                 DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
             }
         }
+    }
+}
+
+extension OpenWalletViewController: CustomerGluWebViewDelegate {
+    func closeClicked(_ success: Bool) {
+        dismiss(animated: false, completion: {
+            self.navigationController?.popViewController(animated: true)
+        })
     }
 }

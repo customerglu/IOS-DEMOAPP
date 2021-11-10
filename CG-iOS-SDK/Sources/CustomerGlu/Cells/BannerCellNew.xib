@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,12 +27,12 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvk-yl-ljA">
                                 <rect key="frame" x="0.0" y="105" width="394" height="25"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Tub-Ao-DoF" secondAttribute="trailing" constant="40" id="09F-Ue-EV1"/>
                             <constraint firstItem="Tub-Ao-DoF" firstAttribute="leading" secondItem="OdA-cU-MPd" secondAttribute="leading" id="gha-wP-nEv"/>
@@ -54,14 +53,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="imgView" destination="Tub-Ao-DoF" id="F4b-N3-5gk"/>
+                <outlet property="shadowView" destination="OdA-cU-MPd" id="pGs-Wm-bwZ"/>
                 <outlet property="titleLbl" destination="Mvk-yl-ljA" id="72O-3S-UXv"/>
             </connections>
             <point key="canvasLocation" x="120" y="-23"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

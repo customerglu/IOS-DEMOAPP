@@ -51,9 +51,7 @@ public class CustomerGlu: ObservableObject {
         return referrerUserId ?? ""
     }
  
-    public func cgUserNotificationCenter(_ center: UNUserNotificationCenter,
-                                 willPresent notification: UNNotification,
-                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    public func cgUserNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
          
  //        let gcmMessageIDKey = "gcm.message_id"
  //
@@ -75,17 +73,14 @@ public class CustomerGlu: ObservableObject {
  //        // Change this to your preferred presentation option
          if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
              if (userInfo["glu_message_type"] as? String) == "push" {
-                 if (UIApplication.shared.applicationState == .active)
-                 {
+                 if (UIApplication.shared.applicationState == .active) {
                      completionHandler([[.alert, .badge, .sound]])
                  }
              }
          }
-         
      }
-     
-     public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    
+     public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
          
          if let messageID = userInfo[gcmMessageIDKey] {
              print("Message ID: \(messageID)")
@@ -101,44 +96,78 @@ public class CustomerGlu: ObservableObject {
                  print(page_type as Any)
                  
                  if page_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
-                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                     let hostingController = UIHostingController(rootView: swiftUIView)
-                     //      hostingController.modalPresentationStyle = .fullScreen
+                     let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
+                     customerWebViewVC!.urlStr = nudge_url as? String ?? ""
+                     customerWebViewVC!.notificationHandler = true
                      guard let topController = UIViewController.topViewController() else {
                          return
                      }
-                     topController.present(hostingController, animated: true, completion: nil)
-                 } else if page_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
-                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                     let hostingController = UIHostingController(rootView: swiftUIView)
-                     //     hostingController.modalPresentationStyle = .overFullScreen
-                     hostingController.isModalInPresentation = true
+                     topController.navigationController?.present(customerWebViewVC!, animated: false)
                      
+//                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+//                     let hostingController = UIHostingController(rootView: swiftUIView)
+//                     //      hostingController.modalPresentationStyle = .fullScreen
+//
+//                     topController.present(hostingController, animated: true, completion: nil)
+                 } else if page_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
+                     
+                     let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
+                     customerWebViewVC!.urlStr = nudge_url as? String ?? ""
+                     customerWebViewVC!.notificationHandler = true
+                     customerWebViewVC!.isModalInPresentation = true
                      guard let topController = UIViewController.topViewController() else {
                          return
                      }
-                     topController.present(hostingController, animated: true, completion: nil)
+                     topController.navigationController?.present(customerWebViewVC!, animated: false)
+                     
+//                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+//                     let hostingController = UIHostingController(rootView: swiftUIView)
+//                     //     hostingController.modalPresentationStyle = .overFullScreen
+//                     hostingController.isModalInPresentation = true
+//
+//                     guard let topController = UIViewController.topViewController() else {
+//                         return
+//                     }
+//                     topController.present(hostingController, animated: true, completion: nil)
                      
                  } else if page_type as? String == Constants.MIDDLE_NOTIFICATIONS {
-                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
                      
-                     let hostingController = UIHostingController(rootView: swiftUIView)
-                     hostingController.modalPresentationStyle = .overCurrentContext
-                     hostingController.view.backgroundColor = .clear
-                     
+                     let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
+                     customerWebViewVC!.urlStr = nudge_url as? String ?? ""
+                     customerWebViewVC!.notificationHandler = true
+                     customerWebViewVC!.modalPresentationStyle = .overCurrentContext
+                     customerWebViewVC!.view.backgroundColor = .clear
                      guard let topController = UIViewController.topViewController() else {
                          return
                      }
-                     topController.present(hostingController, animated: true, completion: nil)
+                     topController.navigationController?.present(customerWebViewVC!, animated: false)
+                     
+//                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
+//                     let hostingController = UIHostingController(rootView: swiftUIView)
+//                     hostingController.modalPresentationStyle = .overCurrentContext
+//                     hostingController.view.backgroundColor = .clear
+//
+//                     guard let topController = UIViewController.topViewController() else {
+//                         return
+//                     }
+//                     topController.present(hostingController, animated: true, completion: nil)
                  } else {
-                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                     
-                     let hostingController = UIHostingController(rootView: swiftUIView)
-                     hostingController.modalPresentationStyle = .fullScreen
+                     let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
+                     customerWebViewVC!.urlStr = nudge_url as? String ?? ""
+                     customerWebViewVC!.notificationHandler = true
+                     customerWebViewVC!.modalPresentationStyle = .fullScreen
                      guard let topController = UIViewController.topViewController() else {
                          return
                      }
-                     topController.present(hostingController, animated: true, completion: nil)
+                     topController.navigationController?.present(customerWebViewVC!, animated: false)
+//                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+//
+//                     let hostingController = UIHostingController(rootView: swiftUIView)
+//                     hostingController.modalPresentationStyle = .fullScreen
+//                     guard let topController = UIViewController.topViewController() else {
+//                         return
+//                     }
+//                     topController.present(hostingController, animated: true, completion: nil)
                  }
              } else {
                  
@@ -157,71 +186,26 @@ public class CustomerGlu: ObservableObject {
          } else {
          }
      }
-    
-//    public func displayNotification(remoteMessage: [String: AnyHashable]) {
-//        let nudge_url = remoteMessage[NotificationsKey.nudge_url]
-//        print(nudge_url as Any)
-//        let notification_type = remoteMessage[NotificationsKey.notification_type]
-//
-//        if (remoteMessage[NotificationsKey.glu_message_type] as? String) == NotificationsKey.in_app {
-//            print(notification_type as Any)
-//
-//            if notification_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
-//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-//                let hostingController = UIHostingController(rootView: swiftUIView)
-//                //      hostingController.modalPresentationStyle = .fullScreen
-//                guard let topController = UIViewController.topViewController() else {
-//                    return
-//                }
-//                topController.present(hostingController, animated: true, completion: nil)
-//            } else if notification_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
-//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-//                let hostingController = UIHostingController(rootView: swiftUIView)
-//                //     hostingController.modalPresentationStyle = .overFullScreen
-//                hostingController.isModalInPresentation = true
-//
-//                guard let topController = UIViewController.topViewController() else {
-//                    return
-//                }
-//                topController.present(hostingController, animated: true, completion: nil)
-//
-//            } else if notification_type as? String == Constants.MIDDLE_NOTIFICATIONS {
-//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
-//
-//                let hostingController = UIHostingController(rootView: swiftUIView)
-//                hostingController.modalPresentationStyle = .overCurrentContext
-//                hostingController.view.backgroundColor = .clear
-//
-//                guard let topController = UIViewController.topViewController() else {
-//                    return
-//                }
-//                topController.present(hostingController, animated: true, completion: nil)
-//            } else {
-//                let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-//
-//                let hostingController = UIHostingController(rootView: swiftUIView)
-//                hostingController.modalPresentationStyle = .fullScreen
-//                guard let topController = UIViewController.topViewController() else {
-//                    return
-//                }
-//                topController.present(hostingController, animated: true, completion: nil)
-//            }
-//        } else {
-//            return
-//        }
-//    }
-    
+            
     public func displayBackgroundNotification(remoteMessage: [String: AnyHashable]) {
-        
         let nudge_url = remoteMessage[NotificationsKey.nudge_url]
-        let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
         
-        let hostingController = UIHostingController(rootView: swiftUIView)
-        hostingController.modalPresentationStyle = .fullScreen
+        let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
+        customerWebViewVC!.urlStr = nudge_url as? String ?? ""
+        customerWebViewVC!.notificationHandler = true
+        customerWebViewVC!.modalPresentationStyle = .fullScreen
         guard let topController = UIViewController.topViewController() else {
             return
         }
-        topController.present(hostingController, animated: true, completion: nil)
+        topController.navigationController?.present(customerWebViewVC!, animated: false)
+//        let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+//
+//        let hostingController = UIHostingController(rootView: swiftUIView)
+//        hostingController.modalPresentationStyle = .fullScreen
+//        guard let topController = UIViewController.topViewController() else {
+//            return
+//        }
+//        topController.present(hostingController, animated: true, completion: nil)
     }
     
     public func notificationFromCustomerGlu(remoteMessage: [String: AnyHashable]) -> Bool {

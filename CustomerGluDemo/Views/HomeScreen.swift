@@ -18,7 +18,7 @@ struct HomeScreen: View {
     
     @State var token = ""
     @State var fcmRegTokenMessage = ""
-    
+        
     var body: some View {
         NavigationView {
             VStack {
