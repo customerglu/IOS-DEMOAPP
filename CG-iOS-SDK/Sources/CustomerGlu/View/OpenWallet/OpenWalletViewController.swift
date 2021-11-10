@@ -7,13 +7,15 @@
 
 import Foundation
 import UIKit
-import SwiftUI
 
 public class OpenWalletViewController: UIViewController {
     
     public static let storyboardVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "OpenWalletViewController")
     
     var my_url = ""
+    
+    // MARK: - Variables
+    private var openWalletViewModel = OpenWalletViewModel()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,7 @@ public class OpenWalletViewController: UIViewController {
     }
 
     private func getCampaigns() {
-        CustomerGlu.single_instance.getWalletRewards { success, campaignsModel in
+        openWalletViewModel.getWalletRewards { success, campaignsModel in
             if success {
                 self.my_url = campaignsModel!.defaultUrl
                 DispatchQueue.main.async { // Make sure you're on the main thread here

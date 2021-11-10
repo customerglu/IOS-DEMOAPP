@@ -15,17 +15,18 @@ public class LoadAllCampaignsViewController: UIViewController {
     @IBOutlet weak var tblRewardList: UITableView!
     var campaigns: [Campaigns] = []
     
+    // MARK: - Variables
+    private var loadAllCampaignsViewModel = LoadAllCampaignsViewModel()
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
         tblRewardList.rowHeight = UITableView.automaticDimension
         tblRewardList.estimatedRowHeight = 200
-        
         getCampaign()
     }
     
     func getCampaign() {
-        CustomerGlu.single_instance.getWalletRewards { success, campaignsModel in
+        loadAllCampaignsViewModel.getWalletRewards { success, campaignsModel in
             if success {
                 self.campaigns = (campaignsModel?.campaigns)!
                 DispatchQueue.main.async { // Make sure you're on the main thread here
