@@ -67,22 +67,6 @@ public class CustomerGlu: ObservableObject {
                 print(page_type as Any)
                 
                 if page_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
-
-                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-                    customerWebViewVC.urlStr = nudge_url as? String ?? ""
-                    customerWebViewVC.notificationHandler = true
-                    customerWebViewVC.isbottomsheet = true
-                    customerWebViewVC.view.backgroundColor = .clear
-                    guard let topController = UIViewController.topViewController() else {
-                        return
-                    }
-                    topController.present(customerWebViewVC, animated: false, completion: nil)
-                    //                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                    //                     let hostingController = UIHostingController(rootView: swiftUIView)
-                    //                     //      hostingController.modalPresentationStyle = .fullScreen
-                    //                     topController.present(hostingController, animated: true, completion: nil)
-                } else if page_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
-                    
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
@@ -91,6 +75,20 @@ public class CustomerGlu: ObservableObject {
                         return
                     }
                     topController.present(customerWebViewVC, animated: true, completion: nil)
+                    //                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
+                    //                     let hostingController = UIHostingController(rootView: swiftUIView)
+                    //                     //      hostingController.modalPresentationStyle = .fullScreen
+                    //                     topController.present(hostingController, animated: true, completion: nil)
+                } else if page_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
+                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+                    customerWebViewVC.urlStr = nudge_url as? String ?? ""
+                    customerWebViewVC.notificationHandler = true
+                    customerWebViewVC.isbottomdefault = true
+                    customerWebViewVC.view.backgroundColor = .clear
+                    guard let topController = UIViewController.topViewController() else {
+                        return
+                    }
+                    topController.present(customerWebViewVC, animated: false, completion: nil)
                     //                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
                     //                     let hostingController = UIHostingController(rootView: swiftUIView)
                     //                     //     hostingController.modalPresentationStyle = .overFullScreen

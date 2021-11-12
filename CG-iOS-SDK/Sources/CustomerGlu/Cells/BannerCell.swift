@@ -1,79 +1,40 @@
 //
-//  SwiftUIView.swift
+//  File.swift
 //  
 //
-//  Created by Himanshu Trehan on 27/07/21.
+//  Created by kapil on 09/11/21.
 //
-
-#if canImport(Combine)
-import SwiftUI
-import Combine
 import Foundation
 import UIKit
-@available(iOS 13.0, *)
 
-class ImageLoader: ObservableObject {
-    var didChange = PassthroughSubject<Foundation.Data, Never>()
-    var data = Foundation.Data() {
-        didSet {
-            didChange.send(data)
-        }
+class BannerCell: UITableViewCell {
+    
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
     }
     
-    init(urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            print(response as Any)
-            print(error as Any)
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                self.data = data
+    func setImageAndTitle(image_url: String, title: String) {
+   //     shadowView.dropShadow()
+        DispatchQueue.main.async { // Make sure you're on the main thread here
+            do {
+                let url = URL(string: image_url)
+                let data = try Data(contentsOf: url!)
+                self.imgView.image = UIImage(data: data)
+            } catch {
+                print(error)
             }
         }
-        task.resume()
+        titleLbl.text = title
     }
-}
-
-@available(iOS 13.0, *)
-struct BannerCell: View {
-    
-    @ObservedObject var imageLoader: ImageLoader
-    @State var image: UIImage = UIImage()
-    var title: String
-    var url: String
-    
-    init(image_url: String, title: String, url: String) {
-        self.title = title
-        self.url = url
-        imageLoader = ImageLoader(urlString: image_url)
+        
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        // Configure the view for the selected state
     }
     
-    var body: some View {
-        VStack(alignment: .center) {
-            NavigationLink(destination: RewardWeb(url: url)) {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: .infinity-40, height: 100)
-                    .onReceive(imageLoader.didChange) { data in
-                        self.image = UIImage(data: data) ?? UIImage()
-                    }
-                // Image(uiImage: url.load())
-            }
-            Text(title).font(.system(size: 25)).padding(.bottom, 10)
-        }
-        .frame(maxWidth: (.infinity-40), alignment: .center)
-        .background(Color.white)
-        .modifier(CardModifier())
-    }
 }
-
-@available(iOS 13.0, *)
-struct CardModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .cornerRadius(10)
-            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 0)
-    }
-}
-#endif

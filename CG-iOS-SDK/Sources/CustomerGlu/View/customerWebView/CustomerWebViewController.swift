@@ -21,6 +21,7 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
     var notificationHandler = false
     var ismiddle = false
     var isbottomsheet = false
+    var isbottomdefault = false
     weak var delegate: CustomerGluWebViewDelegate?
     
     override func viewDidLoad() {
@@ -48,10 +49,18 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
                 webView = WKWebView(frame: CGRect(x: 20, y: (UIScreen.main.bounds.height - height)/2, width: UIScreen.main.bounds.width - 40, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
                 webView.clipsToBounds = true
+            } else if isbottomdefault {
+                webView = WKWebView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - height, width: UIScreen.main.bounds.width, height: height), configuration: config) //set your own frame
+                webView.layer.cornerRadius = 20
+                webView.clipsToBounds = true
             } else if isbottomsheet {
                 webView = WKWebView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - height, width: UIScreen.main.bounds.width, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
                 webView.clipsToBounds = true
+                
+                let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.panGesture))
+                webView.isUserInteractionEnabled = true
+                webView.addGestureRecognizer(gesture)
             } else {
                 webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
             }
@@ -65,6 +74,13 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    @objc func panGesture(recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        let y = self.view.frame.minY
+        self.view.frame = CGRect(x: 0, y: y + translation.y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        recognizer.setTranslation(.zero, in: self.view)
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

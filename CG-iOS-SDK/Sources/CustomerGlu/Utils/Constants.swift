@@ -57,5 +57,5 @@ struct WebViewsKey {
 
 // TableView Identifiers Used Throught App
 struct TableViewID {
-    static let BannerCellNew = "BannerCellNew"
+    static let BannerCell = "BannerCell"
 }

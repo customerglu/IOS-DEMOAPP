@@ -43,7 +43,7 @@ public class OpenWalletViewController: UIViewController {
                 DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
             }
         }
-    }    
+    }
 }
 
 extension OpenWalletViewController: CustomerGluWebViewDelegate {

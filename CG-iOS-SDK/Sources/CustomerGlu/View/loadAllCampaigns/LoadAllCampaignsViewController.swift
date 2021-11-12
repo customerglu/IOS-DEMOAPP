@@ -52,11 +52,11 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier = TableViewID.BannerCellNew
-        var cell: BannerCellNew! = tblRewardList.dequeueReusableCell(withIdentifier: identifier) as? BannerCellNew
+        let identifier = TableViewID.BannerCell
+        var cell: BannerCell! = tblRewardList.dequeueReusableCell(withIdentifier: identifier) as? BannerCell
         if cell == nil {
-            tblRewardList.register(UINib(nibName: TableViewID.BannerCellNew, bundle: .module), forCellReuseIdentifier: identifier)
-            cell = tblRewardList.dequeueReusableCell(withIdentifier: identifier) as? BannerCellNew
+            tblRewardList.register(UINib(nibName: TableViewID.BannerCell, bundle: .module), forCellReuseIdentifier: identifier)
+            cell = tblRewardList.dequeueReusableCell(withIdentifier: identifier) as? BannerCell
         }
 
         if campaigns.count != 0 {
@@ -72,7 +72,7 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
     }
     
     // MARK: - Populate data in cell.
-    private func configureCell(cell: BannerCellNew, indexPath: IndexPath) {
+    private func configureCell(cell: BannerCell, indexPath: IndexPath) {
         // Populate cell Data
         
         let element = campaigns[indexPath.row]
