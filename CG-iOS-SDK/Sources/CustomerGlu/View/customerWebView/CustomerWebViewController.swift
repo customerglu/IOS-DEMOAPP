@@ -19,7 +19,8 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
     var urlStr = ""
     var openWallet = false
     var notificationHandler = false
-
+    var ismiddle = false
+    var isbottomsheet = false
     weak var delegate: CustomerGluWebViewDelegate?
     
     override func viewDidLoad() {
@@ -31,15 +32,39 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         let contentController = WKUserContentController()
-        contentController.add(self, name: "callback") //name is the key you want the app to listen to.
+        contentController.add(self, name: WebViewsKey.callback) //name is the key you want the app to listen to.
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
         
-        webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
+        if notificationHandler {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+            self.view.addGestureRecognizer(tap)
+        }
+        
+        if notificationHandler {
+            let height = UIScreen.main.bounds.height / 1.4
+            if ismiddle {
+                webView = WKWebView(frame: CGRect(x: 20, y: (UIScreen.main.bounds.height - height)/2, width: UIScreen.main.bounds.width - 40, height: height), configuration: config) //set your own frame
+                webView.layer.cornerRadius = 20
+                webView.clipsToBounds = true
+            } else if isbottomsheet {
+                webView = WKWebView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - height, width: UIScreen.main.bounds.width, height: height), configuration: config) //set your own frame
+                webView.layer.cornerRadius = 20
+                webView.clipsToBounds = true
+            } else {
+                webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
+            }
+        } else {
+            webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
+        }
         webView.navigationDelegate = self
         webView.load(URLRequest(url: URL(string: urlStr )!))
         self.view.addSubview(webView)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        self.dismiss(animated: false, completion: nil)
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -61,13 +86,13 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
         print(message.name)
         print(message)
         print("Body message", message.body)
-        if message.name == "callback" {
+        if message.name == WebViewsKey.callback {
             guard let bodyString = message.body as? String,
                   let bodyData = bodyString.data(using: .utf8) else { fatalError() }
             
             let bodyStruct = try? JSONDecoder().decode(EventModel.self, from: bodyData)
             
-            if bodyStruct?.eventName == "CLOSE" {
+            if bodyStruct?.eventName == WebViewsKey.close {
                 print("close")
                 //                if parent.fromWallet && parent.fromUikit {
                 print("UIKIT")
@@ -78,14 +103,9 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
                 } else {
                     self.navigationController?.popViewController(animated: true)
                 }
-                //   UIApplication.keyWin?.rootViewController?.dismiss(animated: true, completion: nil)
-                //                } else {
-                //                    print("SwiftUI")
-                //                    parent.presentation.wrappedValue.dismiss()
-                //                }
             }
             
-            if bodyStruct?.eventName == "OPEN_DEEPLINK" {
+            if bodyStruct?.eventName == WebViewsKey.open_deeplink {
                 let deeplink = try? JSONDecoder().decode(DeepLinkModel.self, from: bodyData)
                 if  let deep_link = deeplink?.data?.deepLink {
                     print("link", deep_link)
@@ -98,7 +118,7 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
                 }
             }
             
-            if bodyStruct?.eventName == "SHARE" {
+            if bodyStruct?.eventName == WebViewsKey.share {
                 let share = try? JSONDecoder().decode(EventShareModel.self, from: bodyData)
                 if let text = share?.data?.text {
                     print("text", text)

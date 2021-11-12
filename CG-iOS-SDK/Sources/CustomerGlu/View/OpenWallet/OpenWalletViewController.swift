@@ -10,7 +10,7 @@ import UIKit
 
 public class OpenWalletViewController: UIViewController {
     
-    public static let storyboardVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "OpenWalletViewController")
+    public static let storyboardVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
     
     var my_url = ""
     
@@ -32,18 +32,18 @@ public class OpenWalletViewController: UIViewController {
             if success {
                 self.my_url = campaignsModel!.defaultUrl
                 DispatchQueue.main.async { // Make sure you're on the main thread here
-                    let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
-                    customerWebViewVC!.urlStr = self.my_url
-                    customerWebViewVC!.openWallet = true
-                    customerWebViewVC!.delegate = self
-                    customerWebViewVC!.modalPresentationStyle = .overCurrentContext
-                    self.navigationController?.present(customerWebViewVC!, animated: false)
+                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+                    customerWebViewVC.urlStr = self.my_url
+                    customerWebViewVC.openWallet = true
+                    customerWebViewVC.delegate = self
+                    customerWebViewVC.modalPresentationStyle = .overCurrentContext
+                    self.navigationController?.present(customerWebViewVC, animated: false)
                 }
             } else {
                 DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
             }
         }
-    }
+    }    
 }
 
 extension OpenWalletViewController: CustomerGluWebViewDelegate {

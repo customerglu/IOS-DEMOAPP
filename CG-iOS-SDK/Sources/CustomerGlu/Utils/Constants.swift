@@ -39,10 +39,23 @@ struct APIParameterKey {
 // Default NotificationsKey
 struct NotificationsKey {
     static let type = "type"
-    static let CustomerGlu = "CustomerGlu"
+    static let customerglu = "customerglu"
     static let glu_message_type = "glu_message_type"
     static let in_app = "in-app"
     static let nudge_url = "nudge_url"
     static let page_type = "page_type"
-    
+    static let CustomerGlu = "CustomerGlu"
+}
+
+// Default WebViewsKey
+struct WebViewsKey {
+    static let callback = "callback"
+    static let close = "CLOSE"
+    static let open_deeplink = "OPEN_DEEPLINK"
+    static let share = "SHARE"
+}
+
+// TableView Identifiers Used Throught App
+struct TableViewID {
+    static let BannerCellNew = "BannerCellNew"
 }

@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 public class LoadAllCampaignsViewController: UIViewController {
-    
-    public static let storyboardVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "LoadAllCampaignsViewController")
+        
+    public static let storyboardVC = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
 
     @IBOutlet weak var tblRewardList: UITableView!
     var campaigns: [Campaigns] = []
@@ -52,10 +52,10 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier = "BannerCellNew"
+        let identifier = TableViewID.BannerCellNew
         var cell: BannerCellNew! = tblRewardList.dequeueReusableCell(withIdentifier: identifier) as? BannerCellNew
         if cell == nil {
-            tblRewardList.register(UINib(nibName: "BannerCellNew", bundle: .module), forCellReuseIdentifier: identifier)
+            tblRewardList.register(UINib(nibName: TableViewID.BannerCellNew, bundle: .module), forCellReuseIdentifier: identifier)
             cell = tblRewardList.dequeueReusableCell(withIdentifier: identifier) as? BannerCellNew
         }
 
@@ -97,9 +97,9 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
         // Deselect Table Row
         tableView.deselectRow(at: indexPath, animated: true)
         if campaigns.count != 0 {
-            let customerWebViewVC = UIStoryboard(name: "Storyboard", bundle: .module).instantiateViewController(withIdentifier: "CustomerWebViewController") as? CustomerWebViewController
-            customerWebViewVC!.urlStr = campaigns[indexPath.row].url
-            self.navigationController?.pushViewController(customerWebViewVC!, animated: true)
+            let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+            customerWebViewVC.urlStr = campaigns[indexPath.row].url
+            self.navigationController?.pushViewController(customerWebViewVC, animated: true)
         }
     }
     
