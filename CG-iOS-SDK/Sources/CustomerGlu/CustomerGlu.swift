@@ -70,15 +70,19 @@ public class CustomerGlu: ObservableObject {
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
+                    customerWebViewVC.isbottomsheet = true
                     customerWebViewVC.isModalInPresentation = true
                     guard let topController = UIViewController.topViewController() else {
                         return
                     }
+                    if #available(iOS 15.0, *) {
+                        if let sheet = customerWebViewVC.sheetPresentationController {
+                            sheet.detents = [ .medium(), .large() ]
+                        }
+                    } else {
+                        customerWebViewVC.modalPresentationStyle = .pageSheet
+                    }
                     topController.present(customerWebViewVC, animated: true, completion: nil)
-                    //                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                    //                     let hostingController = UIHostingController(rootView: swiftUIView)
-                    //                     //      hostingController.modalPresentationStyle = .fullScreen
-                    //                     topController.present(hostingController, animated: true, completion: nil)
                 } else if page_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
@@ -89,16 +93,7 @@ public class CustomerGlu: ObservableObject {
                         return
                     }
                     topController.present(customerWebViewVC, animated: false, completion: nil)
-                    //                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                    //                     let hostingController = UIHostingController(rootView: swiftUIView)
-                    //                     //     hostingController.modalPresentationStyle = .overFullScreen
-                    //                     hostingController.isModalInPresentation = true
-                    //                     guard let topController = UIViewController.topViewController() else {
-                    //                         return
-                    //                     }
-                    //                     topController.present(hostingController, animated: true, completion: nil)
                 } else if page_type as? String == Constants.MIDDLE_NOTIFICATIONS {
-                    
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
@@ -111,14 +106,6 @@ public class CustomerGlu: ObservableObject {
                         return
                     }
                     topController.present(customerWebViewVC, animated: false, completion: nil)
-                    //                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "", ismiddle: true)
-                    //                     let hostingController = UIHostingController(rootView: swiftUIView)
-                    //                     hostingController.modalPresentationStyle = .overCurrentContext
-                    //                     hostingController.view.backgroundColor = .clear
-                    //                     guard let topController = UIViewController.topViewController() else {
-                    //                         return
-                    //                     }
-                    //                     topController.present(hostingController, animated: true, completion: nil)
                 } else {
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
@@ -128,13 +115,6 @@ public class CustomerGlu: ObservableObject {
                         return
                     }
                     topController.present(customerWebViewVC, animated: false, completion: nil)
-                    //                     let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-                    //                     let hostingController = UIHostingController(rootView: swiftUIView)
-                    //                     hostingController.modalPresentationStyle = .fullScreen
-                    //                     guard let topController = UIViewController.topViewController() else {
-                    //                         return
-                    //                     }
-                    //                     topController.present(hostingController, animated: true, completion: nil)
                 }
             } else {
                 //                if UIApplication.shared.applicationState == .active {
@@ -163,14 +143,6 @@ public class CustomerGlu: ObservableObject {
             return
         }
         topController.present(customerWebViewVC, animated: false, completion: nil)
-        //        let swiftUIView = NotificationHandler(my_url: nudge_url as? String ?? "")
-        //
-        //        let hostingController = UIHostingController(rootView: swiftUIView)
-        //        hostingController.modalPresentationStyle = .fullScreen
-        //        guard let topController = UIViewController.topViewController() else {
-        //            return
-        //        }
-        //        topController.present(hostingController, animated: true, completion: nil)
     }
     
     public func notificationFromCustomerGlu(remoteMessage: [String: AnyHashable]) -> Bool {

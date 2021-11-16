@@ -13,10 +13,12 @@ protocol CustomerGluWebViewDelegate: AnyObject {
     func closeClicked(_ success: Bool)
 }
 
-class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
+public class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
         
+    public static let storyboardVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+
     var webView = WKWebView()
-    var urlStr = ""
+    public var urlStr = ""
     var openWallet = false
     var notificationHandler = false
     var ismiddle = false
@@ -24,11 +26,11 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
     var isbottomdefault = false
     weak var delegate: CustomerGluWebViewDelegate?
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -54,13 +56,7 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
                 webView.layer.cornerRadius = 20
                 webView.clipsToBounds = true
             } else if isbottomsheet {
-                webView = WKWebView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - height, width: UIScreen.main.bounds.width, height: height), configuration: config) //set your own frame
-                webView.layer.cornerRadius = 20
-                webView.clipsToBounds = true
-                
-                let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.panGesture))
-                webView.isUserInteractionEnabled = true
-                webView.addGestureRecognizer(gesture)
+                webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
             } else {
                 webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
             }
@@ -83,15 +79,15 @@ class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScrip
         recognizer.setTranslation(.zero, in: self.view)
     }
     
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("Started to load")
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished loading")
     }
     
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+    public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         print(error.localizedDescription)
     }
     
