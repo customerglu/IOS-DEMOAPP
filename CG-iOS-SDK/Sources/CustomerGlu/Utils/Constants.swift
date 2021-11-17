@@ -17,6 +17,7 @@ struct Constants {
     static let FULL_SCREEN_NOTIFICATION = "full-default"
     static let BOTTOM_SHEET_NOTIFICATION = "bottom-slider"
     static let BOTTOM_DEFAULT_NOTIFICATION = "bottom-default"
+    static let WalletRewardData = "WalletRewardData"
 }
 
 // Default APIParameterKey

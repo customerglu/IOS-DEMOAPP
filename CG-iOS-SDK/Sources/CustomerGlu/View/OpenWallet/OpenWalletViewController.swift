@@ -24,9 +24,28 @@ public class OpenWalletViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        getCampaigns()
+        
+        if UserDefaults.standard.object(forKey: Constants.WalletRewardData) != nil {
+            let userDefaults = UserDefaults.standard
+            do {
+                let campaignsModel = try userDefaults.getObject(forKey: Constants.WalletRewardData, castTo: CampaignsModel.self)
+                self.my_url = campaignsModel.defaultUrl
+                DispatchQueue.main.async { // Make sure you're on the main thread here
+                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+                    customerWebViewVC.urlStr = self.my_url
+                    customerWebViewVC.openWallet = true
+                    customerWebViewVC.delegate = self
+                    customerWebViewVC.modalPresentationStyle = .overCurrentContext
+                    self.navigationController?.present(customerWebViewVC, animated: false)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            getCampaigns()
+        }
     }
-
+   
     private func getCampaigns() {
         openWalletViewModel.getWalletRewards { success, campaignsModel in
             if success {

@@ -82,6 +82,14 @@ struct HomeScreen: View {
             if success {
                 token = (registrationModel?.data?.token)!
                 print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
+                
+                if UserDefaults.standard.object(forKey: "WalletRewardData") == nil {
+                    customerglu.getWalletRewards { success, campaignsModel in
+                        if success {
+                        } else {
+                        }
+                    }
+                }
             } else {
                 print("error")
             }

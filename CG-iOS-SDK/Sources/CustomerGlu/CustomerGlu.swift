@@ -197,6 +197,12 @@ public class CustomerGlu: ObservableObject {
             switch result {
             case .success(let response):
                 self.campaigndata = response
+                let userDefaults = UserDefaults.standard
+                do {
+                    try userDefaults.setObject(self.campaigndata, forKey: Constants.WalletRewardData)
+                } catch {
+                    print(error.localizedDescription)
+                }
                 completion(true, response)
                     
             case .failure(let error):
