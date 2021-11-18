@@ -30,7 +30,7 @@ public class OpenWalletViewController: UIViewController {
             do {
                 let campaignsModel = try userDefaults.getObject(forKey: Constants.WalletRewardData, castTo: CampaignsModel.self)
                 self.my_url = campaignsModel.defaultUrl
-                DispatchQueue.main.async { // Make sure you're on the main thread here
+                DispatchQueue.main.async { [self] in // Make sure you're on the main thread here
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
                     customerWebViewVC.urlStr = self.my_url
                     customerWebViewVC.openWallet = true

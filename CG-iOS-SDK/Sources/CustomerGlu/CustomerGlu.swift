@@ -98,10 +98,8 @@ public class CustomerGlu: ObservableObject {
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
                     customerWebViewVC.modalPresentationStyle = .overCurrentContext
-                    let black = UIColor.black
-                    let blackTrans = UIColor.withAlphaComponent(black)(0.15)
-                    customerWebViewVC.view.backgroundColor = blackTrans
                     customerWebViewVC.ismiddle = true
+                    customerWebViewVC.alpha = 0.15
                     guard let topController = UIViewController.topViewController() else {
                         return
                     }

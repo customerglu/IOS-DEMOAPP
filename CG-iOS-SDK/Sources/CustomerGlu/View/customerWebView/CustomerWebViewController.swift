@@ -25,6 +25,8 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     var isbottomsheet = false
     var isbottomdefault = false
     weak var delegate: CustomerGluWebViewDelegate?
+    var documentInteractionController: UIDocumentInteractionController!
+    var alpha = 0.0
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,10 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         config.userContentController = contentController
         
         if notificationHandler {
+            let black = UIColor.black
+            let blackTrans = UIColor.withAlphaComponent(black)(alpha)
+            self.view.backgroundColor = blackTrans
+            
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             self.view.addGestureRecognizer(tap)
         }
@@ -132,16 +138,99 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             
             if bodyStruct?.eventName == WebViewsKey.share {
                 let share = try? JSONDecoder().decode(EventShareModel.self, from: bodyData)
-                if let text = share?.data?.text {
-                    print("text", text)
-                    if let url = URL(string: "whatsapp://send?text=\(text)") {
-                        UIApplication.shared.open(url)
+                let text = share?.data?.text
+                let channelName = share?.data?.channelName
+                if let imageurl = share?.data?.image {
+                    if imageurl == "" {
+                        if channelName == "WHATSAPP" {
+                            sendToWhatsapp(shareText: text!)
+                        } else {
+                            sendToOtherApps(shareText: text!)
+                        }
                     } else {
-                        DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open whatsapp")
-                        print("Can't open whatsapp")
+                        if channelName == "WHATSAPP" {
+                            shareImageToWhatsapp(imageString: imageurl)
+                        } else {
+                            sendImagesToOtherApp(imageString: imageurl)
+                        }
                     }
                 }
             }
         }
+    }
+    
+    private func sendToOtherApps(shareText: String) {
+         // set up activity view controller
+         let textToShare = [ shareText ]
+         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+         // present the view controller
+         self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func sendToWhatsapp(shareText: String) {
+        if let url = URL(string: "whatsapp://send?text=\(shareText)") {
+            UIApplication.shared.open(url)
+        } else {
+            DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open whatsapp")
+            print("Can't open whatsapp")
+        }
+    }
+    
+    private func sendImagesToOtherApp(imageString: String) {
+        // Set your image's URL into here
+        let url = URL(string: imageString)!
+        data(from: url) { data, response, error in
+            print(response as Any)
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async { [weak self] in
+                if let image = UIImage(data: data) {
+                    // set up activity view controller
+                    let imageToShare = [ image ]
+                    let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+                    activityViewController.popoverPresentationController?.sourceView = self!.view // so that iPads won't crash
+                    // present the view controller
+                    self!.present(activityViewController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    private func shareImageToWhatsapp(imageString: String) {
+        let urlWhats = "whatsapp://app"
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+            if let whatsappURL = URL(string: urlString) {
+
+                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+
+                    // Set your image's URL into here
+                    let url = URL(string: imageString)!
+                    data(from: url) { data, response, error in
+                        print(response as Any)
+                        guard let data = data, error == nil else { return }
+                        DispatchQueue.main.async { [weak self] in
+                            let image = UIImage(data: data)
+                            if let imageData = image!.jpegData(compressionQuality: 1.0) {
+                                let tempFile = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("Documents/whatsAppTmp.wai")
+                                do {
+                                    try imageData.write(to: tempFile, options: .atomic)
+                                    self!.documentInteractionController = UIDocumentInteractionController(url: tempFile)
+                                    self!.documentInteractionController.uti = "net.whatsapp.image"
+                                    self?.documentInteractionController.presentOpenInMenu(from: CGRect.zero, in: self!.view, animated: true)
+                                } catch {
+                                    print(error)
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    // Cannot open whatsapp
+                }
+            }
+        }
+    }
+    
+    func data(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
 }
