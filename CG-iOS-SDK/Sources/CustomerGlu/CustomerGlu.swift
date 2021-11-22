@@ -52,7 +52,7 @@ public class CustomerGlu: ObservableObject {
         }
     }
     
-    public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], backgroundAlpha: Double = 0.0, fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
@@ -99,7 +99,7 @@ public class CustomerGlu: ObservableObject {
                     customerWebViewVC.notificationHandler = true
                     customerWebViewVC.modalPresentationStyle = .overCurrentContext
                     customerWebViewVC.ismiddle = true
-                    customerWebViewVC.alpha = 0.15
+                    customerWebViewVC.alpha = backgroundAlpha
                     guard let topController = UIViewController.topViewController() else {
                         return
                     }

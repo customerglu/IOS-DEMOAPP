@@ -445,7 +445,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CustomerGluDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -471,7 +471,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CustomerGluDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

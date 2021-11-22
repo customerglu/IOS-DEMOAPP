@@ -80,8 +80,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
    
-         print(userInfo)
-         CustomerGlu.single_instance.cgapplication(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+        print(userInfo)
+        CustomerGlu.single_instance.cgapplication(application, didReceiveRemoteNotification: userInfo, backgroundAlpha: 0.15, fetchCompletionHandler: completionHandler)
  //        if let messageID = userInfo[gcmMessageIDKey] {
  //            print("Message ID: \(messageID)")
  //        }
