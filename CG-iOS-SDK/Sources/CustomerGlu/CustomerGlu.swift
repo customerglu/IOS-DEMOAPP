@@ -157,6 +157,17 @@ public class CustomerGlu: ObservableObject {
         }
     }
     
+    public func doValidateToken() -> Bool {
+        let arr = JWTDecode.shared.decode(jwtToken: UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!)
+        let expTime = Date(timeIntervalSince1970: (arr["exp"] as? Double)!)
+        let currentDateTime = Date()
+        if currentDateTime < expTime {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: - API Calls Methods
     public func doRegister(body: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
         

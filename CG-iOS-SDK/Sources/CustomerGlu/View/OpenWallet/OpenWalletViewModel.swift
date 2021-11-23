@@ -23,4 +23,26 @@ class OpenWalletViewModel {
             }
         }
     }
+    
+    public func doRegister(completion: @escaping (Bool, RegistrationModel?) -> Void) {
+        
+        let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
+        let parameters = [
+            "userId": "hitesh11",
+            "deviceId": "deviceb",
+            "firebaseToken": fcmRegTokenMessage]
+        
+        if #available(iOS 13.0, *) {
+            CustomerGlu.single_instance.doRegister(body: parameters) { success, registrationModel in
+                if success {
+                    completion(true, registrationModel)
+                } else {
+                    completion(false, nil)
+                    print("error")
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }

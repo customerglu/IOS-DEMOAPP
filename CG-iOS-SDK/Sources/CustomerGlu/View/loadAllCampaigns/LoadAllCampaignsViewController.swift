@@ -34,7 +34,19 @@ public class LoadAllCampaignsViewController: UIViewController {
                 print(error.localizedDescription)
             }
         } else {
-            getCampaign()
+            if #available(iOS 13.0, *) {
+                if CustomerGlu.single_instance.doValidateToken() == true {
+                    getCampaign()
+                } else {
+                    loadAllCampaignsViewModel.doRegister { success, _ in
+                        if success {
+                            self.getCampaign()
+                        } else {
+                            DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
+                        }
+                    }
+                }
+            }
         }
     }
     
