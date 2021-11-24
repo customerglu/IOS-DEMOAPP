@@ -7,5 +7,4 @@ target 'CustomerGluDemo' do
 
   # Pods for CustomerGluDemo
     pod 'SwiftLint', '0.45.0'
-    pod 'SDWebImage', '~> 5.0'
 end

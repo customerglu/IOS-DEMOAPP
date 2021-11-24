@@ -83,3 +83,45 @@ extension UIView {
         self.layer.shadowRadius = 3.0
     }
 }
+
+extension UIImageView {
+ 
+    func downloadImage(urlString: String, success: ((_ image: UIImage?) -> Void)? = nil, failure: ((String) -> Void)? = nil) {
+        
+        let imageCache = NSCache<NSString, UIImage>()
+
+        DispatchQueue.main.async {[weak self] in
+            self?.image = nil
+        }
+        
+        if let image = imageCache.object(forKey: urlString as NSString) {
+            DispatchQueue.main.async {[weak self] in
+                self?.image = image
+            }
+            success?(image)
+        } else {
+            guard let url = URL(string: urlString) else {
+                print("failed to create url")
+                return
+            }
+            
+            let request = URLRequest(url: url)
+            let task = URLSession.shared.dataTask(with: request) {(data, _, error) in
+                
+                // response received, now switch back to main queue
+                DispatchQueue.main.async {[weak self] in
+                    if let error = error {
+                        failure?(error.localizedDescription)
+                    } else if let data = data, let image = UIImage(data: data) {
+                        imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                        self?.image = image
+                        success?(image)
+                    } else {
+                        failure?("Image not available")
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+}

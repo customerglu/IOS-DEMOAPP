@@ -1,17 +1,15 @@
 import Foundation
 import SwiftUI
 import UIKit
-@available(iOS 13.0, *)
+
 let gcmMessageIDKey = "gcm.message_id"
 
-@available(iOS 13.0, *)
-public class CustomerGlu: ObservableObject {
+public class CustomerGlu: NSObject {
     
     // Singleton Instance
     public static var single_instance = CustomerGlu()
     
-    @available(iOS 13.0, *)
-    private init() {
+    private override init() {
         NSSetUncaughtExceptionHandler { exception in
             if exception.reason != nil {
                 DebugLogger.sharedInstance.setErrorDebugLogger(functionName: exception.reason!.replace(string: ",", replacement: " "), code: exception.callStackSymbols.description.replace(string: ",", replacement: " "))
@@ -71,7 +69,7 @@ public class CustomerGlu: ObservableObject {
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
                     customerWebViewVC.isbottomsheet = true
-                    customerWebViewVC.isModalInPresentation = true
+//                    customerWebViewVC.isModalInPresentation = true
                     guard let topController = UIViewController.topViewController() else {
                         return
                     }

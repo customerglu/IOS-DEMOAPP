@@ -8,8 +8,6 @@ import SwiftUI
 import CustomerGlu
 import Firebase
 
-@available(iOS 13.0, *)
-
 struct HomeScreen: View {
     @State var active = false
     var height = UIScreen.main.bounds.height
@@ -82,12 +80,7 @@ struct HomeScreen: View {
             if success {
                 token = (registrationModel?.data?.token)!
                 print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
-                if UserDefaults.standard.object(forKey: "WalletRewardData") == nil {
-                    customerglu.getWalletRewards { success, _ in
-                        if success {
-                        } else {
-                        }
-                    }
+                customerglu.getWalletRewards { _, _ in
                 }
             } else {
                 print("error")

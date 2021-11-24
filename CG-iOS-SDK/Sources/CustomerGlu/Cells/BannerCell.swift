@@ -20,15 +20,7 @@ class BannerCell: UITableViewCell {
     
     func setImageAndTitle(image_url: String, title: String) {
    //     shadowView.dropShadow()
-        DispatchQueue.main.async { // Make sure you're on the main thread here
-            do {
-                let url = URL(string: image_url)
-                let data = try Data(contentsOf: url!)
-                self.imgView.image = UIImage(data: data)
-            } catch {
-                print(error)
-            }
-        }
+        imgView.downloadImage(urlString: image_url)
         titleLbl.text = title
     }
         

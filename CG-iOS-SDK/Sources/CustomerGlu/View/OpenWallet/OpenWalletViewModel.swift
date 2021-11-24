@@ -32,17 +32,13 @@ class OpenWalletViewModel {
             "deviceId": "deviceb",
             "firebaseToken": fcmRegTokenMessage]
         
-        if #available(iOS 13.0, *) {
-            CustomerGlu.single_instance.doRegister(body: parameters) { success, registrationModel in
-                if success {
-                    completion(true, registrationModel)
-                } else {
-                    completion(false, nil)
-                    print("error")
-                }
+        CustomerGlu.single_instance.doRegister(body: parameters) { success, registrationModel in
+            if success {
+                completion(true, registrationModel)
+            } else {
+                completion(false, nil)
+                print("error")
             }
-        } else {
-            // Fallback on earlier versions
         }
     }
 }
