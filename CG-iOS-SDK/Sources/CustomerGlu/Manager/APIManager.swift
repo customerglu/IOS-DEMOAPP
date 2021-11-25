@@ -77,7 +77,13 @@ class APIManager {
             urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: parametersDict as Any, options: .fragmentsAllowed)
         }
         
-        URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 401 {
+                    resetDefaults()
+                    return
+                }
+            }
             guard let data = data, error == nil else { return }
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
@@ -164,6 +170,14 @@ class APIManager {
             completion(.success(object))
         } catch let error { // response with error
             completion(.failure(error))
+        }
+    }
+    
+    static private func resetDefaults() {
+        let defaults = UserDefaults.standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            defaults.removeObject(forKey: key)
         }
     }
 }

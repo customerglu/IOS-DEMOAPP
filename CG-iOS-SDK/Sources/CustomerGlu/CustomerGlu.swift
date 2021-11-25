@@ -156,14 +156,17 @@ public class CustomerGlu: NSObject {
     }
     
     public func doValidateToken() -> Bool {
-        let arr = JWTDecode.shared.decode(jwtToken: UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!)
-        let expTime = Date(timeIntervalSince1970: (arr["exp"] as? Double)!)
-        let currentDateTime = Date()
-        if currentDateTime < expTime {
-            return true
-        } else {
-            return false
+        if UserDefaults.standard.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
+            let arr = JWTDecode.shared.decode(jwtToken: UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN) ?? "")
+            let expTime = Date(timeIntervalSince1970: (arr["exp"] as? Double)!)
+            let currentDateTime = Date()
+            if currentDateTime < expTime {
+                return true
+            } else {
+                return false
+            }
         }
+        return false
     }
     
     // MARK: - API Calls Methods
