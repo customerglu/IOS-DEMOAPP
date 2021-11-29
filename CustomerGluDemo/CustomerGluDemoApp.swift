@@ -13,7 +13,11 @@ struct CustomerGluDemoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeScreen()
+            if UserDefaults.standard.object(forKey: "CustomerGlu_Token") != nil {
+                HomeScreen()
+            } else {
+                LoginScreen()
+            }
         }
     }
 }

@@ -23,6 +23,20 @@ struct HomeScreen: View {
                 ZStack {
                     Color.black.ignoresSafeArea()
                     HStack {
+                        Spacer()
+                        Button(action: {
+                            customerglu.resetDefaults()
+                            UIApplication.shared.keyWindow!.rootViewController = UIHostingController(rootView: LoginScreen())
+                        }) {
+                            HStack {
+                                Image("logout")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 34)
+                            }
+                        }
+                        .padding()
+                        .frame(width: 35, height: 35)
                     }
                     Image("customerglu")
                 }.frame(width: width, height: (height/4))
@@ -61,7 +75,7 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
-                initializeGlu()
+               // initializeGlu()
             })
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())

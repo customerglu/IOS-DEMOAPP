@@ -35,30 +35,50 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
     
-    @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-        return application(app, open: url,
-                           sourceApplication: options[UIApplication.OpenURLOptionsKey
-                                                        .sourceApplication] as? String, annotation: "")
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if let scheme = url.scheme,
+            scheme.localizedCaseInsensitiveCompare("com.myApp") == .orderedSame,
+            let view = url.host {
+            
+            var parameters: [String: String] = [:]
+            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                parameters[$0.name] = $0.value
+            }
+            
+           // redirect(to: view, with: parameters)
+        }
+        return true
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
-                     annotation: Any) -> Bool {
-        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
-            // Handle the deep link. For example, show the deep-linked content or
-            // apply a promotional offer to the user's account.
-            // ...
-            print("dynamic")
-            print(dynamicLink)
-            return true
-        }
-        return false
-    }
+//    @available(iOS 9.0, *)
+//    func application(_ app: UIApplication, open url: URL,
+//                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+//        return application(app, open: url,
+//                           sourceApplication: options[UIApplication.OpenURLOptionsKey
+//                                                        .sourceApplication] as? String, annotation: "")
+//    }
+//
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+//                     annotation: Any) -> Bool {
+//        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+//            // Handle the deep link. For example, show the deep-linked content or
+//            // apply a promotional offer to the user's account.
+//            // ...
+//            print("dynamic")
+//            print(dynamicLink)
+//            return true
+//        }
+//        return false
+//    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        
+        if let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? URL {
+            /// some
+        }
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

@@ -169,6 +169,14 @@ public class CustomerGlu: NSObject {
         return false
     }
     
+    public func resetDefaults() {
+        let defaults = UserDefaults.standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            defaults.removeObject(forKey: key)
+        }
+    }
+    
     // MARK: - API Calls Methods
     public func doRegister(body: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
         
