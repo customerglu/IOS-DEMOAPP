@@ -13,10 +13,7 @@ struct HomeScreen: View {
     var height = UIScreen.main.bounds.height
     var width = UIScreen.main.bounds.width
     var customerglu = CustomerGlu.single_instance
-    
-    @State var token = ""
-    @State var fcmRegTokenMessage = ""
-        
+            
     var body: some View {
         NavigationView {
             VStack {
@@ -75,42 +72,11 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
-               // initializeGlu()
             })
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-    }
-    
-    func initializeGlu() {
-        fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
-        let parameters = [
-            "userId": "hitesh11",
-            "deviceId": "deviceb",
-            "firebaseToken": fcmRegTokenMessage]
-        
-        customerglu.doRegister(body: parameters) { success, registrationModel in
-            if success {
-                token = (registrationModel?.data?.token)!
-                print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
-                customerglu.getWalletRewards { _, _ in
-                }
-            } else {
-                print("error")
-            }
-        }
-    }
-    
-    func getFcmToken() {
-        Messaging.messaging().token { token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-                print("FCM registration token home: \(token)")
-                self.fcmRegTokenMessage  = token
-            }
-        }
     }
 }
 

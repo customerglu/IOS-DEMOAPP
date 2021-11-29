@@ -69,8 +69,11 @@ struct LoginScreen: View {
         let parameters = [
             "userId": userId,
             "deviceId": "deviceb",
-            "firebaseToken": fcmRegTokenMessage]
-        
+            "firebaseToken": fcmRegTokenMessage,
+            "username": userName,
+            "referId": referenceId
+        ]
+
         CustomerGlu.single_instance.doRegister(body: parameters) { success, registrationModel in
             if success {
                 CustomerGlu.single_instance.getWalletRewards { _, _ in

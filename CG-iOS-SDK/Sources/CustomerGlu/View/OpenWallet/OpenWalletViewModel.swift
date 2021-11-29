@@ -27,8 +27,10 @@ class OpenWalletViewModel {
     public func doRegister(completion: @escaping (Bool, RegistrationModel?) -> Void) {
         
         let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
+        let user_id = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
+
         let parameters = [
-            "userId": "hitesh11",
+            "userId": user_id,
             "deviceId": "deviceb",
             "firebaseToken": fcmRegTokenMessage]
         
