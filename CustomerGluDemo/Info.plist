@@ -37,7 +37,7 @@
 	<false/>
 	<key>FirebaseDynamicLinksCustomDomains</key>
 	<array>
-		<string>https://https://www.customerglu.com/</string>
+		<string>https://www.customerglu.com/</string>
 		<string>https://modpod.page.link/userId</string>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>

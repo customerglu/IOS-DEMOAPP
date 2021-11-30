@@ -76,10 +76,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
-        if let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? URL {
-            /// some
-        }
-        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
