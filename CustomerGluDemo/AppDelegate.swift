@@ -35,42 +35,51 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
     
-    func application(_ app: UIApplication, open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        if let scheme = url.scheme,
-            scheme.localizedCaseInsensitiveCompare("com.myApp") == .orderedSame,
-            let view = url.host {
-            
-            var parameters: [String: String] = [:]
-            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
-                parameters[$0.name] = $0.value
-            }
-            
-           // redirect(to: view, with: parameters)
+//    func application(_ app: UIApplication, open url: URL,
+//                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+//        if let scheme = url.scheme,
+//            scheme.localizedCaseInsensitiveCompare("com.myApp") == .orderedSame,
+//            let view = url.host {
+//
+//            var parameters: [String: String] = [:]
+//            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+//                parameters[$0.name] = $0.value
+//            }
+//
+//           // redirect(to: view, with: parameters)
+//        }
+//        return true
+//    }
+    
+    @available(iOS 13.0, *)
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            // Handle URL
+           // WXApi.handleOpen(url, delegate: AppDelegate.shared)
+            print(url)
         }
-        return true
     }
     
-//    @available(iOS 9.0, *)
-//    func application(_ app: UIApplication, open url: URL,
-//                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
-//        return application(app, open: url,
-//                           sourceApplication: options[UIApplication.OpenURLOptionsKey
-//                                                        .sourceApplication] as? String, annotation: "")
-//    }
-//
-//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
-//                     annotation: Any) -> Bool {
-//        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
-//            // Handle the deep link. For example, show the deep-linked content or
-//            // apply a promotional offer to the user's account.
-//            // ...
-//            print("dynamic")
-//            print(dynamicLink)
-//            return true
-//        }
-//        return false
-//    }
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+        return application(app, open: url,
+                           sourceApplication: options[UIApplication.OpenURLOptionsKey
+                                                        .sourceApplication] as? String, annotation: "")
+    }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                     annotation: Any) -> Bool {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+            // Handle the deep link. For example, show the deep-linked content or
+            // apply a promotional offer to the user's account.
+            // ...
+            print("dynamic")
+            print(dynamicLink)
+            return true
+        }
+        return false
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
@@ -156,6 +165,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print("Device token: \(tokenString)")
         
         Messaging.messaging().apnsToken = deviceToken
         print("APNS")
