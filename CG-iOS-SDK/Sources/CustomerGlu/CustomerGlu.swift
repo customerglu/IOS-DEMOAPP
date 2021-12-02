@@ -50,7 +50,7 @@ public class CustomerGlu: NSObject {
         }
     }
     
-    public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], backgroundAlpha: Double = 0.0, fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], backgroundAlpha: Double = 0.5, fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
@@ -69,7 +69,7 @@ public class CustomerGlu: NSObject {
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
                     customerWebViewVC.isbottomsheet = true
-//                    customerWebViewVC.isModalInPresentation = true
+                    customerWebViewVC.alpha = backgroundAlpha
                     guard let topController = UIViewController.topViewController() else {
                         return
                     }
@@ -86,7 +86,9 @@ public class CustomerGlu: NSObject {
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
                     customerWebViewVC.isbottomdefault = true
-                    customerWebViewVC.view.backgroundColor = .clear
+                    customerWebViewVC.alpha = backgroundAlpha
+                    customerWebViewVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                    customerWebViewVC.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                     guard let topController = UIViewController.topViewController() else {
                         return
                     }
@@ -107,6 +109,7 @@ public class CustomerGlu: NSObject {
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
                     customerWebViewVC.notificationHandler = true
                     customerWebViewVC.modalPresentationStyle = .fullScreen
+                    customerWebViewVC.alpha = backgroundAlpha
                     guard let topController = UIViewController.topViewController() else {
                         return
                     }
