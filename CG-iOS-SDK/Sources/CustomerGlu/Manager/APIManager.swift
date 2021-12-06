@@ -71,10 +71,22 @@ class APIManager {
             urlRequest.setValue("\(APIParameterKey.bearer) " + UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!, forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
             urlRequest.setValue(Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String, forHTTPHeaderField: HTTPHeaderField.xapikey.rawValue)
         }
-        
+       
         if parametersDict!.count > 0 { // Check Parameters & Move Accordingly
             print(parametersDict as Any)
-            urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: parametersDict as Any, options: .fragmentsAllowed)
+            if methodandpath.method == "GET" {
+                var urlString = ""
+                for (i, (keys, values)) in parametersDict!.enumerated() {
+                    urlString += i == 0 ? "?\(keys)=\(values)" : "&\(keys)=\(values)"
+                }
+                // Append GET Parameters to URL
+                var absoluteStr = url.absoluteString
+                absoluteStr += urlString
+                absoluteStr = absoluteStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                urlRequest.url = URL(string: absoluteStr)!
+            } else {
+                urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: parametersDict as Any, options: .fragmentsAllowed)
+            }
         }
         
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in

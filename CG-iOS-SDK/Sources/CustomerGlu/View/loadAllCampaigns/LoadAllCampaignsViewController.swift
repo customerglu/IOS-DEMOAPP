@@ -23,10 +23,10 @@ public class LoadAllCampaignsViewController: UIViewController {
         tblRewardList.rowHeight = UITableView.automaticDimension
         tblRewardList.estimatedRowHeight = 200
         
-        if CustomerGlu.single_instance.doValidateToken() == true {
+        if CustomerGlu.getInstance.doValidateToken() == true {
             getCampaign()
         } else {
-            loadAllCampaignsViewModel.doRegister { success, _ in
+            loadAllCampaignsViewModel.updateProfile { success, _ in
                 if success {
                     self.getCampaign()
                 } else {
@@ -37,7 +37,7 @@ public class LoadAllCampaignsViewController: UIViewController {
     }
     
     func getCampaign() {
-        loadAllCampaignsViewModel.getWalletRewards { success, campaignsModel in
+        CustomerGlu.getInstance.loadAllCampaigns { success, campaignsModel in
             if success {
                 self.campaigns = (campaignsModel?.campaigns)!
                 DispatchQueue.main.async { // Make sure you're on the main thread here

@@ -42,10 +42,10 @@ public class OpenWalletViewController: UIViewController {
                 print(error.localizedDescription)
             }
         } else {
-            if CustomerGlu.single_instance.doValidateToken() == true {
+            if CustomerGlu.getInstance.doValidateToken() == true {
                 getCampaigns()
             } else {
-                openWalletViewModel.doRegister { success, _ in
+                openWalletViewModel.updateProfile { success, _ in
                     if success {
                         self.getCampaigns()
                     } else {
@@ -57,7 +57,7 @@ public class OpenWalletViewController: UIViewController {
     }
    
     private func getCampaigns() {
-        openWalletViewModel.getWalletRewards { success, campaignsModel in
+        openWalletViewModel.openWallet { success, campaignsModel in
             if success {
                 self.my_url = campaignsModel!.defaultUrl
                 DispatchQueue.main.async { // Make sure you're on the main thread here

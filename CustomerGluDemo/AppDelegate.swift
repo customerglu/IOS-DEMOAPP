@@ -104,22 +104,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-   
         print(userInfo)
-        CustomerGlu.single_instance.cgapplication(application, didReceiveRemoteNotification: userInfo, backgroundAlpha: 0.5, fetchCompletionHandler: completionHandler)
- //        if let messageID = userInfo[gcmMessageIDKey] {
- //            print("Message ID: \(messageID)")
- //        }
- //        print("usernotification wqq")
- //
- //        print(userInfo)
- ////        CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["xz": "d"])
- //        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
- //            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
- //        } else {
- //            completionHandler(UIBackgroundFetchResult.newData)
- //        }
- //        // completionHandler(UIBackgroundFetchResult.newData)
+        CustomerGlu.getInstance.cgapplication(application, didReceiveRemoteNotification: userInfo, backgroundAlpha: 0.5, fetchCompletionHandler: completionHandler)
      }
 }
 
@@ -143,25 +129,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-
-//        let userInfo = notification.request.content.userInfo
-//
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            print("Message ID: \(messageID)")
-//        }
-//        print("usernotification ")
-//        print(userInfo)
-//        // print(userInfo["data"] as Any)
-//
-//        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"]) {
-//            CustomerGlu.single_instance.displayNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["customerglu": "d"])
-//        } else {
-//            completionHandler([[.banner, .badge, .sound]])
-//        }
-//        // Change this to your preferred presentation option
-
-        CustomerGlu.single_instance.cgUserNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
-
+        // Change this to your preferred presentation option
+        CustomerGlu.getInstance.cgUserNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -170,8 +139,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("Device token: \(tokenString)")
         
         Messaging.messaging().apnsToken = deviceToken
-        print("APNS")
-        //   print(Messaging.messaging().apnsToken)
         print("APNs token retrieved: \(deviceToken)")
         //     UserDefaults.standard.set(devToken, forKey: "fcmtoken")
     }
@@ -186,9 +153,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID from userNotificationCenter didReceive: \(messageID)")
         }
-        print("background click")
         print(userInfo)
-        CustomerGlu.single_instance.displayBackgroundNotification(remoteMessage: userInfo["data"] as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
+        CustomerGlu.getInstance.displayBackgroundNotification(remoteMessage: userInfo["data"] as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
         completionHandler()
     }
     

@@ -31,8 +31,7 @@ import CustomerGlu
             //                    })
             Text("Add to Cart")
                 .onTapGesture {
-//                    CustomerGlu.single_instance.addToCart(eventName: "shop", eventProperties: ["state": "1"]) { success, addCartModel in
-                    CustomerGlu.single_instance.addToCart(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addCartModel in
+                    CustomerGlu.getInstance.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addCartModel in
                         if success {
                             print(addCartModel as Any)
                         } else {

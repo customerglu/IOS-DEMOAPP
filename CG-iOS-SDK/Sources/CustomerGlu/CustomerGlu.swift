@@ -7,7 +7,7 @@ let gcmMessageIDKey = "gcm.message_id"
 public class CustomerGlu: NSObject {
     
     // Singleton Instance
-    public static var single_instance = CustomerGlu()
+    public static var getInstance = CustomerGlu()
     
     private override init() {
         NSSetUncaughtExceptionHandler { exception in
@@ -41,7 +41,7 @@ public class CustomerGlu: NSObject {
         let userInfo = notification.request.content.userInfo
         
         // Change this to your preferred presentation option
-        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? [NotificationsKey.customerglu: "d"]) {
+        if CustomerGlu.getInstance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? [NotificationsKey.customerglu: "d"]) {
             if userInfo[NotificationsKey.glu_message_type] as? String == "push" {
                 if UIApplication.shared.applicationState == .active {
                     completionHandler([[.alert, .badge, .sound]])
@@ -56,7 +56,7 @@ public class CustomerGlu: NSObject {
             print("Message ID: \(messageID)")
         }
         
-        if CustomerGlu.single_instance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? [NotificationsKey.customerglu: "d"]) {
+        if CustomerGlu.getInstance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? [NotificationsKey.customerglu: "d"]) {
             let nudge_url = userInfo[NotificationsKey.nudge_url]
             print(nudge_url as Any)
             let page_type = userInfo[NotificationsKey.page_type]
@@ -172,7 +172,7 @@ public class CustomerGlu: NSObject {
         return false
     }
     
-    public func resetDefaults() {
+    public func clearCustomerGluData() {
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()
         dictionary.keys.forEach { key in
@@ -181,21 +181,21 @@ public class CustomerGlu: NSObject {
     }
     
     // MARK: - API Calls Methods
-    public func doRegister(body: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
+    public func registerDevice(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
         
-        var userdata = body
+        var userData = userdata
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
-            userdata[APIParameterKey.deviceId] = uuid
+            userData[APIParameterKey.deviceId] = uuid
         }
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
-        userdata[APIParameterKey.deviceType] = "ios"
-        userdata[APIParameterKey.deviceName] = getDeviceName()
-        userdata[APIParameterKey.appVersion] = appVersion
-        userdata[APIParameterKey.writeKey] = writekey
+        userData[APIParameterKey.deviceType] = "ios"
+        userData[APIParameterKey.deviceName] = getDeviceName()
+        userData[APIParameterKey.appVersion] = appVersion
+        userData[APIParameterKey.writeKey] = writekey
         
-        APIManager.userRegister(queryParameters: userdata as NSDictionary) { result in
+        APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
             switch result {
             case .success(let response):
                 if response.success! {
@@ -213,7 +213,41 @@ public class CustomerGlu: NSObject {
         }
     }
     
-    public func getWalletRewards(completion: @escaping (Bool, CampaignsModel?) -> Void) {
+    public func updateProfile(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
+        
+        var userData = userdata
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            print(uuid)
+            userData[APIParameterKey.deviceId] = uuid
+        }
+        let user_id = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
+        userData[APIParameterKey.deviceType] = "ios"
+        userData[APIParameterKey.deviceName] = getDeviceName()
+        userData[APIParameterKey.appVersion] = appVersion
+        userData[APIParameterKey.writeKey] = writekey
+        userData[APIParameterKey.userId] = user_id
+
+        APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                if response.success! {
+                    UserDefaults.standard.set(response.data?.token, forKey: Constants.CUSTOMERGLU_TOKEN)
+                    UserDefaults.standard.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
+                    completion(true, response)
+                } else {
+                    DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: "Not found")
+                }
+            case .failure(let error):
+                print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: error.localizedDescription)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func openWallet(completion: @escaping (Bool, CampaignsModel?) -> Void) {
         APIManager.getWalletRewards(queryParameters: [:]) { result in
             switch result {
             case .success(let response):
@@ -228,13 +262,97 @@ public class CustomerGlu: NSObject {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getWalletRewards", exception: error.localizedDescription)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "openWallet", exception: error.localizedDescription)
                 completion(false, nil)
             }
         }
     }
     
-    public func addToCart(eventName: String, eventProperties: [String: Any], completion: @escaping (Bool, AddCartModel?) -> Void) {
+    public func loadAllCampaigns(completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        APIManager.getWalletRewards(queryParameters: [:]) { result in
+            switch result {
+            case .success(let response):
+                self.campaigndata = response
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadAllCampaigns", exception: error.localizedDescription)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func loadCampaignById(campaign_id: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        let parameters = [
+            "campaign_id": campaign_id
+        ]
+        APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                self.campaigndata = response
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignById", exception: error.localizedDescription)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func loadCampaignsByType(type: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        let parameters = [
+            "type": type
+        ]
+        APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                self.campaigndata = response
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignsByType", exception: error.localizedDescription)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func loadCampaignByStatus(status: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        let parameters = [
+            "status": status
+        ]
+        APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                self.campaigndata = response
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignByStatus", exception: error.localizedDescription)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func loadCampaignByFilter(parameters: NSDictionary, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        APIManager.getWalletRewards(queryParameters: parameters) { result in
+            switch result {
+            case .success(let response):
+                self.campaigndata = response
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignByFilter", exception: error.localizedDescription)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    public func sendEventData(eventName: String, eventProperties: [String: Any], completion: @escaping (Bool, AddCartModel?) -> Void) {
         
         let date = Date()
         let event_id = UUID().uuidString

@@ -12,7 +12,7 @@ struct HomeScreen: View {
     @State var active = false
     var height = UIScreen.main.bounds.height
     var width = UIScreen.main.bounds.width
-    var customerglu = CustomerGlu.single_instance
+    var customerglu = CustomerGlu.getInstance
             
     var body: some View {
         NavigationView {
@@ -22,7 +22,7 @@ struct HomeScreen: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            customerglu.resetDefaults()
+                            customerglu.clearCustomerGluData()
                             UIApplication.shared.keyWindow!.rootViewController = UIHostingController(rootView: LoginScreen())
                         }) {
                             HStack {

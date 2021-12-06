@@ -66,7 +66,7 @@ struct LoginScreen: View {
     func submitActionClicked(userId: String, userName: String, referenceId: String) {
 
         let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
-        let parameters = [
+        let userData = [
             "userId": userId,
             "deviceId": "deviceb",
             "firebaseToken": fcmRegTokenMessage,
@@ -74,9 +74,10 @@ struct LoginScreen: View {
             "referId": referenceId
         ]
 
-        CustomerGlu.single_instance.doRegister(body: parameters) { success, registrationModel in
+        CustomerGlu.getInstance.registerDevice(userdata: userData) { success, registrationModel in
             if success {
-                CustomerGlu.single_instance.getWalletRewards { _, _ in
+                CustomerGlu.getInstance.openWallet { _, _ in
+                    print("Register Successfully \(String(describing: registrationModel))")
                     self.isActive = true
                 }
             } else {

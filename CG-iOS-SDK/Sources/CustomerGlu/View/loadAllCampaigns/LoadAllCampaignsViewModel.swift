@@ -24,15 +24,14 @@ class LoadAllCampaignsViewModel {
         }
     }
     
-    public func doRegister(completion: @escaping (Bool, RegistrationModel?) -> Void) {
+    public func updateProfile(completion: @escaping (Bool, RegistrationModel?) -> Void) {
         let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
-        let user_id = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
-        let parameters = [
-            "userId": user_id,
+        let userData = [
             "deviceId": "deviceb",
-            "firebaseToken": fcmRegTokenMessage]
+            "firebaseToken": fcmRegTokenMessage
+        ]
         
-        CustomerGlu.single_instance.doRegister(body: parameters) { success, registrationModel in
+        CustomerGlu.getInstance.updateProfile(userdata: userData) { success, registrationModel in
             if success {
                 completion(true, registrationModel)
             } else {
