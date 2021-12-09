@@ -8,7 +8,8 @@ public class CustomerGlu: NSObject {
     
     // Singleton Instance
     public static var getInstance = CustomerGlu()
-    public static var disableSDK: Bool? = false
+    public static var sdk_disable: Bool? = false
+    public static var fcm_apn = "fcm"
 
     private override init() {
         NSSetUncaughtExceptionHandler { exception in
@@ -21,6 +22,14 @@ public class CustomerGlu: NSObject {
     }
     
     @Published var campaigndata = CampaignsModel()
+    
+    public func disableGluSdk(disable: Bool) {
+        CustomerGlu.sdk_disable = disable
+    }
+    
+    public func isFcmApn(fcmApn: String) {
+        CustomerGlu.fcm_apn = fcmApn
+    }
     
     private func getDeviceName() -> String {
         var systemInfo = utsname()
@@ -39,8 +48,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func cgUserNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         let userInfo = notification.request.content.userInfo
@@ -56,8 +65,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], backgroundAlpha: Double = 0.5, fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         if let messageID = userInfo[gcmMessageIDKey] {
@@ -140,8 +149,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func displayBackgroundNotification(remoteMessage: [String: AnyHashable]) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         let nudge_url = remoteMessage[NotificationsKey.nudge_url]
@@ -188,16 +197,18 @@ public class CustomerGlu: NSObject {
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()
         let fcmToken = UserDefaults.standard.string(forKey: "fcmtoken")
+        let apnToken = UserDefaults.standard.string(forKey: "apntoken")
         dictionary.keys.forEach { key in
             defaults.removeObject(forKey: key)
         }
         UserDefaults.standard.set(fcmToken, forKey: "fcmtoken")
+        UserDefaults.standard.set(apnToken, forKey: "apntoken")
     }
     
     // MARK: - API Calls Methods
     public func registerDevice(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         var userData = userdata
@@ -231,8 +242,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func updateProfile(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         var userData = userdata
@@ -268,8 +279,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func openWallet(completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         APIManager.getWalletRewards(queryParameters: [:]) { result in
@@ -293,8 +304,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadAllCampaigns(completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         APIManager.getWalletRewards(queryParameters: [:]) { result in
@@ -312,8 +323,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignById(campaign_id: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         let parameters = [
@@ -334,8 +345,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignsByType(type: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         let parameters = [
@@ -356,8 +367,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignByStatus(status: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         let parameters = [
@@ -378,8 +389,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignByFilter(parameters: NSDictionary, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         APIManager.getWalletRewards(queryParameters: parameters) { result in
@@ -397,8 +408,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func sendEventData(eventName: String, eventProperties: [String: Any], completion: @escaping (Bool, AddCartModel?) -> Void) {
-        if CustomerGlu.disableSDK! == true {
-            print(CustomerGlu.disableSDK!)
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
         let date = Date()

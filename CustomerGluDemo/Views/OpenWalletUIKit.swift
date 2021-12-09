@@ -12,7 +12,6 @@ import CustomerGlu
 struct OpenWalletUIKit: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
-        CustomerGlu.disableSDK = true
         let openWalletVC = OpenWalletViewController.storyboardVC
         return openWalletVC
     }

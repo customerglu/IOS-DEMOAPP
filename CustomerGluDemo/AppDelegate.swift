@@ -85,6 +85,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
+        CustomerGlu.getInstance.disableGluSdk(disable: false)
+        CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
+
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -140,7 +143,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         Messaging.messaging().apnsToken = deviceToken
         print("APNs token retrieved: \(deviceToken)")
-        //     UserDefaults.standard.set(devToken, forKey: "fcmtoken")
+        UserDefaults.standard.set(deviceToken, forKey: "apntoken")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -154,7 +157,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             print("Message ID from userNotificationCenter didReceive: \(messageID)")
         }
         print(userInfo)
-        CustomerGlu.getInstance.displayBackgroundNotification(remoteMessage: userInfo["data"] as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
+        CustomerGlu.getInstance.displayBackgroundNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
         completionHandler()
     }
     

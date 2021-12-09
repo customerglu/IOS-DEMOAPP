@@ -66,14 +66,18 @@ struct LoginScreen: View {
     func submitActionClicked(userId: String, userName: String, referenceId: String) {
 
         let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
-        let userData = [
-            "userId": userId,
-            "deviceId": "deviceb",
-            "firebaseToken": fcmRegTokenMessage,
-            "username": userName,
-            "referId": referenceId
-        ]
+        let apnsDeviceTokenMessage = UserDefaults.standard.string(forKey: "apntoken") ?? "defaultvalue"
 
+        var userData = [String: AnyHashable]()
+        userData["userId"] = userId
+        userData["deviceId"] = "deviceb"
+        userData["username"] = userName
+        userData["referId"] = referenceId
+        if CustomerGlu.fcm_apn == "fcm" {
+            userData["firebaseToken"] = fcmRegTokenMessage
+        } else {
+            userData["apnsDeviceToken"] = apnsDeviceTokenMessage
+        }
         CustomerGlu.getInstance.registerDevice(userdata: userData) { success, registrationModel in
             if success {
                 CustomerGlu.getInstance.openWallet { _, _ in
