@@ -8,7 +8,8 @@ public class CustomerGlu: NSObject {
     
     // Singleton Instance
     public static var getInstance = CustomerGlu()
-    
+    public static var disableSDK: Bool? = false
+
     private override init() {
         NSSetUncaughtExceptionHandler { exception in
             if exception.reason != nil {
@@ -38,6 +39,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func cgUserNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         let userInfo = notification.request.content.userInfo
         
         // Change this to your preferred presentation option
@@ -51,7 +56,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func cgapplication(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], backgroundAlpha: Double = 0.5, fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
@@ -132,6 +140,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func displayBackgroundNotification(remoteMessage: [String: AnyHashable]) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         let nudge_url = remoteMessage[NotificationsKey.nudge_url]
         
         let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
@@ -175,14 +187,19 @@ public class CustomerGlu: NSObject {
     public func clearCustomerGluData() {
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()
+        let fcmToken = UserDefaults.standard.string(forKey: "fcmtoken")
         dictionary.keys.forEach { key in
             defaults.removeObject(forKey: key)
         }
+        UserDefaults.standard.set(fcmToken, forKey: "fcmtoken")
     }
     
     // MARK: - API Calls Methods
     public func registerDevice(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         var userData = userdata
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
@@ -214,7 +231,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func updateProfile(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         var userData = userdata
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
@@ -248,6 +268,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func openWallet(completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         APIManager.getWalletRewards(queryParameters: [:]) { result in
             switch result {
             case .success(let response):
@@ -269,6 +293,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadAllCampaigns(completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         APIManager.getWalletRewards(queryParameters: [:]) { result in
             switch result {
             case .success(let response):
@@ -284,6 +312,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignById(campaign_id: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         let parameters = [
             "campaign_id": campaign_id
         ]
@@ -302,6 +334,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignsByType(type: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         let parameters = [
             "type": type
         ]
@@ -320,6 +356,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignByStatus(status: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         let parameters = [
             "status": status
         ]
@@ -338,6 +378,10 @@ public class CustomerGlu: NSObject {
     }
     
     public func loadCampaignByFilter(parameters: NSDictionary, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         APIManager.getWalletRewards(queryParameters: parameters) { result in
             switch result {
             case .success(let response):
@@ -353,22 +397,24 @@ public class CustomerGlu: NSObject {
     }
     
     public func sendEventData(eventName: String, eventProperties: [String: Any], completion: @escaping (Bool, AddCartModel?) -> Void) {
-        
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            return
+        }
         let date = Date()
         let event_id = UUID().uuidString
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = Constants.DATE_FORMAT
         let timestamp = dateformatter.string(from: date)
-        let evp = String(describing: eventProperties)
+      //  let evp = String(describing: eventProperties)
         let user_id = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
-        print(evp)
         
         let eventData = [
             APIParameterKey.event_id: event_id,
             APIParameterKey.event_name: eventName,
-            APIParameterKey.user_id: user_id,
+            APIParameterKey.user_id: user_id ?? "",
             APIParameterKey.timestamp: timestamp,
-            APIParameterKey.event_properties: evp]
+            APIParameterKey.event_properties: eventProperties] as [String: Any]
         
         APIManager.addToCart(queryParameters: eventData as NSDictionary) { result in
             switch result {

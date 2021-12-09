@@ -22,6 +22,11 @@ public class OpenWalletViewController: UIViewController {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        if CustomerGlu.disableSDK! == true {
+            print(CustomerGlu.disableSDK!)
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
         super.viewWillAppear(false)
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -57,7 +62,7 @@ public class OpenWalletViewController: UIViewController {
     }
    
     private func getCampaigns() {
-        openWalletViewModel.openWallet { success, campaignsModel in
+        CustomerGlu.getInstance.openWallet { success, campaignsModel in
             if success {
                 self.my_url = campaignsModel!.defaultUrl
                 DispatchQueue.main.async { // Make sure you're on the main thread here
@@ -69,7 +74,7 @@ public class OpenWalletViewController: UIViewController {
                     self.navigationController?.present(customerWebViewVC, animated: false)
                 }
             } else {
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "openWallet", exception: "error")
             }
         }
     }

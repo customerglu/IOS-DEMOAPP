@@ -70,7 +70,11 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
         }
         webView.navigationDelegate = self
-        webView.load(URLRequest(url: URL(string: urlStr )!))
+        if urlStr != "" || !urlStr.isEmpty {
+            webView.load(URLRequest(url: URL(string: urlStr)!))
+        } else {
+            self.dismiss(animated: false, completion: nil)
+        }
         self.view.addSubview(webView)
     }
     
