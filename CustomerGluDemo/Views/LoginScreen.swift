@@ -73,11 +73,9 @@ struct LoginScreen: View {
         userData["deviceId"] = "deviceb"
         userData["username"] = userName
         userData["referId"] = referenceId
-        if CustomerGlu.fcm_apn == "fcm" {
-            userData["firebaseToken"] = fcmRegTokenMessage
-        } else {
-            userData["apnsDeviceToken"] = apnsDeviceTokenMessage
-        }
+        userData["firebaseToken"] = fcmRegTokenMessage
+        userData["apnsDeviceToken"] = apnsDeviceTokenMessage
+        
         CustomerGlu.getInstance.registerDevice(userdata: userData) { success, registrationModel in
             if success {
                 CustomerGlu.getInstance.openWallet { _, _ in

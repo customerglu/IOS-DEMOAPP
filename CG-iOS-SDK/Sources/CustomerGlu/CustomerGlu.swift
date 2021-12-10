@@ -223,6 +223,12 @@ public class CustomerGlu: NSObject {
         userData[APIParameterKey.appVersion] = appVersion
         userData[APIParameterKey.writeKey] = writekey
         
+        if CustomerGlu.fcm_apn == "fcm" {
+            userData.removeValue(forKey: "apnsDeviceToken")
+        } else {
+            userData.removeValue(forKey: "firebaseToken")
+        }
+        
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
             switch result {
             case .success(let response):

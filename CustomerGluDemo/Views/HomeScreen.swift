@@ -42,14 +42,14 @@ struct HomeScreen: View {
                     .navigationBarHidden(true)
                 HStack {
                     NavigationLink(
-                        destination: OpenWalletUIKit(),
+                        destination: OpenWalletUIKit().ignoresSafeArea(),
 //                        destination: OpenWallet(),
                         label: {
                             productCard(image: "purse", title: "Wallet")
                         })
                     Spacer()
                     NavigationLink(
-                        destination: RewardUIKit(),
+                        destination: RewardUIKit().edgesIgnoringSafeArea(.bottom),
 //                        destination: LoadAllCampaigns(customer_token: token),
                         label: {
                             productCard(image: "coin", title: "Rewards")

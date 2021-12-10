@@ -20,6 +20,8 @@ public class LoadAllCampaignsViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
         tblRewardList.rowHeight = UITableView.automaticDimension
         tblRewardList.estimatedRowHeight = 200
         

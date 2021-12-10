@@ -137,13 +137,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        
+        //apn
         let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("Device token: \(tokenString)")
+        UserDefaults.standard.set(tokenString, forKey: "apntoken")
         
+        //firebase
         Messaging.messaging().apnsToken = deviceToken
         print("APNs token retrieved: \(deviceToken)")
-        UserDefaults.standard.set(deviceToken, forKey: "apntoken")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

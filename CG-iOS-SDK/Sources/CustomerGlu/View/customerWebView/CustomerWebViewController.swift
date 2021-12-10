@@ -52,22 +52,23 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         }
         
         if notificationHandler {
-            let height = UIScreen.main.bounds.height / 1.4
+            let height = self.view.frame.height / 1.4
             if ismiddle {
-                webView = WKWebView(frame: CGRect(x: 20, y: (UIScreen.main.bounds.height - height)/2, width: UIScreen.main.bounds.width - 40, height: height), configuration: config) //set your own frame
+                webView = WKWebView(frame: CGRect(x: 20, y: (self.view.frame.height - height)/2, width: self.view.frame.width - 40, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
                 webView.clipsToBounds = true
             } else if isbottomdefault {
-                webView = WKWebView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - height, width: UIScreen.main.bounds.width, height: height), configuration: config) //set your own frame
+                webView = WKWebView(frame: CGRect(x: 0, y: self.view.frame.height - height, width: self.view.frame.width, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
                 webView.clipsToBounds = true
             } else if isbottomsheet {
-                webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
+                webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
             } else {
-                webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
+                webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
             }
+            webView.scrollView.contentInsetAdjustmentBehavior = .never
         } else {
-            webView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
+            webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
         }
         webView.navigationDelegate = self
         if urlStr != "" || !urlStr.isEmpty {
@@ -80,13 +81,6 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         self.dismiss(animated: false, completion: nil)
-    }
-    
-    @objc func panGesture(recognizer: UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: self.view)
-        let y = self.view.frame.minY
-        self.view.frame = CGRect(x: 0, y: y + translation.y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        recognizer.setTranslation(.zero, in: self.view)
     }
     
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

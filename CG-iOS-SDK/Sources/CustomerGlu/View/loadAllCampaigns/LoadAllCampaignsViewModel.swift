@@ -15,12 +15,9 @@ class LoadAllCampaignsViewModel {
         let apnsDeviceTokenMessage = UserDefaults.standard.string(forKey: "apntoken") ?? "defaultvalue"
         var userData = [String: AnyHashable]()
         userData["deviceId"] = "deviceb"
-        if CustomerGlu.fcm_apn == "fcm" {
-            userData["firebaseToken"] = fcmRegTokenMessage
-        } else {
-            userData["apnsDeviceToken"] = apnsDeviceTokenMessage
-        }
-        
+        userData["firebaseToken"] = fcmRegTokenMessage
+        userData["apnsDeviceToken"] = apnsDeviceTokenMessage
+       
         CustomerGlu.getInstance.updateProfile(userdata: userData) { success, registrationModel in
             if success {
                 completion(true, registrationModel)

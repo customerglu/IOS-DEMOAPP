@@ -22,6 +22,7 @@ public class OpenWalletViewController: UIViewController {
     }
     
     public override func viewWillAppear(_ animated: Bool) {
+        
         if CustomerGlu.sdk_disable! == true {
             print(CustomerGlu.sdk_disable!)
             self.navigationController?.popViewController(animated: true)
