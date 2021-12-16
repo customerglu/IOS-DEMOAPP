@@ -5,6 +5,9 @@ import UIKit
 let gcmMessageIDKey = "gcm.message_id"
 
 public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
+    
+    // MARK: - Global Variable
+    var spinner = SpinnerView()
    
     // Singleton Instance
     public static var getInstance = CustomerGlu()
@@ -52,6 +55,38 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     public func isFcmApn(fcmApn: String) {
         CustomerGlu.fcm_apn = fcmApn
+    }
+    
+    func loaderShow(withcoordinate x: CGFloat, y: CGFloat) {
+        DispatchQueue.main.async { [self] in
+            if let controller = topMostController() {
+                spinner = SpinnerView(frame: CGRect(x: x, y: y, width: 60, height: 60))
+                controller.view.addSubview(spinner)
+                controller.view.bringSubviewToFront(spinner)
+            }
+        }
+    }
+    
+    func loaderHide() {
+        DispatchQueue.main.async { [self] in
+            spinner.removeFromSuperview()
+        }
+    }
+    
+    func topMostController() -> UIViewController? {
+        guard let window = UIApplication.shared.keyWindowInConnectedScenes, let rootViewController = window.rootViewController else {
+            return nil
+        }
+        
+        var topController = rootViewController
+        if let navController = topController as? UINavigationController {
+            topController = navController.viewControllers.last!
+        }
+        
+        while let newTopController = topController.presentedViewController {
+            topController = newTopController
+        }
+        return topController
     }
     
     private func getDeviceName() -> String {

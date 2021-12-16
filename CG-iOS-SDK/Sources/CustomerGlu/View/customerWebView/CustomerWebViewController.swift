@@ -51,20 +51,27 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             self.view.addGestureRecognizer(tap)
         }
         
+        let x = self.view.frame.midX - 30
+        var y = self.view.frame.midY - 30
+
         if notificationHandler {
             let height = self.view.frame.height / 1.4
             if ismiddle {
                 webView = WKWebView(frame: CGRect(x: 20, y: (self.view.frame.height - height)/2, width: self.view.frame.width - 40, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
                 webView.clipsToBounds = true
+                y = webView.frame.midY - 30
             } else if isbottomdefault {
                 webView = WKWebView(frame: CGRect(x: 0, y: self.view.frame.height - height, width: self.view.frame.width, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
                 webView.clipsToBounds = true
+                y = webView.frame.midY - 30
             } else if isbottomsheet {
                 webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
+                y = self.view.frame.midY - 30
             } else {
                 webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
+                y = self.view.frame.midY - 30
             }
             webView.scrollView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -77,6 +84,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             self.dismiss(animated: false, completion: nil)
         }
         self.view.addSubview(webView)
+        CustomerGlu.getInstance.loaderShow(withcoordinate: x, y: y)
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -89,10 +97,12 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("Finished loading")
+        CustomerGlu.getInstance.loaderHide()
     }
     
     public func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         print(error.localizedDescription)
+        CustomerGlu.getInstance.loaderHide()
     }
     
     // receive message from wkwebview
