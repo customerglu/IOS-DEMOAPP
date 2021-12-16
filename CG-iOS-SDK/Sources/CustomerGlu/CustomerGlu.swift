@@ -4,20 +4,43 @@ import UIKit
 
 let gcmMessageIDKey = "gcm.message_id"
 
-public class CustomerGlu: NSObject {
-    
+public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
+   
     // Singleton Instance
     public static var getInstance = CustomerGlu()
     public static var sdk_disable: Bool? = false
     public static var fcm_apn = "fcm"
-
+    let userDefaults = UserDefaults.standard
+    
     private override init() {
-        NSSetUncaughtExceptionHandler { exception in
-            if exception.reason != nil {
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: exception.reason!.replace(string: ",", replacement: " "), code: exception.callStackSymbols.description.replace(string: ",", replacement: " "))
-            } else {
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "Unknown", code: exception.callStackSymbols.description.replace(string: ",", replacement: " "))
+        super.init()
+        CustomerGluCrash.add(delegate: self)
+        do {
+            // retrieving a value for a key
+            if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
+               let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
+                print(crashItems)
+                userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
+                userDefaults.synchronize()
             }
+        } catch {
+            print(error)
+        }
+    }
+    
+    public func customerGluDidCatchCrash(with model: CrashModel) {
+        print("\(model)")
+        let dict = [
+            "name": model.name!,
+            "reason": model.reason!,
+            "appinfo": model.appinfo!,
+            "callStack": model.callStack!] as [String: Any]
+        do {
+            // setting a value for a key
+            let encodedData = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: true)
+            userDefaults.set(encodedData, forKey: Constants.CustomerGluCrash)
+        } catch {
+            print(error)
         }
     }
     
@@ -180,8 +203,8 @@ public class CustomerGlu: NSObject {
     }
     
     public func doValidateToken() -> Bool {
-        if UserDefaults.standard.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
-            let arr = JWTDecode.shared.decode(jwtToken: UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN) ?? "")
+        if userDefaults.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
+            let arr = JWTDecode.shared.decode(jwtToken: userDefaults.string(forKey: Constants.CUSTOMERGLU_TOKEN) ?? "")
             let expTime = Date(timeIntervalSince1970: (arr["exp"] as? Double)!)
             let currentDateTime = Date()
             if currentDateTime < expTime {
@@ -194,15 +217,14 @@ public class CustomerGlu: NSObject {
     }
     
     public func clearCustomerGluData() {
-        let defaults = UserDefaults.standard
-        let dictionary = defaults.dictionaryRepresentation()
-        let fcmToken = UserDefaults.standard.string(forKey: "fcmtoken")
-        let apnToken = UserDefaults.standard.string(forKey: "apntoken")
+        let dictionary = userDefaults.dictionaryRepresentation()
+        let fcmToken = userDefaults.string(forKey: "fcmtoken")
+        let apnToken = userDefaults.string(forKey: "apntoken")
         dictionary.keys.forEach { key in
-            defaults.removeObject(forKey: key)
+            userDefaults.removeObject(forKey: key)
         }
-        UserDefaults.standard.set(fcmToken, forKey: "fcmtoken")
-        UserDefaults.standard.set(apnToken, forKey: "apntoken")
+        userDefaults.set(fcmToken, forKey: "fcmtoken")
+        userDefaults.set(apnToken, forKey: "apntoken")
     }
     
     // MARK: - API Calls Methods
@@ -233,8 +255,8 @@ public class CustomerGlu: NSObject {
             switch result {
             case .success(let response):
                 if response.success! {
-                    UserDefaults.standard.set(response.data?.token, forKey: Constants.CUSTOMERGLU_TOKEN)
-                    UserDefaults.standard.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
+                    self.userDefaults.set(response.data?.token, forKey: Constants.CUSTOMERGLU_TOKEN)
+                    self.userDefaults.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
                     completion(true, response)
                 } else {
                     DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: "Not found")
@@ -257,7 +279,7 @@ public class CustomerGlu: NSObject {
             print(uuid)
             userData[APIParameterKey.deviceId] = uuid
         }
-        let user_id = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
+        let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
         userData[APIParameterKey.deviceType] = "ios"
@@ -270,8 +292,8 @@ public class CustomerGlu: NSObject {
             switch result {
             case .success(let response):
                 if response.success! {
-                    UserDefaults.standard.set(response.data?.token, forKey: Constants.CUSTOMERGLU_TOKEN)
-                    UserDefaults.standard.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
+                    self.userDefaults.set(response.data?.token, forKey: Constants.CUSTOMERGLU_TOKEN)
+                    self.userDefaults.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
                     completion(true, response)
                 } else {
                     DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: "Not found")
@@ -293,9 +315,8 @@ public class CustomerGlu: NSObject {
             switch result {
             case .success(let response):
                 self.campaigndata = response
-                let userDefaults = UserDefaults.standard
                 do {
-                    try userDefaults.setObject(self.campaigndata, forKey: Constants.WalletRewardData)
+                    try self.userDefaults.setObject(self.campaigndata, forKey: Constants.WalletRewardData)
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -424,7 +445,7 @@ public class CustomerGlu: NSObject {
         dateformatter.dateFormat = Constants.DATE_FORMAT
         let timestamp = dateformatter.string(from: date)
       //  let evp = String(describing: eventProperties)
-        let user_id = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
+        let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
         
         let eventData = [
             APIParameterKey.event_id: event_id,
@@ -444,5 +465,5 @@ public class CustomerGlu: NSObject {
                 completion(false, nil)
             }
         }
-    }
+    }   
 }

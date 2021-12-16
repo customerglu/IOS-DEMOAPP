@@ -9,20 +9,34 @@ import Foundation
 import UIKit
 
 public class OpenWalletViewController: UIViewController {
-    
+   
     public static let storyboardVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
     
     var my_url = ""
+    var anotherOptionalInt: Int?
     
     // MARK: - Variables
     private var openWalletViewModel = OpenWalletViewModel()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+                
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.catchDeeplinkNotification),
+            name: Notification.Name("CUSTOMERGLU_DEEPLINK_EVENT"),
+            object: nil)
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
-        
+    @objc private func catchDeeplinkNotification(notification: NSNotification) {
+        //do stuff using the userInfo property of the notification object
+        if let userInfo = notification.userInfo as? [String: Any] // or use if you know the type  [AnyHashable : Any]
+        {
+             print(userInfo)
+        }
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {       
         if CustomerGlu.sdk_disable! == true {
             print(CustomerGlu.sdk_disable!)
             self.navigationController?.popViewController(animated: true)

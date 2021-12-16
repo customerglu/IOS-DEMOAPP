@@ -13,6 +13,6 @@ struct DeepLinkModel: Codable {
 }
 
 struct EventLinkData: Codable {
-    var screenName = ""
-    var deepLink = ""
+    var name: String?
+    var deepLink: String?
 }

@@ -15,6 +15,10 @@ line_length:
     - 600
     - 700
     
+type_body_length:
+    warning: 500
+    error: 700
+    
 identifier_name:
   allowed_symbols: "_"
 

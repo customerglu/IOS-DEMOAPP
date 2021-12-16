@@ -109,7 +109,6 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             let bodyStruct = try? JSONDecoder().decode(EventModel.self, from: bodyData)
             
             if bodyStruct?.eventName == WebViewsKey.close {
-                print("close")
                 //                if parent.fromWallet && parent.fromUikit {
                 print("UIKIT")
                 if openWallet {
@@ -125,6 +124,9 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 let deeplink = try? JSONDecoder().decode(DeepLinkModel.self, from: bodyData)
                 if  let deep_link = deeplink?.data?.deepLink {
                     print("link", deep_link)
+                    let dict = convertToDictionary(text: (message.body as? String)!)
+                    // Post notification
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.Name("CUSTOMERGLU_DEEPLINK_EVENT").rawValue), object: nil, userInfo: dict?["data"] as? [String: Any])
                     if let url = URL(string: deep_link) {
                         UIApplication.shared.open(url)
                     } else {
@@ -157,6 +159,17 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         }
     }
     
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+    
     private func sendToOtherApps(shareText: String) {
         // set up activity view controller
         let textToShare = [ shareText ]
@@ -177,7 +190,6 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 if UIApplication.shared.canOpenURL(whatsappURL as URL) {
                     UIApplication.shared.open(whatsappURL)
                 } else {
-                    // Cannot open whatsapp
                     DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open whatsapp")
                     print("Can't open whatsapp")
                 }
@@ -233,7 +245,6 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                         }
                     }
                 } else {
-                    // Cannot open whatsapp
                     DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open whatsapp")
                     print("Can't open whatsapp")
                 }
