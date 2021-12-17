@@ -115,13 +115,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase registration token: \(String(describing: fcmToken))")
-        
-        let _:[String: String] = ["token": fcmToken ?? ""]
-        print("Device token: ", fcmToken ?? "fcm")
-        // This token can be used for testing notifications on FCM
-        UserDefaults.standard.set(fcmToken, forKey: "fcmtoken")
-        let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken")
-        print(fcmRegTokenMessage as Any)
+        CustomerGlu.getInstance.fcmToken = fcmToken ?? ""
     }
 }
 
@@ -136,15 +130,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         CustomerGlu.getInstance.cgUserNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        //apn
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) { //apn
         let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("Device token: \(tokenString)")
-        UserDefaults.standard.set(tokenString, forKey: "apntoken")
-        
-        //firebase
-        Messaging.messaging().apnsToken = deviceToken
-        print("APNs token retrieved: \(deviceToken)")
+        CustomerGlu.getInstance.apnToken = tokenString
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

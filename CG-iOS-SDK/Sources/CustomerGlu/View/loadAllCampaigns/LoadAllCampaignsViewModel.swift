@@ -11,12 +11,10 @@ import UIKit
 class LoadAllCampaignsViewModel {
 
     public func updateProfile(completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
-        let apnsDeviceTokenMessage = UserDefaults.standard.string(forKey: "apntoken") ?? "defaultvalue"
         var userData = [String: AnyHashable]()
         userData["deviceId"] = "deviceb"
-        userData["firebaseToken"] = fcmRegTokenMessage
-        userData["apnsDeviceToken"] = apnsDeviceTokenMessage
+        userData["firebaseToken"] = CustomerGlu.getInstance.fcmToken
+        userData["apnsDeviceToken"] = CustomerGlu.getInstance.apnToken
        
         CustomerGlu.getInstance.updateProfile(userdata: userData) { success, registrationModel in
             if success {

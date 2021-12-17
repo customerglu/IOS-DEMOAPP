@@ -14,6 +14,8 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public static var sdk_disable: Bool? = false
     public static var fcm_apn = "fcm"
     let userDefaults = UserDefaults.standard
+    public var apnToken = ""
+    public var fcmToken = ""
     
     private override init() {
         super.init()
@@ -253,13 +255,9 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     public func clearCustomerGluData() {
         let dictionary = userDefaults.dictionaryRepresentation()
-        let fcmToken = userDefaults.string(forKey: "fcmtoken")
-        let apnToken = userDefaults.string(forKey: "apntoken")
         dictionary.keys.forEach { key in
             userDefaults.removeObject(forKey: key)
         }
-        userDefaults.set(fcmToken, forKey: "fcmtoken")
-        userDefaults.set(apnToken, forKey: "apntoken")
     }
     
     // MARK: - API Calls Methods

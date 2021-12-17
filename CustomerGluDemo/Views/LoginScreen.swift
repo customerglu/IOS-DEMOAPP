@@ -64,17 +64,13 @@ struct LoginScreen: View {
     }
     
     func submitActionClicked(userId: String, userName: String, referenceId: String) {
-
-        let fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
-        let apnsDeviceTokenMessage = UserDefaults.standard.string(forKey: "apntoken") ?? "defaultvalue"
-
         var userData = [String: AnyHashable]()
         userData["userId"] = userId
         userData["deviceId"] = "deviceb"
         userData["username"] = userName
         userData["referId"] = referenceId
-        userData["firebaseToken"] = fcmRegTokenMessage
-        userData["apnsDeviceToken"] = apnsDeviceTokenMessage
+        userData["firebaseToken"] = CustomerGlu.getInstance.fcmToken
+        userData["apnsDeviceToken"] = CustomerGlu.getInstance.apnToken
         
         CustomerGlu.getInstance.registerDevice(userdata: userData) { success, registrationModel in
             if success {
