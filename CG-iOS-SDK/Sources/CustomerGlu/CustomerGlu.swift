@@ -140,7 +140,6 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             
             if userInfo[NotificationsKey.glu_message_type] as? String == NotificationsKey.in_app {
                 print(page_type as Any)
-                
                 if page_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
                     customerWebViewVC.urlStr = nudge_url as? String ?? ""
@@ -279,9 +278,9 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         userData[APIParameterKey.writeKey] = writekey
         
         if CustomerGlu.fcm_apn == "fcm" {
-            userData.removeValue(forKey: "apnsDeviceToken")
+            userData["apnsDeviceToken"] = ""
         } else {
-            userData.removeValue(forKey: "firebaseToken")
+            userData["firebaseToken"] = ""
         }
         
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
@@ -313,6 +312,9 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             userData[APIParameterKey.deviceId] = uuid
         }
         let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
+        if user_id == nil && user_id?.count ?? 0 < 0 {
+            return
+        }
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let writekey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String
         userData[APIParameterKey.deviceType] = "ios"
@@ -320,6 +322,14 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         userData[APIParameterKey.appVersion] = appVersion
         userData[APIParameterKey.writeKey] = writekey
         userData[APIParameterKey.userId] = user_id
+        
+        if CustomerGlu.fcm_apn == "fcm" {
+            userData["apnsDeviceToken"] = ""
+            userData["firebaseToken"] = fcmToken
+        } else {
+            userData["firebaseToken"] = ""
+            userData["apnsDeviceToken"] = apnToken
+        }
 
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
             switch result {

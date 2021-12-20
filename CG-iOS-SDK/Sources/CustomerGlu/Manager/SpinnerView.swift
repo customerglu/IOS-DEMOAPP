@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class SpinnerView: UIView {
     
-    var arrColor = NSArray()
+    var arrColor = [UIColor.blue]
     
     override var layer: CAShapeLayer {
         get {
@@ -107,9 +107,11 @@ class SpinnerView: UIView {
         let count = 36
         let animation = CAKeyframeAnimation(keyPath: "strokeColor")
         animation.keyTimes = (0 ... count).map { NSNumber(value: CFTimeInterval($0) / CFTimeInterval(count)) }
-        animation.values = (0 ... count).map {
-            UIColor(hue: CGFloat($0) / CGFloat(count), saturation: 1, brightness: 1, alpha: 1).cgColor
-            //        animation.values = UIColor(hue: 0.25, saturation: 1, brightness: 1, alpha: 1).cgColor as? [Any]
+//        animation.values = (0 ... count).map {
+//            UIColor(hue: CGFloat($0) / CGFloat(count), saturation: 1, brightness: 1, alpha: 1).cgColor
+//        }
+        for color in arrColor {
+            animation.values = color.cgColor as? [Any]
         }
         animation.duration = duration
         animation.calculationMode = .linear

@@ -116,6 +116,13 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase registration token: \(String(describing: fcmToken))")
         CustomerGlu.getInstance.fcmToken = fcmToken ?? ""
+        
+        var userData = [String: AnyHashable]()
+        CustomerGlu.getInstance.updateProfile(userdata: userData) { success, registrationModel in
+            if success {
+            } else {
+            }
+        }
     }
 }
 
@@ -134,6 +141,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("Device token: \(tokenString)")
         CustomerGlu.getInstance.apnToken = tokenString
+        
+        //firebase
+        Messaging.messaging().apnsToken = deviceToken
+        print("APNs token retrieved: \(deviceToken)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

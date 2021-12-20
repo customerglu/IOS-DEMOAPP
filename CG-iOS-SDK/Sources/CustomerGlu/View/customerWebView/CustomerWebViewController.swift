@@ -38,7 +38,6 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         
         let contentController = WKUserContentController()
         contentController.add(self, name: WebViewsKey.callback) //name is the key you want the app to listen to.
-        
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
         
@@ -46,7 +45,6 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             let black = UIColor.black
             let blackTrans = UIColor.withAlphaComponent(black)(alpha)
             self.view.backgroundColor = blackTrans
-            
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             self.view.addGestureRecognizer(tap)
         }
