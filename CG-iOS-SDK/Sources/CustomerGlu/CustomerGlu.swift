@@ -16,6 +16,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     let userDefaults = UserDefaults.standard
     public var apnToken = ""
     public var fcmToken = ""
+    public static var defaultBannerUrl = URL(string: "")
     
     private override init() {
         super.init()
@@ -23,14 +24,39 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         do {
             // retrieving a value for a key
             if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
-               let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) {
-                print(crashItems)
-                userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
-                userDefaults.synchronize()
+               let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
+                let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
+                if user_id == nil && user_id?.count ?? 0 < 0 {
+                    return
+                }
+                var params = convertToDictionary(text: (crashItems["appinfo"] as? String)!)
+                params!["stack_trace"] = crashItems["callStack"]
+                params!["user_id"] = user_id
+                params!["version"] = "1.0.0"
+                params!["method"] = ""
+                crashReport(parameters: (params as NSDictionary?)!) { success, _ in
+                    if success {
+                        self.userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
+                        self.userDefaults.synchronize()
+                    } else {
+                        print("error")
+                    }
+                }
             }
         } catch {
             print(error)
         }
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
     
     public func customerGluDidCatchCrash(with model: CrashModel) {
@@ -59,6 +85,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         CustomerGlu.fcm_apn = fcmApn
     }
     
+    public func setDefaultBannerUrl(url: URL) {
+        CustomerGlu.defaultBannerUrl = url
+    }
+    
     func loaderShow(withcoordinate x: CGFloat, y: CGFloat) {
         DispatchQueue.main.async { [self] in
             if let controller = topMostController() {
@@ -67,6 +97,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 controller.view.bringSubviewToFront(spinner)
             }
         }
+    }
+    
+    public func getReferralId(deepLink: URL) -> String {
+        let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
+        let referrerUserId = queryItems?.filter({(item) in item.name == APIParameterKey.userId}).first?.value
+        return referrerUserId ?? ""
     }
     
     func loaderHide() {
@@ -99,13 +135,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             guard let value = element.value as? Int8, value != 0 else { return identifier }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
-    }
-    
-    private func getReferralId(deepLink: URL) -> String {
-        let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
-        let referrerUserId = queryItems?.filter({(item) in item.name == APIParameterKey.userId}).first?.value
-        return referrerUserId ?? ""
-    }
+    }    
     
     public func cgUserNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         if CustomerGlu.sdk_disable! == true {
@@ -508,5 +538,23 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 completion(false, nil)
             }
         }
-    }   
+    }
+    
+    private func crashReport(parameters: NSDictionary, completion: @escaping (Bool, AddCartModel?) -> Void) {
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
+            return
+        }
+        APIManager.crashReport(queryParameters: parameters) { result in
+            switch result {
+            case .success(let response):
+                completion(true, response)
+                    
+            case .failure(let error):
+                print(error)
+                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "crashReport", exception: error.localizedDescription)
+                completion(false, nil)
+            }
+        }
+    }
 }

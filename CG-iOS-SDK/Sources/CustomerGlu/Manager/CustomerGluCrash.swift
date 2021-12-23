@@ -161,10 +161,13 @@ public class CustomerGluCrash: NSObject {
         let name = exteption.name
         let appinfo = CustomerGluCrash.appInfo()
         
+        let jsonData = try? JSONSerialization.data(withJSONObject: appinfo, options: .prettyPrinted)
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        
         let model = CrashModel(type: CrashModelType.exception,
                                name: name.rawValue,
                                reason: reason,
-                               appinfo: appinfo,
+                               appinfo: jsonString!,
                                callStack: callStack)
 
         for delegate in CustomerGluCrash.delegates {
@@ -185,10 +188,13 @@ public class CustomerGluCrash: NSObject {
         let reason = "Signal \(CustomerGluCrash.name(of: signal))(\(signal)) was raised.\n"
         let appinfo = CustomerGluCrash.appInfo()
         
+        let jsonData = try? JSONSerialization.data(withJSONObject: appinfo, options: .prettyPrinted)
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        
         let model = CrashModel(type: CrashModelType.signal,
                                name: CustomerGluCrash.name(of: signal),
                                reason: reason,
-                               appinfo: appinfo,
+                               appinfo: jsonString!,
                                callStack: callStack)
         
         for delegate in CustomerGluCrash.delegates {
@@ -198,15 +204,20 @@ public class CustomerGluCrash: NSObject {
         CustomerGluCrash.killApp()
     }
     
-    private class func appInfo() -> String {
+    private class func appInfo() -> Dictionary<String, Any> {
         let displayName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") ?? ""
         let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? ""
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? ""
         let deviceModel = UIDevice.current.model
         let systemName = UIDevice.current.systemName
         let systemVersion = UIDevice.current.systemVersion
-        return "App: \(displayName) \(shortVersion)(\(version))\n" +
-            "Device:\(deviceModel)\n" + "OS Version:\(systemName) \(systemVersion)"
+        let osName = UIDevice.current.systemName
+        let udid = UIDevice.current.identifierForVendor?.uuidString
+        let timestamp = Date.currentTimeStamp
+        let timezone = TimeZone.current.abbreviation()!
+
+        let dict = ["app_name": displayName, "device_name": deviceModel, "os_version": "\(systemName) \(systemVersion)", "app_version": "\(shortVersion)(\(version))", "platform": osName, "device_id": udid!, "timestamp": timestamp, "timezone": timezone] as [String: Any]
+        return dict
     }
     
     private class func name(of signal: Int32) -> String {
