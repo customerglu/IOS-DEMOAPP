@@ -25,23 +25,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             // retrieving a value for a key
             if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
                let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
-                let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
-                if user_id == nil && user_id?.count ?? 0 < 0 {
-                    return
-                }
-                var params = convertToDictionary(text: (crashItems["appinfo"] as? String)!)
-                params!["stack_trace"] = crashItems["callStack"]
-                params!["user_id"] = user_id
-                params!["version"] = "1.0.0"
-                params!["method"] = ""
-                crashReport(parameters: (params as NSDictionary?)!) { success, _ in
-                    if success {
-                        self.userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
-                        self.userDefaults.synchronize()
-                    } else {
-                        print("error")
-                    }
-                }
+                callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true)
             }
         } catch {
             print(error)
@@ -321,11 +305,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     self.userDefaults.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
                     completion(true, response)
                 } else {
-                    DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: "Not found")
+                    CustomerGlu.getInstance.callCrashReport(methodName: "registerDevice")
                 }
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "registerDevice")
                 completion(false, nil)
             }
         }
@@ -369,11 +353,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     self.userDefaults.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
                     completion(true, response)
                 } else {
-                    DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: "Not found")
+                    CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
                 }
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "doRegister", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
                 completion(false, nil)
             }
         }
@@ -397,7 +381,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "openWallet", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "openWallet")
                 completion(false, nil)
             }
         }
@@ -416,7 +400,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadAllCampaigns", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "loadAllCampaigns")
                 completion(false, nil)
             }
         }
@@ -438,7 +422,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignById", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignById")
                 completion(false, nil)
             }
         }
@@ -460,7 +444,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignsByType", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignsByType")
                 completion(false, nil)
             }
         }
@@ -482,7 +466,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignByStatus", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignByStatus")
                 completion(false, nil)
             }
         }
@@ -501,7 +485,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "loadCampaignByFilter", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignByFilter")
                 completion(false, nil)
             }
         }
@@ -534,7 +518,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "addToCart", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "addToCart")
                 completion(false, nil)
             }
         }
@@ -552,8 +536,32 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "crashReport", exception: error.localizedDescription)
+                CustomerGlu.getInstance.callCrashReport(methodName: "crashReport")
                 completion(false, nil)
+            }
+        }
+    }
+    
+    public func callCrashReport(stackTrace: String = "", isException: Bool = false, methodName: String = "") {
+        let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
+        if user_id == nil && user_id?.count ?? 0 < 0 {
+            return
+        }
+        var params = OtherUtils.shared.getCrashInfo()
+        if isException {
+            params!["stack_trace"] = stackTrace
+            params!["method"] = ""
+        } else {
+            params!["method"] = methodName
+        }
+        params!["user_id"] = user_id
+        params!["version"] = "1.0.0"
+        crashReport(parameters: (params as NSDictionary?)!) { success, _ in
+            if success {
+                self.userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
+                self.userDefaults.synchronize()
+            } else {
+                print("error")
             }
         }
     }

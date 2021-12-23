@@ -69,7 +69,7 @@ public class OpenWalletViewController: UIViewController {
                     if success {
                         self.getCampaigns()
                     } else {
-                        DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
+                        CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
                     }
                 }
             }
@@ -89,7 +89,7 @@ public class OpenWalletViewController: UIViewController {
                     self.navigationController?.present(customerWebViewVC, animated: false)
                 }
             } else {
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "openWallet", exception: "error")
+                CustomerGlu.getInstance.callCrashReport(methodName: "openWallet")
             }
         }
     }

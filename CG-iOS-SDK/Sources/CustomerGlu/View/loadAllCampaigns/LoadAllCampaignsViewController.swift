@@ -32,7 +32,7 @@ public class LoadAllCampaignsViewController: UIViewController {
                 if success {
                     self.getCampaign()
                 } else {
-                    DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
+                    CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
                 }
             }
         }
@@ -46,7 +46,7 @@ public class LoadAllCampaignsViewController: UIViewController {
                     self.tblRewardList.reloadData()
                 }
             } else {
-                DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "getCampaigns", exception: "error")
+                CustomerGlu.getInstance.callCrashReport(methodName: "getCampaigns")
             }
         }
     }

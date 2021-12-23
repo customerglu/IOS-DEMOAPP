@@ -138,7 +138,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                     if let url = URL(string: deep_link) {
                         UIApplication.shared.open(url)
                     } else {
-                        DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open deeplink")
+                        CustomerGlu.getInstance.callCrashReport(methodName: "CUSTOMERGLU_DEEPLINK_EVENT")
                         print("Can't open deeplink")
                     }
                 }
@@ -198,7 +198,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 if UIApplication.shared.canOpenURL(whatsappURL as URL) {
                     UIApplication.shared.open(whatsappURL)
                 } else {
-                    DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open whatsapp")
+                    CustomerGlu.getInstance.callCrashReport(methodName: "Can't open whatsapp")
                     print("Can't open whatsapp")
                 }
             }
@@ -253,7 +253,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                         }
                     }
                 } else {
-                    DebugLogger.sharedInstance.setErrorDebugLogger(functionName: "", exception: "Can't open whatsapp")
+                    CustomerGlu.getInstance.callCrashReport(methodName: "Can't open whatsapp")
                     print("Can't open whatsapp")
                 }
             }
