@@ -119,6 +119,7 @@ extension AppDelegate: MessagingDelegate {
         CustomerGlu.getInstance.fcmToken = fcmToken ?? ""
         
         let userData = [String: AnyHashable]()
+        
         CustomerGlu.getInstance.updateProfile(userdata: userData) { success, _ in
             if success {
             } else {

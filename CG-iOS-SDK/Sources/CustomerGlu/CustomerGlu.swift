@@ -33,17 +33,6 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
     }
     
-    func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
-    
     public func customerGluDidCatchCrash(with model: CrashModel) {
         print("\(model)")
         let dict = [
@@ -164,55 +153,13 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             if userInfo[NotificationsKey.glu_message_type] as? String == NotificationsKey.in_app {
                 print(page_type as Any)
                 if page_type as? String == Constants.BOTTOM_SHEET_NOTIFICATION {
-                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-                    customerWebViewVC.urlStr = nudge_url as? String ?? ""
-                    customerWebViewVC.notificationHandler = true
-                    customerWebViewVC.isbottomsheet = true
-                    customerWebViewVC.alpha = backgroundAlpha
-                    guard let topController = UIViewController.topViewController() else {
-                        return
-                    }
-                    if #available(iOS 15.0, *) {
-                        if let sheet = customerWebViewVC.sheetPresentationController {
-                            sheet.detents = [ .medium(), .large() ]
-                        }
-                    } else {
-                        customerWebViewVC.modalPresentationStyle = .pageSheet
-                    }
-                    topController.present(customerWebViewVC, animated: true, completion: nil)
+                    presentToCustomerWebViewController(nudge_url: (nudge_url as? String)!, page_type: Constants.BOTTOM_SHEET_NOTIFICATION, backgroundAlpha: backgroundAlpha)
                 } else if page_type as? String == Constants.BOTTOM_DEFAULT_NOTIFICATION {
-                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-                    customerWebViewVC.urlStr = nudge_url as? String ?? ""
-                    customerWebViewVC.notificationHandler = true
-                    customerWebViewVC.isbottomdefault = true
-                    customerWebViewVC.alpha = backgroundAlpha
-                    customerWebViewVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                    customerWebViewVC.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                    guard let topController = UIViewController.topViewController() else {
-                        return
-                    }
-                    topController.present(customerWebViewVC, animated: false, completion: nil)
+                    presentToCustomerWebViewController(nudge_url: (nudge_url as? String)!, page_type: Constants.BOTTOM_DEFAULT_NOTIFICATION, backgroundAlpha: backgroundAlpha)
                 } else if page_type as? String == Constants.MIDDLE_NOTIFICATIONS {
-                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-                    customerWebViewVC.urlStr = nudge_url as? String ?? ""
-                    customerWebViewVC.notificationHandler = true
-                    customerWebViewVC.modalPresentationStyle = .overCurrentContext
-                    customerWebViewVC.ismiddle = true
-                    customerWebViewVC.alpha = backgroundAlpha
-                    guard let topController = UIViewController.topViewController() else {
-                        return
-                    }
-                    topController.present(customerWebViewVC, animated: false, completion: nil)
+                    presentToCustomerWebViewController(nudge_url: (nudge_url as? String)!, page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: backgroundAlpha)
                 } else {
-                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-                    customerWebViewVC.urlStr = nudge_url as? String ?? ""
-                    customerWebViewVC.notificationHandler = true
-                    customerWebViewVC.modalPresentationStyle = .fullScreen
-                    customerWebViewVC.alpha = backgroundAlpha
-                    guard let topController = UIViewController.topViewController() else {
-                        return
-                    }
-                    topController.present(customerWebViewVC, animated: false, completion: nil)
+                    presentToCustomerWebViewController(nudge_url: (nudge_url as? String)!, page_type: Constants.FULL_SCREEN_NOTIFICATION, backgroundAlpha: backgroundAlpha)
                 }
             } else {
                 //                if UIApplication.shared.applicationState == .active {
@@ -228,6 +175,38 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             }
         } else {
         }
+    }
+    
+    private func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
+        
+        let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+        customerWebViewVC.urlStr = nudge_url
+        customerWebViewVC.notificationHandler = true
+        customerWebViewVC.alpha = backgroundAlpha
+        guard let topController = UIViewController.topViewController() else {
+            return
+        }
+        
+        if page_type == Constants.BOTTOM_SHEET_NOTIFICATION {
+            customerWebViewVC.isbottomsheet = true
+            if #available(iOS 15.0, *) {
+                if let sheet = customerWebViewVC.sheetPresentationController {
+                    sheet.detents = [ .medium(), .large() ]
+                }
+            } else {
+                customerWebViewVC.modalPresentationStyle = .pageSheet
+            }
+        } else if page_type == Constants.BOTTOM_DEFAULT_NOTIFICATION {
+            customerWebViewVC.isbottomdefault = true
+            customerWebViewVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            customerWebViewVC.navigationController?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        } else if page_type == Constants.MIDDLE_NOTIFICATIONS {
+            customerWebViewVC.ismiddle = true
+            customerWebViewVC.modalPresentationStyle = .overCurrentContext
+        } else {
+            customerWebViewVC.modalPresentationStyle = .fullScreen
+        }
+        topController.present(customerWebViewVC, animated: true, completion: nil)
     }
     
     public func displayBackgroundNotification(remoteMessage: [String: AnyHashable]) {
@@ -335,7 +314,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             userData[APIParameterKey.deviceId] = uuid
         }
         let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
-        if user_id == nil && user_id?.count ?? 0 < 0 {
+        if user_id == nil {
             return
         }
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
