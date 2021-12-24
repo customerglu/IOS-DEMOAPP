@@ -87,6 +87,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         CustomerGlu.getInstance.disableGluSdk(disable: false)
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
+        CustomerGlu.getInstance.setDefaultBannerUrl(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
 
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -117,8 +118,8 @@ extension AppDelegate: MessagingDelegate {
         print("Firebase registration token: \(String(describing: fcmToken))")
         CustomerGlu.getInstance.fcmToken = fcmToken ?? ""
         
-        var userData = [String: AnyHashable]()
-        CustomerGlu.getInstance.updateProfile(userdata: userData) { success, registrationModel in
+        let userData = [String: AnyHashable]()
+        CustomerGlu.getInstance.updateProfile(userdata: userData) { success, _ in
             if success {
             } else {
             }

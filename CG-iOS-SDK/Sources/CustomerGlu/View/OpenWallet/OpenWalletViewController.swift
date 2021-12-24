@@ -69,7 +69,7 @@ public class OpenWalletViewController: UIViewController {
                     if success {
                         self.getCampaigns()
                     } else {
-                        CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
+                        print("error")
                     }
                 }
             }
@@ -89,7 +89,7 @@ public class OpenWalletViewController: UIViewController {
                     self.navigationController?.present(customerWebViewVC, animated: false)
                 }
             } else {
-                CustomerGlu.getInstance.callCrashReport(methodName: "openWallet")
+                print("error")
             }
         }
     }

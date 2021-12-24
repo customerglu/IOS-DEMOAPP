@@ -14,6 +14,7 @@ public class LoadAllCampaignsViewController: UIViewController {
 
     @IBOutlet weak var tblRewardList: UITableView!
     var campaigns: [Campaigns] = []
+    var bannerDefaultUrl = CustomerGlu.defaultBannerUrl
     
     // MARK: - Variables
     private var loadAllCampaignsViewModel = LoadAllCampaignsViewModel()
@@ -32,21 +33,24 @@ public class LoadAllCampaignsViewController: UIViewController {
                 if success {
                     self.getCampaign()
                 } else {
-                    CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
+                    print("error")
                 }
             }
         }
     }
     
     func getCampaign() {
+        CustomerGlu.getInstance.loaderShow(withcoordinate: self.view.frame.midX - 30, y: self.view.frame.midY - 30)
         CustomerGlu.getInstance.loadAllCampaigns { success, campaignsModel in
             if success {
+                CustomerGlu.getInstance.loaderHide()
                 self.campaigns = (campaignsModel?.campaigns)!
                 DispatchQueue.main.async { // Make sure you're on the main thread here
                     self.tblRewardList.reloadData()
                 }
             } else {
-                CustomerGlu.getInstance.callCrashReport(methodName: "getCampaigns")
+                CustomerGlu.getInstance.loaderHide()
+                print("error")
             }
         }
     }
@@ -92,16 +96,16 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
         
         if element.banner != nil {
             if element.banner?.imageUrl == nil && element.banner?.title == nil {
-                cell.setImageAndTitle(image_url: "https://images.unsplash.com/photo-1614680376739-414d95ff43df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdhbWVzJTIwYmFubmVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60", title: "")
+                cell.setImageAndTitle(image_url: bannerDefaultUrl, title: "")
             } else if element.banner?.imageUrl == nil {
-                cell.setImageAndTitle(image_url: "https://images.unsplash.com/photo-1614680376739-414d95ff43df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdhbWVzJTIwYmFubmVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60", title: (element.banner?.title)!)
+                cell.setImageAndTitle(image_url: bannerDefaultUrl, title: (element.banner?.title)!)
             } else if element.banner?.title == nil {
                 cell.setImageAndTitle(image_url: (element.banner?.imageUrl!)!, title: "")
             } else {
                 cell.setImageAndTitle(image_url: (element.banner?.imageUrl!)!, title: (element.banner?.title!)!)
             }
         } else {
-            cell.setImageAndTitle(image_url: "https://images.unsplash.com/photo-1614680376739-414d95ff43df?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGdhbWVzJTIwYmFubmVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60", title: "")
+            cell.setImageAndTitle(image_url: bannerDefaultUrl, title: "")
         }
         cell.selectionStyle = .none
     }

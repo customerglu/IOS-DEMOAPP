@@ -16,7 +16,8 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     let userDefaults = UserDefaults.standard
     public var apnToken = ""
     public var fcmToken = ""
-    public static var defaultBannerUrl = URL(string: "")
+    public static var defaultBannerUrl = ""
+    public static var arrColor = [UIColor.black]
     
     private override init() {
         super.init()
@@ -25,7 +26,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             // retrieving a value for a key
             if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
                let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
-                callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true)
+                callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true, methodName: "CustomerGluCrash")
             }
         } catch {
             print(error)
@@ -69,13 +70,18 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         CustomerGlu.fcm_apn = fcmApn
     }
     
-    public func setDefaultBannerUrl(url: URL) {
-        CustomerGlu.defaultBannerUrl = url
+    public func setDefaultBannerUrl(bannerUrl: String) {
+        CustomerGlu.defaultBannerUrl = bannerUrl
+    }
+    
+    public func configureLoaderColour(color: [UIColor]) {
+        CustomerGlu.arrColor = color
     }
     
     func loaderShow(withcoordinate x: CGFloat, y: CGFloat) {
         DispatchQueue.main.async { [self] in
             if let controller = topMostController() {
+                controller.view.isUserInteractionEnabled = false
                 spinner = SpinnerView(frame: CGRect(x: x, y: y, width: 60, height: 60))
                 controller.view.addSubview(spinner)
                 controller.view.bringSubviewToFront(spinner)
@@ -91,7 +97,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     func loaderHide() {
         DispatchQueue.main.async { [self] in
-            spinner.removeFromSuperview()
+            if let controller = topMostController() {
+                controller.view.isUserInteractionEnabled = true
+                spinner.removeFromSuperview()
+            }
         }
     }
     
@@ -309,7 +318,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 }
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "registerDevice")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "registerDevice")
                 completion(false, nil)
             }
         }
@@ -357,7 +366,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 }
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "updateProfile")
                 completion(false, nil)
             }
         }
@@ -381,7 +390,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "openWallet")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "openWallet")
                 completion(false, nil)
             }
         }
@@ -400,7 +409,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "loadAllCampaigns")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadAllCampaigns")
                 completion(false, nil)
             }
         }
@@ -422,7 +431,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignById")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignById")
                 completion(false, nil)
             }
         }
@@ -444,7 +453,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignsByType")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignsByType")
                 completion(false, nil)
             }
         }
@@ -466,7 +475,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignByStatus")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignByStatus")
                 completion(false, nil)
             }
         }
@@ -485,7 +494,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "loadCampaignByFilter")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignByFilter")
                 completion(false, nil)
             }
         }
@@ -518,7 +527,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "addToCart")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "addToCart")
                 completion(false, nil)
             }
         }
@@ -536,7 +545,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(methodName: "crashReport")
+                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "crashReport")
                 completion(false, nil)
             }
         }
@@ -549,11 +558,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         var params = OtherUtils.shared.getCrashInfo()
         if isException {
-            params!["stack_trace"] = stackTrace
-            params!["method"] = ""
+            params!["type"] = "Crash"
         } else {
-            params!["method"] = methodName
+            params!["type"] = "Error"
         }
+        params!["stack_trace"] = stackTrace
+        params!["method"] = methodName
         params!["user_id"] = user_id
         params!["version"] = "1.0.0"
         crashReport(parameters: (params as NSDictionary?)!) { success, _ in
