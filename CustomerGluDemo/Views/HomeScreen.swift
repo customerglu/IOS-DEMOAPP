@@ -22,7 +22,7 @@ struct HomeScreen: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            customerglu.clearCustomerGluData()
+                            customerglu.clearGluData()
                             UIApplication.shared.keyWindow!.rootViewController = UIHostingController(rootView: LoginScreen())
                         }) {
                             HStack {

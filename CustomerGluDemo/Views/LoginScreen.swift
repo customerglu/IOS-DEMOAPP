@@ -66,7 +66,6 @@ struct LoginScreen: View {
     func submitActionClicked(userId: String, userName: String, referenceId: String) {
         var userData = [String: AnyHashable]()
         userData["userId"] = userId
-        userData["deviceId"] = "deviceb"
         userData["username"] = userName
         userData["referId"] = referenceId
         userData["firebaseToken"] = CustomerGlu.getInstance.fcmToken

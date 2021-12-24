@@ -59,7 +59,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         CustomerGlu.fcm_apn = fcmApn
     }
     
-    public func setDefaultBannerUrl(bannerUrl: String) {
+    public func setDefaultBannerImage(bannerUrl: String) {
         CustomerGlu.defaultBannerUrl = bannerUrl
     }
     
@@ -254,7 +254,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         return false
     }
     
-    public func clearCustomerGluData() {
+    public func clearGluData() {
         let dictionary = userDefaults.dictionaryRepresentation()
         dictionary.keys.forEach { key in
             userDefaults.removeObject(forKey: key)
@@ -280,9 +280,9 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         userData[APIParameterKey.writeKey] = writekey
         
         if CustomerGlu.fcm_apn == "fcm" {
-            userData["apnsDeviceToken"] = ""
+            userData[APIParameterKey.apnsDeviceToken] = ""
         } else {
-            userData["firebaseToken"] = ""
+            userData[APIParameterKey.firebaseToken] = ""
         }
         
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
@@ -326,11 +326,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         userData[APIParameterKey.userId] = user_id
         
         if CustomerGlu.fcm_apn == "fcm" {
-            userData["apnsDeviceToken"] = ""
-            userData["firebaseToken"] = fcmToken
+            userData[APIParameterKey.apnsDeviceToken] = ""
+            userData[APIParameterKey.firebaseToken] = fcmToken
         } else {
-            userData["firebaseToken"] = ""
-            userData["apnsDeviceToken"] = apnToken
+            userData[APIParameterKey.firebaseToken] = ""
+            userData[APIParameterKey.apnsDeviceToken] = apnToken
         }
 
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
@@ -400,7 +400,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             return
         }
         let parameters = [
-            "campaign_id": campaign_id
+            APIParameterKey.campaign_id: campaign_id
         ]
         APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
             switch result {
@@ -422,7 +422,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             return
         }
         let parameters = [
-            "type": type
+            APIParameterKey.type: type
         ]
         APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
             switch result {
@@ -444,7 +444,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             return
         }
         let parameters = [
-            "status": status
+            APIParameterKey.status: status
         ]
         APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
             switch result {
@@ -537,14 +537,14 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         var params = OtherUtils.shared.getCrashInfo()
         if isException {
-            params!["type"] = "Crash"
+            params![APIParameterKey.type] = "Crash"
         } else {
-            params!["type"] = "Error"
+            params![APIParameterKey.type] = "Error"
         }
-        params!["stack_trace"] = stackTrace
-        params!["method"] = methodName
-        params!["user_id"] = user_id
-        params!["version"] = "1.0.0"
+        params![APIParameterKey.stack_trace] = stackTrace
+        params![APIParameterKey.method] = methodName
+        params![APIParameterKey.user_id] = user_id
+        params![APIParameterKey.version] = "1.0.0"
         crashReport(parameters: (params as NSDictionary?)!) { success, _ in
             if success {
                 self.userDefaults.removeObject(forKey: Constants.CustomerGluCrash)

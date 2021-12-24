@@ -36,7 +36,21 @@ struct APIParameterKey {
     static let event_properties = "event_properties"
     static let userId = "userId"
     static let bearer = "Bearer"
-    
+    static let apnsDeviceToken = "apnsDeviceToken"
+    static let firebaseToken = "firebaseToken"
+    static let campaign_id = "campaign_id"
+    static let type = "type"
+    static let status = "status"
+    static let stack_trace = "stack_trace"
+    static let method = "method"
+    static let version = "version"
+    static let app_name = "app_name"
+    static let device_name = "device_name"
+    static let os_version = "os_version"
+    static let app_version = "app_version"
+    static let platform = "platform"
+    static let device_id = "device_id"
+    static let timezone = "timezone"
 }
 
 // Default NotificationsKey

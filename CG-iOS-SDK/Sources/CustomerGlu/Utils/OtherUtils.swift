@@ -35,7 +35,14 @@ class OtherUtils {
         let udid = UIDevice.current.identifierForVendor?.uuidString
         let timestamp = Date.currentTimeStamp
         let timezone = TimeZone.current.abbreviation()!
-        let dict = ["app_name": displayName, "device_name": deviceModel, "os_version": "\(systemName) \(systemVersion)", "app_version": "\(shortVersion)(\(version))", "platform": osName, "device_id": udid!, "timestamp": timestamp, "timezone": timezone] as [String: Any]
+        let dict = [APIParameterKey.app_name: displayName,
+                    APIParameterKey.device_name: deviceModel,
+                    APIParameterKey.os_version: "\(systemName) \(systemVersion)",
+                    APIParameterKey.app_version: "\(shortVersion)(\(version))",
+                    APIParameterKey.platform: osName,
+                    APIParameterKey.device_id: udid!,
+                    APIParameterKey.timestamp: timestamp,
+                    APIParameterKey.timezone: timezone] as [String: Any]
         return dict
     }
 }

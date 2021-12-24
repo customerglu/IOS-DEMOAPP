@@ -87,7 +87,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         CustomerGlu.getInstance.disableGluSdk(disable: false)
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
-        CustomerGlu.getInstance.setDefaultBannerUrl(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
+        CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
+        CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
 
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
