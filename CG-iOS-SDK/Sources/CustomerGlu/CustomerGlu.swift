@@ -26,7 +26,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             // retrieving a value for a key
             if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
                let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
-                callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true, methodName: "CustomerGluCrash")
+                ApplicationManager.callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true, methodName: "CustomerGluCrash")
             }
         } catch {
             print(error)
@@ -93,7 +93,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
     }
     
-    func topMostController() -> UIViewController? {
+    private func topMostController() -> UIViewController? {
         guard let window = UIApplication.shared.keyWindowInConnectedScenes, let rootViewController = window.rootViewController else {
             return nil
         }
@@ -239,21 +239,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             return false
         }
     }
-    
-    public func doValidateToken() -> Bool {
-        if userDefaults.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
-            let arr = JWTDecode.shared.decode(jwtToken: userDefaults.string(forKey: Constants.CUSTOMERGLU_TOKEN) ?? "")
-            let expTime = Date(timeIntervalSince1970: (arr["exp"] as? Double)!)
-            let currentDateTime = Date()
-            if currentDateTime < expTime {
-                return true
-            } else {
-                return false
-            }
-        }
-        return false
-    }
-    
+        
     public func clearGluData() {
         let dictionary = userDefaults.dictionaryRepresentation()
         dictionary.keys.forEach { key in
@@ -293,11 +279,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     self.userDefaults.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
                     completion(true, response)
                 } else {
-                    CustomerGlu.getInstance.callCrashReport(methodName: "registerDevice")
+                    ApplicationManager.callCrashReport(methodName: "registerDevice")
                 }
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "registerDevice")
+                ApplicationManager.callCrashReport(stackTrace: error.localizedDescription, methodName: "registerDevice")
                 completion(false, nil)
             }
         }
@@ -341,214 +327,127 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     self.userDefaults.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
                     completion(true, response)
                 } else {
-                    CustomerGlu.getInstance.callCrashReport(methodName: "updateProfile")
+                    ApplicationManager.callCrashReport(methodName: "updateProfile")
                 }
             case .failure(let error):
                 print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "updateProfile")
+                ApplicationManager.callCrashReport(stackTrace: error.localizedDescription, methodName: "updateProfile")
                 completion(false, nil)
             }
         }
     }
     
-    public func openWallet(completion: @escaping (Bool, CampaignsModel?) -> Void) {
+    public func openWallet() {
         if CustomerGlu.sdk_disable! == true {
             print(CustomerGlu.sdk_disable!)
             return
         }
-        APIManager.getWalletRewards(queryParameters: [:]) { result in
-            switch result {
-            case .success(let response):
-                self.campaigndata = response
-                do {
-                    try self.userDefaults.setObject(self.campaigndata, forKey: Constants.WalletRewardData)
-                } catch {
-                    print(error.localizedDescription)
-                }
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "openWallet")
-                completion(false, nil)
+        DispatchQueue.main.async {
+            let openWalletVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
+            guard let topController = UIViewController.topViewControllerNavigation() else {
+                return
             }
+            openWalletVC.modalPresentationStyle = .fullScreen
+            topController.present(openWalletVC, animated: true, completion: nil)
         }
     }
-    
-    public func loadAllCampaigns(completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
-            print(CustomerGlu.sdk_disable!)
-            return
-        }
-        APIManager.getWalletRewards(queryParameters: [:]) { result in
-            switch result {
-            case .success(let response):
-                self.campaigndata = response
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadAllCampaigns")
-                completion(false, nil)
-            }
-        }
-    }
-    
-    public func loadCampaignById(campaign_id: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
-            print(CustomerGlu.sdk_disable!)
-            return
-        }
-        let parameters = [
-            APIParameterKey.campaign_id: campaign_id
-        ]
-        APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
-            switch result {
-            case .success(let response):
-                self.campaigndata = response
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignById")
-                completion(false, nil)
-            }
-        }
-    }
-    
-    public func loadCampaignsByType(type: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
-            print(CustomerGlu.sdk_disable!)
-            return
-        }
-        let parameters = [
-            APIParameterKey.type: type
-        ]
-        APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
-            switch result {
-            case .success(let response):
-                self.campaigndata = response
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignsByType")
-                completion(false, nil)
-            }
-        }
-    }
-    
-    public func loadCampaignByStatus(status: String, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
-            print(CustomerGlu.sdk_disable!)
-            return
-        }
-        let parameters = [
-            APIParameterKey.status: status
-        ]
-        APIManager.getWalletRewards(queryParameters: parameters as NSDictionary) { result in
-            switch result {
-            case .success(let response):
-                self.campaigndata = response
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignByStatus")
-                completion(false, nil)
-            }
-        }
-    }
-    
-    public func loadCampaignByFilter(parameters: NSDictionary, completion: @escaping (Bool, CampaignsModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
-            print(CustomerGlu.sdk_disable!)
-            return
-        }
-        APIManager.getWalletRewards(queryParameters: parameters) { result in
-            switch result {
-            case .success(let response):
-                self.campaigndata = response
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "loadCampaignByFilter")
-                completion(false, nil)
-            }
-        }
-    }
-    
-    public func sendEventData(eventName: String, eventProperties: [String: Any], completion: @escaping (Bool, AddCartModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
-            print(CustomerGlu.sdk_disable!)
-            return
-        }
-        let date = Date()
-        let event_id = UUID().uuidString
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = Constants.DATE_FORMAT
-        let timestamp = dateformatter.string(from: date)
-      //  let evp = String(describing: eventProperties)
-        let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
         
-        let eventData = [
-            APIParameterKey.event_id: event_id,
-            APIParameterKey.event_name: eventName,
-            APIParameterKey.user_id: user_id ?? "",
-            APIParameterKey.timestamp: timestamp,
-            APIParameterKey.event_properties: eventProperties] as [String: Any]
-        
-        APIManager.addToCart(queryParameters: eventData as NSDictionary) { result in
-            switch result {
-            case .success(let response):
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "addToCart")
-                completion(false, nil)
-            }
-        }
-    }
-    
-    private func crashReport(parameters: NSDictionary, completion: @escaping (Bool, AddCartModel?) -> Void) {
+    public func loadAllCampaigns() {
         if CustomerGlu.sdk_disable! == true {
             print(CustomerGlu.sdk_disable!)
             return
         }
-        APIManager.crashReport(queryParameters: parameters) { result in
-            switch result {
-            case .success(let response):
-                completion(true, response)
-                    
-            case .failure(let error):
-                print(error)
-                CustomerGlu.getInstance.callCrashReport(stackTrace: error.localizedDescription, methodName: "crashReport")
-                completion(false, nil)
+        DispatchQueue.main.async {
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            guard let topController = UIViewController.topViewControllerNavigation() else {
+                return
             }
+            let navController = UINavigationController(rootViewController: loadAllCampign)
+            navController.modalPresentationStyle = .fullScreen
+            topController.present(navController, animated: true, completion: nil)
         }
     }
     
-    public func callCrashReport(stackTrace: String = "", isException: Bool = false, methodName: String = "") {
-        let user_id = userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID)
-        if user_id == nil && user_id?.count ?? 0 < 0 {
+    public func loadCampaignById(campaign_id: String) {
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
             return
         }
-        var params = OtherUtils.shared.getCrashInfo()
-        if isException {
-            params![APIParameterKey.type] = "Crash"
-        } else {
-            params![APIParameterKey.type] = "Error"
+        DispatchQueue.main.async {
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            loadAllCampign.loadCampignType = APIParameterKey.campaign_id
+            loadAllCampign.loadCampignValue = campaign_id
+            guard let topController = UIViewController.topViewControllerNavigation() else {
+                return
+            }
+            let navController = UINavigationController(rootViewController: loadAllCampign)
+            navController.modalPresentationStyle = .fullScreen
+            topController.present(navController, animated: true, completion: nil)
         }
-        params![APIParameterKey.stack_trace] = stackTrace
-        params![APIParameterKey.method] = methodName
-        params![APIParameterKey.user_id] = user_id
-        params![APIParameterKey.version] = "1.0.0"
-        crashReport(parameters: (params as NSDictionary?)!) { success, _ in
+    }
+   
+    public func loadCampaignsByType(type: String) {
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
+            return
+        }
+        DispatchQueue.main.async {
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            loadAllCampign.loadCampignType = APIParameterKey.type
+            loadAllCampign.loadCampignValue = type
+            guard let topController = UIViewController.topViewControllerNavigation() else {
+                return
+            }
+            let navController = UINavigationController(rootViewController: loadAllCampign)
+            navController.modalPresentationStyle = .fullScreen
+            topController.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    public func loadCampaignByStatus(status: String) {
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
+            return
+        }
+        DispatchQueue.main.async {
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            loadAllCampign.loadCampignType = APIParameterKey.status
+            loadAllCampign.loadCampignValue = status
+            guard let topController = UIViewController.topViewControllerNavigation() else {
+                return
+            }
+            let navController = UINavigationController(rootViewController: loadAllCampign)
+            navController.modalPresentationStyle = .fullScreen
+            topController.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    public func loadCampaignByFilter(parameters: NSDictionary) {
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
+            return
+        }
+        DispatchQueue.main.async {
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            loadAllCampign.loadByparams = parameters
+            guard let topController = UIViewController.topViewControllerNavigation() else {
+                return
+            }
+            let navController = UINavigationController(rootViewController: loadAllCampign)
+            navController.modalPresentationStyle = .fullScreen
+            topController.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    public func sendEventData(eventName: String, eventProperties: [String: Any]) {
+        if CustomerGlu.sdk_disable! == true {
+            print(CustomerGlu.sdk_disable!)
+            return
+        }
+
+        ApplicationManager.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addCartModel in
             if success {
-                self.userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
-                self.userDefaults.synchronize()
+                print(addCartModel as Any)
             } else {
                 print("error")
             }

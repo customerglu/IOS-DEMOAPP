@@ -31,13 +31,7 @@ import CustomerGlu
             //                    })
             Text("Add to Cart")
                 .onTapGesture {
-                    CustomerGlu.getInstance.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addCartModel in
-                        if success {
-                            print(addCartModel as Any)
-                        } else {
-                            print("error")
-                        }
-                    }
+                    CustomerGlu.getInstance.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"])
                 }
                 .font(.system(size: 15))
                 .frame(width: 80, height: 20, alignment: .center)

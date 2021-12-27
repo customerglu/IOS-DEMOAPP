@@ -15,18 +15,21 @@ public class LoadAllCampaignsViewController: UIViewController {
     @IBOutlet weak var tblRewardList: UITableView!
     var campaigns: [Campaigns] = []
     var bannerDefaultUrl = CustomerGlu.defaultBannerUrl
+    var loadCampignType = ""
+    var loadCampignValue = ""
+    var loadByparams = NSDictionary()
     
     // MARK: - Variables
     private var loadAllCampaignsViewModel = LoadAllCampaignsViewModel()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: false)
-
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
         tblRewardList.rowHeight = UITableView.automaticDimension
         tblRewardList.estimatedRowHeight = 200
         
-        if CustomerGlu.getInstance.doValidateToken() == true {
+        if ApplicationManager.doValidateToken() == true {
             getCampaign()
         } else {
             loadAllCampaignsViewModel.updateProfile { success, _ in
@@ -39,9 +42,14 @@ public class LoadAllCampaignsViewController: UIViewController {
         }
     }
     
+    @IBAction func backButton(sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func getCampaign() {
         CustomerGlu.getInstance.loaderShow(withcoordinate: self.view.frame.midX - 30, y: self.view.frame.midY - 30)
-        CustomerGlu.getInstance.loadAllCampaigns { success, campaignsModel in
+                
+        ApplicationManager.loadAllCampaignsApi(type: loadCampignType, value: loadCampignValue, loadByparams: loadByparams) { success, campaignsModel in
             if success {
                 CustomerGlu.getInstance.loaderHide()
                 self.campaigns = (campaignsModel?.campaigns)!

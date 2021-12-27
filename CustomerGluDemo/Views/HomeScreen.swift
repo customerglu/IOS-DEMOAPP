@@ -72,6 +72,7 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
+
             })
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())

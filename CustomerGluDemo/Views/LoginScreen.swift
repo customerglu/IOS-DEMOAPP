@@ -71,12 +71,9 @@ struct LoginScreen: View {
         userData["firebaseToken"] = CustomerGlu.getInstance.fcmToken
         userData["apnsDeviceToken"] = CustomerGlu.getInstance.apnToken
         
-        CustomerGlu.getInstance.registerDevice(userdata: userData) { success, registrationModel in
+        CustomerGlu.getInstance.registerDevice(userdata: userData) { success, _ in
             if success {
-                CustomerGlu.getInstance.openWallet { _, _ in
-                    print("Register Successfully \(String(describing: registrationModel))")
-                    self.isActive = true
-                }
+                self.isActive = true
             } else {
                 self.attemptingLogin = false
                 print("error")

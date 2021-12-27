@@ -56,18 +56,18 @@ public class OpenWalletViewController: UIViewController {
                     customerWebViewVC.openWallet = true
                     customerWebViewVC.delegate = self
                     customerWebViewVC.modalPresentationStyle = .overCurrentContext
-                    self.navigationController?.present(customerWebViewVC, animated: false)
+                    self.present(customerWebViewVC, animated: false)
                 }
             } catch {
                 print(error.localizedDescription)
             }
         } else {
-            if CustomerGlu.getInstance.doValidateToken() == true {
-                getCampaigns()
+            if ApplicationManager.doValidateToken() == true {
+                callOpenWalletApi()
             } else {
                 openWalletViewModel.updateProfile { success, _ in
                     if success {
-                        self.getCampaigns()
+                        self.callOpenWalletApi()
                     } else {
                         print("error")
                     }
@@ -76,9 +76,11 @@ public class OpenWalletViewController: UIViewController {
         }
     }
    
-    private func getCampaigns() {
-        CustomerGlu.getInstance.openWallet { success, campaignsModel in
+    private func callOpenWalletApi() {
+        CustomerGlu.getInstance.loaderShow(withcoordinate: self.view.frame.midX - 30, y: self.view.frame.midY - 30)
+        ApplicationManager.openWalletApi { success, campaignsModel in
             if success {
+                CustomerGlu.getInstance.loaderHide()
                 self.my_url = campaignsModel!.defaultUrl
                 DispatchQueue.main.async { // Make sure you're on the main thread here
                     let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
@@ -86,9 +88,10 @@ public class OpenWalletViewController: UIViewController {
                     customerWebViewVC.openWallet = true
                     customerWebViewVC.delegate = self
                     customerWebViewVC.modalPresentationStyle = .overCurrentContext
-                    self.navigationController?.present(customerWebViewVC, animated: false)
+                    self.present(customerWebViewVC, animated: false)
                 }
             } else {
+                CustomerGlu.getInstance.loaderHide()
                 print("error")
             }
         }
@@ -98,7 +101,7 @@ public class OpenWalletViewController: UIViewController {
 extension OpenWalletViewController: CustomerGluWebViewDelegate {
     func closeClicked(_ success: Bool) {
         dismiss(animated: false, completion: {
-            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
         })
     }
 }

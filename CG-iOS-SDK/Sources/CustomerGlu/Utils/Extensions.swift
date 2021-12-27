@@ -42,6 +42,17 @@ extension UIViewController {
         }
         return nil
     }
+    
+    static func topViewControllerNavigation() -> UIViewController? {
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        if var topController = keyWindow?.rootViewController {
+            while let presentedViewController = topController.navigationController {
+                topController = presentedViewController
+            }
+            return topController
+        }
+        return nil
+    }
 }
 
 extension UIView {
