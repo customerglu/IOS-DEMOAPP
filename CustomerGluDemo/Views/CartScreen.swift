@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CustomerGlu
 
 struct CartScreen: View {
     
@@ -43,8 +44,7 @@ struct CartScreen: View {
                     //
                     //                })
                     Button(action: {
-                        let testController = TestController()
-                        print(testController)
+                        CustomerGlu.getInstance.sendEventData(eventName: "completePurchase1", eventProperties: ["state": "1"])
                     }, label: {
                         Text("CheckOut")
                             .font(.system(size: 20))

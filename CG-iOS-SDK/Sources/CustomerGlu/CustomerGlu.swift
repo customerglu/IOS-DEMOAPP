@@ -461,7 +461,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             return
         }
 
-        ApplicationManager.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addCartModel in
+        ApplicationManager.sendEventData(eventName: eventName, eventProperties: ["state": "1"]) { success, addCartModel in
             if success {
                 print(addCartModel as Any)
             } else {

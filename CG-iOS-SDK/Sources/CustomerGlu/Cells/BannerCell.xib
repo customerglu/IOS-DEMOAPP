@@ -19,28 +19,16 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-cU-MPd">
                         <rect key="frame" x="10" y="10" width="394" height="130"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tub-Ao-DoF">
-                                <rect key="frame" x="0.0" y="0.0" width="354" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="sqq-ai-mwb"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tub-Ao-DoF">
+                                <rect key="frame" x="0.0" y="0.0" width="394" height="130"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvk-yl-ljA">
-                                <rect key="frame" x="0.0" y="105" width="394" height="25"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Tub-Ao-DoF" secondAttribute="trailing" constant="40" id="09F-Ue-EV1"/>
-                            <constraint firstItem="Tub-Ao-DoF" firstAttribute="leading" secondItem="OdA-cU-MPd" secondAttribute="leading" id="gha-wP-nEv"/>
-                            <constraint firstItem="Mvk-yl-ljA" firstAttribute="leading" secondItem="OdA-cU-MPd" secondAttribute="leading" id="gvt-Qm-ylx"/>
-                            <constraint firstItem="Mvk-yl-ljA" firstAttribute="top" secondItem="Tub-Ao-DoF" secondAttribute="bottom" constant="5" id="pZR-Dy-51U"/>
-                            <constraint firstItem="Tub-Ao-DoF" firstAttribute="top" secondItem="OdA-cU-MPd" secondAttribute="top" id="ta9-hJ-qwe"/>
-                            <constraint firstAttribute="trailing" secondItem="Mvk-yl-ljA" secondAttribute="trailing" id="uca-Ia-602"/>
-                            <constraint firstAttribute="bottom" secondItem="Mvk-yl-ljA" secondAttribute="bottom" id="xiV-CH-gi5"/>
+                            <constraint firstItem="Tub-Ao-DoF" firstAttribute="leading" secondItem="OdA-cU-MPd" secondAttribute="leading" id="0xH-Hv-lB5"/>
+                            <constraint firstAttribute="bottom" secondItem="Tub-Ao-DoF" secondAttribute="bottom" id="5kc-KS-o0r"/>
+                            <constraint firstAttribute="trailing" secondItem="Tub-Ao-DoF" secondAttribute="trailing" id="jAm-3Y-Xgz"/>
+                            <constraint firstItem="Tub-Ao-DoF" firstAttribute="top" secondItem="OdA-cU-MPd" secondAttribute="top" id="oFs-9j-qaL"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -54,9 +42,8 @@
             <connections>
                 <outlet property="imgView" destination="Tub-Ao-DoF" id="kZA-iF-h9A"/>
                 <outlet property="shadowView" destination="OdA-cU-MPd" id="nJ6-jc-529"/>
-                <outlet property="titleLbl" destination="Mvk-yl-ljA" id="3dD-f7-jOK"/>
             </connections>
-            <point key="canvasLocation" x="120" y="-23"/>
+            <point key="canvasLocation" x="118.84057971014494" y="-23.4375"/>
         </tableViewCell>
     </objects>
 </document>

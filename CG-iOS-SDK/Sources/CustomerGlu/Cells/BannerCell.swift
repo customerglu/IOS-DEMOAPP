@@ -11,7 +11,6 @@ class BannerCell: UITableViewCell {
     
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var titleLbl: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,9 +18,8 @@ class BannerCell: UITableViewCell {
     }
     
     func setImageAndTitle(image_url: String, title: String) {
-   //     shadowView.dropShadow()
+        shadowView.dropShadow()
         imgView.downloadImage(urlString: image_url)
-        titleLbl.text = title
     }
         
     override func setSelected(_ selected: Bool, animated: Bool) {

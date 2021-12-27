@@ -25,10 +25,7 @@ public class LoadAllCampaignsViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        tblRewardList.rowHeight = UITableView.automaticDimension
-        tblRewardList.estimatedRowHeight = 200
-        
+                
         if ApplicationManager.doValidateToken() == true {
             getCampaign()
         } else {
@@ -128,7 +125,8 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
         }
     }
     
-    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
+   
 }

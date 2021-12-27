@@ -41,19 +41,17 @@ struct HomeScreen: View {
                     .navigationTitle("Home")
                     .navigationBarHidden(true)
                 HStack {
-                    NavigationLink(
-                        destination: OpenWalletUIKit().ignoresSafeArea(),
-//                        destination: OpenWallet(),
-                        label: {
-                            productCard(image: "purse", title: "Wallet")
-                        })
+                    Button(action: {
+                        CustomerGlu.getInstance.openWallet()
+                    }) {
+                        productCard(image: "purse", title: "Wallet")
+                    }
                     Spacer()
-                    NavigationLink(
-                        destination: RewardUIKit().edgesIgnoringSafeArea(.bottom),
-//                        destination: LoadAllCampaigns(customer_token: token),
-                        label: {
-                            productCard(image: "coin", title: "Rewards")
-                        })
+                    Button(action: {
+                        CustomerGlu.getInstance.loadAllCampaigns()
+                    }) {
+                        productCard(image: "coin", title: "Rewards")
+                    }
                 }.padding(.horizontal, 10)
                 HStack {
                     NavigationLink(
