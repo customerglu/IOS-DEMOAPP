@@ -24,6 +24,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     var ismiddle = false
     var isbottomsheet = false
     var isbottomdefault = false
+    var iscampignId = false
     weak var delegate: CustomerGluWebViewDelegate?
     var documentInteractionController: UIDocumentInteractionController!
     public var alpha = 0.0
@@ -121,7 +122,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 print("UIKIT")
                 if openWallet {
                     delegate?.closeClicked(true)
-                } else if notificationHandler {
+                } else if notificationHandler || iscampignId {
                     self.dismiss(animated: true, completion: nil)
                 } else {
                     self.navigationController?.popViewController(animated: true)
