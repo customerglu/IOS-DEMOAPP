@@ -35,27 +35,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
     
-//    func application(_ app: UIApplication, open url: URL,
-//                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-//        if let scheme = url.scheme,
-//            scheme.localizedCaseInsensitiveCompare("com.myApp") == .orderedSame,
-//            let view = url.host {
-//
-//            var parameters: [String: String] = [:]
-//            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
-//                parameters[$0.name] = $0.value
-//            }
-//
-//           // redirect(to: view, with: parameters)
-//        }
-//        return true
-//    }
-    
     @available(iOS 13.0, *)
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
             // Handle URL
-           // WXApi.handleOpen(url, delegate: AppDelegate.shared)
             print(url)
         }
     }

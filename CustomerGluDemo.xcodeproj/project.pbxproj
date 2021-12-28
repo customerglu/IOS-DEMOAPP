@@ -448,7 +448,7 @@
 				CODE_SIGN_ENTITLEMENTS = CustomerGluDemo/CustomerGluDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;
@@ -475,7 +475,7 @@
 				CODE_SIGN_ENTITLEMENTS = CustomerGluDemo/CustomerGluDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;

@@ -12,7 +12,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     // Singleton Instance
     public static var getInstance = CustomerGlu()
     public static var sdk_disable: Bool? = false
-    public static var fcm_apn = "fcm"
+    public static var fcm_apn = ""
     let userDefaults = UserDefaults.standard
     public var apnToken = ""
     public var fcmToken = ""
@@ -48,9 +48,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             print(error)
         }
     }
-    
-    @Published var campaigndata = CampaignsModel()
-    
+        
     public func disableGluSdk(disable: Bool) {
         CustomerGlu.sdk_disable = disable
     }
@@ -162,14 +160,6 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                     presentToCustomerWebViewController(nudge_url: (nudge_url as? String)!, page_type: Constants.FULL_SCREEN_NOTIFICATION, backgroundAlpha: backgroundAlpha)
                 }
             } else {
-                //                if UIApplication.shared.applicationState == .active {
-                //                    var localNotification = UILocalNotification()
-                //                    localNotification.userInfo = userInfo
-                //                    localNotification.soundName = UILocalNotificationDefaultSoundName
-                //                    localNotification.alertBody = "abcd"
-                //                    localNotification.fireDate = Date()
-                //                    UIApplication.shared.scheduleLocalNotification(localNotification)
-                //                }
                 print("Local Notification")
                 return
             }
@@ -229,11 +219,6 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public func notificationFromCustomerGlu(remoteMessage: [String: AnyHashable]) -> Bool {
         let strType = remoteMessage[NotificationsKey.type] as? String
         if strType == NotificationsKey.CustomerGlu {
-            //            if (remoteMessage["glu_message_type"] as? String) == "in-app" {
-            //                return true
-            //            } else {
-            //                return false
-            //            }
             return true
         } else {
             return false

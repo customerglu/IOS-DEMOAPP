@@ -47,7 +47,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
 
         if notificationHandler {
             let black = UIColor.black
-            let blackTrans = UIColor.withAlphaComponent(black)(alpha)
+            let blackTrans = UIColor.withAlphaComponent(black)(CGFloat(alpha))
             self.view.backgroundColor = blackTrans
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             self.view.addGestureRecognizer(tap)
