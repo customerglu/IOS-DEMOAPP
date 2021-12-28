@@ -18,7 +18,7 @@ class BannerCell: UITableViewCell {
     }
     
     func setImageAndTitle(image_url: String, title: String) {
-        shadowView.dropShadow()
+      //  shadowView.dropShadow()
         imgView.downloadImage(urlString: image_url)
     }
         
@@ -26,5 +26,4 @@ class BannerCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-    
 }

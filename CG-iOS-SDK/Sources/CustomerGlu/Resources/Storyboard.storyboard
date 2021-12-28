@@ -60,8 +60,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Faa-jb-O2j">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIa-zk-Dte">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIa-zk-Dte">
                                         <rect key="frame" x="10" y="44" width="70" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="ZiQ-wv-tdG"/>
                                             <constraint firstAttribute="height" constant="44" id="z6u-kw-uE0"/>
@@ -72,10 +73,21 @@
                                             <action selector="backButtonWithSender:" destination="Dv6-RS-fbx" eventType="touchUpInside" id="XNh-Hb-Qhu"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Campaigns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGz-pz-DTx">
+                                        <rect key="frame" x="161" y="44" width="92" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="ovu-Zc-HEw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="EIa-zk-Dte" firstAttribute="leading" secondItem="Faa-jb-O2j" secondAttribute="leading" constant="10" id="YB5-Gj-DEn"/>
+                                    <constraint firstItem="PGz-pz-DTx" firstAttribute="centerX" secondItem="Faa-jb-O2j" secondAttribute="centerX" id="fc5-L3-0aD"/>
+                                    <constraint firstAttribute="bottom" secondItem="PGz-pz-DTx" secondAttribute="bottom" id="jTi-84-sad"/>
                                     <constraint firstAttribute="height" constant="88" id="kF8-Fj-DSX"/>
                                     <constraint firstAttribute="bottom" secondItem="EIa-zk-Dte" secondAttribute="bottom" id="zKW-oO-qZy"/>
                                 </constraints>

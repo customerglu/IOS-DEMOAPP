@@ -41,19 +41,17 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         contentController.add(self, name: WebViewsKey.callback) //name is the key you want the app to listen to.
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
-        
+    
+        let x = self.view.frame.midX - 30
+        var y = self.view.frame.midY - 30
+
         if notificationHandler {
             let black = UIColor.black
             let blackTrans = UIColor.withAlphaComponent(black)(alpha)
             self.view.backgroundColor = blackTrans
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             self.view.addGestureRecognizer(tap)
-        }
-        
-        let x = self.view.frame.midX - 30
-        var y = self.view.frame.midY - 30
-
-        if notificationHandler {
+            
             let height = self.view.frame.height / 1.4
             if ismiddle {
                 webView = WKWebView(frame: CGRect(x: 20, y: (self.view.frame.height - height)/2, width: self.view.frame.width - 40, height: height), configuration: config) //set your own frame
@@ -118,8 +116,6 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             let bodyStruct = try? JSONDecoder().decode(EventModel.self, from: bodyData)
             
             if bodyStruct?.eventName == WebViewsKey.close {
-                //                if parent.fromWallet && parent.fromUikit {
-                print("UIKIT")
                 if openWallet {
                     delegate?.closeClicked(true)
                 } else if notificationHandler || iscampignId {
