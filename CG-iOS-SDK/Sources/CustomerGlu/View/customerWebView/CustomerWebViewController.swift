@@ -28,6 +28,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     weak var delegate: CustomerGluWebViewDelegate?
     var documentInteractionController: UIDocumentInteractionController!
     public var alpha = 0.0
+    var campaign_id = ""
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,12 +72,36 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 y = self.view.frame.midY - 30
             }
             webView.scrollView.contentInsetAdjustmentBehavior = .never
+            setwebView(url: urlStr, x: x, y: y)
+        } else if iscampignId {
+            CustomerGlu.getInstance.loaderShow(withcoordinate: x, y: y)
+            
+            ApplicationManager.loadAllCampaignsApi(type: "", value: campaign_id, loadByparams: [:]) { success, campaignsModel in
+                if success {
+                    CustomerGlu.getInstance.loaderHide()
+                    let campaigns: [Campaigns] = (campaignsModel?.campaigns)!
+                    let filteredArray = campaigns.filter({($0.campaignId.localizedCaseInsensitiveContains(self.campaign_id))})
+                    if filteredArray.count > 0 {
+                        DispatchQueue.main.async {
+                            self.webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
+                            self.setwebView(url: filteredArray[0].url, x: x, y: y)
+                        }
+                    }
+                } else {
+                    CustomerGlu.getInstance.loaderHide()
+                    print("error")
+                }
+            }
         } else {
             webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
+            setwebView(url: urlStr, x: x, y: y)
         }
+    }
+    
+    func setwebView(url: String, x: CGFloat, y: CGFloat) {
         webView.navigationDelegate = self
-        if urlStr != "" || !urlStr.isEmpty {
-            webView.load(URLRequest(url: URL(string: urlStr)!))
+        if url != "" || !url.isEmpty {
+            webView.load(URLRequest(url: URL(string: url)!))
         } else {
             self.dismiss(animated: false, completion: nil)
         }
@@ -132,12 +157,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                     let dict = OtherUtils.shared.convertToDictionary(text: (message.body as? String)!)
                     // Post notification
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.Name("CUSTOMERGLU_DEEPLINK_EVENT").rawValue), object: nil, userInfo: dict?["data"] as? [String: Any])
-                    if let url = URL(string: deep_link) {
-                        UIApplication.shared.open(url)
-                    } else {
-                        ApplicationManager.callCrashReport(stackTrace: "Can't open deeplink", methodName: "CUSTOMERGLU_DEEPLINK_EVENT")
-                        print("Can't open deeplink")
-                    }
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
             

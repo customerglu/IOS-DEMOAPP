@@ -359,31 +359,15 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             return
         }
         
-        loaderShow(withcoordinate: UIScreen.main.bounds.midX - 30, y: UIScreen.main.bounds.midY - 30)
-                
-        ApplicationManager.loadAllCampaignsApi(type: "", value: campaign_id, loadByparams: [:]) { success, campaignsModel in
-            if success {
-                self.loaderHide()
-                let campaigns: [Campaigns] = (campaignsModel?.campaigns)!
-                
-                let filteredArray = campaigns.filter({($0.campaignId.localizedCaseInsensitiveContains(campaign_id))})
-
-                if filteredArray.count > 0 {
-                    DispatchQueue.main.async {
-                        let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-                        customerWebViewVC.urlStr = filteredArray[0].url
-                        guard let topController = UIViewController.topViewController() else {
-                            return
-                        }
-                        customerWebViewVC.modalPresentationStyle = .fullScreen
-                        customerWebViewVC.iscampignId = true
-                        topController.present(customerWebViewVC, animated: false, completion: nil)
-                    }
-                }
-            } else {
-                CustomerGlu.getInstance.loaderHide()
-                print("error")
+        DispatchQueue.main.async {
+            let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+            guard let topController = UIViewController.topViewController() else {
+                return
             }
+            customerWebViewVC.modalPresentationStyle = .fullScreen
+            customerWebViewVC.iscampignId = true
+            customerWebViewVC.campaign_id = campaign_id
+            topController.present(customerWebViewVC, animated: false, completion: nil)
         }
     }
    

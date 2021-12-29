@@ -24,10 +24,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.marax.customerdemo</string>
+			<string>Bundle Id</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>applinks:modpod.page.link/shop</string>
+				<string>com.Marax.CustomerGluDemo</string>
 			</array>
 		</dict>
 	</array>
