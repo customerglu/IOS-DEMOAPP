@@ -252,8 +252,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         
         if CustomerGlu.fcm_apn == "fcm" {
             userData[APIParameterKey.apnsDeviceToken] = ""
+            userData[APIParameterKey.firebaseToken] = fcmToken
         } else {
             userData[APIParameterKey.firebaseToken] = ""
+            userData[APIParameterKey.apnsDeviceToken] = apnToken
         }
         
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in

@@ -68,8 +68,6 @@ struct LoginScreen: View {
         userData["userId"] = userId
         userData["username"] = userName
         userData["referId"] = referenceId
-        userData["firebaseToken"] = CustomerGlu.getInstance.fcmToken
-        userData["apnsDeviceToken"] = CustomerGlu.getInstance.apnToken
         
         CustomerGlu.getInstance.registerDevice(userdata: userData) { success, _ in
             if success {
