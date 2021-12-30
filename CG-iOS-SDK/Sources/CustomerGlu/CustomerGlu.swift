@@ -234,7 +234,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     // MARK: - API Calls Methods
     public func registerDevice(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
@@ -277,10 +277,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func updateProfile(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
+        
         var userData = userdata
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
@@ -325,10 +326,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func openWallet() {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
+        
         DispatchQueue.main.async {
             let openWalletVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
             guard let topController = UIViewController.topViewController() else {
@@ -340,10 +342,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
         
     public func loadAllCampaigns() {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
+        
         DispatchQueue.main.async {
             let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             guard let topController = UIViewController.topViewController() else {
@@ -356,7 +359,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func loadCampaignById(campaign_id: String) {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
@@ -374,10 +377,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
    
     public func loadCampaignsByType(type: String) {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
+        
         DispatchQueue.main.async {
             let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             loadAllCampign.loadCampignType = APIParameterKey.type
@@ -392,10 +396,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func loadCampaignByStatus(status: String) {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
+        
         DispatchQueue.main.async {
             let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             loadAllCampign.loadCampignType = APIParameterKey.status
@@ -410,10 +415,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func loadCampaignByFilter(parameters: NSDictionary) {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
+        
         DispatchQueue.main.async {
             let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             loadAllCampign.loadByparams = parameters
@@ -427,7 +433,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func sendEventData(eventName: String, eventProperties: [String: Any]) {
-        if CustomerGlu.sdk_disable! == true {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
             print(CustomerGlu.sdk_disable!)
             return
         }
