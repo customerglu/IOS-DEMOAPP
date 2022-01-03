@@ -157,7 +157,9 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                     let dict = OtherUtils.shared.convertToDictionary(text: (message.body as? String)!)
                     // Post notification
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.Name("CUSTOMERGLU_DEEPLINK_EVENT").rawValue), object: nil, userInfo: dict?["data"] as? [String: Any])
-                    delegate?.closeClicked(true)
+                    if CustomerGlu.is_navigation == true {
+                        delegate?.closeClicked(true)
+                    }
                 }
             }
             

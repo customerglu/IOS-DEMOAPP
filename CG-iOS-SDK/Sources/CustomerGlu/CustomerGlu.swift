@@ -18,6 +18,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public var fcmToken = ""
     public static var defaultBannerUrl = ""
     public static var arrColor = [UIColor.black]
+    public static var is_navigation: Bool? = true
     
     private override init() {
         super.init()
@@ -80,6 +81,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         let queryItems = URLComponents(url: deepLink, resolvingAgainstBaseURL: true)?.queryItems
         let referrerUserId = queryItems?.filter({(item) in item.name == APIParameterKey.userId}).first?.value
         return referrerUserId ?? ""
+    }
+    
+    public func isDeeplinkNavigation(is_navigation: Bool) {
+        CustomerGlu.is_navigation = is_navigation
     }
     
     func loaderHide() {
@@ -234,8 +239,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     // MARK: - API Calls Methods
     public func registerDevice(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userdata["userId"] == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("userId if required")
+            }
             return
         }
         var userData = userdata
@@ -277,8 +286,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func updateProfile(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
         
@@ -326,8 +339,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func openWallet() {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
         
@@ -342,8 +359,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
         
     public func loadAllCampaigns() {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
         
@@ -359,8 +380,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func loadCampaignById(campaign_id: String) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
         
@@ -377,8 +402,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
    
     public func loadCampaignsByType(type: String) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
         
@@ -396,8 +425,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func loadCampaignByStatus(status: String) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
         
@@ -415,8 +448,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func loadCampaignByFilter(parameters: NSDictionary) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
         
@@ -433,8 +470,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     public func sendEventData(eventName: String, eventProperties: [String: Any]) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true {
-            print(CustomerGlu.sdk_disable!)
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
+            if CustomerGlu.sdk_disable! {
+                print(CustomerGlu.sdk_disable!)
+            } else {
+                print("Please registered first")
+            }
             return
         }
 
