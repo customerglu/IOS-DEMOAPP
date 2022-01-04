@@ -18,7 +18,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public var fcmToken = ""
     public static var defaultBannerUrl = ""
     public static var arrColor = [UIColor.black]
-    public static var is_navigation: Bool? = true
+    public static var auto_close_webview: Bool? = true
     
     private override init() {
         super.init()
@@ -83,8 +83,8 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         return referrerUserId ?? ""
     }
     
-    public func isDeeplinkNavigation(is_navigation: Bool) {
-        CustomerGlu.is_navigation = is_navigation
+    public func closeWebviewOnDeeplinkEvent(close: Bool) {
+        CustomerGlu.auto_close_webview = close
     }
     
     func loaderHide() {
@@ -238,7 +238,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
     
     // MARK: - API Calls Methods
-    public func registerDevice(userdata: [String: AnyHashable], completion: @escaping (Bool, RegistrationModel?) -> Void) {
+    public func registerDevice(userdata: [String: AnyHashable], loadcampaigns: Bool = false, completion: @escaping (Bool, RegistrationModel?) -> Void) {
         if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userdata["userId"] == nil {
             if CustomerGlu.sdk_disable! {
                 print(CustomerGlu.sdk_disable!)
@@ -273,6 +273,13 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 if response.success! {
                     self.userDefaults.set(response.data?.token, forKey: Constants.CUSTOMERGLU_TOKEN)
                     self.userDefaults.set(response.data?.user?.userId, forKey: Constants.CUSTOMERGLU_USERID)
+                    if loadcampaigns == true {
+                        ApplicationManager.openWalletApi { success, _ in
+                            if success {
+                            } else {
+                            }
+                        }
+                    }
                     completion(true, response)
                 } else {
                     ApplicationManager.callCrashReport(methodName: "registerDevice")
