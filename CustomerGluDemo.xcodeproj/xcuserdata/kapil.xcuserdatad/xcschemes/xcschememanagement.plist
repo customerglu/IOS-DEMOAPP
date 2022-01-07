@@ -9,6 +9,16 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CustomerGluDemoTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>CustomerGluDemoUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,6 +39,24 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1B3D7CAF26A6BDDC00EA1587</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82699B08278715AA0020D2B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82875A6A27883979005EC40D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

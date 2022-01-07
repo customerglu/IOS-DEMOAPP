@@ -28,11 +28,31 @@
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
 		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
 		82582BF327425A7800215EF8 /* CustomerWebviewUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */; };
+		82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */; };
+		82699B0E278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0D278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift */; };
 		82771B8A273AB3EE0097FED9 /* RewardUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82771B89273AB3EE0097FED9 /* RewardUIKit.swift */; };
 		8284D4592754CE8200CEF827 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284D4582754CE8200CEF827 /* LoginScreen.swift */; };
+		82875A6E27883979005EC40D /* CustomerGluDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */; };
 		82946E9E2732725000C56E06 /* OpenWalletUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */; };
 		BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82699B0F278715AA0020D2B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B3D7CA826A6BDDC00EA1587 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B3D7CAF26A6BDDC00EA1587;
+			remoteInfo = CustomerGluDemo;
+		};
+		82875A6F27883979005EC40D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B3D7CA826A6BDDC00EA1587 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B3D7CAF26A6BDDC00EA1587;
+			remoteInfo = CustomerGluDemo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1827E7682726C09D00A7B38B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -57,8 +77,13 @@
 		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
 		82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerWebviewUIKit.swift; sourceTree = "<group>"; };
+		82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITests.swift; sourceTree = "<group>"; };
+		82699B0D278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		82771B89273AB3EE0097FED9 /* RewardUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardUIKit.swift; sourceTree = "<group>"; };
 		8284D4582754CE8200CEF827 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoTests.swift; sourceTree = "<group>"; };
 		82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWalletUIKit.swift; sourceTree = "<group>"; };
 		89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomerGluDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +99,20 @@
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
 				BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82699B06278715AA0020D2B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82875A6827883979005EC40D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +132,8 @@
 			children = (
 				188DE0912726CAA6002DA85D /* CG-iOS-SDK */,
 				1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */,
+				82699B0A278715AA0020D2B4 /* CustomerGluDemoUITests */,
+				82875A6C27883979005EC40D /* CustomerGluDemoTests */,
 				1B3D7CB126A6BDDC00EA1587 /* Products */,
 				1835AEC52726C3A40084C5B8 /* Frameworks */,
 				AA131C89172E64D9FABAC320 /* Pods */,
@@ -103,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */,
+				82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */,
+				82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +211,23 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		82699B0A278715AA0020D2B4 /* CustomerGluDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */,
+				82699B0D278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift */,
+			);
+			path = CustomerGluDemoUITests;
+			sourceTree = "<group>";
+		};
+		82875A6C27883979005EC40D /* CustomerGluDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */,
+			);
+			path = CustomerGluDemoTests;
+			sourceTree = "<group>";
+		};
 		AA131C89172E64D9FABAC320 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,17 +265,61 @@
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		82699B08278715AA0020D2B4 /* CustomerGluDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82699B13278715AA0020D2B4 /* Build configuration list for PBXNativeTarget "CustomerGluDemoUITests" */;
+			buildPhases = (
+				82699B05278715AA0020D2B4 /* Sources */,
+				82699B06278715AA0020D2B4 /* Frameworks */,
+				82699B07278715AA0020D2B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82699B10278715AA0020D2B4 /* PBXTargetDependency */,
+			);
+			name = CustomerGluDemoUITests;
+			productName = CustomerGluDemoUITests;
+			productReference = 82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		82875A6A27883979005EC40D /* CustomerGluDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82875A7327883979005EC40D /* Build configuration list for PBXNativeTarget "CustomerGluDemoTests" */;
+			buildPhases = (
+				82875A6727883979005EC40D /* Sources */,
+				82875A6827883979005EC40D /* Frameworks */,
+				82875A6927883979005EC40D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82875A7027883979005EC40D /* PBXTargetDependency */,
+			);
+			name = CustomerGluDemoTests;
+			productName = CustomerGluDemoTests;
+			productReference = 82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1B3D7CA826A6BDDC00EA1587 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					1B3D7CAF26A6BDDC00EA1587 = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					82699B08278715AA0020D2B4 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 1B3D7CAF26A6BDDC00EA1587;
+					};
+					82875A6A27883979005EC40D = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 1B3D7CAF26A6BDDC00EA1587;
 					};
 				};
 			};
@@ -236,6 +340,8 @@
 			projectRoot = "";
 			targets = (
 				1B3D7CAF26A6BDDC00EA1587 /* CustomerGluDemo */,
+				82699B08278715AA0020D2B4 /* CustomerGluDemoUITests */,
+				82875A6A27883979005EC40D /* CustomerGluDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -249,6 +355,20 @@
 				1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */,
 				1B3D7CB826A6BDDC00EA1587 /* Assets.xcassets in Resources */,
 				1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82699B07278715AA0020D2B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82875A6927883979005EC40D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +440,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82699B05278715AA0020D2B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82699B0E278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift in Sources */,
+				82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82875A6727883979005EC40D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82875A6E27883979005EC40D /* CustomerGluDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82699B10278715AA0020D2B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B3D7CAF26A6BDDC00EA1587 /* CustomerGluDemo */;
+			targetProxy = 82699B0F278715AA0020D2B4 /* PBXContainerItemProxy */;
+		};
+		82875A7027883979005EC40D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B3D7CAF26A6BDDC00EA1587 /* CustomerGluDemo */;
+			targetProxy = 82875A6F27883979005EC40D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1B3D7CBD26A6BDDC00EA1587 /* Debug */ = {
@@ -493,6 +643,114 @@
 			};
 			name = Release;
 		};
+		82699B11278715AA0020D2B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XZR7N982GP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CustomerGluDemo;
+			};
+			name = Debug;
+		};
+		82699B12278715AA0020D2B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XZR7N982GP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CustomerGluDemo;
+			};
+			name = Release;
+		};
+		82875A7127883979005EC40D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8N6KRZQRXX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CustomerGluDemo.app/CustomerGluDemo";
+			};
+			name = Debug;
+		};
+		82875A7227883979005EC40D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8N6KRZQRXX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CustomerGluDemo.app/CustomerGluDemo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -510,6 +768,24 @@
 			buildConfigurations = (
 				1B3D7CC026A6BDDC00EA1587 /* Debug */,
 				1B3D7CC126A6BDDC00EA1587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82699B13278715AA0020D2B4 /* Build configuration list for PBXNativeTarget "CustomerGluDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82699B11278715AA0020D2B4 /* Debug */,
+				82699B12278715AA0020D2B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82875A7327883979005EC40D /* Build configuration list for PBXNativeTarget "CustomerGluDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82875A7127883979005EC40D /* Debug */,
+				82875A7227883979005EC40D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

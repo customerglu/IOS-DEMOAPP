@@ -1,15 +1,15 @@
+//
+//  CustomerGluDemoTests.swift
+//  CustomerGluDemoTests
+//
+//  Created by kapil on 07/01/22.
+//
+
 import XCTest
 @testable import CustomerGlu
 
-final class CustomerGluTests: XCTestCase {
+class CustomerGluDemoTests: XCTestCase {
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(CustomerGlu.getInstance.apnToken, "")
-    }
-    
     func test_LoginApiResource_With_ValidRequest_Returns_ValidResponse() {
         
         let userData = ["userId": "1Test",
