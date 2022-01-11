@@ -12,20 +12,26 @@ final class CustomerGluTests: XCTestCase {
     
     func test_LoginApiResource_With_ValidRequest_Returns_ValidResponse() {
         
-        let userData = ["userId": "1Test",
-                        "username": "myFirstTestCase"]
-        
-        let promise = expectation(description: "ValidRequest_Returns_ValidResponse")
-        
-        //Arrange
-        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: false) { (success, loginResponse) in
-            
+        MockApi.shared.registerDevice() { (success, loginResponse) in
             XCTAssertNotNil(loginResponse)
-            XCTAssertEqual("1Test", loginResponse?.data?.user?.userId)
+            XCTAssertEqual("Khushbu", loginResponse?.data?.user?.userId)
             XCTAssertEqual(true, success)
-            promise.fulfill()
         }
-        wait(for: [promise], timeout: 5)
+        
+//        let userData = ["userId": "1Test",
+//                        "username": "myFirstTestCase"]
+//
+//        let promise = expectation(description: "ValidRequest_Returns_ValidResponse")
+//
+//        //Arrange
+//        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: false) { (success, loginResponse) in
+//
+//            XCTAssertNotNil(loginResponse)
+//            XCTAssertEqual("1Test", loginResponse?.data?.user?.userId)
+//            XCTAssertEqual(true, success)
+//            promise.fulfill()
+//        }
+//        wait(for: [promise], timeout: 5)
     }
     
     func test_LoginApiResource_With_InValidRequest_Returns_InValidResponse() {
@@ -40,5 +46,21 @@ final class CustomerGluTests: XCTestCase {
             promise.fulfill()
         }
         wait(for: [promise], timeout: 5)
+    }
+    
+    func test_LoadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
+        
+        MockApi.shared.loadAllCampaigns() { (success, campaignResponse) in
+            XCTAssertNotNil(campaignResponse)
+            XCTAssertEqual(true, success)
+        }
+    }
+    
+    func test_AddCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
+        
+        MockApi.shared.addCart() { (success, addcartResponse) in
+            XCTAssertNotNil(addcartResponse)
+            XCTAssertEqual(true, success)
+        }
     }
 }

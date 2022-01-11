@@ -4,6 +4,7 @@ disabled_rules: # rule identifiers to exclude from running
     - trailing_whitespace
     - syntactic_sugar
     - identifier_name
+    - line_length
 
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
@@ -11,9 +12,9 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
     - Pods
 
     
-line_length:
-    - 600
-    - 700
+#line_length:
+#    - 600
+#    - 700
     
 type_body_length:
     warning: 500
