@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 // HTTP Header Field's for API's
 private enum HTTPHeaderField: String {
@@ -90,25 +91,46 @@ class APIManager {
             }
         }
         
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 401 {
-                    resetDefaults()
-                    return
-                }
+        // Mock Env for Unit Testing
+        let enviroment = ProcessInfo.processInfo.environment["ENV"]
+        if enviroment == "TEST" {
+            var data = Data()
+            if T.self == RegistrationModel.self {
+                data = MockData.loginResponse.data(using: .utf8)!
+            } else if T.self == CampaignsModel.self {
+                data = MockData.walletResponse.data(using: .utf8)!
+            } else if T.self == AddCartModel.self {
+                data = MockData.walletResponse.data(using: .utf8)!
             }
-            guard let data = data, error == nil else { return }
+            
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
-                // Get JSON, Clean it and Convert to Object
-                let JSON = json
-                JSON?.printJson()
-                let cleanedJSON = cleanJSON(json: JSON!, isReturn: true)
-                dictToObject(dict: cleanedJSON, type: T.self, completion: completion)
-            } catch let error as NSError {
+                let registrationResponse = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(registrationResponse))
+            } catch {
                 print(error)
+                completion(.failure(error))
             }
-        }.resume()
+        } else {
+            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 401 {
+                        resetDefaults()
+                        return
+                    }
+                }
+                guard let data = data, error == nil else { return }
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+                    // Get JSON, Clean it and Convert to Object
+                    let JSON = json
+                    JSON?.printJson()
+                    let cleanedJSON = cleanJSON(json: JSON!, isReturn: true)
+                    dictToObject(dict: cleanedJSON, type: T.self, completion: completion)
+                } catch let error as NSError {
+                    print(error)
+                }
+            }.resume()
+        }
     }
     
     static func userRegister(queryParameters: NSDictionary, completion: @escaping (Result<RegistrationModel, Error>) -> Void) {

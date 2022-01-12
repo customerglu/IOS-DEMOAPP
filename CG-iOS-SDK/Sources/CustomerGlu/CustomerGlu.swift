@@ -184,13 +184,17 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         
         if page_type == Constants.BOTTOM_SHEET_NOTIFICATION {
             customerWebViewVC.isbottomsheet = true
-            if #available(iOS 15.0, *) {
-                if let sheet = customerWebViewVC.sheetPresentationController {
-                    sheet.detents = [ .medium(), .large() ]
+            #if compiler(>=5.5)
+                if #available(iOS 15.0, *) {
+                    if let sheet = customerWebViewVC.sheetPresentationController {
+                        sheet.detents = [ .medium(), .large() ]
+                    }
+                } else {
+                    customerWebViewVC.modalPresentationStyle = .pageSheet
                 }
-            } else {
+            #else
                 customerWebViewVC.modalPresentationStyle = .pageSheet
-            }
+            #endif
         } else if page_type == Constants.BOTTOM_DEFAULT_NOTIFICATION {
             customerWebViewVC.isbottomdefault = true
             customerWebViewVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
