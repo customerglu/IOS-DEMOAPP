@@ -14,7 +14,7 @@ final class CustomerGluTests: XCTestCase {
         //Arrange
         var userData = [String: AnyHashable]()
         userData["userId"] = "TestUserId"
-        
+                
         CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: false) { (success, loginResponse) in
             XCTAssertNotNil(loginResponse)
             XCTAssertEqual("TestUserId", UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)!)
@@ -22,20 +22,6 @@ final class CustomerGluTests: XCTestCase {
             XCTAssertEqual(true, success)
         }
     }
-    
-//    func test_LoginApiResource_With_InValidRequest_Returns_InValidResponse() {
-//
-//        let promise = expectation(description: "InValidRequest_Returns_InValidRespons")
-//
-//        //Arrange
-//        CustomerGlu.getInstance.registerDevice(userdata: [:]) { (success, loginResponse) in
-//
-//            XCTAssertNil(loginResponse)
-//            XCTAssertEqual(false, success)
-//            promise.fulfill()
-//        }
-//        wait(for: [promise], timeout: 5)
-//    }
     
     func test_LoadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
         
@@ -50,6 +36,42 @@ final class CustomerGluTests: XCTestCase {
         ApplicationManager.sendEventData(eventName: "", eventProperties: ["": ""]) { success, addcartResponse in
             XCTAssertNotNil(addcartResponse)
             XCTAssertEqual(true, success)
+        }
+    }
+    
+    func test_disableGluSdk_Method() {
+        CustomerGlu.getInstance.disableGluSdk(disable: true)
+        XCTAssertEqual(CustomerGlu.sdk_disable, true)
+    }
+    
+    func test_isFcmApn_Method() {
+        CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
+        XCTAssertEqual(CustomerGlu.fcm_apn, "fcm")
+    }
+    
+    func test_setDefaultBannerImage_Method() {
+        CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "")
+        XCTAssertEqual(CustomerGlu.defaultBannerUrl, "")
+    }
+    
+    func test_configureLoaderColour_Method() {
+        CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
+        XCTAssertEqual(CustomerGlu.arrColor, [UIColor.red])
+    }
+    
+    func test_closeWebviewOnDeeplinkEvent_Method() {
+        CustomerGlu.getInstance.closeWebviewOnDeeplinkEvent(close: true)
+        XCTAssertEqual(CustomerGlu.auto_close_webview, true)
+    }
+    
+    func testStringValueDecodedSuccessfully() throws {
+        let data = MockData.loginResponse.data(using: .utf8)!
+        do {
+            let response = try JSONDecoder().decode(RegistrationModel.self, from: data)
+            XCTAssertEqual(response.data?.user?.userName, "TestUser")
+            XCTAssertNotNil(response)
+        } catch {
+            print(error)
         }
     }
 }

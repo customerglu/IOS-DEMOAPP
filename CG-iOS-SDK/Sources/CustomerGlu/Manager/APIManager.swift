@@ -104,12 +104,23 @@ class APIManager {
             }
             
             do {
-                let registrationResponse = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(registrationResponse))
-            } catch {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+                // Get JSON, Clean it and Convert to Object
+                let JSON = json
+                JSON?.printJson()
+                let cleanedJSON = cleanJSON(json: JSON!, isReturn: true)
+                dictToObject(dict: cleanedJSON, type: T.self, completion: completion)
+            } catch let error as NSError {
                 print(error)
-                completion(.failure(error))
             }
+            
+//            do {
+//                let registrationResponse = try JSONDecoder().decode(T.self, from: data)
+//                completion(.success(registrationResponse))
+//            } catch {
+//                print(error)
+//                completion(.failure(error))
+//            }
         } else {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 if let httpResponse = response as? HTTPURLResponse {
