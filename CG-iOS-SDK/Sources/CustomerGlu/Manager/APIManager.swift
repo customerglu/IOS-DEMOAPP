@@ -114,13 +114,6 @@ class APIManager {
                 print(error)
             }
             
-//            do {
-//                let registrationResponse = try JSONDecoder().decode(T.self, from: data)
-//                completion(.success(registrationResponse))
-//            } catch {
-//                print(error)
-//                completion(.failure(error))
-//            }
         } else {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 if let httpResponse = response as? HTTPURLResponse {

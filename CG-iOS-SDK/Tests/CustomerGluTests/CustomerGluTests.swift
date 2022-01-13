@@ -10,6 +10,16 @@ final class CustomerGluTests: XCTestCase {
         XCTAssertEqual(CustomerGlu.getInstance.apnToken, "")
     }
     
+    func test_disableGluSdk_Method() {
+        CustomerGlu.getInstance.disableGluSdk(disable: true)
+        XCTAssertEqual(CustomerGlu.sdk_disable, true)
+    }
+    
+    func test_enableGluSdk_Method() {
+        CustomerGlu.getInstance.disableGluSdk(disable: false)
+        XCTAssertEqual(CustomerGlu.sdk_disable, false)
+    }
+    
     func test_LoginApiResource_With_ValidRequest_Returns_ValidResponse() {
         //Arrange
         var userData = [String: AnyHashable]()
@@ -38,12 +48,7 @@ final class CustomerGluTests: XCTestCase {
             XCTAssertEqual(true, success)
         }
     }
-    
-    func test_disableGluSdk_Method() {
-        CustomerGlu.getInstance.disableGluSdk(disable: true)
-        XCTAssertEqual(CustomerGlu.sdk_disable, true)
-    }
-    
+        
     func test_isFcmApn_Method() {
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
         XCTAssertEqual(CustomerGlu.fcm_apn, "fcm")
@@ -73,5 +78,30 @@ final class CustomerGluTests: XCTestCase {
         } catch {
             print(error)
         }
+    }
+    
+    func test_openWallet_Method() {
+        CustomerGlu.getInstance.openWallet()
+        guard let topController = UIViewController.topViewController() else {
+            return
+        }
+        XCTAssertNotNil(topController.isKind(of: CustomerWebViewController.self))
+    }
+    
+    func test_loadingStoryBoardLoadAllCampaignViewController() {
+        let storyboardVC = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+        storyboardVC.loadViewIfNeeded()
+        XCTAssertNotNil(storyboardVC.tblRewardList)
+    }
+    
+    func test_loadingStoryBoardOpenWalletViewController() {
+         let storyboardVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
+        storyboardVC.loadViewIfNeeded()
+        XCTAssertNotNil(storyboardVC.viewDidLoad)
+    }
+    
+    func test_loadingXIBBannerCell() {
+        let sut = BannerCell()
+        XCTAssertNotNil(sut.imgView)
     }
 }
