@@ -25,7 +25,20 @@ final class CustomerGluTests: XCTestCase {
         var userData = [String: AnyHashable]()
         userData["userId"] = "TestUserId"
                 
-        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: false) { (success, loginResponse) in
+        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { (success, loginResponse) in
+            XCTAssertNotNil(loginResponse)
+            XCTAssertEqual("TestUserId", UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)!)
+            XCTAssertEqual("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJLaHVzaGJ1IiwiZ2x1SWQiOiJmYzY2NGYxNy1iMDI5LTQwNGYtYTE1OC01ODk3Y2EwMmNjNmIiLCJjbGllbnQiOiI4NGFjZjJhYy1iMmUwLTQ5MjctODY1My1jYmEyYjgzODE2YzIiLCJkZXZpY2VJZCI6IkQ4Q0YyNkQwLTgwRDUtNDcxQy04QkJDLTZDOTQ1MTJGNzA4MiIsImRldmljZVR5cGUiOiJpb3MiLCJpYXQiOjE2NDE4ODkxNjIsImV4cCI6MTY3MzQyNTE2Mn0.5-ShKsd-QE5WDvL188xUGu2p3_Whhrf4zU9AY_nZp-o", UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!)
+            XCTAssertEqual(true, success)
+        }
+    }
+    
+    func test_UpdateProfileResource_With_ValidRequest_Returns_ValidResponse() {
+        //Arrange
+        var userData = [String: AnyHashable]()
+        userData["userId"] = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)!
+                
+        CustomerGlu.getInstance.updateProfile(userdata: userData) { (success, loginResponse) in
             XCTAssertNotNil(loginResponse)
             XCTAssertEqual("TestUserId", UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)!)
             XCTAssertEqual("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJLaHVzaGJ1IiwiZ2x1SWQiOiJmYzY2NGYxNy1iMDI5LTQwNGYtYTE1OC01ODk3Y2EwMmNjNmIiLCJjbGllbnQiOiI4NGFjZjJhYy1iMmUwLTQ5MjctODY1My1jYmEyYjgzODE2YzIiLCJkZXZpY2VJZCI6IkQ4Q0YyNkQwLTgwRDUtNDcxQy04QkJDLTZDOTQ1MTJGNzA4MiIsImRldmljZVR5cGUiOiJpb3MiLCJpYXQiOjE2NDE4ODkxNjIsImV4cCI6MTY3MzQyNTE2Mn0.5-ShKsd-QE5WDvL188xUGu2p3_Whhrf4zU9AY_nZp-o", UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!)
@@ -42,13 +55,18 @@ final class CustomerGluTests: XCTestCase {
     }
     
     func test_AddCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
-        
-        ApplicationManager.sendEventData(eventName: "", eventProperties: ["": ""]) { success, addcartResponse in
+        ApplicationManager.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addcartResponse in
             XCTAssertNotNil(addcartResponse)
             XCTAssertEqual(true, success)
         }
     }
-        
+      
+    func test_doValidateToken() {
+        if ApplicationManager.doValidateToken() == true {
+            XCTAssertTrue(ApplicationManager.doValidateToken())
+        }
+    }
+    
     func test_isFcmApn_Method() {
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
         XCTAssertEqual(CustomerGlu.fcm_apn, "fcm")
@@ -99,9 +117,48 @@ final class CustomerGluTests: XCTestCase {
         storyboardVC.loadViewIfNeeded()
         XCTAssertNotNil(storyboardVC.viewDidLoad)
     }
+        
+    func test_clearGluData_method() {
+        CustomerGlu.getInstance.clearGluData()
+        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID))
+        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN))
+    }
     
-    func test_loadingXIBBannerCell() {
-        let sut = BannerCell()
-        XCTAssertNotNil(sut.imgView)
+    func test_BaseUrl() {
+        let url = ApplicationManager.baseUrl
+        XCTAssertEqual(url, "api.customerglu.com/")
+    }
+    
+    func test_StreamUrl() {
+        let url = ApplicationManager.streamUrl
+        XCTAssertEqual(url, "stream.customerglu.com/")
+    }
+    
+    func test_getCrashInfo() {
+        let dict = OtherUtils.shared.getCrashInfo()
+        XCTAssertNotNil(dict)
+    }
+    
+    func test_convertToDictionary() {
+        let dict = OtherUtils.shared.convertToDictionary(text: MockData.loginResponse)
+        XCTAssertNotNil(dict)
+    }
+    
+    func test_getObject() {
+        let data = MockData.walletResponse.data(using: .utf8)!
+        do {
+            let response = try JSONDecoder().decode(CampaignsModel.self, from: data)
+            try UserDefaults.standard.setObject(data, forKey: Constants.WalletRewardData)
+            XCTAssertNotNil(response)
+        } catch {
+            print(error)
+        }
+ 
+        do {
+            let campaignsModel = try UserDefaults.standard.getObject(forKey: Constants.WalletRewardData, castTo: CampaignsModel.self)
+            XCTAssertNotNil(campaignsModel)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

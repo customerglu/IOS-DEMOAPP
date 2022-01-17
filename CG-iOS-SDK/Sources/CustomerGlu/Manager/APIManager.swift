@@ -100,7 +100,7 @@ class APIManager {
             } else if T.self == CampaignsModel.self {
                 data = MockData.walletResponse.data(using: .utf8)!
             } else if T.self == AddCartModel.self {
-                data = MockData.walletResponse.data(using: .utf8)!
+                data = MockData.addcartResponse.data(using: .utf8)!
             }
             
             do {
