@@ -170,7 +170,7 @@ final class CustomerGluTests: XCTestCase {
         let data = MockData.walletResponse.data(using: .utf8)!
         do {
             let response = try JSONDecoder().decode(CampaignsModel.self, from: data)
-            try UserDefaults.standard.setObject(data, forKey: Constants.WalletRewardData)
+            try UserDefaults.standard.setObject(response, forKey: Constants.WalletRewardData)
             XCTAssertNotNil(response)
         } catch {
             print(error)

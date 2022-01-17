@@ -20,29 +20,12 @@ public class OpenWalletViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-                
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.catchDeeplinkNotification),
-            name: Notification.Name("CUSTOMERGLU_DEEPLINK_EVENT"),
-            object: nil)
-    }
-    
-    @objc private func catchDeeplinkNotification(notification: NSNotification) {
-        //do stuff using the userInfo property of the notification object
-        if let userInfo = notification.userInfo as? [String: Any] // or use if you know the type  [AnyHashable : Any]
-        {
-             print(userInfo)
-        }
-    }
-    
-    public override func viewWillAppear(_ animated: Bool) {       
+
         if CustomerGlu.sdk_disable! == true {
             print(CustomerGlu.sdk_disable!)
             self.navigationController?.popViewController(animated: true)
             return
         }
-        super.viewWillAppear(false)
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         if UserDefaults.standard.object(forKey: Constants.WalletRewardData) != nil {

@@ -29,7 +29,6 @@
 		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
 		82582BF327425A7800215EF8 /* CustomerWebviewUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */; };
 		82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */; };
-		82699B0E278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0D278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift */; };
 		82771B8A273AB3EE0097FED9 /* RewardUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82771B89273AB3EE0097FED9 /* RewardUIKit.swift */; };
 		8284D4592754CE8200CEF827 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284D4582754CE8200CEF827 /* LoginScreen.swift */; };
 		82875A6E27883979005EC40D /* CustomerGluDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */; };
@@ -78,8 +77,7 @@
 		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
 		82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerWebviewUIKit.swift; sourceTree = "<group>"; };
 		82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITests.swift; sourceTree = "<group>"; };
-		82699B0D278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITests.swift; sourceTree = "<group>"; usesTabs = 0; };
 		82771B89273AB3EE0097FED9 /* RewardUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardUIKit.swift; sourceTree = "<group>"; };
 		8284D4582754CE8200CEF827 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,10 +213,10 @@
 			isa = PBXGroup;
 			children = (
 				82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */,
-				82699B0D278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift */,
 			);
 			path = CustomerGluDemoUITests;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		82875A6C27883979005EC40D /* CustomerGluDemoTests */ = {
 			isa = PBXGroup;
@@ -444,7 +442,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82699B0E278715AA0020D2B4 /* CustomerGluDemoUITestsLaunchTests.swift in Sources */,
 				82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
