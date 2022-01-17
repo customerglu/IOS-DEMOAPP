@@ -16,6 +16,10 @@ final class CustomerGluTests: XCTestCase {
         
         loginApiResource_With_DisableSdk_Returns_NilResponse()
         updateProfileResource_With_DisableSdk_Returns_NilResponse()
+        loadCampaignById()
+        loadCampaignsByType()
+        loadCampaignByStatus()
+        openWallet_Method()
     }
     
     func loginApiResource_With_DisableSdk_Returns_NilResponse() {
@@ -48,6 +52,10 @@ final class CustomerGluTests: XCTestCase {
         updateProfileResource_With_ValidRequest_Returns_ValidResponse()
         loadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse()
         addCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse()
+        loadCampaignById()
+        loadCampaignsByType()
+        loadCampaignByStatus()
+        openWallet_Method()
     }
     
     func loginApiResource_With_ValidRequest_Returns_ValidResponse() {
@@ -132,12 +140,8 @@ final class CustomerGluTests: XCTestCase {
         XCTAssertEqual(userId, "TestUserId")
     }
     
-    func test_openWallet_Method() {
+    func openWallet_Method() {
         CustomerGlu.getInstance.openWallet()
-//        guard let topController = UIViewController.topViewController() else {
-//            return
-//        }
-//        XCTAssertNotNil(topController.isKind(of: CustomerWebViewController.self))
     }
     
     func test_loadingStoryBoardLoadAllCampaignViewController() {
@@ -199,6 +203,25 @@ final class CustomerGluTests: XCTestCase {
         let storyboardVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
         storyboardVC.loadViewIfNeeded()
         XCTAssertNotNil(storyboardVC.viewDidLoad)
+    }
+    
+    func loadCampaignById() {
+        CustomerGlu.getInstance.loadCampaignById(campaign_id: "c8173e2f-7d11-40c8-843a-17d345792d30")
+    }
+    
+    func loadCampaignsByType() {
+        CustomerGlu.getInstance.loadCampaignsByType(type: "slotmachine")
+    }
+    
+    func loadCampaignByStatus() {
+        CustomerGlu.getInstance.loadCampaignByStatus(status: "pristine")
+    }
+    
+    func test_LoadCustomerWebViewVC(){
+        let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+        customerWebViewVC.urlStr = "https://stackoverflow.com/questions/47281375/convert-json-string-to-json-object-in-swift-4"
+        customerWebViewVC.openWallet = true
+        customerWebViewVC.loadViewIfNeeded()
     }
   
     func test_clearGluData_method() {

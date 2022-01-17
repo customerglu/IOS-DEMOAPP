@@ -32,10 +32,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         let contentController = WKUserContentController()
@@ -96,6 +93,10 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
             setwebView(url: urlStr, x: x, y: y)
         }
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
     }
     
     func setwebView(url: String, x: CGFloat, y: CGFloat) {

@@ -20,13 +20,14 @@ public class OpenWalletViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
 
         if CustomerGlu.sdk_disable! == true {
             print(CustomerGlu.sdk_disable!)
             self.navigationController?.popViewController(animated: true)
             return
         }
-        navigationController?.setNavigationBarHidden(true, animated: false)
         
         if UserDefaults.standard.object(forKey: Constants.WalletRewardData) != nil {
             let userDefaults = UserDefaults.standard
