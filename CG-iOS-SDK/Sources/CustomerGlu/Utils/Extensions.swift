@@ -40,7 +40,7 @@ extension UIViewController {
             }
             return topController
         }
-        return nil
+        return UIViewController()
     }
 }
 

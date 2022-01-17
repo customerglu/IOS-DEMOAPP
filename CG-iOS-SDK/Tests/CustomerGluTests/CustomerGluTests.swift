@@ -2,7 +2,7 @@ import XCTest
 @testable import CustomerGlu
 
 final class CustomerGluTests: XCTestCase {
-    
+   
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
@@ -13,14 +13,44 @@ final class CustomerGluTests: XCTestCase {
     func test_disableGluSdk_Method() {
         CustomerGlu.getInstance.disableGluSdk(disable: true)
         XCTAssertEqual(CustomerGlu.sdk_disable, true)
+        
+        loginApiResource_With_DisableSdk_Returns_NilResponse()
+        updateProfileResource_With_DisableSdk_Returns_NilResponse()
+    }
+    
+    func loginApiResource_With_DisableSdk_Returns_NilResponse() {
+        //Arrange
+        var userData = [String: AnyHashable]()
+        userData["userId"] = "TestUserId"
+        
+        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { (success, loginResponse) in
+            XCTAssertNil(loginResponse)
+            XCTAssertEqual(false, success)
+        }
+    }
+    
+    func updateProfileResource_With_DisableSdk_Returns_NilResponse() {
+        //Arrange
+        var userData = [String: AnyHashable]()
+        userData["userId"] = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
+                
+        CustomerGlu.getInstance.updateProfile(userdata: userData) { (success, loginResponse) in
+            XCTAssertNil(loginResponse)
+            XCTAssertEqual(false, success)
+        }
     }
     
     func test_enableGluSdk_Method() {
         CustomerGlu.getInstance.disableGluSdk(disable: false)
         XCTAssertEqual(CustomerGlu.sdk_disable, false)
+        
+        loginApiResource_With_ValidRequest_Returns_ValidResponse()
+        updateProfileResource_With_ValidRequest_Returns_ValidResponse()
+        loadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse()
+        addCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse()
     }
     
-    func test_LoginApiResource_With_ValidRequest_Returns_ValidResponse() {
+    func loginApiResource_With_ValidRequest_Returns_ValidResponse() {
         //Arrange
         var userData = [String: AnyHashable]()
         userData["userId"] = "TestUserId"
@@ -33,7 +63,7 @@ final class CustomerGluTests: XCTestCase {
         }
     }
     
-    func test_UpdateProfileResource_With_ValidRequest_Returns_ValidResponse() {
+    func updateProfileResource_With_ValidRequest_Returns_ValidResponse() {
         //Arrange
         var userData = [String: AnyHashable]()
         userData["userId"] = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)!
@@ -46,15 +76,14 @@ final class CustomerGluTests: XCTestCase {
         }
     }
     
-    func test_LoadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
-        
+    func loadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
         ApplicationManager.loadAllCampaignsApi(type: "", value: "", loadByparams: [:]) { (success, campaignResponse) in
             XCTAssertNotNil(campaignResponse)
             XCTAssertEqual(true, success)
         }
     }
     
-    func test_AddCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
+    func addCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
         ApplicationManager.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addcartResponse in
             XCTAssertNotNil(addcartResponse)
             XCTAssertEqual(true, success)
@@ -98,12 +127,17 @@ final class CustomerGluTests: XCTestCase {
         }
     }
     
+    func test_getReferralId() {
+        let userId = CustomerGlu.getInstance.getReferralId(deepLink: URL(string: "https://modpod.page.link/campaign?userId=TestUserId")!)
+        XCTAssertEqual(userId, "TestUserId")
+    }
+    
     func test_openWallet_Method() {
         CustomerGlu.getInstance.openWallet()
-        guard let topController = UIViewController.topViewController() else {
-            return
-        }
-        XCTAssertNotNil(topController.isKind(of: CustomerWebViewController.self))
+//        guard let topController = UIViewController.topViewController() else {
+//            return
+//        }
+//        XCTAssertNotNil(topController.isKind(of: CustomerWebViewController.self))
     }
     
     func test_loadingStoryBoardLoadAllCampaignViewController() {
@@ -111,19 +145,7 @@ final class CustomerGluTests: XCTestCase {
         storyboardVC.loadViewIfNeeded()
         XCTAssertNotNil(storyboardVC.tblRewardList)
     }
-    
-    func test_loadingStoryBoardOpenWalletViewController() {
-         let storyboardVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
-        storyboardVC.loadViewIfNeeded()
-        XCTAssertNotNil(storyboardVC.viewDidLoad)
-    }
-        
-    func test_clearGluData_method() {
-        CustomerGlu.getInstance.clearGluData()
-        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID))
-        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN))
-    }
-    
+            
     func test_BaseUrl() {
         let url = ApplicationManager.baseUrl
         XCTAssertEqual(url, "api.customerglu.com/")
@@ -160,5 +182,28 @@ final class CustomerGluTests: XCTestCase {
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func test_customerGluDidCatchCrash() {
+        let dict = MockData.mockDataForCrash
+        ApplicationManager.callCrashReport(stackTrace: dict["callStack"]!, isException: true, methodName: "CustomerGluCrash")
+    }
+    
+    func test_loadingStoryBoardOpenWalletViewController() {
+        let storyboardVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
+        storyboardVC.loadViewIfNeeded()
+        XCTAssertNotNil(storyboardVC.viewDidLoad)
+    }
+    
+    func test_loadingStoryBoardWebViewViewController() {
+        let storyboardVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+        storyboardVC.loadViewIfNeeded()
+        XCTAssertNotNil(storyboardVC.viewDidLoad)
+    }
+  
+    func test_clearGluData_method() {
+        CustomerGlu.getInstance.clearGluData()
+        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID))
+        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN))
     }
 }

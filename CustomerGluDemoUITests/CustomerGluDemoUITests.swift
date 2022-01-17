@@ -28,7 +28,7 @@ class CustomerGluDemoUITests: XCTestCase {
         usernameTextField.tap()
         usernameTextField.typeText(validUserName)
             
-        app.buttons["SUBMIT"].tap()
+       // app.buttons["SUBMIT"].tap()
 
        // app.buttons["Wallet"].tap()
         

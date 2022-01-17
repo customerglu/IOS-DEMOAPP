@@ -249,6 +249,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             } else {
                 print("userId if required")
             }
+            completion(false, nil)
             return
         }
         var userData = userdata
@@ -303,6 +304,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             } else {
                 print("Please registered first")
             }
+            completion(false, nil)
             return
         }
         
