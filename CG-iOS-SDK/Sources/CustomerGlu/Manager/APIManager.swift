@@ -51,11 +51,16 @@ private struct BaseUrls {
 // Class contain Helper Methods Used in Overall Application Related to API Calls
 class APIManager {
     
+    public var session: URLSession
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+    
     // Singleton Instance
     static let shared = APIManager()
     
     private static func performRequest<T: Decodable>(baseurl: String, methodandpath: MethodandPath, parametersDict: NSDictionary?, completion: @escaping (Result<T, Error>) -> Void) {
-
+        
         var urlRequest: URLRequest!
         var url: URL!
         let strUrl = "https://" + baseurl
@@ -73,7 +78,7 @@ class APIManager {
             urlRequest.setValue("\(APIParameterKey.bearer) " + UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!, forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
             urlRequest.setValue(Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String, forHTTPHeaderField: HTTPHeaderField.xapikey.rawValue)
         }
-       
+        
         if parametersDict!.count > 0 { // Check Parameters & Move Accordingly
             print(parametersDict as Any)
             if methodandpath.method == "GET" {
@@ -91,18 +96,14 @@ class APIManager {
             }
         }
         
-        // Mock Env for Unit Testing
-        let enviroment = ProcessInfo.processInfo.environment["ENV"]
-        if enviroment == "TEST" {
-            var data = Data()
-            if T.self == RegistrationModel.self {
-                data = MockData.loginResponse.data(using: .utf8)!
-            } else if T.self == CampaignsModel.self {
-                data = MockData.walletResponse.data(using: .utf8)!
-            } else if T.self == AddCartModel.self {
-                data = MockData.addcartResponse.data(using: .utf8)!
+        let task = shared.session.dataTask(with: urlRequest) { data, response, error in
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 401 {
+                    resetDefaults()
+                    return
+                }
             }
-            
+            guard let data = data, error == nil else { return }
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
                 // Get JSON, Clean it and Convert to Object
@@ -113,28 +114,8 @@ class APIManager {
             } catch let error as NSError {
                 print(error)
             }
-            
-        } else {
-            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-                if let httpResponse = response as? HTTPURLResponse {
-                    if httpResponse.statusCode == 401 {
-                        resetDefaults()
-                        return
-                    }
-                }
-                guard let data = data, error == nil else { return }
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
-                    // Get JSON, Clean it and Convert to Object
-                    let JSON = json
-                    JSON?.printJson()
-                    let cleanedJSON = cleanJSON(json: JSON!, isReturn: true)
-                    dictToObject(dict: cleanedJSON, type: T.self, completion: completion)
-                } catch let error as NSError {
-                    print(error)
-                }
-            }.resume()
         }
+        task.resume()
     }
     
     static func userRegister(queryParameters: NSDictionary, completion: @escaping (Result<RegistrationModel, Error>) -> Void) {
@@ -222,6 +203,42 @@ class APIManager {
         let dictionary = defaults.dictionaryRepresentation()
         dictionary.keys.forEach { key in
             defaults.removeObject(forKey: key)
+        }
+    }
+}
+
+// We create a partial mock by subclassing the original class
+class URLSessionDataTaskMock: URLSessionDataTask {
+    private let closure: () -> Void
+    
+    init(closure: @escaping () -> Void) {
+        self.closure = closure
+    }
+    
+    // We override the 'resume' method and simply call our closure
+    // instead of actually resuming any task.
+    override func resume() {
+        closure()
+    }
+}
+
+class URLSessionMock: URLSession {
+    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
+    
+    // Properties that enable us to set exactly what data or error
+    // we want our mocked URLSession to return for any request.
+    var data: Data?
+    var error: Error?
+    
+    override func dataTask(
+        with url: URLRequest,
+        completionHandler: @escaping CompletionHandler
+    ) -> URLSessionDataTask {
+        let data = self.data
+        let error = self.error
+        
+        return URLSessionDataTaskMock {
+            completionHandler(data, nil, error)
         }
     }
 }

@@ -10,58 +10,28 @@ final class CustomerGluTests: XCTestCase {
         XCTAssertEqual(CustomerGlu.getInstance.apnToken, "")
     }
     
-    func test_disableGluSdk_Method() {
+    func disableGluSdk_Method() {
         CustomerGlu.getInstance.disableGluSdk(disable: true)
         XCTAssertEqual(CustomerGlu.sdk_disable, true)
+    }
         
-        loginApiResource_With_DisableSdk_Returns_NilResponse()
-        updateProfileResource_With_DisableSdk_Returns_NilResponse()
-        loadCampaignById()
-        loadCampaignsByType()
-        loadCampaignByStatus()
-        openWallet_Method()
-    }
-    
-    func loginApiResource_With_DisableSdk_Returns_NilResponse() {
-        //Arrange
-        var userData = [String: AnyHashable]()
-        userData["userId"] = "TestUserId"
-        
-        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { (success, loginResponse) in
-            XCTAssertNil(loginResponse)
-            XCTAssertEqual(false, success)
-        }
-    }
-    
-    func updateProfileResource_With_DisableSdk_Returns_NilResponse() {
-        //Arrange
-        var userData = [String: AnyHashable]()
-        userData["userId"] = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
-                
-        CustomerGlu.getInstance.updateProfile(userdata: userData) { (success, loginResponse) in
-            XCTAssertNil(loginResponse)
-            XCTAssertEqual(false, success)
-        }
-    }
-    
-    func test_enableGluSdk_Method() {
+    func enableGluSdk_Method() {
         CustomerGlu.getInstance.disableGluSdk(disable: false)
         XCTAssertEqual(CustomerGlu.sdk_disable, false)
-        
-        loginApiResource_With_ValidRequest_Returns_ValidResponse()
-        updateProfileResource_With_ValidRequest_Returns_ValidResponse()
-        loadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse()
-        addCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse()
-        loadCampaignById()
-        loadCampaignsByType()
-        loadCampaignByStatus()
-        openWallet_Method()
     }
     
-    func loginApiResource_With_ValidRequest_Returns_ValidResponse() {
+    func test_loginApiResource_With_ValidRequest_Returns_ValidResponse() {
+      
+        enableGluSdk_Method()
+        
         //Arrange
         var userData = [String: AnyHashable]()
         userData["userId"] = "TestUserId"
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.loginResponse.data(using: .utf8)!
+        APIManager.shared.session = session
                 
         CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { (success, loginResponse) in
             XCTAssertNotNil(loginResponse)
@@ -71,10 +41,36 @@ final class CustomerGluTests: XCTestCase {
         }
     }
     
-    func updateProfileResource_With_ValidRequest_Returns_ValidResponse() {
+    func test_loginApiResource_With_DisableSdk_Returns_NilResponse() {
+        disableGluSdk_Method()
+        
+        //Arrange
+        var userData = [String: AnyHashable]()
+        userData["userId"] = "TestUserId"
+
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.loginResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+
+        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { (success, loginResponse) in
+            XCTAssertNil(loginResponse)
+            XCTAssertEqual(false, success)
+        }
+    }
+    
+    func test_updateProfileResource_With_ValidRequest_Returns_ValidResponse() {
+        
+        enableGluSdk_Method()
+        
         //Arrange
         var userData = [String: AnyHashable]()
         userData["userId"] = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)!
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.loginResponse.data(using: .utf8)!
+        APIManager.shared.session = session
                 
         CustomerGlu.getInstance.updateProfile(userdata: userData) { (success, loginResponse) in
             XCTAssertNotNil(loginResponse)
@@ -84,18 +80,178 @@ final class CustomerGluTests: XCTestCase {
         }
     }
     
-    func loadAllCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
-        ApplicationManager.loadAllCampaignsApi(type: "", value: "", loadByparams: [:]) { (success, campaignResponse) in
-            XCTAssertNotNil(campaignResponse)
-            XCTAssertEqual(true, success)
+    func test_updateProfileResource_With_DisableSdk_Returns_NilResponse() {
+        disableGluSdk_Method()
+                
+        //Arrange
+        var userData = [String: AnyHashable]()
+        userData["userId"] = UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID)
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.loginResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+
+        CustomerGlu.getInstance.updateProfile(userdata: userData) { (success, loginResponse) in
+            XCTAssertNil(loginResponse)
+            XCTAssertEqual(false, success)
         }
     }
     
-    func addCartCampaignApiResource_With_ValidRequest_Returns_ValidResponse() {
-        ApplicationManager.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"]) { success, addcartResponse in
-            XCTAssertNotNil(addcartResponse)
-            XCTAssertEqual(true, success)
-        }
+    func test_openWallet_Method() {
+        
+        enableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.openWallet()
+    }
+    
+    func test_openWallet_Method_With_DisableSDK() {
+        
+        disableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.openWallet()
+    }
+    
+    func test_loadAllCampaigns() {
+        enableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadAllCampaigns()
+    }
+    
+    func test_loadAllCampaigns_With_DisableSDK() {
+        disableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadAllCampaigns()
+    }
+    
+    func test_addCartCampaign() {
+        enableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.addcartResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"])
+    }
+    
+    func test_addCartCampaign_With_DisableSDK() {
+        disableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.addcartResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.sendEventData(eventName: "completePurchase", eventProperties: ["state": "1"])
+    }
+    
+    func test_loadCampaignById() {
+        enableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignById(campaign_id: "c8173e2f-7d11-40c8-843a-17d345792d30")
+    }
+    
+    func test_loadCampaignById_With_DisableSDK() {
+        disableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignById(campaign_id: "c8173e2f-7d11-40c8-843a-17d345792d30")
+    }
+    
+    func test_loadCampaignsByType() {
+        enableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignsByType(type: "slotmachine")
+    }
+    
+    func test_loadCampaignsByType_With_DisableSDK() {
+        disableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignsByType(type: "slotmachine")
+    }
+    
+    func test_loadCampaignByStatus() {
+        enableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignByStatus(status: "pristine")
+    }
+    
+    func test_loadCampaignByStatus_With_DisableSDK() {
+        disableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignByStatus(status: "pristine")
+    }
+    
+    func test_loadCampaignByFilter() {
+        enableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignByFilter(parameters: ["type": "slotmachine"])
+    }
+    
+    func test_loadCampaignByFilter_With_DisableSDK() {
+        disableGluSdk_Method()
+        
+        let session = URLSessionMock()
+        // Create data and tell the session to always return it
+        session.data = MockData.walletResponse.data(using: .utf8)!
+        APIManager.shared.session = session
+        
+        CustomerGlu.getInstance.loadCampaignByFilter(parameters: ["type": "slotmachine"])
     }
       
     func test_doValidateToken() {
@@ -138,10 +294,6 @@ final class CustomerGluTests: XCTestCase {
     func test_getReferralId() {
         let userId = CustomerGlu.getInstance.getReferralId(deepLink: URL(string: "https://modpod.page.link/campaign?userId=TestUserId")!)
         XCTAssertEqual(userId, "TestUserId")
-    }
-    
-    func openWallet_Method() {
-        CustomerGlu.getInstance.openWallet()
     }
     
     func test_loadingStoryBoardLoadAllCampaignViewController() {
@@ -204,29 +356,21 @@ final class CustomerGluTests: XCTestCase {
         storyboardVC.loadViewIfNeeded()
         XCTAssertNotNil(storyboardVC.viewDidLoad)
     }
-    
-    func loadCampaignById() {
-        CustomerGlu.getInstance.loadCampaignById(campaign_id: "c8173e2f-7d11-40c8-843a-17d345792d30")
-    }
-    
-    func loadCampaignsByType() {
-        CustomerGlu.getInstance.loadCampaignsByType(type: "slotmachine")
-    }
-    
-    func loadCampaignByStatus() {
-        CustomerGlu.getInstance.loadCampaignByStatus(status: "pristine")
-    }
-    
-    func test_LoadCustomerWebViewVC(){
+        
+    func test_LoadCustomerWebViewVC() {
         let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
         customerWebViewVC.urlStr = "https://stackoverflow.com/questions/47281375/convert-json-string-to-json-object-in-swift-4"
         customerWebViewVC.openWallet = true
         customerWebViewVC.loadViewIfNeeded()
     }
-  
-    func test_clearGluData_method() {
-        CustomerGlu.getInstance.clearGluData()
-        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID))
-        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN))
+    
+    func test_PushNotification() {
+       // CustomerGlu.getInstance.cgapplication(UIApplication, didReceiveRemoteNotification: userInfo, backgroundAlpha: 0.5, fetchCompletionHandler: completionHandler)
     }
+  
+//    func test_clearGluData_method() {
+//        CustomerGlu.getInstance.clearGluData()
+//        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID))
+//        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN))
+//    }
 }
