@@ -365,7 +365,9 @@ final class CustomerGluTests: XCTestCase {
     }
     
     func test_PushNotification() {
-       // CustomerGlu.getInstance.cgapplication(UIApplication, didReceiveRemoteNotification: userInfo, backgroundAlpha: 0.5, fetchCompletionHandler: completionHandler)
+        enableGluSdk_Method()
+        let userInfo = OtherUtils.shared.convertToDictionary(text: MockData.mockDataForNotification)
+        CustomerGlu.getInstance.cgapplication(MockData.mockapplication, didReceiveRemoteNotification: userInfo!, backgroundAlpha: 0.5, fetchCompletionHandler: {_ in })
     }
   
 //    func test_clearGluData_method() {
