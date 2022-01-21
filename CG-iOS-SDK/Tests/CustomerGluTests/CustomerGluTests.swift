@@ -364,12 +364,30 @@ final class CustomerGluTests: XCTestCase {
         customerWebViewVC.loadViewIfNeeded()
     }
     
-    func test_PushNotification() {
+    func test_bottom_default_Nudge() {
         enableGluSdk_Method()
-        let userInfo = OtherUtils.shared.convertToDictionary(text: MockData.mockDataForNotification)
+        let userInfo = OtherUtils.shared.convertToDictionary(text: MockData.mockDataFor_bottom_default_Nudge)
         CustomerGlu.getInstance.cgapplication(MockData.mockapplication, didReceiveRemoteNotification: userInfo!, backgroundAlpha: 0.5, fetchCompletionHandler: {_ in })
     }
   
+    func test_middle_default_Nudge() {
+        enableGluSdk_Method()
+        let userInfo = OtherUtils.shared.convertToDictionary(text: MockData.mockDataFor_middle_default_Nudge)
+        CustomerGlu.getInstance.cgapplication(MockData.mockapplication, didReceiveRemoteNotification: userInfo!, backgroundAlpha: 0.5, fetchCompletionHandler: {_ in })
+    }
+    
+    func test_bottom_slider_Nudge() {
+        enableGluSdk_Method()
+        let userInfo = OtherUtils.shared.convertToDictionary(text: MockData.mockDataFor_bottom_slider_Nudge)
+        CustomerGlu.getInstance.cgapplication(MockData.mockapplication, didReceiveRemoteNotification: userInfo!, backgroundAlpha: 0.5, fetchCompletionHandler: {_ in })
+    }
+    
+    func test_full_default_Nudge() {
+        enableGluSdk_Method()
+        let userInfo = OtherUtils.shared.convertToDictionary(text: MockData.mockDataFor_full_default_Nudge)
+        CustomerGlu.getInstance.cgapplication(MockData.mockapplication, didReceiveRemoteNotification: userInfo!, backgroundAlpha: 0.5, fetchCompletionHandler: {_ in })
+    }
+    
 //    func test_clearGluData_method() {
 //        CustomerGlu.getInstance.clearGluData()
 //        XCTAssertNil(UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_USERID))
