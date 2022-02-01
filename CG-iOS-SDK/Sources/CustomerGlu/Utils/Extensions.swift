@@ -29,6 +29,10 @@ extension String {
     func replace(string: String, replacement: String) -> String {
         return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
     }
+    
+    func trimSpace() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 extension UIViewController {

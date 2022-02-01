@@ -60,7 +60,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             self.view.addGestureRecognizer(tap)
             
-            let height = (self.view.frame.height - (topHeight.constant + bottomHeight.constant)) / 1.4
+            let height = (self.view.frame.height) / 1.4
             if ismiddle {
                 webView = WKWebView(frame: CGRect(x: 20, y: (self.view.frame.height - height)/2, width: self.view.frame.width - 40, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
@@ -82,6 +82,8 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         } else if iscampignId {
             CustomerGlu.getInstance.loaderShow(withcoordinate: x, y: y)
             
+            campaign_id = campaign_id.trimSpace()
+            
             ApplicationManager.loadAllCampaignsApi(type: "", value: campaign_id, loadByparams: [:]) { success, campaignsModel in
                 if success {
                     CustomerGlu.getInstance.loaderHide()
@@ -91,6 +93,17 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                         DispatchQueue.main.async {
                             self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (self.topHeight.constant + self.bottomHeight.constant)), configuration: config) //set your own frame
                             self.setwebView(url: filteredArray[0].url, x: x, y: y)
+                        }
+                    } else {
+                        let userDefaults = UserDefaults.standard
+                        do {
+                            let campaignsModel = try userDefaults.getObject(forKey: Constants.WalletRewardData, castTo: CampaignsModel.self)
+                            DispatchQueue.main.async { [self] in // Make sure you're on the main thread here
+                                self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (self.topHeight.constant + self.bottomHeight.constant)), configuration: config) //set your own frame
+                                self.setwebView(url: campaignsModel.defaultUrl, x: x, y: y)
+                            }
+                        } catch {
+                            print(error.localizedDescription)
                         }
                     }
                 } else {
@@ -108,7 +121,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
     }
-    
+        
     func setwebView(url: String, x: CGFloat, y: CGFloat) {
         webView.navigationDelegate = self
         if url != "" || !url.isEmpty {
