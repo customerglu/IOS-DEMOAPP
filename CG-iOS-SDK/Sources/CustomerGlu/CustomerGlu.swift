@@ -19,6 +19,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public static var defaultBannerUrl = ""
     public static var arrColor = [UIColor.black]
     public static var auto_close_webview: Bool? = true
+    public static var topSafeAreaHeight = 44
+    public static var bottomSafeAreaHeight = 34
+    public static var topSafeAreaColor = UIColor.white
+    public static var bottomSafeAreaColor = UIColor.white
     
     private override init() {
         super.init()
@@ -499,5 +503,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 print("error")
             }
         }
+    }
+    
+    public func configureSafeArea(topHeight: Int, bottomHeight: Int, topSafeAreaColor: UIColor, bottomSafeAreaColor: UIColor) {
+        CustomerGlu.topSafeAreaHeight = topHeight
+        CustomerGlu.bottomSafeAreaHeight = bottomHeight
+        CustomerGlu.topSafeAreaColor = topSafeAreaColor
+        CustomerGlu.bottomSafeAreaColor = bottomSafeAreaColor
     }
 }

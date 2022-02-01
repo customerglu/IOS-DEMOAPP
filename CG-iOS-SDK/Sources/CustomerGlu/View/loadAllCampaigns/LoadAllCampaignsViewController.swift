@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by kapil on 09/11/21.
 //
@@ -11,6 +11,11 @@ import UIKit
 public class LoadAllCampaignsViewController: UIViewController {
         
     public static let storyboardVC = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+    
+    @IBOutlet weak var topSafeArea: UIView!
+    @IBOutlet weak var bottomSafeArea: UIView!
+    @IBOutlet weak var topHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomHeight: NSLayoutConstraint!
 
     @IBOutlet weak var tblRewardList: UITableView!
     var campaigns: [Campaigns] = []
@@ -25,6 +30,11 @@ public class LoadAllCampaignsViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
+        bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
+        topSafeArea.backgroundColor = CustomerGlu.topSafeAreaColor
+        bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
                 
         if ApplicationManager.doValidateToken() == true {
             getCampaign()
@@ -128,5 +138,4 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-   
 }
