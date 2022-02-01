@@ -26,7 +26,6 @@
 		1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */; };
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
-		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
 		82582BF327425A7800215EF8 /* CustomerWebviewUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */; };
 		82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */; };
 		82771B8A273AB3EE0097FED9 /* RewardUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82771B89273AB3EE0097FED9 /* RewardUIKit.swift */; };
@@ -55,7 +54,6 @@
 
 /* Begin PBXFileReference section */
 		1827E7682726C09D00A7B38B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		188DE0912726CAA6002DA85D /* CG-iOS-SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CG-iOS-SDK"; sourceTree = "<group>"; };
 		1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomerGluDemo.entitlements; sourceTree = "<group>"; };
 		1B3A357426B7C57500A2C713 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomerGluDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +73,7 @@
 		1B77ADBF26CBE05B0086859F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
+		82004A6527A92ECF00F0CA8E /* CG-iOS-SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CG-iOS-SDK"; sourceTree = "<group>"; };
 		82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerWebviewUIKit.swift; sourceTree = "<group>"; };
 		82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITests.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -93,7 +92,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
-				1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */,
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
 				BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */,
@@ -128,7 +126,7 @@
 		1B3D7CA726A6BDDC00EA1587 = {
 			isa = PBXGroup;
 			children = (
-				188DE0912726CAA6002DA85D /* CG-iOS-SDK */,
+				82004A6527A92ECF00F0CA8E /* CG-iOS-SDK */,
 				1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */,
 				82699B0A278715AA0020D2B4 /* CustomerGluDemoUITests */,
 				82875A6C27883979005EC40D /* CustomerGluDemoTests */,
@@ -257,7 +255,6 @@
 				1B77ADB726CBDF100086859F /* FirebaseAnalytics */,
 				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
 				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
-				1BDFB29D2727CB870095CF4E /* CustomerGlu */,
 			);
 			productName = CustomerGluDemo;
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
@@ -815,10 +812,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
-		};
-		1BDFB29D2727CB870095CF4E /* CustomerGlu */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CustomerGlu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

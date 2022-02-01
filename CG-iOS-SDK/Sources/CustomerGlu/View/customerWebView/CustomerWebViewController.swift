@@ -16,7 +16,12 @@ protocol CustomerGluWebViewDelegate: AnyObject {
 public class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
         
     public static let storyboardVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-
+    
+    @IBOutlet weak var topSafeArea: UIView!
+    @IBOutlet weak var bottomSafeArea: UIView!
+    @IBOutlet weak var topHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomHeight: NSLayoutConstraint!
+    
     var webView = WKWebView()
     public var urlStr = ""
     var openWallet = false
@@ -42,6 +47,11 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     
         let x = self.view.frame.midX - 30
         var y = self.view.frame.midY - 30
+                
+        topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
+        bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
+        topSafeArea.backgroundColor = CustomerGlu.topSafeAreaColor
+        bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
 
         if notificationHandler {
             let black = UIColor.black
@@ -50,7 +60,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             self.view.addGestureRecognizer(tap)
             
-            let height = self.view.frame.height / 1.4
+            let height = (self.view.frame.height - (topHeight.constant + bottomHeight.constant)) / 1.4
             if ismiddle {
                 webView = WKWebView(frame: CGRect(x: 20, y: (self.view.frame.height - height)/2, width: self.view.frame.width - 40, height: height), configuration: config) //set your own frame
                 webView.layer.cornerRadius = 20
@@ -65,10 +75,9 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
                 y = self.view.frame.midY - 30
             } else {
-                webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
+                webView = WKWebView(frame: CGRect(x: 0, y: topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (topHeight.constant + bottomHeight.constant)), configuration: config) //set your own frame
                 y = self.view.frame.midY - 30
             }
-            webView.scrollView.contentInsetAdjustmentBehavior = .never
             setwebView(url: urlStr, x: x, y: y)
         } else if iscampignId {
             CustomerGlu.getInstance.loaderShow(withcoordinate: x, y: y)
@@ -80,7 +89,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                     let filteredArray = campaigns.filter({($0.campaignId.localizedCaseInsensitiveContains(self.campaign_id))})
                     if filteredArray.count > 0 {
                         DispatchQueue.main.async {
-                            self.webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
+                            webView = WKWebView(frame: CGRect(x: 0, y: topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (topHeight.constant + bottomHeight.constant)), configuration: config) //set your own frame
                             self.setwebView(url: filteredArray[0].url, x: x, y: y)
                         }
                     }
@@ -90,9 +99,10 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 }
             }
         } else {
-            webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), configuration: config) //set your own frame
+            webView = WKWebView(frame: CGRect(x: 0, y: topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (topHeight.constant + bottomHeight.constant)), configuration: config) //set your own frame
             setwebView(url: urlStr, x: x, y: y)
         }
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
     }
     
     public override func viewWillAppear(_ animated: Bool) {

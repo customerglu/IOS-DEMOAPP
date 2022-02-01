@@ -11,6 +11,11 @@ import UIKit
 public class LoadAllCampaignsViewController: UIViewController {
         
     public static let storyboardVC = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+    
+    @IBOutlet weak var topSafeArea: UIView!
+    @IBOutlet weak var bottomSafeArea: UIView!
+    @IBOutlet weak var topHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomHeight: NSLayoutConstraint!
 
     @IBOutlet weak var tblRewardList: UITableView!
     var campaigns: [Campaigns] = []
@@ -25,6 +30,11 @@ public class LoadAllCampaignsViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
+        bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
+        topSafeArea.backgroundColor = CustomerGlu.topSafeAreaColor
+        bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
                 
         if ApplicationManager.doValidateToken() == true {
             getCampaign()
@@ -117,16 +127,17 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Deselect Table Row
-        tableView.deselectRow(at: indexPath, animated: true)
-        if campaigns.count != 0 {
-            let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
-            customerWebViewVC.urlStr = campaigns[indexPath.row].url
-            self.navigationController?.pushViewController(customerWebViewVC, animated: true)
-        }
+        CustomerGlu.getInstance.presentToCustomerWebViewController(nudge_url: "https://stackoverflow.com/questions/43714948/draggable-uiview-swift-3", page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: 0.5)
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        if campaigns.count != 0 {
+//            let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+//            customerWebViewVC.urlStr = campaigns[indexPath.row].url
+//            self.navigationController?.pushViewController(customerWebViewVC, animated: true)
+//        }
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-   
+
 }

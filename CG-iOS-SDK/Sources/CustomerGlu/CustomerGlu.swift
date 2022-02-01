@@ -19,6 +19,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public static var defaultBannerUrl = ""
     public static var arrColor = [UIColor.black]
     public static var auto_close_webview: Bool? = true
+    public static var topSafeAreaHeight = 44
+    public static var bottomSafeAreaHeight = 34
+    public static var topSafeAreaColor = UIColor.white
+    public static var bottomSafeAreaColor = UIColor.white
     
     private override init() {
         super.init()
@@ -172,7 +176,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
     }
     
-    private func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
+    public func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
         
         let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
         customerWebViewVC.urlStr = nudge_url
@@ -499,5 +503,22 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 print("error")
             }
         }
+    }
+    
+    public func addBannerView(frame: CGRect) {
+        DispatchQueue.main.async {
+            guard let topController = UIViewController.topViewController() else {
+                return
+            }
+            let bannerView = BannerView(frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: topController.view.frame.size.width, height: frame.height))
+            topController.view.addSubview(bannerView)
+        }
+    }
+    
+    public func configureSafeArea(topHeight: Int, bottomHeight: Int, topSafeAreaColor: UIColor, bottomSafeAreaColor: UIColor) {
+        CustomerGlu.topSafeAreaHeight = topHeight
+        CustomerGlu.bottomSafeAreaHeight = bottomHeight
+        CustomerGlu.topSafeAreaColor = topSafeAreaColor
+        CustomerGlu.bottomSafeAreaColor = bottomSafeAreaColor
     }
 }
