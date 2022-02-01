@@ -35,6 +35,24 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     public var alpha = 0.0
     var campaign_id = ""
     
+    public func configureSafeAreaForDevices(){
+        
+        let window = UIApplication.shared.keyWindow
+        let topPadding = (window?.safeAreaInsets.top)!
+        let bottomPadding = (window?.safeAreaInsets.bottom)!
+        
+        if(topPadding <= 20 || bottomPadding < 20){
+            CustomerGlu.topSafeAreaHeight = 20
+            CustomerGlu.bottomSafeAreaHeight = 0
+            CustomerGlu.topSafeAreaColor = UIColor.clear
+        }
+        
+        topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
+        bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
+        topSafeArea.backgroundColor = CustomerGlu.topSafeAreaColor
+        bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,12 +65,10 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
     
         let x = self.view.frame.midX - 30
         var y = self.view.frame.midY - 30
-                
-        topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
-        bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
-        topSafeArea.backgroundColor = CustomerGlu.topSafeAreaColor
-        bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
 
+
+        self.configureSafeAreaForDevices()
+        
         if notificationHandler {
             topHeight.constant = CGFloat(0.0)
             bottomHeight.constant = CGFloat(0.0)

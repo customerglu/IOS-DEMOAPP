@@ -27,14 +27,29 @@ public class LoadAllCampaignsViewController: UIViewController {
     // MARK: - Variables
     private var loadAllCampaignsViewModel = LoadAllCampaignsViewModel()
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: false)
+    public func configureSafeAreaForDevices(){
+        
+        let window = UIApplication.shared.keyWindow
+        let topPadding = (window?.safeAreaInsets.top)!
+        let bottomPadding = (window?.safeAreaInsets.bottom)!
+        
+        if(topPadding <= 20 || bottomPadding < 20){
+            CustomerGlu.topSafeAreaHeight = 20
+            CustomerGlu.bottomSafeAreaHeight = 0
+            CustomerGlu.topSafeAreaColor = UIColor.clear
+        }
         
         topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
         bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
         topSafeArea.backgroundColor = CustomerGlu.topSafeAreaColor
         bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        self.configureSafeAreaForDevices()
                 
         if ApplicationManager.doValidateToken() == true {
             getCampaign()
