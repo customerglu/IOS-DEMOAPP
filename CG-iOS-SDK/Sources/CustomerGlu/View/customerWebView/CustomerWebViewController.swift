@@ -54,6 +54,8 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
 
         if notificationHandler {
+            topHeight.constant = CGFloat(0.0)
+            bottomHeight.constant = CGFloat(0.0)
             let black = UIColor.black
             let blackTrans = UIColor.withAlphaComponent(black)(CGFloat(alpha))
             self.view.backgroundColor = blackTrans
@@ -75,6 +77,8 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
                 y = self.view.frame.midY - 30
             } else {
+                topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
+                bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
                 webView = WKWebView(frame: CGRect(x: 0, y: topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (topHeight.constant + bottomHeight.constant)), configuration: config) //set your own frame
                 y = self.view.frame.midY - 30
             }
