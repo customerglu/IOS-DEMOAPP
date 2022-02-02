@@ -176,7 +176,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
     }
     
-    private func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
+    public func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
         
         let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
         customerWebViewVC.urlStr = nudge_url
@@ -510,5 +510,25 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         CustomerGlu.bottomSafeAreaHeight = bottomHeight
         CustomerGlu.topSafeAreaColor = topSafeAreaColor
         CustomerGlu.bottomSafeAreaColor = bottomSafeAreaColor
+    }
+    
+    public func addBannerView(frame: CGRect) {
+        DispatchQueue.main.async {
+            guard let topController = UIViewController.topViewController() else {
+                return
+            }
+            let bannerView = BannerView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: frame.height))
+            topController.view.addSubview(bannerView)
+        }
+    }
+    
+    public func addDragabbleView(frame: CGRect) {
+        DispatchQueue.main.async {
+            let dragView = DraggableView(height: 55, width: 120, alignDirection: .right, url: "https://i.gifer.com/origin/41/41297901c13bc7325dc7a17bba585ff9_w200.gif")
+            guard let topController = UIViewController.topViewController() else {
+                return
+            }
+            topController.view.addSubview(dragView)
+        }
     }
 }

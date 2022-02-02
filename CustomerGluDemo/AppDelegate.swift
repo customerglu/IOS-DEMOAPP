@@ -72,8 +72,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
         CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
         CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
-
-        CustomerGlu.getInstance.loadCampaignById(campaign_id: "dffdsfdsfd")
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

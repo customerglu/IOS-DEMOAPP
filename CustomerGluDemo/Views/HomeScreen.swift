@@ -70,7 +70,8 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
-
+                customerglu.addDragabbleView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
+                customerglu.addBannerView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
             })
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())

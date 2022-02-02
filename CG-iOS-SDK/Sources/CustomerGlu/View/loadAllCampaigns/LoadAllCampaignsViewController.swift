@@ -27,8 +27,7 @@ public class LoadAllCampaignsViewController: UIViewController {
     // MARK: - Variables
     private var loadAllCampaignsViewModel = LoadAllCampaignsViewModel()
     
-    public func configureSafeAreaForDevices(){
-        
+    public func configureSafeAreaForDevices() {
         let window = UIApplication.shared.keyWindow
         let topPadding = (window?.safeAreaInsets.top)!
         let bottomPadding = (window?.safeAreaInsets.bottom)!
