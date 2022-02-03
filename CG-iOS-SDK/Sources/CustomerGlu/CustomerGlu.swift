@@ -517,9 +517,14 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             guard let topController = UIViewController.topViewController() else {
                 return
             }
-            let bannerView = BannerView(frame: CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: frame.height))
+            let bannerView = BannerView(frame: CGRect(x: 0, y: 100, width: topController.view.frame.width, height: frame.height))
             topController.view.addSubview(bannerView)
         }
+    }
+    
+    public func addBannerViewNew(frame: CGRect) -> UIView {
+        let bannerView = BannerView(frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height))
+        return bannerView
     }
     
     public func addDragabbleView(frame: CGRect) {

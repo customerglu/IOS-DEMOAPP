@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CustomerGlu
 
 @ViewBuilder func productCard(image: String, title: String) -> some View {
     

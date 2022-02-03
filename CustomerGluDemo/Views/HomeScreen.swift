@@ -53,12 +53,16 @@ struct HomeScreen: View {
                         productCard(image: "coin", title: "Rewards")
                     }
                 }.padding(.horizontal, 10)
+                ZStack() {
+                    Color.clear
+                    BannerViewAdd()
+                }.frame(width: width - 30, height: 110)
+                    .navigationBarHidden(true)
                 HStack {
                     NavigationLink(
                         destination: ShopScreen(),
                         label: {
                             productCard(image: "shop", title: "Shop")
-                            
                         })
                     Spacer()
                     NavigationLink(
@@ -71,7 +75,6 @@ struct HomeScreen: View {
                 Spacer()
             }.onAppear(perform: {
                 customerglu.addDragabbleView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
-                customerglu.addBannerView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
             })
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())
@@ -83,5 +86,17 @@ struct HomeScreen: View {
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+    }
+}
+
+struct BannerViewAdd: UIViewRepresentable {
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        
+    }
+    
+    func makeUIView(context: Context) -> some UIView {
+        let view = UIView()
+        view.addSubview(CustomerGlu.getInstance.addBannerViewNew(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 110)))
+        return view
     }
 }

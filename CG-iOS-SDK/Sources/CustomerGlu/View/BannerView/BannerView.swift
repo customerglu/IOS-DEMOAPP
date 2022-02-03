@@ -31,8 +31,8 @@ public class BannerView: UIView, UIScrollViewDelegate {
     
     private func configure() {
         // imgView.downloadImage(urlString: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_1.png")
-        sliderImagesArray = ["https://images.unsplash.com/photo-1432679963831-2dab49187847?w=1080", "https://images.unsplash.com/photo-1447746249824-4be4e1b76d66?w=1080", "https://images.unsplash.com/photo-1463595373836-6e0b0a8ee322?w=1080"]
-       // ,"https://i.gifer.com/origin/41/41297901c13bc7325dc7a17bba585ff9_w200.gif"
+        sliderImagesArray = ["https://assets.customerglu.com/demo/quiz/banner-image/Quiz_1.png",
+                             "https://i.gifer.com/origin/41/41297901c13bc7325dc7a17bba585ff9_w200.gif"]
         
         imgScrollView.delegate = self
         for i in 0..<sliderImagesArray.count {
@@ -42,19 +42,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
             imageView.isUserInteractionEnabled = true
             imageView.tag = i
             let urlStr = sliderImagesArray.object(at: i)
-            
-            let imageExtensions = ["gif"]
-            // Iterate & match the URL objects from your checking results
-            let url: URL? = NSURL(fileURLWithPath: urlStr as! String) as URL
-            let pathExtention = url?.pathExtension
-            if imageExtensions.contains(pathExtention!) {
-                // Do something with it
-                let imageURL = UIImage.gifImageWithURL(urlStr as! String)
-                imageView = UIImageView(image: imageURL)
-            } else {
-                imageView.downloadImage(urlString: urlStr as! String)
-            }
-            
+            imageView.downloadImage(urlString: urlStr as! String)
             imageView.contentMode = .scaleToFill
             self.imgScrollView.addSubview(imageView)
             

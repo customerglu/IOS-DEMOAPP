@@ -40,16 +40,7 @@ public class DraggableView: UIView {
         backgroundColor = UIColor.clear
         
         imgView.frame = self.bounds
-        let imageExtensions = ["gif"]
-        let urlImg: URL? = NSURL(fileURLWithPath: url) as URL
-        let pathExtention = urlImg?.pathExtension
-        if imageExtensions.contains(pathExtention!) {
-            // Do something with it
-            let imageURL = UIImage.gifImageWithURL(url)
-            imgView = UIImageView(image: imageURL)
-        } else {
-            imgView.downloadImage(urlString: url)
-        }
+        imgView.downloadImage(urlString: url)
         imgView.contentMode = .scaleToFill
         imgView.clipsToBounds = true
         self.addSubview(imgView)
