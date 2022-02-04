@@ -74,7 +74,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         print(sender?.view?.tag ?? 0)
-        self.removeFromSuperview()
+//        self.removeFromSuperview()
         CustomerGlu.getInstance.presentToCustomerWebViewController(nudge_url: "https://stackoverflow.com/questions/43714948/draggable-uiview-swift-3", page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: 0.5)
     }
     

@@ -40,7 +40,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         let topPadding = (window?.safeAreaInsets.top)!
         let bottomPadding = (window?.safeAreaInsets.bottom)!
         
-        if(topPadding <= 20 || bottomPadding < 20){
+        if topPadding <= 20 || bottomPadding < 20 {
             CustomerGlu.topSafeAreaHeight = 20
             CustomerGlu.bottomSafeAreaHeight = 0
             CustomerGlu.topSafeAreaColor = UIColor.clear

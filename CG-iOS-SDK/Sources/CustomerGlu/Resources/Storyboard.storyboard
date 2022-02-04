@@ -73,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mM-XS-ad3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="837.68115942028987" y="52.901785714285715"/>
+            <point key="canvasLocation" x="652" y="44"/>
         </scene>
         <!--Load All Campaigns View Controller-->
         <scene sceneID="WZi-rN-Zgl">
@@ -175,7 +175,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QN3-0C-CBU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1617.3913043478262" y="54.910714285714285"/>
+            <point key="canvasLocation" x="1428" y="44"/>
+        </scene>
+        <!--Customer Image Nudge View Controller-->
+        <scene sceneID="S1Q-yB-OdH">
+            <objects>
+                <viewController storyboardIdentifier="CustomerImageNudgeViewController" id="Y7k-QA-aaq" customClass="CustomerImageNudgeViewController" customModule="CustomerGlu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="faZ-HE-hYR"/>
+                        <viewControllerLayoutGuide type="bottom" id="6tx-TF-nMz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ltg-6W-XOa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gu5-9R-DfR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="BSv-iU-VZI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdp-iA-4TG">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="R28-RG-RRr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="fdp-iA-4TG" firstAttribute="leading" secondItem="Ltg-6W-XOa" secondAttribute="leading" id="0mB-dg-3vW"/>
+                            <constraint firstItem="gu5-9R-DfR" firstAttribute="top" secondItem="Ltg-6W-XOa" secondAttribute="top" id="ANm-mC-Sru"/>
+                            <constraint firstItem="gu5-9R-DfR" firstAttribute="leading" secondItem="Ltg-6W-XOa" secondAttribute="leading" id="Fy6-u0-EoC"/>
+                            <constraint firstAttribute="trailing" secondItem="fdp-iA-4TG" secondAttribute="trailing" id="Gca-dY-NSW"/>
+                            <constraint firstAttribute="trailing" secondItem="gu5-9R-DfR" secondAttribute="trailing" id="IDL-je-w8w"/>
+                            <constraint firstAttribute="bottom" secondItem="fdp-iA-4TG" secondAttribute="bottom" id="KDT-YM-Yry"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomHeight" destination="R28-RG-RRr" id="KUc-cG-PdW"/>
+                        <outlet property="bottomSafeArea" destination="fdp-iA-4TG" id="UcC-kZ-SvE"/>
+                        <outlet property="topHeight" destination="BSv-iU-VZI" id="DnH-GX-Fvi"/>
+                        <outlet property="topSafeArea" destination="gu5-9R-DfR" id="b6F-PJ-0GE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yKP-Ls-bDC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2161" y="44"/>
         </scene>
     </scenes>
     <resources>
