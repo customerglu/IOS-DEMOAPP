@@ -23,7 +23,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CustomerGlu",
-            dependencies: []),
+            dependencies: [],
+            resources: [
+                .process("Resources")
+            ],
+            swiftSettings: [.define("SPM")]),
         .testTarget(
             name: "CustomerGluTests",
             dependencies: ["CustomerGlu"])

@@ -7,5 +7,5 @@ target 'CustomerGluDemo' do
 
   # Pods for CustomerGluDemo
     pod 'SwiftLint', '0.45.0'
-    pod 'CustomerGlu', :path => '/Users/kapil/Documents/Impedimed_Git/untitled folder/Wivi_Git/Gits/Customer/IOS-DEMOAPP/CG-iOS-SDK'
+    pod 'CustomerGlu', :path => 'CG-iOS-SDK'
 end

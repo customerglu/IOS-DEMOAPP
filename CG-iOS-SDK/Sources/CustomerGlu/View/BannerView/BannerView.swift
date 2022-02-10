@@ -11,10 +11,10 @@ import Foundation
 public class BannerView: UIView, UIScrollViewDelegate {
     
     var view = UIView()
-    var imgScrollView = UIScrollView()
     
+    @IBOutlet weak var imgScrollView: UIScrollView!
     var sliderImagesArray = NSMutableArray()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.clear
@@ -30,6 +30,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
     }
     
     private func configure() {
+        // imgView.downloadImage(urlString: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_1.png")
         sliderImagesArray = ["https://assets.customerglu.com/demo/quiz/banner-image/Quiz_1.png",
                              "https://i.gifer.com/origin/41/41297901c13bc7325dc7a17bba585ff9_w200.gif"]
         
@@ -73,20 +74,26 @@ public class BannerView: UIView, UIScrollViewDelegate {
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         print(sender?.view?.tag ?? 0)
-        //        self.removeFromSuperview()
-        CustomerGlu.getInstance.presentToCustomerWebViewController(nudge_url: "https://d3guhyj4wa8abr.cloudfront.net/reward/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJHZmhnaCIsImdsdUlkIjoiYmM5NTUxYTctMjcyZS00NjdlLTlhMGEtM2RiN2Y5NGY3NGFhIiwiY2xpZW50IjoiODRhY2YyYWMtYjJlMC00OTI3LTg2NTMtY2JhMmI4MzgxNmMyIiwiZGV2aWNlSWQiOiIyQzE0OTczQi0wQUQxLTQ4REMtODgwMS1BQkIyNjVFMkU2QkMiLCJkZXZpY2VUeXBlIjoiaW9zIiwiaWF0IjoxNjQ0NDk1MDc5LCJleHAiOjE2NzYwMzEwNzl9.whd0avkTiuNouAZCW36OTTUkoYYEwVDGYS7G0tbTSUw&rewardUserId=319e9c15-16cc-42b8-82db-d3dcd4414108", page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: 0.5)
+//        self.removeFromSuperview()
+        CustomerGlu.getInstance.presentToCustomerWebViewController(nudge_url: "https://stackoverflow.com/questions/43714948/draggable-uiview-swift-3", page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: 0.5)
     }
     
     // MARK: - Nib handlers
     private func xibSetup() {
+        view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
         // Adding custom subview on top of our view (over any custom drawing > see note below)
-        imgScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         imgScrollView.frame = bounds
         imgScrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(imgScrollView)
         addSubview(view)
+    }
+    
+    private func loadViewFromNib() -> UIView {
+        let nib = UINib(nibName: "BannerView", bundle: .module)
+        // Assumes UIView is top level and only object in CustomView.xib file
+        let view = nib.instantiate(withOwner: self, options: nil).first as? UIView
+        return view!
     }
 }

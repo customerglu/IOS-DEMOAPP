@@ -2,7 +2,7 @@
   "name": "CustomerGlu",
   "version": "1.0.3",
   "summary": "CustomerGlu",
-  "description": "A new CustomerGlu.",
+  "description": "s.resources = 'Sources/CustomerGlu/Resources/*.{png,jpeg,jpg,storyboard,xib,xcassets}'\n\n\n\nA new CustomerGlu.",
   "homepage": "https://github.com/customerglu/CG-iOS-SDK",
   "authors": {
     "CustomerGlu": "hitesh.landge@customerglu.net"

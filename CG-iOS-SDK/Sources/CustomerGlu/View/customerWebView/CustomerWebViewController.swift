@@ -14,11 +14,13 @@ protocol CustomerGluWebViewDelegate: AnyObject {
 }
 
 public class CustomerWebViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHandler {
-            
-    var topSafeArea = UIView()
-    var bottomSafeArea = UIView()
-    var topHeight = Int()
-    var bottomHeight = Int()
+        
+    public static let storyboardVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+    
+    @IBOutlet weak var topSafeArea: UIView!
+    @IBOutlet weak var bottomSafeArea: UIView!
+    @IBOutlet weak var topHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomHeight: NSLayoutConstraint!
     
     var webView = WKWebView()
     public var urlStr = ""
@@ -37,29 +39,23 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         let window = UIApplication.shared.keyWindow
         let topPadding = (window?.safeAreaInsets.top)!
         let bottomPadding = (window?.safeAreaInsets.bottom)!
-
+        
         if topPadding <= 20 || bottomPadding < 20 {
             CustomerGlu.topSafeAreaHeight = 20
             CustomerGlu.bottomSafeAreaHeight = 0
             CustomerGlu.topSafeAreaColor = UIColor.clear
         }
-
-        topHeight = CustomerGlu.topSafeAreaHeight
-        bottomHeight = CustomerGlu.bottomSafeAreaHeight
+        
+        topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
+        bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
         topSafeArea.backgroundColor = CustomerGlu.topSafeAreaColor
         bottomSafeArea.backgroundColor = CustomerGlu.bottomSafeAreaColor
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
-        self.view.backgroundColor = .white
-        
-        topSafeArea = UIView(frame: CGRect(x: 0, y: 0, width: Int(self.view.frame.width), height: topHeight))
-        self.view.addSubview(topSafeArea)
-        
-        bottomSafeArea = UIView(frame: CGRect(x: 0, y: Int(self.view.frame.height - CGFloat(bottomHeight)), width: Int(self.view.frame.width), height: bottomHeight))
-        self.view.addSubview(bottomSafeArea)
         
         let contentController = WKUserContentController()
         contentController.add(self, name: WebViewsKey.callback) //name is the key you want the app to listen to.
@@ -72,8 +68,8 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
         self.configureSafeAreaForDevices()
         
         if notificationHandler {
-            topHeight = 0
-            bottomHeight = 0
+            topHeight.constant = CGFloat(0.0)
+            bottomHeight.constant = CGFloat(0.0)
             let black = UIColor.black
             let blackTrans = UIColor.withAlphaComponent(black)(CGFloat(alpha))
             self.view.backgroundColor = blackTrans
@@ -95,9 +91,9 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: UIScreen.main.bounds.height), configuration: config) //set your own frame
                 y = self.view.frame.midY - 30
             } else {
-                topHeight = CustomerGlu.topSafeAreaHeight
-                bottomHeight = CustomerGlu.bottomSafeAreaHeight
-                webView = WKWebView(frame: CGRect(x: 0, y: topHeight, width: Int(self.view.frame.width), height: Int(self.view.frame.height) - (topHeight + bottomHeight)), configuration: config) //set your own frame
+                topHeight.constant = CGFloat(CustomerGlu.topSafeAreaHeight)
+                bottomHeight.constant = CGFloat(CustomerGlu.bottomSafeAreaHeight)
+                webView = WKWebView(frame: CGRect(x: 0, y: topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (topHeight.constant + bottomHeight.constant)), configuration: config) //set your own frame
                 y = self.view.frame.midY - 30
             }
             setwebView(url: urlStr, x: x, y: y)
@@ -113,7 +109,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                     let filteredArray = campaigns.filter({($0.campaignId.elementsEqual(self.campaign_id))})
                     if filteredArray.count > 0 {
                         DispatchQueue.main.async {
-                            self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight, width: Int(self.view.frame.width), height: Int(self.view.frame.height) - (self.topHeight + self.bottomHeight)), configuration: config) //set your own frame
+                            self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (self.topHeight.constant + self.bottomHeight.constant)), configuration: config) //set your own frame
                             self.setwebView(url: filteredArray[0].url, x: x, y: y)
                         }
                     } else {
@@ -121,7 +117,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                         do {
                             let campaignsModel = try userDefaults.getObject(forKey: Constants.WalletRewardData, castTo: CampaignsModel.self)
                             DispatchQueue.main.async { [self] in // Make sure you're on the main thread here
-                                self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight, width: Int(self.view.frame.width), height: Int(self.view.frame.height) - (self.topHeight + self.bottomHeight)), configuration: config) //set your own frame
+                                self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (self.topHeight.constant + self.bottomHeight.constant)), configuration: config) //set your own frame
                                 self.setwebView(url: campaignsModel.defaultUrl, x: x, y: y)
                             }
                         } catch {
@@ -134,7 +130,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 }
             }
         } else {
-            webView = WKWebView(frame: CGRect(x: 0, y: topHeight, width: Int(self.view.frame.width), height: Int(self.view.frame.height) - (topHeight + bottomHeight)), configuration: config) //set your own frame
+            webView = WKWebView(frame: CGRect(x: 0, y: topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (topHeight.constant + bottomHeight.constant)), configuration: config) //set your own frame
             setwebView(url: urlStr, x: x, y: y)
         }
         webView.scrollView.contentInsetAdjustmentBehavior = .never

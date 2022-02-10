@@ -3,7 +3,7 @@ PODS:
   - SwiftLint (0.45.0)
 
 DEPENDENCIES:
-  - CustomerGlu (from `/Users/kapil/Documents/Impedimed_Git/untitled folder/Wivi_Git/Gits/Customer/IOS-DEMOAPP/CG-iOS-SDK`)
+  - CustomerGlu (from `CG-iOS-SDK`)
   - SwiftLint (= 0.45.0)
 
 SPEC REPOS:
@@ -12,12 +12,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   CustomerGlu:
-    :path: "/Users/kapil/Documents/Impedimed_Git/untitled folder/Wivi_Git/Gits/Customer/IOS-DEMOAPP/CG-iOS-SDK"
+    :path: CG-iOS-SDK
 
 SPEC CHECKSUMS:
-  CustomerGlu: d62ee5ca0bb757a6a6f2f39b9a9ecc88174e4155
+  CustomerGlu: 55cfdf884ec0a554794285d2828edd37cadd1e7e
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
-PODFILE CHECKSUM: b85d14552779f9b713abb8df9b2878662f9d4eba
+PODFILE CHECKSUM: 834457d848d599bd2355bbf3b0d8d6813e6788ed
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1

@@ -9,7 +9,9 @@ import Foundation
 import UIKit
 
 public class OpenWalletViewController: UIViewController {
-       
+   
+    public static let storyboardVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
+    
     var my_url = ""
     var anotherOptionalInt: Int?
     
@@ -18,8 +20,8 @@ public class OpenWalletViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
-        self.view.backgroundColor = .white
 
         if CustomerGlu.sdk_disable! == true {
             print(CustomerGlu.sdk_disable!)
@@ -33,7 +35,12 @@ public class OpenWalletViewController: UIViewController {
                 let campaignsModel = try userDefaults.getObject(forKey: Constants.WalletRewardData, castTo: CampaignsModel.self)
                 self.my_url = campaignsModel.defaultUrl
                 DispatchQueue.main.async { [self] in // Make sure you're on the main thread here
-                    self.presentWebViewController(url: self.my_url)
+                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+                    customerWebViewVC.urlStr = self.my_url
+                    customerWebViewVC.openWallet = true
+                    customerWebViewVC.delegate = self
+                    customerWebViewVC.modalPresentationStyle = .overCurrentContext
+                    self.present(customerWebViewVC, animated: false)
                 }
             } catch {
                 print(error.localizedDescription)
@@ -60,22 +67,18 @@ public class OpenWalletViewController: UIViewController {
                 CustomerGlu.getInstance.loaderHide()
                 self.my_url = campaignsModel!.defaultUrl
                 DispatchQueue.main.async { // Make sure you're on the main thread here
-                    self.presentWebViewController(url: self.my_url)
+                    let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+                    customerWebViewVC.urlStr = self.my_url
+                    customerWebViewVC.openWallet = true
+                    customerWebViewVC.delegate = self
+                    customerWebViewVC.modalPresentationStyle = .overCurrentContext
+                    self.present(customerWebViewVC, animated: false)
                 }
             } else {
                 CustomerGlu.getInstance.loaderHide()
                 print("error")
             }
         }
-    }
-    
-    private func presentWebViewController(url: String) {
-        let customerWebViewVC = CustomerWebViewController()
-        customerWebViewVC.urlStr = url
-        customerWebViewVC.openWallet = true
-        customerWebViewVC.delegate = self
-        customerWebViewVC.modalPresentationStyle = .overCurrentContext
-        self.present(customerWebViewVC, animated: false)
     }
 }
 

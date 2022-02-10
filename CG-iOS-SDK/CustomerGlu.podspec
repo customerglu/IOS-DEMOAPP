@@ -7,6 +7,7 @@ Pod::Spec.new do |s|
   s.version          = '1.0.3'
   s.summary          = 'CustomerGlu '
   s.description      = <<-DESC
+  s.resources = 'Sources/CustomerGlu/Resources/*.{png,jpeg,jpg,storyboard,xib,xcassets}'
 
 
 

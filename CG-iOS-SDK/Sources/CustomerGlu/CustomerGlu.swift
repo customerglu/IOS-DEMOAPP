@@ -178,7 +178,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     public func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
         
-        let customerWebViewVC = CustomerWebViewController()
+        let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
         customerWebViewVC.urlStr = nudge_url
         customerWebViewVC.notificationHandler = true
         customerWebViewVC.alpha = backgroundAlpha
@@ -219,7 +219,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         let nudge_url = remoteMessage[NotificationsKey.nudge_url]
         
-        let customerWebViewVC = CustomerWebViewController()
+        let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
         customerWebViewVC.urlStr = nudge_url as? String ?? ""
         customerWebViewVC.notificationHandler = true
         customerWebViewVC.modalPresentationStyle = .fullScreen
@@ -239,10 +239,6 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
         
     public func clearGluData() {
-        //        let dictionary = userDefaults.dictionaryRepresentation()
-        //        dictionary.keys.forEach { key in
-        //            userDefaults.removeObject(forKey: key)
-        //        }
         userDefaults.removeObject(forKey: Constants.CUSTOMERGLU_TOKEN)
         userDefaults.removeObject(forKey: Constants.CUSTOMERGLU_USERID)
         userDefaults.removeObject(forKey: Constants.WalletRewardData)
@@ -370,7 +366,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let openWalletVC = OpenWalletViewController()
+            let openWalletVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
             guard let topController = UIViewController.topViewController() else {
                 return
             }
@@ -390,11 +386,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let vc = LoadAllCampaignsViewController()
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             guard let topController = UIViewController.topViewController() else {
                 return
             }
-            let navController = UINavigationController(rootViewController: vc)
+            let navController = UINavigationController(rootViewController: loadAllCampign)
             navController.modalPresentationStyle = .fullScreen
             topController.present(navController, animated: true, completion: nil)
         }
@@ -411,7 +407,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let customerWebViewVC = CustomerWebViewController()
+            let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
             guard let topController = UIViewController.topViewController() else {
                 return
             }
@@ -433,7 +429,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let loadAllCampign = LoadAllCampaignsViewController()
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             loadAllCampign.loadCampignType = APIParameterKey.type
             loadAllCampign.loadCampignValue = type
             guard let topController = UIViewController.topViewController() else {
@@ -456,7 +452,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let loadAllCampign = LoadAllCampaignsViewController()
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             loadAllCampign.loadCampignType = APIParameterKey.status
             loadAllCampign.loadCampignValue = status
             guard let topController = UIViewController.topViewController() else {
@@ -479,7 +475,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let loadAllCampign = LoadAllCampaignsViewController()
+            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
             loadAllCampign.loadByparams = parameters
             guard let topController = UIViewController.topViewController() else {
                 return
