@@ -17,7 +17,7 @@ enum StoryboardType: String {
     case main = "Storyboard"
     
     func instance() -> UIStoryboard {
-        return UIStoryboard(name: rawValue, bundle: .module)
+        return UIStoryboard(name: rawValue, bundle: nil)
     }
     
     func instantiate<VC: UIViewController>(vcType: VC.Type) -> VC {

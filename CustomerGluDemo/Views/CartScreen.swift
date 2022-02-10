@@ -66,14 +66,3 @@ struct CartScreen_Previews: PreviewProvider {
         CartScreen()
     }
 }
-//https://stackoverflow.com/questions/60677622/how-to-display-image-from-a-url-in-swiftui
-
-struct TestController: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> some UIViewController {
-        let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
-        let controller = storyboard.instantiateViewController(identifier: "CartScreen")
-        return controller
-    }
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-}

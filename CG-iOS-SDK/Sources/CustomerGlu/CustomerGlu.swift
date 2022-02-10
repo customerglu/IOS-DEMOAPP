@@ -4,7 +4,7 @@ import UIKit
 
 let gcmMessageIDKey = "gcm.message_id"
 
-public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
+public class CustomerGlu: NSObject {
     
     // MARK: - Global Variable
     var spinner = SpinnerView()
@@ -26,33 +26,33 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     private override init() {
         super.init()
-        CustomerGluCrash.add(delegate: self)
-        do {
-            // retrieving a value for a key
-            if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
-               let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
-                ApplicationManager.callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true, methodName: "CustomerGluCrash")
-            }
-        } catch {
-            print(error)
-        }
+//        CustomerGluCrash.add(delegate: self)
+//        do {
+//            // retrieving a value for a key
+//            if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
+//               let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
+//                ApplicationManager.callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true, methodName: "CustomerGluCrash")
+//            }
+//        } catch {
+//            print(error)
+//        }
     }
     
-    public func customerGluDidCatchCrash(with model: CrashModel) {
-        print("\(model)")
-        let dict = [
-            "name": model.name!,
-            "reason": model.reason!,
-            "appinfo": model.appinfo!,
-            "callStack": model.callStack!] as [String: Any]
-        do {
-            // setting a value for a key
-            let encodedData = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: true)
-            userDefaults.set(encodedData, forKey: Constants.CustomerGluCrash)
-        } catch {
-            print(error)
-        }
-    }
+//    public func customerGluDidCatchCrash(with model: CrashModel) {
+//        print("\(model)")
+//            let dict = [
+//                "name": model.name!,
+//                "reason": model.reason!,
+//                "appinfo": model.appinfo!,
+//                "callStack": model.callStack!] as [String: Any]
+//            do {
+//                // setting a value for a key
+//                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: true)
+//                userDefaults.set(encodedData, forKey: Constants.CustomerGluCrash)
+//            } catch {
+//                print(error)
+//            }
+//    }
         
     public func disableGluSdk(disable: Bool) {
         CustomerGlu.sdk_disable = disable
@@ -178,7 +178,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     public func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
         
-        let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+        let customerWebViewVC = CustomerWebViewController()
         customerWebViewVC.urlStr = nudge_url
         customerWebViewVC.notificationHandler = true
         customerWebViewVC.alpha = backgroundAlpha
@@ -219,7 +219,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         let nudge_url = remoteMessage[NotificationsKey.nudge_url]
         
-        let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+        let customerWebViewVC = CustomerWebViewController()
         customerWebViewVC.urlStr = nudge_url as? String ?? ""
         customerWebViewVC.notificationHandler = true
         customerWebViewVC.modalPresentationStyle = .fullScreen
@@ -239,10 +239,14 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     }
         
     public func clearGluData() {
-        let dictionary = userDefaults.dictionaryRepresentation()
-        dictionary.keys.forEach { key in
-            userDefaults.removeObject(forKey: key)
-        }
+        //        let dictionary = userDefaults.dictionaryRepresentation()
+        //        dictionary.keys.forEach { key in
+        //            userDefaults.removeObject(forKey: key)
+        //        }
+        userDefaults.removeObject(forKey: Constants.CUSTOMERGLU_TOKEN)
+        userDefaults.removeObject(forKey: Constants.CUSTOMERGLU_USERID)
+        userDefaults.removeObject(forKey: Constants.WalletRewardData)
+        userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
     }
     
     // MARK: - API Calls Methods
@@ -366,7 +370,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let openWalletVC = StoryboardType.main.instantiate(vcType: OpenWalletViewController.self)
+            let openWalletVC = OpenWalletViewController()
             guard let topController = UIViewController.topViewController() else {
                 return
             }
@@ -386,11 +390,11 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            let vc = LoadAllCampaignsViewController()
             guard let topController = UIViewController.topViewController() else {
                 return
             }
-            let navController = UINavigationController(rootViewController: loadAllCampign)
+            let navController = UINavigationController(rootViewController: vc)
             navController.modalPresentationStyle = .fullScreen
             topController.present(navController, animated: true, completion: nil)
         }
@@ -407,7 +411,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
+            let customerWebViewVC = CustomerWebViewController()
             guard let topController = UIViewController.topViewController() else {
                 return
             }
@@ -429,7 +433,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            let loadAllCampign = LoadAllCampaignsViewController()
             loadAllCampign.loadCampignType = APIParameterKey.type
             loadAllCampign.loadCampignValue = type
             guard let topController = UIViewController.topViewController() else {
@@ -452,7 +456,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            let loadAllCampign = LoadAllCampaignsViewController()
             loadAllCampign.loadCampignType = APIParameterKey.status
             loadAllCampign.loadCampignValue = status
             guard let topController = UIViewController.topViewController() else {
@@ -475,7 +479,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         DispatchQueue.main.async {
-            let loadAllCampign = StoryboardType.main.instantiate(vcType: LoadAllCampaignsViewController.self)
+            let loadAllCampign = LoadAllCampaignsViewController()
             loadAllCampign.loadByparams = parameters
             guard let topController = UIViewController.topViewController() else {
                 return

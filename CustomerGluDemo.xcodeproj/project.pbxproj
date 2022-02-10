@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1827E7682726C09D00A7B38B /* GoogleService-Info.plist */; };
-		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
 		1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */; };
 		1B3D7CB826A6BDDC00EA1587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB726A6BDDC00EA1587 /* Assets.xcassets */; };
 		1B3D7CBB26A6BDDC00EA1587 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B3D7CBA26A6BDDC00EA1587 /* Preview Assets.xcassets */; };
 		1B3D7CC526A6BE4100EA1587 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CC426A6BE4100EA1587 /* HomeScreen.swift */; };
 		1B3D7CC726A6BEB300EA1587 /* ShopScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CC626A6BEB300EA1587 /* ShopScreen.swift */; };
-		1B3D7CC926A6BF0000EA1587 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CC826A6BF0000EA1587 /* WebView.swift */; };
 		1B3D7CCC26A6C18800EA1587 /* ProductCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CCB26A6C18800EA1587 /* ProductCard.swift */; };
 		1B3D7CCE26A6CA0800EA1587 /* ProductListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CCD26A6CA0800EA1587 /* ProductListCell.swift */; };
 		1B3D7CD126A6CB1400EA1587 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CD026A6CB1400EA1587 /* CardModifier.swift */; };
@@ -25,14 +23,10 @@
 		1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADB926CBDF100086859F /* FirebaseMessaging */; };
 		1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */; };
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
-		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
-		1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 1BDFB29D2727CB870095CF4E /* CustomerGlu */; };
-		82582BF327425A7800215EF8 /* CustomerWebviewUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */; };
 		82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */; };
-		82771B8A273AB3EE0097FED9 /* RewardUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82771B89273AB3EE0097FED9 /* RewardUIKit.swift */; };
+		827A802327B512080008F865 /* CustomerGlu in Frameworks */ = {isa = PBXBuildFile; productRef = 827A802227B512080008F865 /* CustomerGlu */; };
 		8284D4592754CE8200CEF827 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284D4582754CE8200CEF827 /* LoginScreen.swift */; };
 		82875A6E27883979005EC40D /* CustomerGluDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */; };
-		82946E9E2732725000C56E06 /* OpenWalletUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */; };
 		BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,9 +49,7 @@
 
 /* Begin PBXFileReference section */
 		1827E7682726C09D00A7B38B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		188DE0912726CAA6002DA85D /* CG-iOS-SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CG-iOS-SDK"; sourceTree = "<group>"; };
 		1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomerGluDemo.entitlements; sourceTree = "<group>"; };
-		1B3A357426B7C57500A2C713 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomerGluDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoApp.swift; sourceTree = "<group>"; };
 		1B3D7CB526A6BDDC00EA1587 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,23 +58,19 @@
 		1B3D7CBC26A6BDDC00EA1587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B3D7CC426A6BE4100EA1587 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		1B3D7CC626A6BEB300EA1587 /* ShopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScreen.swift; sourceTree = "<group>"; };
-		1B3D7CC826A6BF0000EA1587 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		1B3D7CCB26A6C18800EA1587 /* ProductCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCard.swift; sourceTree = "<group>"; };
 		1B3D7CCD26A6CA0800EA1587 /* ProductListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCell.swift; sourceTree = "<group>"; };
 		1B3D7CD026A6CB1400EA1587 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
 		1B3D7CD226A6E17C00EA1587 /* CartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreen.swift; sourceTree = "<group>"; };
 		1B73372626A7005500F93795 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		1B77ADBF26CBE05B0086859F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
-		82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerWebviewUIKit.swift; sourceTree = "<group>"; };
 		82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITests.swift; sourceTree = "<group>"; usesTabs = 0; };
-		82771B89273AB3EE0097FED9 /* RewardUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardUIKit.swift; sourceTree = "<group>"; };
+		827A802127B511FD0008F865 /* CG-iOS-SDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CG-iOS-SDK"; sourceTree = "<group>"; };
 		8284D4582754CE8200CEF827 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoTests.swift; sourceTree = "<group>"; };
-		82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWalletUIKit.swift; sourceTree = "<group>"; };
 		89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomerGluDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,9 +81,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
-				1BDFB29E2727CB870095CF4E /* CustomerGlu in Frameworks */,
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
+				827A802327B512080008F865 /* CustomerGlu in Frameworks */,
 				BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +116,7 @@
 		1B3D7CA726A6BDDC00EA1587 = {
 			isa = PBXGroup;
 			children = (
-				188DE0912726CAA6002DA85D /* CG-iOS-SDK */,
+				827A802127B511FD0008F865 /* CG-iOS-SDK */,
 				1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */,
 				82699B0A278715AA0020D2B4 /* CustomerGluDemoUITests */,
 				82875A6C27883979005EC40D /* CustomerGluDemoTests */,
@@ -179,13 +167,7 @@
 			children = (
 				1B3D7CC426A6BE4100EA1587 /* HomeScreen.swift */,
 				1B3D7CC626A6BEB300EA1587 /* ShopScreen.swift */,
-				1B3D7CC826A6BF0000EA1587 /* WebView.swift */,
 				1B3D7CD226A6E17C00EA1587 /* CartScreen.swift */,
-				1B3A357426B7C57500A2C713 /* Register.storyboard */,
-				1BB1792A26B9255B0058E02C /* ViewController.swift */,
-				82946E9D2732725000C56E06 /* OpenWalletUIKit.swift */,
-				82771B89273AB3EE0097FED9 /* RewardUIKit.swift */,
-				82582BF227425A7800215EF8 /* CustomerWebviewUIKit.swift */,
 				8284D4582754CE8200CEF827 /* LoginScreen.swift */,
 			);
 			path = Views;
@@ -257,7 +239,7 @@
 				1B77ADB726CBDF100086859F /* FirebaseAnalytics */,
 				1B77ADB926CBDF100086859F /* FirebaseMessaging */,
 				1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */,
-				1BDFB29D2727CB870095CF4E /* CustomerGlu */,
+				827A802227B512080008F865 /* CustomerGlu */,
 			);
 			productName = CustomerGluDemo;
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
@@ -352,7 +334,6 @@
 				1B3D7CBB26A6BDDC00EA1587 /* Preview Assets.xcassets in Resources */,
 				1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */,
 				1B3D7CB826A6BDDC00EA1587 /* Assets.xcassets in Resources */,
-				1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,14 +403,9 @@
 				1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */,
 				1B3D7CD326A6E17C00EA1587 /* CartScreen.swift in Sources */,
 				1B73372726A7005500F93795 /* CartCell.swift in Sources */,
-				82582BF327425A7800215EF8 /* CustomerWebviewUIKit.swift in Sources */,
-				82771B8A273AB3EE0097FED9 /* RewardUIKit.swift in Sources */,
 				8284D4592754CE8200CEF827 /* LoginScreen.swift in Sources */,
 				1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */,
-				1B3D7CC926A6BF0000EA1587 /* WebView.swift in Sources */,
-				1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */,
 				1B3D7CCE26A6CA0800EA1587 /* ProductListCell.swift in Sources */,
-				82946E9E2732725000C56E06 /* OpenWalletUIKit.swift in Sources */,
 				1B3D7CC726A6BEB300EA1587 /* ShopScreen.swift in Sources */,
 				1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */,
 				1B3D7CC526A6BE4100EA1587 /* HomeScreen.swift in Sources */,
@@ -816,7 +792,7 @@
 			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
 		};
-		1BDFB29D2727CB870095CF4E /* CustomerGlu */ = {
+		827A802227B512080008F865 /* CustomerGlu */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CustomerGlu;
 		};
