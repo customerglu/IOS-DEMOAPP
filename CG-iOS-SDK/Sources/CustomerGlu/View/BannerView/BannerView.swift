@@ -74,7 +74,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         print(sender?.view?.tag ?? 0)
         //        self.removeFromSuperview()
-        CustomerGlu.getInstance.presentToCustomerWebViewController(nudge_url: "https://stackoverflow.com/questions/43714948/draggable-uiview-swift-3", page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: 0.5)
+        CustomerGlu.getInstance.presentToCustomerWebViewController(nudge_url: "https://d3guhyj4wa8abr.cloudfront.net/reward/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJHZmhnaCIsImdsdUlkIjoiYmM5NTUxYTctMjcyZS00NjdlLTlhMGEtM2RiN2Y5NGY3NGFhIiwiY2xpZW50IjoiODRhY2YyYWMtYjJlMC00OTI3LTg2NTMtY2JhMmI4MzgxNmMyIiwiZGV2aWNlSWQiOiIyQzE0OTczQi0wQUQxLTQ4REMtODgwMS1BQkIyNjVFMkU2QkMiLCJkZXZpY2VUeXBlIjoiaW9zIiwiaWF0IjoxNjQ0NDk1MDc5LCJleHAiOjE2NzYwMzEwNzl9.whd0avkTiuNouAZCW36OTTUkoYYEwVDGYS7G0tbTSUw&rewardUserId=319e9c15-16cc-42b8-82db-d3dcd4414108", page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: 0.5)
     }
     
     // MARK: - Nib handlers
