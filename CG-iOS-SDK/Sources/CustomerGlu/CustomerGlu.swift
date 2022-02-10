@@ -4,7 +4,7 @@ import UIKit
 
 let gcmMessageIDKey = "gcm.message_id"
 
-public class CustomerGlu: NSObject {
+public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     // MARK: - Global Variable
     var spinner = SpinnerView()
@@ -26,33 +26,33 @@ public class CustomerGlu: NSObject {
     
     private override init() {
         super.init()
-//        CustomerGluCrash.add(delegate: self)
-//        do {
-//            // retrieving a value for a key
-//            if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
-//               let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
-//                ApplicationManager.callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true, methodName: "CustomerGluCrash")
-//            }
-//        } catch {
-//            print(error)
-//        }
+        CustomerGluCrash.add(delegate: self)
+        do {
+            // retrieving a value for a key
+            if let data = userDefaults.data(forKey: Constants.CustomerGluCrash),
+               let crashItems = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Dictionary<String, Any> {
+                ApplicationManager.callCrashReport(stackTrace: (crashItems["callStack"] as? String)!, isException: true, methodName: "CustomerGluCrash")
+            }
+        } catch {
+            print(error)
+        }
     }
     
-//    public func customerGluDidCatchCrash(with model: CrashModel) {
-//        print("\(model)")
-//            let dict = [
-//                "name": model.name!,
-//                "reason": model.reason!,
-//                "appinfo": model.appinfo!,
-//                "callStack": model.callStack!] as [String: Any]
-//            do {
-//                // setting a value for a key
-//                let encodedData = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: true)
-//                userDefaults.set(encodedData, forKey: Constants.CustomerGluCrash)
-//            } catch {
-//                print(error)
-//            }
-//    }
+    public func customerGluDidCatchCrash(with model: CrashModel) {
+        print("\(model)")
+        let dict = [
+            "name": model.name!,
+            "reason": model.reason!,
+            "appinfo": model.appinfo!,
+            "callStack": model.callStack!] as [String: Any]
+        do {
+            // setting a value for a key
+            let encodedData = try NSKeyedArchiver.archivedData(withRootObject: dict, requiringSecureCoding: true)
+            userDefaults.set(encodedData, forKey: Constants.CustomerGluCrash)
+        } catch {
+            print(error)
+        }
+    }
         
     public func disableGluSdk(disable: Bool) {
         CustomerGlu.sdk_disable = disable
