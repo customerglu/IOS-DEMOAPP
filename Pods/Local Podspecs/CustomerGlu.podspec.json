@@ -1,0 +1,21 @@
+{
+  "name": "CustomerGlu",
+  "version": "1.0.3",
+  "summary": "CustomerGlu",
+  "description": "A new CustomerGlu.",
+  "homepage": "https://github.com/customerglu/CG-iOS-SDK",
+  "authors": {
+    "CustomerGlu": "hitesh.landge@customerglu.net"
+  },
+  "source": {
+    "git": "https://github.com/customerglu/CG-iOS-SDK.git",
+    "tag": "1.0.3"
+  },
+  "source_files": "Sources/**/*.*",
+  "exclude_files": "Tests/**/*.*",
+  "platforms": {
+    "ios": "11.0"
+  },
+  "swift_versions": "5.0",
+  "swift_version": "5.0"
+}

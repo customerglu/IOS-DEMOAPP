@@ -19,71 +19,256 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		3D37B28A255D1E7E9506616E36EC6302 /* Pods-CustomerGluDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF851B76FC1DD9F5FABD8306DAE94AE9 /* Pods-CustomerGluDemo-dummy.m */; };
-		6D70C827A114FDCB1A3CD2F2E1CA6C56 /* Pods-CustomerGluDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF7FCBF33E4B31DE7625DF2C7F0C9749 /* Pods-CustomerGluDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CCB500A5213BA447E02809F7F0FD5012 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		0198B98021D455D667F5DB4BAFA0C70C /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22230A2A6F6EDE0CD9EBC9FD61016419 /* BannerCell.swift */; };
+		09C44138D1DA2BB193EAAD465AF9EBDF /* CustomerGlu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0004F6564B477181F7980C96208412D2 /* CustomerGlu.swift */; };
+		0ABC815A816CB5931129220803744424 /* AddCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F5E39D1A565A7A4700FD9C2D86CF99 /* AddCartModel.swift */; };
+		0BEA15C1FAB73C553A5EE52AA79CE9E6 /* CustomerGluCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAD6A122CF8309887E71DDE3DC25375 /* CustomerGluCrash.swift */; };
+		1E827AE044E4079A07B2EC33A2EA9CC7 /* LoadAllCampaignsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C1F5BA876C5BE43686543DC6F8C6A /* LoadAllCampaignsViewModel.swift */; };
+		2013482E07D7BD9DB6B7F643F0E28861 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FA07ED7048EE1B1EC05C337C8C8FE8 /* Extensions.swift */; };
+		3417B648C0F45C98D4E8E311C657B42C /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E8A040982070B14C93DADD75F4D286 /* APIManager.swift */; };
+		3CECBC6F64274D4E21B3F5C3E67538CE /* JWTDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E948E289963DF1F5712FF563A35ADBB2 /* JWTDecode.swift */; };
+		3CFC60496860630F29031E3CFFEECF81 /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603CC3C40BE0D7045DD114E25B4980E8 /* ApplicationManager.swift */; };
+		48FE92AFAA07F67E0D9F0196E3844392 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C23CD10F6793D184458EA41126EE1B /* UIImage+Gif.swift */; };
+		4E675E023AAFBCE7C9DA53349AC8D422 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D585ED04D51D57ED7F18503990C310EC /* RegistrationModel.swift */; };
+		5047EB774017647399A9DD37723E5D57 /* OtherUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEECA311C0B4E05AB74E88AABE783FC4 /* OtherUtils.swift */; };
+		5638E626B065BED5F8875C3789D95AA6 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D68920584A10697DF236B643F50E9B /* BannerView.swift */; };
+		67E44247C6A87C5957544ED01AAABBED /* Pods-CustomerGluDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3470B8AB67D5C70D207EBD291F65390 /* Pods-CustomerGluDemo-dummy.m */; };
+		6C7E894FC270F07371CB7E2A9AA2CDBD /* CustomerGlu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AC427A17D55F2794A54C33C3AAD0B037 /* CustomerGlu-dummy.m */; };
+		75104CA07EC4666CDEEE85EDFE830B4B /* DeepLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63E4F7D54BF05E0226D25F8AE3857A /* DeepLinkModel.swift */; };
+		7D471E3BD6F7CC069DF5C9090895DBB3 /* LoadAllCampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFFABB5C10E45DEF4B11F873AF96194 /* LoadAllCampaignsViewController.swift */; };
+		84A1A89E64DFDD7C434AC6A62384AA41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		9189BB506DEB47E81CF5D73C423C3587 /* CampaignsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50691BD595BE20319517DF008A05F82 /* CampaignsModel.swift */; };
+		9473E34F9640C2F9C947B5FA0542DFB9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597EEBBB3F9EE1E65E0A1829001D1567 /* Reachability.swift */; };
+		969C9A86CC1FC9C7AC6F336C7EB2F6F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B41C327901664C8F7B7F11DBC06F433 /* Constants.swift */; };
+		98D9839CC3C6463680855DE70887EB51 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C9D157F905BFF516BB3E60245C588 /* MockData.swift */; };
+		A50F722EE778A36888CF4B1DEC3C1D11 /* OpenWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64D9D43A2189110E39DF0CFD89F4AFB /* OpenWalletViewModel.swift */; };
+		B6634FF336FC6FEC6011B40F96447344 /* EventShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A593D28FD0FD49E8318A3B65128D18 /* EventShareModel.swift */; };
+		B6AE1BF346AF9449166F7FB2C9041FEF /* CustomerImageNudgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE5E8C71BC23ACFB32F5F299BA06763 /* CustomerImageNudgeViewController.swift */; };
+		BD7400E38BD42CEFE929D2835988C86A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		CBEE6902697FFBC8BF65FD4097501286 /* Pods-CustomerGluDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A8170B11ED8C585F4E42A13347CC4B14 /* Pods-CustomerGluDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CC4FAA0917CD4693D910FC63B3FB0D16 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443B4EA5B3BA1C5C4504C03A576CF46C /* DraggableView.swift */; };
+		D0CFFA765C5F53C0CC94A8BB5269C050 /* OpenWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338988025F1C9DCEED81144BC96E683 /* OpenWalletViewController.swift */; };
+		DB0F5635445C223D21718CEA12286716 /* ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A43BF9AF15802361283458B4EBFAE /* ObjectSavable.swift */; };
+		DD4294743AB0BFDD0C0C3942EA55BB89 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF1259AE37B9C9B267E0CA5B2488890 /* EventModel.swift */; };
+		DDC5DC1FF49DE30EFE51E19783797742 /* CustomerWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590A59A3494BB46672299510E66EF2E9 /* CustomerWebViewController.swift */; };
+		EA32652A652CA009F318919AB4DB2A64 /* CustomerGlu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 541775AAFE7F7A1624CEAB45A16D568F /* CustomerGlu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2E94DB18C1E37BB8784ADD1B599856D /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E026050387B18A41DCF3CAC7DAF63ABE /* SpinnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F7637149B52E05E29A0BB87A43ACCF3F /* PBXContainerItemProxy */ = {
+		6899C3C8F9ED414F9CE4434ECCC6720E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
 			remoteInfo = SwiftLint;
 		};
+		BFF54B603F83FB35C15C3CE15387186F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9F1270719EB830F73D98E78E2316643;
+			remoteInfo = CustomerGlu;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		342DF0717E429084869FAA0C211894BF /* Pods-CustomerGluDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CustomerGluDemo-acknowledgements.plist"; sourceTree = "<group>"; };
+		0004F6564B477181F7980C96208412D2 /* CustomerGlu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomerGlu.swift; path = Sources/CustomerGlu/CustomerGlu.swift; sourceTree = "<group>"; };
+		19E682C8C893D0E91FDDFBC9DD2A91B1 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
+		22230A2A6F6EDE0CD9EBC9FD61016419 /* BannerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		331F49946398BD763608A370C44B631E /* Pods-CustomerGluDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CustomerGluDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		34A593D28FD0FD49E8318A3B65128D18 /* EventShareModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventShareModel.swift; sourceTree = "<group>"; };
+		37812CB061D8B1B1228EE37E6CF05015 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		38457913D9CF48448DF90BA80B28BACE /* Pods-CustomerGluDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CustomerGluDemo.modulemap"; sourceTree = "<group>"; };
+		38AF2590087C3093D142B6BEFCB37EC9 /* Pods-CustomerGluDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CustomerGluDemo-frameworks.sh"; sourceTree = "<group>"; };
+		3B1A43BF9AF15802361283458B4EBFAE /* ObjectSavable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ObjectSavable.swift; sourceTree = "<group>"; };
 		3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
+		3F2A8A5FFB8128AAE1C3D2C07F653F04 /* CustomerGlu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomerGlu.debug.xcconfig; sourceTree = "<group>"; };
+		3FB346B628320021C6678CA564B27808 /* Pods-CustomerGluDemo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CustomerGluDemo-Info.plist"; sourceTree = "<group>"; };
+		443B4EA5B3BA1C5C4504C03A576CF46C /* DraggableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
+		51D68920584A10697DF236B643F50E9B /* BannerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		541775AAFE7F7A1624CEAB45A16D568F /* CustomerGlu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomerGlu-umbrella.h"; sourceTree = "<group>"; };
 		5837D6B3385A311EE098345E50A39BCA /* Pods_CustomerGluDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CustomerGluDemo.framework; path = "Pods-CustomerGluDemo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		595722E086919F15F82DA44236827B5A /* Pods-CustomerGluDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CustomerGluDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		67EAB4CAD6F8BF6F143D43C87CFBE982 /* Pods-CustomerGluDemo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CustomerGluDemo-Info.plist"; sourceTree = "<group>"; };
-		6F702887D802A37D94BF0C457071DCD9 /* Pods-CustomerGluDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CustomerGluDemo.modulemap"; sourceTree = "<group>"; };
+		590A59A3494BB46672299510E66EF2E9 /* CustomerWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerWebViewController.swift; sourceTree = "<group>"; };
+		597EEBBB3F9EE1E65E0A1829001D1567 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		5B41C327901664C8F7B7F11DBC06F433 /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5BE5E8C71BC23ACFB32F5F299BA06763 /* CustomerImageNudgeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerImageNudgeViewController.swift; sourceTree = "<group>"; };
+		5E63E4F7D54BF05E0226D25F8AE3857A /* DeepLinkModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeepLinkModel.swift; sourceTree = "<group>"; };
+		603CC3C40BE0D7045DD114E25B4980E8 /* ApplicationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
-		9729BCB72DB325225ABAF29E645BD9C7 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		7FAD6A122CF8309887E71DDE3DC25375 /* CustomerGluCrash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerGluCrash.swift; sourceTree = "<group>"; };
+		7FF1259AE37B9C9B267E0CA5B2488890 /* EventModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		96FA07ED7048EE1B1EC05C337C8C8FE8 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BF7FCBF33E4B31DE7625DF2C7F0C9749 /* Pods-CustomerGluDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CustomerGluDemo-umbrella.h"; sourceTree = "<group>"; };
-		C84D3A72FC047602054FC6DEDDBF9B9A /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
-		DF851B76FC1DD9F5FABD8306DAE94AE9 /* Pods-CustomerGluDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CustomerGluDemo-dummy.m"; sourceTree = "<group>"; };
+		9FC72BCBC0287D5A5F5622AD69E04967 /* CustomerGlu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomerGlu-prefix.pch"; sourceTree = "<group>"; };
+		A2C23CD10F6793D184458EA41126EE1B /* UIImage+Gif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		A338988025F1C9DCEED81144BC96E683 /* OpenWalletViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpenWalletViewController.swift; sourceTree = "<group>"; };
+		A43D03638533FEC8FA53EBEBC8DA00CB /* CustomerGlu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CustomerGlu.modulemap; sourceTree = "<group>"; };
+		A8170B11ED8C585F4E42A13347CC4B14 /* Pods-CustomerGluDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CustomerGluDemo-umbrella.h"; sourceTree = "<group>"; };
+		AC427A17D55F2794A54C33C3AAD0B037 /* CustomerGlu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CustomerGlu-dummy.m"; sourceTree = "<group>"; };
+		AD5C9D157F905BFF516BB3E60245C588 /* MockData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		B50691BD595BE20319517DF008A05F82 /* CampaignsModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CampaignsModel.swift; sourceTree = "<group>"; };
+		C2F5E39D1A565A7A4700FD9C2D86CF99 /* AddCartModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddCartModel.swift; sourceTree = "<group>"; };
+		CE5E579DC7CA90C33FB656ADE3A2A58C /* CustomerGlu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomerGlu.release.xcconfig; sourceTree = "<group>"; };
+		D3470B8AB67D5C70D207EBD291F65390 /* Pods-CustomerGluDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CustomerGluDemo-dummy.m"; sourceTree = "<group>"; };
+		D585ED04D51D57ED7F18503990C310EC /* RegistrationModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		D64D9D43A2189110E39DF0CFD89F4AFB /* OpenWalletViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpenWalletViewModel.swift; sourceTree = "<group>"; };
+		DEECA311C0B4E05AB74E88AABE783FC4 /* OtherUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OtherUtils.swift; sourceTree = "<group>"; };
+		E026050387B18A41DCF3CAC7DAF63ABE /* SpinnerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		E19C1F5BA876C5BE43686543DC6F8C6A /* LoadAllCampaignsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadAllCampaignsViewModel.swift; sourceTree = "<group>"; };
+		E467E7FB1011A06A6FF7E8D57BF4B5E7 /* CustomerGlu.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CustomerGlu.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E72C143C34A219BD5A1CB0E96E61507F /* Pods-CustomerGluDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CustomerGluDemo-acknowledgements.plist"; sourceTree = "<group>"; };
+		E948E289963DF1F5712FF563A35ADBB2 /* JWTDecode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JWTDecode.swift; sourceTree = "<group>"; };
+		EBFFABB5C10E45DEF4B11F873AF96194 /* LoadAllCampaignsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadAllCampaignsViewController.swift; sourceTree = "<group>"; };
+		ECCA9A2F4EB81AB3D61C17CD2ED12C67 /* CustomerGlu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CustomerGlu.framework; path = CustomerGlu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F78D977E15D52C760F80D1083D8867FA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		F9E8A040982070B14C93DADD75F4D286 /* APIManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		FF0C32E7AB03D62E1B0CABCD17B11879 /* CustomerGlu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CustomerGlu-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		75039EB349D0F66E6E6C65E4B0A768EB /* Frameworks */ = {
+		566302199F4AD26E26B73322EC05893F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCB500A5213BA447E02809F7F0FD5012 /* Foundation.framework in Frameworks */,
+				BD7400E38BD42CEFE929D2835988C86A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F598E7110E01384621BC205D353FC02E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84A1A89E64DFDD7C434AC6A62384AA41 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E0AC39C9DA23243BE6C8FA23796CE26 /* Products */ = {
+		04F5353FDC888135A16F80535A1E1683 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				5837D6B3385A311EE098345E50A39BCA /* Pods_CustomerGluDemo.framework */,
+				5B41C327901664C8F7B7F11DBC06F433 /* Constants.swift */,
+				96FA07ED7048EE1B1EC05C337C8C8FE8 /* Extensions.swift */,
+				3B1A43BF9AF15802361283458B4EBFAE /* ObjectSavable.swift */,
+				DEECA311C0B4E05AB74E88AABE783FC4 /* OtherUtils.swift */,
 			);
-			name = Products;
+			name = Utils;
+			path = Sources/CustomerGlu/Utils;
 			sourceTree = "<group>";
 		};
-		4074B40A27C67203E10D6639F14B923B /* Pods-CustomerGluDemo */ = {
+		09379CA8F1E3E6DCBD6FE7FBF918DFCE /* MockResponse */ = {
 			isa = PBXGroup;
 			children = (
-				6F702887D802A37D94BF0C457071DCD9 /* Pods-CustomerGluDemo.modulemap */,
-				595722E086919F15F82DA44236827B5A /* Pods-CustomerGluDemo-acknowledgements.markdown */,
-				342DF0717E429084869FAA0C211894BF /* Pods-CustomerGluDemo-acknowledgements.plist */,
-				DF851B76FC1DD9F5FABD8306DAE94AE9 /* Pods-CustomerGluDemo-dummy.m */,
-				67EAB4CAD6F8BF6F143D43C87CFBE982 /* Pods-CustomerGluDemo-Info.plist */,
-				BF7FCBF33E4B31DE7625DF2C7F0C9749 /* Pods-CustomerGluDemo-umbrella.h */,
-				9729BCB72DB325225ABAF29E645BD9C7 /* Pods-CustomerGluDemo.debug.xcconfig */,
-				C84D3A72FC047602054FC6DEDDBF9B9A /* Pods-CustomerGluDemo.release.xcconfig */,
+				AD5C9D157F905BFF516BB3E60245C588 /* MockData.swift */,
+			);
+			name = MockResponse;
+			path = Sources/CustomerGlu/MockResponse;
+			sourceTree = "<group>";
+		};
+		1292CC63C65E5CD1E89F79FF2293FFEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				651ADE2EFFC10ECABD9896433980C38D /* BannerView */,
+				83954D3E3B3D4C3F94768A0B2D2EE847 /* customerImageView */,
+				C95200C735D8A7A7C67FFD79BB2963D0 /* customerWebView */,
+				F7ED6550B6C12973F610DDCC991487FD /* draggableView */,
+				F2F005DF2A436E8A84CE80682DC52A9E /* loadAllCampaigns */,
+				5A2755DE1503E05B05DDF83B171470ED /* OpenWallet */,
+			);
+			name = View;
+			path = Sources/CustomerGlu/View;
+			sourceTree = "<group>";
+		};
+		1B267E8EFB816CA69F0E97B42B6B8010 /* Pods-CustomerGluDemo */ = {
+			isa = PBXGroup;
+			children = (
+				38457913D9CF48448DF90BA80B28BACE /* Pods-CustomerGluDemo.modulemap */,
+				331F49946398BD763608A370C44B631E /* Pods-CustomerGluDemo-acknowledgements.markdown */,
+				E72C143C34A219BD5A1CB0E96E61507F /* Pods-CustomerGluDemo-acknowledgements.plist */,
+				D3470B8AB67D5C70D207EBD291F65390 /* Pods-CustomerGluDemo-dummy.m */,
+				38AF2590087C3093D142B6BEFCB37EC9 /* Pods-CustomerGluDemo-frameworks.sh */,
+				3FB346B628320021C6678CA564B27808 /* Pods-CustomerGluDemo-Info.plist */,
+				A8170B11ED8C585F4E42A13347CC4B14 /* Pods-CustomerGluDemo-umbrella.h */,
+				37812CB061D8B1B1228EE37E6CF05015 /* Pods-CustomerGluDemo.debug.xcconfig */,
+				19E682C8C893D0E91FDDFBC9DD2A91B1 /* Pods-CustomerGluDemo.release.xcconfig */,
 			);
 			name = "Pods-CustomerGluDemo";
 			path = "Target Support Files/Pods-CustomerGluDemo";
+			sourceTree = "<group>";
+		};
+		1DE3023A3DB807D234715F124A473589 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				22230A2A6F6EDE0CD9EBC9FD61016419 /* BannerCell.swift */,
+			);
+			name = Cells;
+			path = Sources/CustomerGlu/Cells;
+			sourceTree = "<group>";
+		};
+		1ECAF0630D4E191C86F1AF746EDEF309 /* CustomerGlu */ = {
+			isa = PBXGroup;
+			children = (
+				0004F6564B477181F7980C96208412D2 /* CustomerGlu.swift */,
+				1DE3023A3DB807D234715F124A473589 /* Cells */,
+				BBAE134459B2FAE47AE6F7DF7A32983F /* Manager */,
+				09379CA8F1E3E6DCBD6FE7FBF918DFCE /* MockResponse */,
+				37EBC2F3A532F5D4039EE9D93D7D09E5 /* Model */,
+				2C1CB653A6BD547674BF63E1C01D7E80 /* Pod */,
+				5197AF82302DDABC6B18EE7D3B2D0083 /* Support Files */,
+				04F5353FDC888135A16F80535A1E1683 /* Utils */,
+				1292CC63C65E5CD1E89F79FF2293FFEF /* View */,
+			);
+			name = CustomerGlu;
+			path = "/Users/kapil/Desktop/PodschangesSDK_CG/CG-iOS-SDK";
+			sourceTree = "<absolute>";
+		};
+		2C1CB653A6BD547674BF63E1C01D7E80 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				E467E7FB1011A06A6FF7E8D57BF4B5E7 /* CustomerGlu.podspec */,
+				F78D977E15D52C760F80D1083D8867FA /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		37EBC2F3A532F5D4039EE9D93D7D09E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C2F5E39D1A565A7A4700FD9C2D86CF99 /* AddCartModel.swift */,
+				B50691BD595BE20319517DF008A05F82 /* CampaignsModel.swift */,
+				5E63E4F7D54BF05E0226D25F8AE3857A /* DeepLinkModel.swift */,
+				7FF1259AE37B9C9B267E0CA5B2488890 /* EventModel.swift */,
+				34A593D28FD0FD49E8318A3B65128D18 /* EventShareModel.swift */,
+				D585ED04D51D57ED7F18503990C310EC /* RegistrationModel.swift */,
+			);
+			name = Model;
+			path = Sources/CustomerGlu/Model;
+			sourceTree = "<group>";
+		};
+		3BBBD0AD76A134D82AB6B1C3D962BA80 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1ECAF0630D4E191C86F1AF746EDEF309 /* CustomerGlu */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		5197AF82302DDABC6B18EE7D3B2D0083 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A43D03638533FEC8FA53EBEBC8DA00CB /* CustomerGlu.modulemap */,
+				AC427A17D55F2794A54C33C3AAD0B037 /* CustomerGlu-dummy.m */,
+				FF0C32E7AB03D62E1B0CABCD17B11879 /* CustomerGlu-Info.plist */,
+				9FC72BCBC0287D5A5F5622AD69E04967 /* CustomerGlu-prefix.pch */,
+				541775AAFE7F7A1624CEAB45A16D568F /* CustomerGlu-umbrella.h */,
+				3F2A8A5FFB8128AAE1C3D2C07F653F04 /* CustomerGlu.debug.xcconfig */,
+				CE5E579DC7CA90C33FB656ADE3A2A58C /* CustomerGlu.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../../../Documents/Impedimed_Git/untitled folder/Wivi_Git/Gits/Customer/IOS-DEMOAPP/Pods/Target Support Files/CustomerGlu";
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -94,12 +279,23 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		7A5BA87B6757E0C7774A15285E4B2CCF /* Targets Support Files */ = {
+		5A2755DE1503E05B05DDF83B171470ED /* OpenWallet */ = {
 			isa = PBXGroup;
 			children = (
-				4074B40A27C67203E10D6639F14B923B /* Pods-CustomerGluDemo */,
+				A338988025F1C9DCEED81144BC96E683 /* OpenWalletViewController.swift */,
+				D64D9D43A2189110E39DF0CFD89F4AFB /* OpenWalletViewModel.swift */,
 			);
-			name = "Targets Support Files";
+			name = OpenWallet;
+			path = OpenWallet;
+			sourceTree = "<group>";
+		};
+		651ADE2EFFC10ECABD9896433980C38D /* BannerView */ = {
+			isa = PBXGroup;
+			children = (
+				51D68920584A10697DF236B643F50E9B /* BannerView.swift */,
+			);
+			name = BannerView;
+			path = BannerView;
 			sourceTree = "<group>";
 		};
 		7FDA596DBE0337ACDFE55A210D54EF26 /* Support Files */ = {
@@ -112,6 +308,15 @@
 			path = "../Target Support Files/SwiftLint";
 			sourceTree = "<group>";
 		};
+		83954D3E3B3D4C3F94768A0B2D2EE847 /* customerImageView */ = {
+			isa = PBXGroup;
+			children = (
+				5BE5E8C71BC23ACFB32F5F299BA06763 /* CustomerImageNudgeViewController.swift */,
+			);
+			name = customerImageView;
+			path = customerImageView;
+			sourceTree = "<group>";
+		};
 		965877409E01FB3D85D85E90E6B30185 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,14 +325,48 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B1ED139E3D108F8389227C8F41B08E95 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECCA9A2F4EB81AB3D61C17CD2ED12C67 /* CustomerGlu.framework */,
+				5837D6B3385A311EE098345E50A39BCA /* Pods_CustomerGluDemo.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBAE134459B2FAE47AE6F7DF7A32983F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F9E8A040982070B14C93DADD75F4D286 /* APIManager.swift */,
+				603CC3C40BE0D7045DD114E25B4980E8 /* ApplicationManager.swift */,
+				7FAD6A122CF8309887E71DDE3DC25375 /* CustomerGluCrash.swift */,
+				E948E289963DF1F5712FF563A35ADBB2 /* JWTDecode.swift */,
+				597EEBBB3F9EE1E65E0A1829001D1567 /* Reachability.swift */,
+				E026050387B18A41DCF3CAC7DAF63ABE /* SpinnerView.swift */,
+				A2C23CD10F6793D184458EA41126EE1B /* UIImage+Gif.swift */,
+			);
+			name = Manager;
+			path = Sources/CustomerGlu/Manager;
+			sourceTree = "<group>";
+		};
+		C95200C735D8A7A7C67FFD79BB2963D0 /* customerWebView */ = {
+			isa = PBXGroup;
+			children = (
+				590A59A3494BB46672299510E66EF2E9 /* CustomerWebViewController.swift */,
+			);
+			name = customerWebView;
+			path = customerWebView;
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				3BBBD0AD76A134D82AB6B1C3D962BA80 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				965877409E01FB3D85D85E90E6B30185 /* Pods */,
-				2E0AC39C9DA23243BE6C8FA23796CE26 /* Products */,
-				7A5BA87B6757E0C7774A15285E4B2CCF /* Targets Support Files */,
+				B1ED139E3D108F8389227C8F41B08E95 /* Products */,
+				FB9ECCFA5D1BB216B3CF943A220CDEB5 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,14 +387,49 @@
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
+		F2F005DF2A436E8A84CE80682DC52A9E /* loadAllCampaigns */ = {
+			isa = PBXGroup;
+			children = (
+				EBFFABB5C10E45DEF4B11F873AF96194 /* LoadAllCampaignsViewController.swift */,
+				E19C1F5BA876C5BE43686543DC6F8C6A /* LoadAllCampaignsViewModel.swift */,
+			);
+			name = loadAllCampaigns;
+			path = loadAllCampaigns;
+			sourceTree = "<group>";
+		};
+		F7ED6550B6C12973F610DDCC991487FD /* draggableView */ = {
+			isa = PBXGroup;
+			children = (
+				443B4EA5B3BA1C5C4504C03A576CF46C /* DraggableView.swift */,
+			);
+			name = draggableView;
+			path = draggableView;
+			sourceTree = "<group>";
+		};
+		FB9ECCFA5D1BB216B3CF943A220CDEB5 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1B267E8EFB816CA69F0E97B42B6B8010 /* Pods-CustomerGluDemo */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		FA25E07433E925306E5133FDB6D07994 /* Headers */ = {
+		0FDF0A620F91836E98D5318C9056685B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D70C827A114FDCB1A3CD2F2E1CA6C56 /* Pods-CustomerGluDemo-umbrella.h in Headers */,
+				EA32652A652CA009F318919AB4DB2A64 /* CustomerGlu-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0A3652FC89D8790BD0E5566B68FE405 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBEE6902697FFBC8BF65FD4097501286 /* Pods-CustomerGluDemo-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,21 +438,40 @@
 /* Begin PBXNativeTarget section */
 		B7A420630B0B57B9A6C911FF778B5A1E /* Pods-CustomerGluDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E1A6275F14B454BD5F1537392344EAC /* Build configuration list for PBXNativeTarget "Pods-CustomerGluDemo" */;
+			buildConfigurationList = CB4D327E1300379775E87C00A2AAF8B6 /* Build configuration list for PBXNativeTarget "Pods-CustomerGluDemo" */;
 			buildPhases = (
-				FA25E07433E925306E5133FDB6D07994 /* Headers */,
-				5F1C008BF5E5EC9CE50628C7B2BDB5EB /* Sources */,
-				75039EB349D0F66E6E6C65E4B0A768EB /* Frameworks */,
-				14A244F0D7F9A7C820E78D6F9CF06065 /* Resources */,
+				D0A3652FC89D8790BD0E5566B68FE405 /* Headers */,
+				9E59673A4480BC778E774FF6C641BD83 /* Sources */,
+				F598E7110E01384621BC205D353FC02E /* Frameworks */,
+				9AFE04466B5EBA2E1EA1BF8CA5CB9CC3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				894A51F6E41E105CB404F48C09C08037 /* PBXTargetDependency */,
+				A98C8D43BCFE8B08E956BFE9E059F383 /* PBXTargetDependency */,
+				51C252282404291B54C6E24E6E531593 /* PBXTargetDependency */,
 			);
 			name = "Pods-CustomerGluDemo";
 			productName = "Pods-CustomerGluDemo";
 			productReference = 5837D6B3385A311EE098345E50A39BCA /* Pods_CustomerGluDemo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B9F1270719EB830F73D98E78E2316643 /* CustomerGlu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81B5397050A4C2399A0DC06A1A0682D2 /* Build configuration list for PBXNativeTarget "CustomerGlu" */;
+			buildPhases = (
+				0FDF0A620F91836E98D5318C9056685B /* Headers */,
+				C4150C5F2CB3212547F51FB788B4A819 /* Sources */,
+				566302199F4AD26E26B73322EC05893F /* Frameworks */,
+				C7F2DD3E010480632CCCA92B3FF090D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CustomerGlu;
+			productName = CustomerGlu;
+			productReference = ECCA9A2F4EB81AB3D61C17CD2ED12C67 /* CustomerGlu.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -199,10 +492,11 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 2E0AC39C9DA23243BE6C8FA23796CE26 /* Products */;
+			productRefGroup = B1ED139E3D108F8389227C8F41B08E95 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				B9F1270719EB830F73D98E78E2316643 /* CustomerGlu */,
 				B7A420630B0B57B9A6C911FF778B5A1E /* Pods-CustomerGluDemo */,
 				52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */,
 			);
@@ -210,7 +504,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		14A244F0D7F9A7C820E78D6F9CF06065 /* Resources */ = {
+		9AFE04466B5EBA2E1EA1BF8CA5CB9CC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7F2DD3E010480632CCCA92B3FF090D5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,63 +521,68 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5F1C008BF5E5EC9CE50628C7B2BDB5EB /* Sources */ = {
+		9E59673A4480BC778E774FF6C641BD83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D37B28A255D1E7E9506616E36EC6302 /* Pods-CustomerGluDemo-dummy.m in Sources */,
+				67E44247C6A87C5957544ED01AAABBED /* Pods-CustomerGluDemo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4150C5F2CB3212547F51FB788B4A819 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ABC815A816CB5931129220803744424 /* AddCartModel.swift in Sources */,
+				3417B648C0F45C98D4E8E311C657B42C /* APIManager.swift in Sources */,
+				3CFC60496860630F29031E3CFFEECF81 /* ApplicationManager.swift in Sources */,
+				0198B98021D455D667F5DB4BAFA0C70C /* BannerCell.swift in Sources */,
+				5638E626B065BED5F8875C3789D95AA6 /* BannerView.swift in Sources */,
+				9189BB506DEB47E81CF5D73C423C3587 /* CampaignsModel.swift in Sources */,
+				969C9A86CC1FC9C7AC6F336C7EB2F6F9 /* Constants.swift in Sources */,
+				6C7E894FC270F07371CB7E2A9AA2CDBD /* CustomerGlu-dummy.m in Sources */,
+				09C44138D1DA2BB193EAAD465AF9EBDF /* CustomerGlu.swift in Sources */,
+				0BEA15C1FAB73C553A5EE52AA79CE9E6 /* CustomerGluCrash.swift in Sources */,
+				B6AE1BF346AF9449166F7FB2C9041FEF /* CustomerImageNudgeViewController.swift in Sources */,
+				DDC5DC1FF49DE30EFE51E19783797742 /* CustomerWebViewController.swift in Sources */,
+				75104CA07EC4666CDEEE85EDFE830B4B /* DeepLinkModel.swift in Sources */,
+				CC4FAA0917CD4693D910FC63B3FB0D16 /* DraggableView.swift in Sources */,
+				DD4294743AB0BFDD0C0C3942EA55BB89 /* EventModel.swift in Sources */,
+				B6634FF336FC6FEC6011B40F96447344 /* EventShareModel.swift in Sources */,
+				2013482E07D7BD9DB6B7F643F0E28861 /* Extensions.swift in Sources */,
+				3CECBC6F64274D4E21B3F5C3E67538CE /* JWTDecode.swift in Sources */,
+				7D471E3BD6F7CC069DF5C9090895DBB3 /* LoadAllCampaignsViewController.swift in Sources */,
+				1E827AE044E4079A07B2EC33A2EA9CC7 /* LoadAllCampaignsViewModel.swift in Sources */,
+				98D9839CC3C6463680855DE70887EB51 /* MockData.swift in Sources */,
+				DB0F5635445C223D21718CEA12286716 /* ObjectSavable.swift in Sources */,
+				D0CFFA765C5F53C0CC94A8BB5269C050 /* OpenWalletViewController.swift in Sources */,
+				A50F722EE778A36888CF4B1DEC3C1D11 /* OpenWalletViewModel.swift in Sources */,
+				5047EB774017647399A9DD37723E5D57 /* OtherUtils.swift in Sources */,
+				9473E34F9640C2F9C947B5FA0542DFB9 /* Reachability.swift in Sources */,
+				4E675E023AAFBCE7C9DA53349AC8D422 /* RegistrationModel.swift in Sources */,
+				F2E94DB18C1E37BB8784ADD1B599856D /* SpinnerView.swift in Sources */,
+				48FE92AFAA07F67E0D9F0196E3844392 /* UIImage+Gif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		894A51F6E41E105CB404F48C09C08037 /* PBXTargetDependency */ = {
+		51C252282404291B54C6E24E6E531593 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftLint;
 			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
-			targetProxy = F7637149B52E05E29A0BB87A43ACCF3F /* PBXContainerItemProxy */;
+			targetProxy = 6899C3C8F9ED414F9CE4434ECCC6720E /* PBXContainerItemProxy */;
+		};
+		A98C8D43BCFE8B08E956BFE9E059F383 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CustomerGlu;
+			target = B9F1270719EB830F73D98E78E2316643 /* CustomerGlu */;
+			targetProxy = BFF54B603F83FB35C15C3CE15387186F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2A52A05CE0DECC8D2F13E47C4A5DD82B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9729BCB72DB325225ABAF29E645BD9C7 /* Pods-CustomerGluDemo.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		4BC7450F9457737EE3E637BA155B56F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -405,9 +711,99 @@
 			};
 			name = Release;
 		};
-		A8FC1D39BDFC4E507F5ED74CB164E329 /* Release */ = {
+		AD81E62ACCB0B7A923FC8AA288F9921E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C84D3A72FC047602054FC6DEDDBF9B9A /* Pods-CustomerGluDemo.release.xcconfig */;
+			baseConfigurationReference = 7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B26950D1BE24E5569D10BC3A4023525B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37812CB061D8B1B1228EE37E6CF05015 /* Pods-CustomerGluDemo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BC2E54CB5AF2B172AE736704FEB13B09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE5E579DC7CA90C33FB656ADE3A2A58C /* CustomerGlu.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CustomerGlu/CustomerGlu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CustomerGlu/CustomerGlu-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CustomerGlu/CustomerGlu.modulemap";
+				PRODUCT_MODULE_NAME = CustomerGlu;
+				PRODUCT_NAME = CustomerGlu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CFB5CB47DE1C855A2C820632AEA47A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19E682C8C893D0E91FDDFBC9DD2A91B1 /* Pods-CustomerGluDemo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -443,23 +839,6 @@
 			};
 			name = Release;
 		};
-		AD81E62ACCB0B7A923FC8AA288F9921E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		EADD1F50ABC8096A0D6CB18822BB4EE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */;
@@ -476,6 +855,41 @@
 			};
 			name = Debug;
 		};
+		F32743FF60403FE3BD352455BC69A2F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F2A8A5FFB8128AAE1C3D2C07F653F04 /* CustomerGlu.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CustomerGlu/CustomerGlu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CustomerGlu/CustomerGlu-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CustomerGlu/CustomerGlu.modulemap";
+				PRODUCT_MODULE_NAME = CustomerGlu;
+				PRODUCT_NAME = CustomerGlu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -488,11 +902,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E1A6275F14B454BD5F1537392344EAC /* Build configuration list for PBXNativeTarget "Pods-CustomerGluDemo" */ = {
+		81B5397050A4C2399A0DC06A1A0682D2 /* Build configuration list for PBXNativeTarget "CustomerGlu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A52A05CE0DECC8D2F13E47C4A5DD82B /* Debug */,
-				A8FC1D39BDFC4E507F5ED74CB164E329 /* Release */,
+				F32743FF60403FE3BD352455BC69A2F4 /* Debug */,
+				BC2E54CB5AF2B172AE736704FEB13B09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -502,6 +916,15 @@
 			buildConfigurations = (
 				EADD1F50ABC8096A0D6CB18822BB4EE4 /* Debug */,
 				AD81E62ACCB0B7A923FC8AA288F9921E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB4D327E1300379775E87C00A2AAF8B6 /* Build configuration list for PBXNativeTarget "Pods-CustomerGluDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B26950D1BE24E5569D10BC3A4023525B /* Debug */,
+				CFB5CB47DE1C855A2C820632AEA47A60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
