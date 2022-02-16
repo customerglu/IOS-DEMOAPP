@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D5EA9427BD1EBC00D073D4 /* AlertScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EA9327BD1EBB00D073D4 /* AlertScreen.swift */; };
 		1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1827E7682726C09D00A7B38B /* GoogleService-Info.plist */; };
 		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
@@ -26,30 +27,12 @@
 		1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */; };
 		1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B77ADBF26CBE05B0086859F /* AppDelegate.swift */; };
 		1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB1792A26B9255B0058E02C /* ViewController.swift */; };
-		82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */; };
 		8284D4592754CE8200CEF827 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284D4582754CE8200CEF827 /* LoginScreen.swift */; };
-		82875A6E27883979005EC40D /* CustomerGluDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */; };
 		BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		82699B0F278715AA0020D2B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1B3D7CA826A6BDDC00EA1587 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1B3D7CAF26A6BDDC00EA1587;
-			remoteInfo = CustomerGluDemo;
-		};
-		82875A6F27883979005EC40D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1B3D7CA826A6BDDC00EA1587 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1B3D7CAF26A6BDDC00EA1587;
-			remoteInfo = CustomerGluDemo;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		04D5EA9327BD1EBB00D073D4 /* AlertScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertScreen.swift; sourceTree = "<group>"; };
 		1827E7682726C09D00A7B38B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomerGluDemo.entitlements; sourceTree = "<group>"; };
 		1B3A357426B7C57500A2C713 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
@@ -70,10 +53,8 @@
 		1B77ADBF26CBE05B0086859F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
-		82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITests.swift; sourceTree = "<group>"; usesTabs = 0; };
 		8284D4582754CE8200CEF827 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
-		82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoTests.swift; sourceTree = "<group>"; };
 		89E02B1D77453ED6222A54C0 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		8C6A0743327A2F16F273AC1B /* Pods_CustomerGluDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomerGluDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,20 +69,6 @@
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
 				BF9826CAD1295BE321CCAEEB /* Pods_CustomerGluDemo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82699B06278715AA0020D2B4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82875A6827883979005EC40D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */,
-				82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */,
-				82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +132,7 @@
 		1B3D7CC326A6BE2300EA1587 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04D5EA9327BD1EBB00D073D4 /* AlertScreen.swift */,
 				1B3D7CC426A6BE4100EA1587 /* HomeScreen.swift */,
 				1B3D7CC626A6BEB300EA1587 /* ShopScreen.swift */,
 				1B3D7CC826A6BF0000EA1587 /* WebView.swift */,
@@ -250,42 +216,6 @@
 			productReference = 1B3D7CB026A6BDDC00EA1587 /* CustomerGluDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		82699B08278715AA0020D2B4 /* CustomerGluDemoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 82699B13278715AA0020D2B4 /* Build configuration list for PBXNativeTarget "CustomerGluDemoUITests" */;
-			buildPhases = (
-				82699B05278715AA0020D2B4 /* Sources */,
-				82699B06278715AA0020D2B4 /* Frameworks */,
-				82699B07278715AA0020D2B4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				82699B10278715AA0020D2B4 /* PBXTargetDependency */,
-			);
-			name = CustomerGluDemoUITests;
-			productName = CustomerGluDemoUITests;
-			productReference = 82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		82875A6A27883979005EC40D /* CustomerGluDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 82875A7327883979005EC40D /* Build configuration list for PBXNativeTarget "CustomerGluDemoTests" */;
-			buildPhases = (
-				82875A6727883979005EC40D /* Sources */,
-				82875A6827883979005EC40D /* Frameworks */,
-				82875A6927883979005EC40D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				82875A7027883979005EC40D /* PBXTargetDependency */,
-			);
-			name = CustomerGluDemoTests;
-			productName = CustomerGluDemoTests;
-			productReference = 82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -297,14 +227,6 @@
 				TargetAttributes = {
 					1B3D7CAF26A6BDDC00EA1587 = {
 						CreatedOnToolsVersion = 12.5.1;
-					};
-					82699B08278715AA0020D2B4 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 1B3D7CAF26A6BDDC00EA1587;
-					};
-					82875A6A27883979005EC40D = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 1B3D7CAF26A6BDDC00EA1587;
 					};
 				};
 			};
@@ -325,8 +247,6 @@
 			projectRoot = "";
 			targets = (
 				1B3D7CAF26A6BDDC00EA1587 /* CustomerGluDemo */,
-				82699B08278715AA0020D2B4 /* CustomerGluDemoUITests */,
-				82875A6A27883979005EC40D /* CustomerGluDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -340,20 +260,6 @@
 				1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */,
 				1B3D7CB826A6BDDC00EA1587 /* Assets.xcassets in Resources */,
 				1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82699B07278715AA0020D2B4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82875A6927883979005EC40D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +333,7 @@
 				1B3D7CD326A6E17C00EA1587 /* CartScreen.swift in Sources */,
 				1B73372726A7005500F93795 /* CartCell.swift in Sources */,
 				8284D4592754CE8200CEF827 /* LoginScreen.swift in Sources */,
+				04D5EA9427BD1EBC00D073D4 /* AlertScreen.swift in Sources */,
 				1B3D7CB626A6BDDC00EA1587 /* ContentView.swift in Sources */,
 				1B3D7CC926A6BF0000EA1587 /* WebView.swift in Sources */,
 				1BB1792B26B9255B0058E02C /* ViewController.swift in Sources */,
@@ -439,36 +346,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		82699B05278715AA0020D2B4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82875A6727883979005EC40D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82875A6E27883979005EC40D /* CustomerGluDemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		82699B10278715AA0020D2B4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1B3D7CAF26A6BDDC00EA1587 /* CustomerGluDemo */;
-			targetProxy = 82699B0F278715AA0020D2B4 /* PBXContainerItemProxy */;
-		};
-		82875A7027883979005EC40D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1B3D7CAF26A6BDDC00EA1587 /* CustomerGluDemo */;
-			targetProxy = 82875A6F27883979005EC40D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1B3D7CBD26A6BDDC00EA1587 /* Debug */ = {
@@ -596,7 +474,7 @@
 				CODE_SIGN_ENTITLEMENTS = CustomerGluDemo/CustomerGluDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;
@@ -623,7 +501,7 @@
 				CODE_SIGN_ENTITLEMENTS = CustomerGluDemo/CustomerGluDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;
@@ -638,114 +516,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = Demo_development;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		82699B11278715AA0020D2B4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XZR7N982GP;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CustomerGluDemo;
-			};
-			name = Debug;
-		};
-		82699B12278715AA0020D2B4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XZR7N982GP;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CustomerGluDemo;
-			};
-			name = Release;
-		};
-		82875A7127883979005EC40D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8N6KRZQRXX;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CustomerGluDemo.app/CustomerGluDemo";
-			};
-			name = Debug;
-		};
-		82875A7227883979005EC40D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8N6KRZQRXX;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Emorphis.CustomerGluDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CustomerGluDemo.app/CustomerGluDemo";
 			};
 			name = Release;
 		};
@@ -766,24 +536,6 @@
 			buildConfigurations = (
 				1B3D7CC026A6BDDC00EA1587 /* Debug */,
 				1B3D7CC126A6BDDC00EA1587 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		82699B13278715AA0020D2B4 /* Build configuration list for PBXNativeTarget "CustomerGluDemoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				82699B11278715AA0020D2B4 /* Debug */,
-				82699B12278715AA0020D2B4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		82875A7327883979005EC40D /* Build configuration list for PBXNativeTarget "CustomerGluDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				82875A7127883979005EC40D /* Debug */,
-				82875A7227883979005EC40D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

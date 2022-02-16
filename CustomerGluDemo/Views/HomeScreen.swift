@@ -10,6 +10,7 @@ import Firebase
 
 struct HomeScreen: View {
     @State var active = false
+    @State var isAlert = false
     var height = UIScreen.main.bounds.height
     var width = UIScreen.main.bounds.width
     var customerglu = CustomerGlu.getInstance
@@ -48,55 +49,48 @@ struct HomeScreen: View {
                     }
                     Spacer()
                     Button(action: {
-                        CustomerGlu.getInstance.loadAllCampaigns()
+                        self.isAlert = true
+//                        CustomerGlu.getInstance.openWallet()
                     }) {
                         productCard(image: "coin", title: "Rewards")
-                    }
+                    }.alert(isPresented: $isAlert, AlertConfig(title: "CampaignId / Tag", placeholder: "Enter CampaignId / Tag", accept:"Open Campaign", action: {
+                        if $0 != nil {
+                                                    loadCampaignByID(campaignId: $0 ?? "")
+                                                }
+                    }))
                 }.padding(.horizontal, 10)
-                ZStack() {
-                    Color.clear
-                    BannerViewAdd()
-                }.frame(width: width - 30, height: 110)
-                    .navigationBarHidden(true)
                 HStack {
-                    NavigationLink(
-                        destination: ShopScreen(),
-                        label: {
-                            productCard(image: "shop", title: "Shop")
-                        })
-                    Spacer()
-                    NavigationLink(
-                        destination: CartScreen(),
-                        isActive: $active,
-                        label: {
-                            productCard(image: "trolley", title: "Cart")
-                        })
-                }.padding(.horizontal, 10)
+                    Button(action: {
+                        CustomerGlu.getInstance.openWalletWithURL(url: "https://games.customerglu.com/wallet/?token=demo_token")
+                    }) {
+                        productCard(image: "shop", title: "All campaigns")
+                    }
+
+
+                }.padding(.horizontal, 1)
                 Spacer()
             }.onAppear(perform: {
-                customerglu.addDragabbleView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
+//                CustomerGlu.getInstance.addBannerView(frame: CGRect(x: 0, y: 100, width: 300, height: 400))
+//                CustomerGlu.getInstance.addBannerView(frame: CGRect(x: 50, y: 150, width: 200, height: 80))
             })
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
     }
+    
+    func loadCampaignByID(campaignId: String) {
+        
+        if(!campaignId.isEmpty)
+        {
+            customerglu.loadCampaignById(campaign_id: campaignId)
+            
+        }
+    }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
-    }
-}
-
-struct BannerViewAdd: UIViewRepresentable {
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        
-    }
-    
-    func makeUIView(context: Context) -> some UIView {
-        let view = UIView()
-        view.addSubview(CustomerGlu.getInstance.addBannerViewNew(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 110)))
-        return view
     }
 }
