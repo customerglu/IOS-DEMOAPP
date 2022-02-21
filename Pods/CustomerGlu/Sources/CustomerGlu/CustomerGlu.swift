@@ -13,6 +13,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public static var getInstance = CustomerGlu()
     public static var sdk_disable: Bool? = false
     public static var fcm_apn = ""
+    public static var analyticsEvent: Bool? = false
     let userDefaults = UserDefaults.standard
     public var apnToken = ""
     public var fcmToken = ""
@@ -53,7 +54,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             print(error)
         }
     }
-        
+
     public func disableGluSdk(disable: Bool) {
         CustomerGlu.sdk_disable = disable
     }
@@ -90,6 +91,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public func closeWebviewOnDeeplinkEvent(close: Bool) {
         CustomerGlu.auto_close_webview = close
     }
+    
+    public func enableAnalyticsEvent(event: Bool) {
+        CustomerGlu.analyticsEvent = event
+      }
     
     func loaderHide() {
         DispatchQueue.main.async { [self] in
@@ -176,7 +181,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
     }
     
-    public func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
+    private func presentToCustomerWebViewController(nudge_url: String, page_type: String, backgroundAlpha: Double) {
         
         let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
         customerWebViewVC.urlStr = nudge_url
@@ -354,7 +359,9 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             }
         }
     }
-    
+    public func openWalletWithURL(url: String) {
+        CustomerGlu.getInstance.presentToCustomerWebViewController(nudge_url: url, page_type: Constants.FULL_SCREEN_NOTIFICATION, backgroundAlpha: 0.5)
+    }
     public func openWallet() {
         if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userDefaults.string(forKey: Constants.CUSTOMERGLU_USERID) == nil {
             if CustomerGlu.sdk_disable! {
@@ -510,30 +517,5 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         CustomerGlu.bottomSafeAreaHeight = bottomHeight
         CustomerGlu.topSafeAreaColor = topSafeAreaColor
         CustomerGlu.bottomSafeAreaColor = bottomSafeAreaColor
-    }
-    
-    public func addBannerView(frame: CGRect) {
-        DispatchQueue.main.async {
-            guard let topController = UIViewController.topViewController() else {
-                return
-            }
-            let bannerView = BannerView(frame: CGRect(x: 0, y: 100, width: topController.view.frame.width, height: frame.height))
-            topController.view.addSubview(bannerView)
-        }
-    }
-    
-    public func addBannerViewNew(frame: CGRect) -> UIView {
-        let bannerView = BannerView(frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.width, height: frame.height))
-        return bannerView
-    }
-    
-    public func addDragabbleView(frame: CGRect) {
-        DispatchQueue.main.async {
-            let dragView = DraggableView(height: 55, width: 120, alignDirection: .right, url: "https://i.gifer.com/origin/41/41297901c13bc7325dc7a17bba585ff9_w200.gif")
-            guard let topController = UIViewController.topViewController() else {
-                return
-            }
-            topController.view.addSubview(dragView)
-        }
     }
 }

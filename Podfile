@@ -7,6 +7,6 @@ target 'CustomerGluDemo' do
 
   # Pods for CustomerGluDemo
     pod 'SwiftLint', '0.45.0'
-   pod 'CustomerGlu', :path => '../CG-iOS-SDK'
-  # pod 'CustomerGlu', :git => 'https://github.com/customerglu/CG-iOS-SDK.git', :branch => 'CG-295'
+#   pod 'CustomerGlu', :path => '../CG-iOS-SDK'
+   pod 'CustomerGlu', :git => 'https://github.com/customerglu/CG-iOS-SDK.git', :branch => 'master'
 end

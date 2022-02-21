@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04D5EA9427BD1EBC00D073D4 /* AlertScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D5EA9327BD1EBB00D073D4 /* AlertScreen.swift */; };
+		181DDC3427C3C52F00C2125F /* NotificationsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DDC3327C3C52F00C2125F /* NotificationsScreen.swift */; };
 		1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1827E7682726C09D00A7B38B /* GoogleService-Info.plist */; };
 		1B3A357526B7C57500A2C713 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B3A357426B7C57500A2C713 /* Register.storyboard */; };
 		1B3D7CB426A6BDDC00EA1587 /* CustomerGluDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3D7CB326A6BDDC00EA1587 /* CustomerGluDemoApp.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		04D5EA9327BD1EBB00D073D4 /* AlertScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertScreen.swift; sourceTree = "<group>"; };
+		181DDC3327C3C52F00C2125F /* NotificationsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsScreen.swift; sourceTree = "<group>"; };
 		1827E7682726C09D00A7B38B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomerGluDemo.entitlements; sourceTree = "<group>"; };
 		1B3A357426B7C57500A2C713 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		1B3D7CC326A6BE2300EA1587 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				181DDC3327C3C52F00C2125F /* NotificationsScreen.swift */,
 				04D5EA9327BD1EBB00D073D4 /* AlertScreen.swift */,
 				1B3D7CC426A6BE4100EA1587 /* HomeScreen.swift */,
 				1B3D7CC626A6BEB300EA1587 /* ShopScreen.swift */,
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				181DDC3427C3C52F00C2125F /* NotificationsScreen.swift in Sources */,
 				1B77ADC026CBE05B0086859F /* AppDelegate.swift in Sources */,
 				1B3D7CD326A6E17C00EA1587 /* CartScreen.swift in Sources */,
 				1B73372726A7005500F93795 /* CartCell.swift in Sources */,

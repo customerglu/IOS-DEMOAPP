@@ -89,11 +89,11 @@ extension UIView {
 }
 
 extension UIImageView {
-    
+ 
     func downloadImage(urlString: String, success: ((_ image: UIImage?) -> Void)? = nil, failure: ((String) -> Void)? = nil) {
         
         let imageCache = NSCache<NSString, UIImage>()
-        
+
         DispatchQueue.main.async {[weak self] in
             self?.image = nil
         }
@@ -116,15 +116,7 @@ extension UIImageView {
                 DispatchQueue.main.async {[weak self] in
                     if let error = error {
                         failure?(error.localizedDescription)
-                    } else if let data = data {
-                        var image = UIImage()
-                        let imageExtensions = ["gif"]
-                        let pathExtention = url.pathExtension
-                        if imageExtensions.contains(pathExtention) {
-                            image = UIImage.gif(data: data)!
-                        } else {
-                            image = UIImage(data: data)!
-                        }
+                    } else if let data = data, let image = UIImage(data: data) {
                         imageCache.setObject(image, forKey: url.absoluteString as NSString)
                         self?.image = image
                         success?(image)

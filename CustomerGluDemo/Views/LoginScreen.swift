@@ -46,7 +46,7 @@ struct LoginScreen: View {
                 HStack {
                     NavigationLink(destination: HomeScreen(), isActive: $isActive) {
                         Button(action: {
-                            if userid.isEmpty || username.isEmpty {
+                            if userid.isEmpty {
                                 return
                             }
                             submitActionClicked(userId: userid, userName: username, referenceId: referId)

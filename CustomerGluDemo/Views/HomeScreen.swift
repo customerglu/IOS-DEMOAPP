@@ -59,16 +59,29 @@ struct HomeScreen: View {
                                                 }
                     }))
                 }.padding(.horizontal, 10)
+//                HStack {
+//                    Button(action: {
+//                       // CustomerGlu.getInstance.openWalletWithURL(url: "https://games.customerglu.com/wallet/?token=demo_token")
+//                    }) {
+//                        productCard(image: "shop", title: "All campaigns")
+//                    }
+//                }.padding(.horizontal, 1)
+//                Spacer()
                 HStack {
                     Button(action: {
                         CustomerGlu.getInstance.openWalletWithURL(url: "https://games.customerglu.com/wallet/?token=demo_token")
                     }) {
                         productCard(image: "shop", title: "All campaigns")
                     }
+                    Spacer()
+                    NavigationLink(
+                        destination: NotificationsScreen(),
+                        label: {
+                            productCard(image: "bell", title: "Notifications")
+                        })
 
-
-                }.padding(.horizontal, 1)
-                Spacer()
+                }.padding(.horizontal, 10)
+//                Spacer()
             }.onAppear(perform: {
 //                CustomerGlu.getInstance.addBannerView(frame: CGRect(x: 0, y: 100, width: 300, height: 400))
 //                CustomerGlu.getInstance.addBannerView(frame: CGRect(x: 50, y: 150, width: 200, height: 80))

@@ -1,9 +1,9 @@
 PODS:
-  - CustomerGlu (0.0.4)
+  - CustomerGlu (1.0.5)
   - SwiftLint (0.45.0)
 
 DEPENDENCIES:
-  - CustomerGlu (from `../CG-iOS-SDK`)
+  - CustomerGlu (from `https://github.com/customerglu/CG-iOS-SDK.git`, branch `master`)
   - SwiftLint (= 0.45.0)
 
 SPEC REPOS:
@@ -12,12 +12,18 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   CustomerGlu:
-    :path: "../CG-iOS-SDK"
+    :branch: master
+    :git: https://github.com/customerglu/CG-iOS-SDK.git
+
+CHECKOUT OPTIONS:
+  CustomerGlu:
+    :commit: 59036a47782739ea96d39e476bb9d095dafb97ed
+    :git: https://github.com/customerglu/CG-iOS-SDK.git
 
 SPEC CHECKSUMS:
-  CustomerGlu: f2542bb8ad5585680c533f5e614c71c401069795
+  CustomerGlu: fbd73796bf7f6f88d88847c0818bda8f1b1c6eb8
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
-PODFILE CHECKSUM: 2697b2c8ed5bdec75aa478553165db4b42359ded
+PODFILE CHECKSUM: eaefbdffd5fbb3e57b81df6aebac34335828bd90
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.10.1

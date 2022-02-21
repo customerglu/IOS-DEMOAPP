@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "6D72B9D4-6587-42DD-87A0-B44A90BE7A91"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2CE2C7D-AB72-4595-B800-9F6331DFA2B6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CustomerGluDemo/Views/LoginScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "submitActionClicked(userId:userName:referenceId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C2CE2C7D-AB72-4595-B800-9F6331DFA2B6 - 75d3b30e57eda560"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CustomerGluDemo.LoginScreen.submitActionClicked(userId: Swift.String, userName: Swift.String, referenceId: Swift.String) -&gt; ()"
+                  moduleName = "CustomerGluDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/Git/Customerglu/IOS-DEMOAPP/CustomerGluDemo/Views/LoginScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "712">
+               </Location>
+               <Location
+                  uuid = "C2CE2C7D-AB72-4595-B800-9F6331DFA2B6 - 7fa3d7b0f87a6ec5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;CustomerGlu.RegistrationModel&gt;) -&gt; () in CustomerGluDemo.LoginScreen.submitActionClicked(userId: Swift.String, userName: Swift.String, referenceId: Swift.String) -&gt; ()"
+                  moduleName = "CustomerGluDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Documents/Git/Customerglu/IOS-DEMOAPP/CustomerGluDemo/Views/LoginScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -37,4 +37,6 @@ public struct Banner: Codable {
     public var totalSteps: String?
     public var stepsCompleted: String?
     public var stepsRemaining: String?
+    public var tag: String?
+    public var userCampaignStatus: String?
 }

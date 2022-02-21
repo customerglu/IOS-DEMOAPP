@@ -69,6 +69,7 @@ struct WebViewsKey {
     static let callback = "callback"
     static let close = "CLOSE"
     static let open_deeplink = "OPEN_DEEPLINK"
+    static let analytics = "ANALYTICS"
     static let share = "SHARE"
 }
 
