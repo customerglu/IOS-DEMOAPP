@@ -94,11 +94,11 @@ struct HomeScreen: View {
     
     func loadCampaignByID(campaignId: String) {
         
-        if(!campaignId.isEmpty)
-        {
+//        if(!campaignId.isEmpty)
+//        {
             customerglu.loadCampaignById(campaign_id: campaignId)
             
-        }
+//        }
     }
 }
 

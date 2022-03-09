@@ -246,7 +246,6 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public func clearGluData() {
         userDefaults.removeObject(forKey: Constants.CUSTOMERGLU_TOKEN)
         userDefaults.removeObject(forKey: Constants.CUSTOMERGLU_USERID)
-        userDefaults.removeObject(forKey: Constants.WalletRewardData)
         userDefaults.removeObject(forKey: Constants.CustomerGluCrash)
     }
     

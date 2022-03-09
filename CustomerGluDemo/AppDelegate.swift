@@ -145,7 +145,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         print(userInfo)
         CustomerGlu.getInstance.displayBackgroundNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
-        completionHandler()
+//        completionHandler()
     }
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {

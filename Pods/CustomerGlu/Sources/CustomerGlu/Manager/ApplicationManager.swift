@@ -20,13 +20,6 @@ class ApplicationManager {
         APIManager.getWalletRewards(queryParameters: [:]) { result in
             switch result {
             case .success(let response):
-                var campaigndata = CampaignsModel()
-                campaigndata = response
-                do {
-                    try UserDefaults.standard.setObject(campaigndata, forKey: Constants.WalletRewardData)
-                } catch {
-                    print(error.localizedDescription)
-                }
                 completion(true, response)
                     
             case .failure(let error):
@@ -56,15 +49,6 @@ class ApplicationManager {
         APIManager.getWalletRewards(queryParameters: params as NSDictionary) { result in
             switch result {
             case .success(let response):
-                
-                var campaigndata = CampaignsModel()
-                campaigndata = response
-                do {
-                    try UserDefaults.standard.setObject(campaigndata, forKey: Constants.WalletRewardData)
-                } catch {
-                    print(error.localizedDescription)
-                }
-                
                 completion(true, response)
                     
             case .failure(let error):

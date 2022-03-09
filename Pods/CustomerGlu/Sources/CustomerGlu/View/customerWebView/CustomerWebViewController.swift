@@ -108,23 +108,19 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                 if success {
                     CustomerGlu.getInstance.loaderHide()
                     let campaigns: [Campaigns] = (campaignsModel?.campaigns)!
-                    let filteredArray = campaigns.filter{($0.campaignId.elementsEqual(self.campaign_id)) || ($0.banner != nil && $0.banner?.tag != nil && ($0.banner!.tag!.elementsEqual(self.campaign_id)))}
+                    let filteredArray = campaigns.filter{($0.campaignId.elementsEqual(self.campaign_id)) || ($0.banner != nil && $0.banner?.tag != nil && $0.banner?.tag != "" && ($0.banner!.tag!.elementsEqual(self.campaign_id)))}
                     if filteredArray.count > 0 {
                         DispatchQueue.main.async {
                             self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (self.topHeight.constant + self.bottomHeight.constant)), configuration: config) //set your own frame
                             self.setwebView(url: filteredArray[0].url, x: x, y: y)
                         }
                     } else {
-                        let userDefaults = UserDefaults.standard
-                        do {
-                            let campaignsModel = try userDefaults.getObject(forKey: Constants.WalletRewardData, castTo: CampaignsModel.self)
+
                             DispatchQueue.main.async { [self] in // Make sure you're on the main thread here
                                 self.webView = WKWebView(frame: CGRect(x: 0, y: self.topHeight.constant, width: self.view.frame.width, height: self.view.frame.height - (self.topHeight.constant + self.bottomHeight.constant)), configuration: config) //set your own frame
-                                self.setwebView(url: campaignsModel.defaultUrl, x: x, y: y)
+                                self.setwebView(url: campaignsModel?.defaultUrl ?? "", x: x, y: y)
                             }
-                        } catch {
-                            print(error.localizedDescription)
-                        }
+
                     }
                 } else {
                     CustomerGlu.getInstance.loaderHide()
