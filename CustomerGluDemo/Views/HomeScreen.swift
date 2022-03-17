@@ -55,7 +55,7 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 ZStack() {
                     Color.clear
-                    BannerViewAdd()
+                  //  BannerViewAdd()
                 }.frame(width: width - 30, height: 110)
                     .navigationBarHidden(true)
                 HStack {

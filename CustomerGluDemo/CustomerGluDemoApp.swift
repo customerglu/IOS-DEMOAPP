@@ -37,6 +37,6 @@ struct CustomerGluDemoApp: App {
     }
     
     func handleURL(_ url: URL) {
-        print(url)        
+        print(url)
     }
 }

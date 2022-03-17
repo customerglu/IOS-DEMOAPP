@@ -318,7 +318,7 @@
 			);
 			mainGroup = 1B3D7CA726A6BDDC00EA1587;
 			packageReferences = (
-				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 1B3D7CB126A6BDDC00EA1587 /* Products */;
 			projectDirPath = "";
@@ -791,7 +791,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -804,17 +804,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		1B77ADB726CBDF100086859F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		1B77ADB926CBDF100086859F /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
 		1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
 		};
 /* End XCSwiftPackageProductDependency section */
