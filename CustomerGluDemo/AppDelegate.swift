@@ -102,13 +102,13 @@ extension AppDelegate: MessagingDelegate {
         print("Firebase registration token: \(String(describing: fcmToken))")
         CustomerGlu.getInstance.fcmToken = fcmToken ?? ""
         
-        let userData = [String: AnyHashable]()
+      //  let userData = [String: AnyHashable]()
         
-        CustomerGlu.getInstance.updateProfile(userdata: userData) { success, _ in
-            if success {
-            } else {
-            }
-        }
+//        CustomerGlu.getInstance.updateProfile(userdata: userData) { success, _ in
+//            if success {
+//            } else {
+//            }
+//        }
     }
 }
 

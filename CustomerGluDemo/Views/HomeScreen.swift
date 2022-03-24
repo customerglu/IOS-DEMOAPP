@@ -55,7 +55,7 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 ZStack() {
                     Color.clear
-                  //  BannerViewAdd()
+                    BannerViewAdd()
                 }.frame(width: width - 30, height: 110)
                     .navigationBarHidden(true)
                 HStack {
@@ -96,7 +96,9 @@ struct BannerViewAdd: UIViewRepresentable {
     
     func makeUIView(context: Context) -> some UIView {
         let view = UIView()
-        view.addSubview(CustomerGlu.getInstance.addBannerViewNew(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 110)))
+        let bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 110))
+        bannerView.reloadBannerView(element_id: "er")
+        view.addSubview(bannerView)
         return view
     }
 }
