@@ -3,7 +3,7 @@ PODS:
   - SwiftLint (0.45.0)
 
 DEPENDENCIES:
-  - CustomerGlu (from `../CG-iOS-SDK`)
+  - CustomerGlu (from `/Users/mac/Downloads/CustomerApp/CG-iOS-SDK`)
   - SwiftLint (= 0.45.0)
 
 SPEC REPOS:
@@ -12,12 +12,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   CustomerGlu:
-    :path: "../CG-iOS-SDK"
+    :path: "/Users/mac/Downloads/CustomerApp/CG-iOS-SDK"
 
 SPEC CHECKSUMS:
   CustomerGlu: 4166e98855e3d2a09374a689b665e5412410ee24
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
-PODFILE CHECKSUM: 20bec2c77eca46b99710a012ea6a1fddd7046d04
+PODFILE CHECKSUM: c49303051083670204d871cd1401cbe0e22cec25
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2
