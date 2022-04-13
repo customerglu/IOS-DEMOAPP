@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CustomerGlu
 
 struct ShopScreen: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -26,7 +27,12 @@ struct ShopScreen: View {
                 }
             }
             .navigationTitle("Shop Screen")
-        }
+        }.onAppear(perform: {
+            
+            CustomerGlu.getInstance.setCurrentClassNeme(className: String(describing: type(of: self)))
+//                CustomerGlu.getInstance.setCurrentClassNeme(className: String(describing: self.self))
+          //  customerglu.addDragabbleView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
+        })
     }
 }
 

@@ -7,144 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "ED321065-96EE-40A3-A3D3-734A156F1A5A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "registerDevice(userdata:loadcampaigns:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "ED321065-96EE-40A3-A3D3-734A156F1A5A - aad878d19357b4d1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.registerDevice(userdata: Swift.Dictionary&lt;Swift.String, Swift.AnyHashable&gt;, loadcampaigns: Swift.Bool, completion: (Swift.Bool, Swift.Optional&lt;CustomerGlu.RegistrationModel&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git/Customerglu/CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "285"
-                  endingLineNumber = "285"
-                  offsetFromSymbolStart = "7083">
-               </Location>
-               <Location
-                  uuid = "ED321065-96EE-40A3-A3D3-734A156F1A5A - 254bb9482dd03f94"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.RegistrationModel, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.registerDevice(userdata: Swift.Dictionary&lt;Swift.String, Swift.AnyHashable&gt;, loadcampaigns: Swift.Bool, completion: (Swift.Bool, Swift.Optional&lt;CustomerGlu.RegistrationModel&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Documents/Git/Customerglu/CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "285"
-                  endingLineNumber = "285"
-                  offsetFromSymbolStart = "303">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D2843DFF-D5D2-45C1-8033-8208025F3BC7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "registerDevice(userdata:loadcampaigns:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6109BBEA-DE3B-413F-8F54-B8AF17699CB1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
-            landmarkName = "registerDevice(userdata:loadcampaigns:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DFB333A5-ADEF-4175-90CA-072BA8BFDC71"
+            uuid = "26795084-77EB-4E36-9C64-81F9336A1EF9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Manager/APIManager.swift"
+            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "performRequest(baseurl:methodandpath:parametersDict:completion:)"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
+            landmarkName = "setCurrentClassNeme(className:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B847D9C7-8982-4754-B5A9-D1EB9EB43D5A"
+            uuid = "4678BC37-A983-47C5-9839-EA601765476C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "registerDevice(userdata:loadcampaigns:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5210CEE9-55A3-453E-B95E-F6F0BD66C0E9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/CustomerGlu.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "registerDevice(userdata:loadcampaigns:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EB2837EE-CBDC-4583-B588-001959B3DC3E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/View/loadAllCampaigns/LoadAllCampaignsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "652"
+            endingLineNumber = "652"
+            landmarkName = "hideFloatingButtons()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

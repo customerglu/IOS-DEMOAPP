@@ -74,6 +74,9 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
+                
+                CustomerGlu.getInstance.setCurrentClassNeme(className: String(describing: type(of: self)))
+//                CustomerGlu.getInstance.setCurrentClassNeme(className: String(describing: self.self))
               //  customerglu.addDragabbleView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
             })
         }.ignoresSafeArea(.all)
