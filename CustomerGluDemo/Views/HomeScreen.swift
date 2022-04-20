@@ -99,11 +99,11 @@ struct BannerViewAdd: UIViewRepresentable {
     
     func makeUIView(context: Context) -> some UIView {
         let view = UIView()
-        let bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 110))
-        let seconds = 2.5
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            bannerView.reloadBannerView(element_id: "entry1")
-        }
+        let bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 110),elementId: "entry1")
+//        let seconds = 2.5
+//        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+//            bannerView.reloadBannerView(element_id: "entry1")
+//        }
         view.addSubview(bannerView)
         return view
     }
