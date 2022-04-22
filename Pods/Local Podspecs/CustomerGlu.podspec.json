@@ -1,6 +1,6 @@
 {
   "name": "CustomerGlu",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "summary": "CustomerGlu",
   "description": "A new CustomerGlu.",
   "homepage": "https://github.com/customerglu/CG-iOS-SDK",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/customerglu/CG-iOS-SDK.git",
-    "tag": "v1.0.7"
+    "tag": "v1.0.8"
   },
   "source_files": "Sources/**/*.*",
   "exclude_files": "Tests/**/*.*",
