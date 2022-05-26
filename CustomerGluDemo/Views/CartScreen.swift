@@ -58,6 +58,9 @@ struct CartScreen: View {
             .cornerRadius(20)
             .padding()
         }.navigationTitle("My Cart")
+        .onAppear(perform: {
+            CustomerGlu.getInstance.setCurrentClassName(className: "CartScreen")
+        })
     }
 }
 

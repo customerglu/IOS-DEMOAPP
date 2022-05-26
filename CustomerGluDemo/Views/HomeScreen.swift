@@ -53,11 +53,9 @@ struct HomeScreen: View {
                         productCard(image: "coin", title: "Rewards")
                     }
                 }.padding(.horizontal, 10)
-                ZStack() {
-                    Color.clear
+                VStack {
                     BannerViewAdd()
-                }.frame(width: width - 30, height: 110)
-                    .navigationBarHidden(true)
+                }.padding(.horizontal, 10)
                 HStack {
                     NavigationLink(
                         destination: ShopScreen(),
@@ -74,7 +72,7 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
-              //  customerglu.addDragabbleView(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
+                CustomerGlu.getInstance.setCurrentClassName(className: String(describing: type(of: self)))
             })
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())
@@ -90,18 +88,14 @@ struct HomeScreen_Previews: PreviewProvider {
 }
 
 struct BannerViewAdd: UIViewRepresentable {
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        
+    func updateUIView(_ uiView: BannerView, context: Context) {
     }
     
-    func makeUIView(context: Context) -> some UIView {
-        let view = UIView()
-        let bannerView = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 30, height: 110))
-        let seconds = 2.5
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            bannerView.reloadBannerView(element_id: "entry1")
-        }
-        view.addSubview(bannerView)
+    func makeUIView(context: Context) -> BannerView {
+        let view = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), bannerId: "entry1")
+        view.setContentHuggingPriority(.required, for: .horizontal) // << here !!
+        view.setContentHuggingPriority(.required, for: .vertical)
+        // the same for compression if needed
         return view
     }
 }
