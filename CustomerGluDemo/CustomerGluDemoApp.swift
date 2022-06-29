@@ -13,7 +13,7 @@ struct CustomerGluDemoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if UserDefaults.standard.object(forKey: "CustomerGlu_Token_Encrypt") != nil {
+            if UserDefaults.standard.object(forKey: "CustomerGlu_Token") != nil {
                 HomeScreen()
                     .onOpenURL { url in
                         // URL handling

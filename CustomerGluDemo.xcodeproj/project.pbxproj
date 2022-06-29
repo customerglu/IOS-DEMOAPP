@@ -234,7 +234,7 @@
 				1B3D7CAD26A6BDDC00EA1587 /* Frameworks */,
 				1B3D7CAE26A6BDDC00EA1587 /* Resources */,
 				822A396027286C5E000CD097 /* ShellScript */,
-				E85C66834A296544D36F2122 /* [CP] Embed Pods Frameworks */,
+				225236406E6AF95BA6DD5833 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,6 +360,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		225236406E6AF95BA6DD5833 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		822A396027286C5E000CD097 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -397,23 +414,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E85C66834A296544D36F2122 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -596,7 +596,7 @@
 				CODE_SIGN_ENTITLEMENTS = CustomerGluDemo/CustomerGluDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;
@@ -623,7 +623,7 @@
 				CODE_SIGN_ENTITLEMENTS = CustomerGluDemo/CustomerGluDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hitesh Landge (4U53ALDQTS)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.5;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"CustomerGluDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = XZR7N982GP;
 				ENABLE_PREVIEWS = YES;

@@ -69,7 +69,7 @@ struct LoginScreen: View {
         userData["username"] = userName
         userData["referId"] = referenceId
         
-        CustomerGlu.getInstance.registerDevice(userdata: userData) { success, _ in
+        CustomerGlu.getInstance.registerDevice(userdata: userData) { success in
             if success {
                 self.isActive = true
             } else {
