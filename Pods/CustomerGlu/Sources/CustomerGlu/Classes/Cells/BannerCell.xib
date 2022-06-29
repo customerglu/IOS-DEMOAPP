@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="Ina-3S-dYo" customClass="BannerCell" customModule="CustomerGlu">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ina-3S-dYo" id="T81-gh-iMc">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-cU-MPd">
+                        <rect key="frame" x="10" y="10" width="394" height="130"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tub-Ao-DoF">
+                                <rect key="frame" x="0.0" y="0.0" width="394" height="130"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Tub-Ao-DoF" firstAttribute="leading" secondItem="OdA-cU-MPd" secondAttribute="leading" id="0xH-Hv-lB5"/>
+                            <constraint firstAttribute="bottom" secondItem="Tub-Ao-DoF" secondAttribute="bottom" id="5kc-KS-o0r"/>
+                            <constraint firstAttribute="trailing" secondItem="Tub-Ao-DoF" secondAttribute="trailing" id="jAm-3Y-Xgz"/>
+                            <constraint firstItem="Tub-Ao-DoF" firstAttribute="top" secondItem="OdA-cU-MPd" secondAttribute="top" id="oFs-9j-qaL"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="OdA-cU-MPd" secondAttribute="trailing" constant="10" id="V3v-9o-5kB"/>
+                    <constraint firstItem="OdA-cU-MPd" firstAttribute="leading" secondItem="T81-gh-iMc" secondAttribute="leading" constant="10" id="dxY-Na-x8z"/>
+                    <constraint firstAttribute="bottom" secondItem="OdA-cU-MPd" secondAttribute="bottom" constant="10" id="pG5-Wo-Pog"/>
+                    <constraint firstItem="OdA-cU-MPd" firstAttribute="top" secondItem="T81-gh-iMc" secondAttribute="top" constant="10" id="vVk-m0-fTT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgView" destination="Tub-Ao-DoF" id="kZA-iF-h9A"/>
+                <outlet property="shadowView" destination="OdA-cU-MPd" id="nJ6-jc-529"/>
+            </connections>
+            <point key="canvasLocation" x="118.84057971014494" y="-23.4375"/>
+        </tableViewCell>
+    </objects>
+</document>
