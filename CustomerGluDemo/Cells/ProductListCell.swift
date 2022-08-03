@@ -8,9 +8,7 @@
 import SwiftUI
 import CustomerGlu
 
-
 @ViewBuilder func ProductListCell(image:String,title:String )->some View {
-        
         VStack(alignment: .center) {
             Image(image)
                 .resizable()
@@ -34,7 +32,9 @@ import CustomerGlu
 //                    })
                 Text("Add to Cart")
                     .onTapGesture {
-                        CustomerGlu().sendEvents( eventName: "shop", eventProperties: ["state":"1"]
+                        customerglu.sendEventData(
+                            eventName: "shop",
+                            eventProperties: ["state":"1"]
                         )
                     }
                         .font(.system(size: 15))

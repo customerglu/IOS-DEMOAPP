@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<string>en</string>
 	<key>CUSTOMERGLU_WRITE_KEY</key>
 	<string>G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy</string>
 	<key>CFBundleExecutable</key>
@@ -76,5 +76,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+  	<key>NSAllowsArbitraryLoads</key>
+  	<true/>
+	</dict>
 </dict>
 </plist>

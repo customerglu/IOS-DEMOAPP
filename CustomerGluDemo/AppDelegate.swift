@@ -11,6 +11,8 @@ import FirebaseMessaging
 import FirebaseAnalytics
 import CustomerGlu
 
+var customerglu = CustomerGlu.getInstance
+
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     let gcmMessageIDKey = "gcm.message_id"
@@ -72,7 +74,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
 
-        let customerglu = CustomerGlu()
         if #available(iOS 10.0, *) {
           // For iOS 10 display notification (sent via APNS)
           UNUserNotificationCenter.current().delegate = self
@@ -101,13 +102,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         print("usernotification wqq")
 
       print(userInfo)
-        CustomerGlu().displayNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["xz":"d"])
-        if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"]))
-        {
-        CustomerGlu().displayNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
-        }
-        else
-        {
+        customerglu.displayBackgroundNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["xz":"d"])
+        let fromCustomerGlu = customerglu.notificationFromCustomerGlu(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
+        if (fromCustomerGlu) {
+            customerglu.displayBackgroundNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
+        } else {
             completionHandler(UIBackgroundFetchResult.newData)
         }
      // completionHandler(UIBackgroundFetchResult.newData)
@@ -141,19 +140,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     print("usernotification ")
     print(userInfo)
    // print(userInfo["data"] as Any)
-
-    if (CustomerGlu().notificationFromCustomerGlu(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"]))
-    {
-    CustomerGlu().displayNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
-    }
-    else
-    {
+      
+    let fromCustomerGlu = customerglu.notificationFromCustomerGlu(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
+      
+    if (fromCustomerGlu){
+        customerglu.displayBackgroundNotification(remoteMessage: userInfo as? [String:AnyHashable] ?? ["customerglu":"d"])
+    } else {
         completionHandler([[.banner, .badge, .sound]])
 
     }
-
-    
-    
 
     // Change this to your preferred presentation option
   }
@@ -187,7 +182,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
 
     print(userInfo)
-    CustomerGlu().displayBackgroundNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["glu_message_type":"glu"])
+      customerglu.displayBackgroundNotification(remoteMessage: userInfo["data"]as? [String:AnyHashable] ?? ["glu_message_type":"glu"])
 
     completionHandler()
     

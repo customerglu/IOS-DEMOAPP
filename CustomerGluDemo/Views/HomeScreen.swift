@@ -14,37 +14,34 @@ import Firebase
     @State var active = false
     var height = UIScreen.main.bounds.height
     var width = UIScreen.main.bounds.width
-    var customerglu = CustomerGlu()
 
     @State var token = ""
     @State var fcmRegTokenMessage = "";
-   
-    
-    func initializeGlu()
-    {
+
+
+    func initializeGlu() {
         fcmRegTokenMessage = UserDefaults.standard.string(forKey: "fcmtoken") ?? "defaultvalue"
 
         print("my fcm")
         print(fcmRegTokenMessage)
-     //   let mykey = Bundle.main.object(forInfoDictionaryKey: "CUSTOMER_WRITE_KEY")
-      //  print(mykey)
         let parameters = [
             "userId": "testuser2015",
             "deviceId": "deviceb",
-            
-           // "writeKey": "G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy",
             "firebaseToken": fcmRegTokenMessage
         ]
-      
-        customerglu.doRegister(body: parameters) { RegistrationModel in
-        token = (RegistrationModel.data?.token)!
-            print("dssd")
-     //   print(token)
-            print(UserDefaults.standard.string(forKey: "CustomerGlu_Token") as Any)
-                
+
+        customerglu.registerDevice(
+            userdata: parameters,
+            loadcampaigns: true
+        ) { success in
+                if success {
+                    print("Register Successfully")
+                } else {
+                    print("error")
+                }
             }
     }
-    
+
     func getFcmToken()
     {
         Messaging.messaging().token { token, error in
@@ -65,7 +62,7 @@ import Firebase
           {
             Color.black.ignoresSafeArea()
             HStack{
-                
+
             }
             Image("customerglu")
           }.frame(width: width, height: (height/4))
@@ -74,25 +71,26 @@ import Firebase
           .navigationBarHidden(true)
             HStack
             {
-         
-                NavigationLink(
-                 destination: OpenWallet(),
-                 label: {
-                    ProductCard(image: "purse", title: "Wallet")
-                     
-                 })
+
+                Button(
+                    action: {
+                        customerglu.openWallet()
+                    },
+                    label: {
+                        ProductCard(image: "purse", title: "Wallet")
+                    }
+                )
 
                 Spacer()
-                
-                NavigationLink(
-                 destination: LoadAllCampaigns(customer_token: token),
-                 label: {
-                    ProductCard(image: "coin", title: "Rewards")
-                     
-                 })
-                
-                
-                
+
+                Button(
+                    action: {
+                        customerglu.loadAllCampaigns()
+                    },
+                    label: {
+                        ProductCard(image: "coin", title: "Rewards")
+                    }
+                )
             }.padding(.horizontal,10)
             HStack
             {
@@ -100,21 +98,21 @@ import Firebase
                 destination: ShopScreen(),
                 label: {
                     ProductCard(image: "shop", title: "Shop")
-                    
+
                 })
-                        
+
                 Spacer()
                 NavigationLink(
                     destination: CartScreen(),
                     isActive:$active,
                     label: {
                         ProductCard(image: "trolley", title: "Cart")
-                        
+
                     })
-               
-                
+
+
             }.padding(.horizontal,10)
-          
+
             Spacer()
         }.onAppear(perform: {
           //  getFcmToken()
@@ -124,7 +122,7 @@ import Firebase
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        
+
     }
 }
 struct HomeScreen_Previews: PreviewProvider {
