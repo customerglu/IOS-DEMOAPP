@@ -9,7 +9,7 @@
 ## 📚 Requirements
 - [Xcode and Command Line Tools](https://www.freecodecamp.org/news/install-xcode-command-line-tools/) installed.
 - [Cocoapods](https://guides.cocoapods.org/using/getting-started.html) installed.
-- [Firebase integration](#firebase)
+- [Integrate with Firebase](#firebase)
 
 ## 🚀 Getting Started
 ```bash
