@@ -1,6 +1,7 @@
 ## Introduction
-This is a repository with a native IOS application integrated with the Customer Glu SDK.
-##Motivation
+This is a repository with a native IOS application integrated with the Customer Glu SDK.  
+
+## Motivation
 We created this application so you could get a better understanding on how to integrate our SDK into your app! 
 From developer to developer, we know that real code examples sometimes are more valuable than documentation itself.
 
