@@ -88,7 +88,7 @@ import Firebase
                         customerglu.loadAllCampaigns()
                     },
                     label: {
-                        ProductCard(image: "coin", title: "Rewards")
+                        ProductCard(image: "coin", title: "Campaigns")
                     }
                 )
             }.padding(.horizontal,10)
@@ -102,6 +102,7 @@ import Firebase
                 })
 
                 Spacer()
+
                 NavigationLink(
                     destination: CartScreen(),
                     isActive:$active,
