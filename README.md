@@ -3,7 +3,7 @@
 <p align="center">
   <a href="#wallet">Wallet</a> |
   <a href="#campaigns">Campaigns</a> |
-  <a href="#shop-cart">Cart</a> |
+  <a href="#shop-cart">Shop & Cart</a> |
 </p>
 
 ## 📚 Requirements
@@ -43,7 +43,7 @@ Customer Glu SDK depends on a firebase project to reach the full potential.
 **1.** Wallet will open a WebView where the user can check Activities & Rewards won.
 
 <p align="center" width="100%">
-  <img src="https://media.discordapp.net/attachments/1003367861609308263/1003370055779766272/wallet.gif?width=296&height=634"/>
+  <img src="https://cdn.discordapp.com/attachments/991696564210913360/1004471760667816036/Peek_03-08-2022_16-29.gif"/>
 </p>
 
 ## Campaigns
@@ -51,7 +51,7 @@ Customer Glu SDK depends on a firebase project to reach the full potential.
 **2.** Campaigns will open WebView where the user can see all the campaigns, select one and play for prizes.
 
 <p align="center" width="100%">
-  <img src="https://media.discordapp.net/attachments/1003367861609308263/1003372273325047830/campaigns.gif?width=296&height=634"/>
+  <img src="https://cdn.discordapp.com/attachments/991696564210913360/1004471760994975844/Peek_03-08-2022_16-30.gif"/>
 </p>
 
 ## Shop & Cart
@@ -59,5 +59,5 @@ Customer Glu SDK depends on a firebase project to reach the full potential.
 **3.** Sample screens to imitate a shopping app.
 
 <p align="center" width="100%">
-  <img src="https://media.discordapp.net/attachments/1003367861609308263/1003373958411853865/cart.gif?width=296&height=634"/>
+  <img src="https://cdn.discordapp.com/attachments/991696564210913360/1004471761292763258/Peek_03-08-2022_16-31.gif"/>
 </p>
