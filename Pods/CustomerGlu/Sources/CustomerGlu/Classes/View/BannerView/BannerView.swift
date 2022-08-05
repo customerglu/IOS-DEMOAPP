@@ -18,15 +18,14 @@ public class BannerView: UIView, UIScrollViewDelegate {
     private var code = true
     var finalHeight = 0
     private var loadedapicalled = false
-    
-    @IBOutlet weak private var imgScrollView: UIScrollView!
-    @IBOutlet weak private var pageControl: UIPageControl!
+    var imgScrollView: UIScrollView!
+    var pageControl: UIPageControl!
     
     @IBInspectable var bannerId: String? {
         didSet {
             backgroundColor = UIColor.clear
             CustomerGlu.getInstance.postBannersCount()
-            callLoadBannerAnalytics()
+            reloadBannerView()
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(self.entryPointLoaded),
@@ -34,13 +33,9 @@ public class BannerView: UIView, UIScrollViewDelegate {
                 object: nil)
         }
     }
-    
+
     @objc private func entryPointLoaded(notification: NSNotification) {
-        DispatchQueue.main.async {
-            self.view.subviews.forEach({ $0.removeFromSuperview() })
-            self.xibSetup()
-            self.callLoadBannerAnalytics()
-        }
+            self.reloadBannerView()
     }
     
     var commonBannerId: String {
@@ -51,95 +46,101 @@ public class BannerView: UIView, UIScrollViewDelegate {
             bannerId = newWeight
         }
     }
-    
+
     public init(frame: CGRect, bannerId: String) {
         //CODE
         super.init(frame: frame)
-        self.commonBannerId = bannerId
         code = true
+        self.xibSetup()
+        self.commonBannerId = bannerId
     }
     
     required init?(coder aDecoder: NSCoder) {
         // XIB
         super.init(coder: aDecoder)
         code = false
-    }
-    
-    public override func layoutSubviews() {
-        view.subviews.forEach({ $0.removeFromSuperview() })
-        xibSetup()
+        self.xibSetup()
     }
     
     public override var intrinsicContentSize: CGSize {
         self.layoutIfNeeded()
-        return CGSize(width: self.frame.size.width, height: CGFloat(finalHeight))
+        return CGSize(width: UIView.noIntrinsicMetric, height: CGFloat(finalHeight))
     }
         
     // MARK: - Nib handlers
     private func xibSetup() {
-        view = loadViewFromNib()
+        self.autoresizesSubviews = true
+        view = UIView()
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.translatesAutoresizingMaskIntoConstraints = true
+        view.autoresizesSubviews = true
         // Adding custom subview on top of our view (over any custom drawing > see note below)
+        imgScrollView = UIScrollView()
         imgScrollView.frame = bounds
         imgScrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imgScrollView.translatesAutoresizingMaskIntoConstraints = true
+        imgScrollView.delegate = self
+        imgScrollView.isPagingEnabled = true
+        imgScrollView.autoresizesSubviews = true
+        view.addSubview(imgScrollView)
+        
+        pageControl = UIPageControl()
+        pageControl.currentPage = 0
+        pageControl.currentPageIndicatorTintColor = .black
+        pageControl.pageIndicatorTintColor = .lightGray
+        view.addSubview(pageControl)
+
         addSubview(view)
-        reloadBannerView(element_id: self.bannerId ?? "")
     }
     
-    private func loadViewFromNib() -> UIView {
-        let nib = UINib(nibName: "BannerView", bundle: .module)
-        // Assumes UIView is top level and only object in CustomView.xib file
-        let view = nib.instantiate(withOwner: self, options: nil).first as? UIView
-        return view!
-    }
-    
-    public func reloadBannerView(element_id: String) {
+    public func reloadBannerView() {
         
-        let bannerViews = CustomerGlu.entryPointdata.filter {
-            $0.mobile.container.type == "BANNER" && $0.mobile.container.bannerId == element_id
-        }
-        
-        if bannerViews.count != 0 {
-            let mobile = bannerViews[0].mobile!
-            arrContent = [CGContent]()
-            condition = mobile.conditions
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
+//        DispatchQueue.main.async { [self] in
             
-            if mobile.content.count != 0 {
-                for content in mobile.content {
-                    arrContent.append(content)
+            
+            if self.imgScrollView != nil {
+                self.imgScrollView.subviews.forEach({ $0.removeFromSuperview() })
+            }
+            
+        let bannerViews = CustomerGlu.entryPointdata.filter {
+            $0.mobile.container.type == "BANNER" && $0.mobile.container.bannerId == self.bannerId
+            }
+            
+            if bannerViews.count != 0 {
+                let mobile = bannerViews[0].mobile!
+                arrContent = [CGContent]()
+                condition = mobile.conditions
+                
+                if mobile.content.count != 0 {
+                    for content in mobile.content {
+                        arrContent.append(content)
+                    }
+                    self.setBannerView(height: Int(mobile.container.height)!, isAutoScrollEnabled: mobile.conditions.autoScroll, autoScrollSpeed: mobile.conditions.autoScrollSpeed)
+                    callLoadBannerAnalytics()
+                } else {
+                    bannerviewHeightZero()
                 }
-                self.setBannerView(height: Int(mobile.container.height)!, isAutoScrollEnabled: mobile.conditions.autoScroll, autoScrollSpeed: mobile.conditions.autoScrollSpeed)
             } else {
                 bannerviewHeightZero()
             }
-        } else {
-            bannerviewHeightZero()
         }
     }
     
     private func bannerviewHeightZero() {
-        if code == true {
-            self.frame.size.height = CGFloat(0)
-            if(self.imgScrollView != nil){
-                self.imgScrollView.frame.size.height = CGFloat(0)
-            }
-        } else {
-            if let heightconstraint = (self.constraints.filter{$0.firstAttribute == .height}.first) {
-                heightconstraint.constant = CGFloat(0)
-                if(self.imgScrollView != nil){
-                    self.imgScrollView.frame.size.height = CGFloat(0)
-                }
-            } else {
-                self.frame.size.height = CGFloat(0)
-                if(self.imgScrollView != nil){
-                    self.imgScrollView.frame.size.height = CGFloat(0)
-                }
-            }
-        }
+
         finalHeight = 0
         
+        self.constraints.filter{$0.firstAttribute == .height}.forEach({ $0.constant = CGFloat(finalHeight) })
+        self.frame.size.height = CGFloat(finalHeight)
+        if self.view != nil {
+            self.view.frame.size.height = CGFloat(finalHeight)
+        }
+        if self.imgScrollView != nil {
+            self.imgScrollView.frame.size.height = CGFloat(finalHeight)
+        }
+
         let postInfo: [String: Any] = ["finalheight": finalHeight]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.Name("CGBANNER_FINAL_HEIGHT").rawValue), object: nil, userInfo: postInfo)
         
@@ -148,28 +149,22 @@ public class BannerView: UIView, UIScrollViewDelegate {
     }
     
     private func setBannerView(height: Int, isAutoScrollEnabled: Bool, autoScrollSpeed: Int){
-        
+
         let screenWidth = self.frame.size.width
         let screenHeight = UIScreen.main.bounds.height
         finalHeight = (Int(screenHeight) * height)/100
         
         let postInfo: [String: Any] = ["finalheight": finalHeight]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.Name("CGBANNER_FINAL_HEIGHT").rawValue), object: nil, userInfo: postInfo)
-        
-        if code == true {
-            self.frame.size.height = CGFloat(finalHeight)
-            self.imgScrollView.frame.size.height = CGFloat(finalHeight)
-        } else {
-            if let heightconstraint = (self.constraints.filter{$0.firstAttribute == .height}.first) {
-                heightconstraint.constant = CGFloat(finalHeight)
-                self.imgScrollView.frame.size.height = CGFloat(heightconstraint.constant)
-            } else {
-                self.frame.size.height = CGFloat(finalHeight)
-                self.imgScrollView.frame.size.height = CGFloat(finalHeight)
-            }
+  
+        self.constraints.filter{$0.firstAttribute == .height}.forEach({ $0.constant = CGFloat(finalHeight) })
+        self.frame.size.height = CGFloat(finalHeight)
+        if self.view != nil {
+            self.view.frame.size.height = CGFloat(finalHeight)
         }
-        
-        imgScrollView.delegate = self
+        if self.imgScrollView != nil {
+            self.imgScrollView.frame.size.height = CGFloat(finalHeight)
+        }
         
         for i in 0..<arrContent.count {
             let dict = arrContent[i]
@@ -196,7 +191,8 @@ public class BannerView: UIView, UIScrollViewDelegate {
                 webView.isUserInteractionEnabled = false
                 webView.tag = i
                 let urlStr = dict.url
-                webView.load(URLRequest(url: URL(string: urlStr!)!))
+//                webView.load(URLRequest(url: URL(string: urlStr!)!))
+                webView.load(URLRequest(url: CustomerGlu.getInstance.validateURL(url: URL(string: urlStr!)!)))
                 containerView.addSubview(webView)
                 self.imgScrollView.addSubview(containerView)
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -222,6 +218,8 @@ public class BannerView: UIView, UIScrollViewDelegate {
             self.pageControl.numberOfPages = arrContent.count
         }
         self.pageControl.currentPage = 0
+        
+        pageControl.frame = CGRect(x: 0, y: finalHeight - 26, width: Int(self.frame.size.width), height: 26)
         
         invalidateIntrinsicContentSize()
         self.layoutIfNeeded()
@@ -250,7 +248,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        print(sender?.view?.tag ?? 0)
+
         let dict = arrContent[sender?.view?.tag ?? 0]
         if dict.campaignId != nil {
             if dict.openLayout == "FULL-DEFAULT" {
@@ -299,9 +297,9 @@ public class BannerView: UIView, UIScrollViewDelegate {
         
         ApplicationManager.publishNudge(eventNudge: eventInfo) { success, _ in
             if success {
-                print("success")
+                
             } else {
-                print("error")
+                CustomerGlu.getInstance.printlog(cglog: "Fail to call eventPublishNudge", isException: false, methodName: "BannerView-eventPublishNudge", posttoserver: true)
             }
         }
     }

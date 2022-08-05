@@ -25,7 +25,6 @@ public class OpenWalletViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         if CustomerGlu.sdk_disable! == true {
-            print(CustomerGlu.sdk_disable!)
             self.navigationController?.popViewController(animated: true)
             return
         }
@@ -37,7 +36,7 @@ public class OpenWalletViewController: UIViewController {
                 if success {
                     self.callOpenWalletApi()
                 } else {
-                    print("error")
+                    CustomerGlu.getInstance.printlog(cglog: "Fail to get token", isException: false, methodName: "openWalletViewModel.updateProfile", posttoserver: true)
                 }
             }
         }
@@ -62,7 +61,7 @@ public class OpenWalletViewController: UIViewController {
                 }
             } else {
                 CustomerGlu.getInstance.loaderHide()
-                print("error")
+                CustomerGlu.getInstance.printlog(cglog: "Fail to load Wallet", isException: false, methodName: "callOpenWalletApi", posttoserver: true)
             }
         }
     }

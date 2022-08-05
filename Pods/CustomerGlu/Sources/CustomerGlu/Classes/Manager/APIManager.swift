@@ -69,17 +69,18 @@ class APIManager {
         
         //Grouped compelete API-call work flow into a DispatchGroup so that it can maintanted the oprational queue for task completion
         // Enter into DispatchGroup
-        if(MethodNameandPath.getWalletRewards.path == methodandpath.path){
-            dispatchGroup.enter()
-        }
-        
+        //   if(MethodNameandPath.getWalletRewards.path == methodandpath.path){
+        dispatchGroup.enter()
+        //    }
         
         var urlRequest: URLRequest!
         var url: URL!
         let strUrl = "https://" + baseurl
         url = URL(string: strUrl + methodandpath.path)!
         urlRequest = URLRequest(url: url)
-        print(urlRequest!)
+        if(true == CustomerGlu.isDebugingEnabled){
+            print(urlRequest!)
+        }
         
         // HTTP Method
         urlRequest.httpMethod = methodandpath.method//method.rawValue
@@ -88,14 +89,17 @@ class APIManager {
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
         
         if UserDefaults.standard.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
-            urlRequest.setValue("\(APIParameterKey.bearer) " + UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!, forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
-            urlRequest.setValue("\(APIParameterKey.bearer) " + UserDefaults.standard.string(forKey: Constants.CUSTOMERGLU_TOKEN)!, forHTTPHeaderField: HTTPHeaderField.xgluauth.rawValue)
+            urlRequest.setValue("\(APIParameterKey.bearer) " + CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: Constants.CUSTOMERGLU_TOKEN), forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
+            urlRequest.setValue("\(APIParameterKey.bearer) " + CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: Constants.CUSTOMERGLU_TOKEN), forHTTPHeaderField: HTTPHeaderField.xgluauth.rawValue)
             urlRequest.setValue(Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String, forHTTPHeaderField: HTTPHeaderField.xapikey.rawValue)
             urlRequest.setValue("ios", forHTTPHeaderField: HTTPHeaderField.platform.rawValue)
         }
         
         if parametersDict!.count > 0 { // Check Parameters & Move Accordingly
-            print(parametersDict as Any)
+            
+            if(true == CustomerGlu.isDebugingEnabled){
+                print(parametersDict as Any)
+            }
             if methodandpath.method == "GET" {
                 var urlString = ""
                 for (i, (keys, values)) in parametersDict!.enumerated() {
@@ -115,9 +119,9 @@ class APIManager {
             
             // Leave from dispachgroup
             // wait untill dispatchGroup.leave() not called
-            if(MethodNameandPath.getWalletRewards.path == methodandpath.path){
-                dispatchGroup.leave()
-            }
+            // if(MethodNameandPath.getWalletRewards.path == methodandpath.path){
+            dispatchGroup.leave()
+            //  }
             
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 401 {
@@ -134,19 +138,37 @@ class APIManager {
                 let cleanedJSON = cleanJSON(json: JSON!, isReturn: true)
                 dictToObject(dict: cleanedJSON, type: T.self, completion: completion)
             } catch let error as NSError {
-                print(error)
+                if(true == CustomerGlu.isDebugingEnabled){
+                    print(error)
+                }
+                
             }
         }
         task.resume()
+        
         // wait untill dispatchGroup.leave() not called
-        if(MethodNameandPath.getWalletRewards.path == methodandpath.path){
-            dispatchGroup.wait()
-        }
+        //  if(MethodNameandPath.getWalletRewards.path == methodandpath.path){
+        dispatchGroup.wait()
+        //   }
     }
     
     static func userRegister(queryParameters: NSDictionary, completion: @escaping (Result<RegistrationModel, Error>) -> Void) {
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
         // Call Login API with API Router
-        performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.userRegister, parametersDict: queryParameters, completion: completion)
+            performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.userRegister, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+         
+         //Added task into Queue
+         ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
     static func getWalletRewards(queryParameters: NSDictionary, completion: @escaping (Result<CampaignsModel, Error>) -> Void) {
@@ -157,9 +179,7 @@ class APIManager {
         
         // Added Task into Queue
         blockOperation.addExecutionBlock {
-            
             performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.getWalletRewards, parametersDict: queryParameters,completion: completion)
-            
         }
         
        // Add dependency to finish previus task before starting new one
@@ -172,28 +192,99 @@ class APIManager {
     }
     
     static func addToCart(queryParameters: NSDictionary, completion: @escaping (Result<AddCartModel, Error>) -> Void) {
-        // Call Get Wallet and Rewards List
-        performRequest(baseurl: BaseUrls.streamurl, methodandpath: MethodNameandPath.addToCart, parametersDict: queryParameters, completion: completion)
+        
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
+            // Call Get Wallet and Rewards List
+            performRequest(baseurl: BaseUrls.streamurl, methodandpath: MethodNameandPath.addToCart, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
     static func crashReport(queryParameters: NSDictionary, completion: @escaping (Result<AddCartModel, Error>) -> Void) {
-        // Call Get Wallet and Rewards List
-        performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.crashReport, parametersDict: queryParameters, completion: completion)
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
+            // Call Get Wallet and Rewards List
+            performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.crashReport, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
     static func getEntryPointdata(queryParameters: NSDictionary, completion: @escaping (Result<CGEntryPoint, Error>) -> Void) {
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
         // Call Get Wallet and Rewards List
-        performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.entryPointdata, parametersDict: queryParameters, completion: completion)
+            performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.entryPointdata, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
     static func publishNudge(queryParameters: NSDictionary, completion: @escaping (Result<PublishNudgeModel, Error>) -> Void) {
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
         // Call Put PublishNudge
-        performRequest(baseurl: BaseUrls.streamurl, methodandpath: MethodNameandPath.publish_nudge, parametersDict: queryParameters, completion: completion)
+            performRequest(baseurl: BaseUrls.streamurl, methodandpath: MethodNameandPath.publish_nudge, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
     static func entrypoints_config(queryParameters: NSDictionary, completion: @escaping (Result<EntryConfig, Error>) -> Void) {
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
         // Call Put EntryPoints_Config
-        performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.entrypoints_config, parametersDict: queryParameters, completion: completion)
+            performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.entrypoints_config, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
     // MARK: - Private Class Methods

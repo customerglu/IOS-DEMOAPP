@@ -10,8 +10,8 @@ import Foundation
 struct Constants {
     static let ERROR = "CUSTOMERGLU Error:"
     static let JSON_ERROR = "CUSTOMERGLU: json parsing error:"
-    static let CUSTOMERGLU_TOKEN = "CustomerGlu_Token"
-    static let CUSTOMERGLU_USERID = "CustomerGlu_user_id"
+    static let CUSTOMERGLU_TOKEN = "CustomerGlu_Token_Encrypt"
+    static let CUSTOMERGLU_USERID = "CustomerGlu_user_id_Encrypt"
     static let DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ"
     static let Analitics_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     static let MIDDLE_NOTIFICATIONS = "middle-default"
@@ -19,8 +19,17 @@ struct Constants {
     static let BOTTOM_SHEET_NOTIFICATION = "bottom-slider"
     static let BOTTOM_DEFAULT_NOTIFICATION = "bottom-default"
     static let FCM_APN = "fcm_apn"
-    static let CustomerGluCrash = "CustomerGluCrash"
-    static let CustomerGluPopupDict = "CustomerGluPopupDict"
+    static let CustomerGluCrash = "CustomerGluCrash_Encrypt"
+    static let CustomerGluPopupDict = "CustomerGluPopupDict_Encrypt"
+    
+    static let CUSTOMERGLU_TOKEN_OLD = "CustomerGlu_Token"
+    static let CUSTOMERGLU_USERID_OLD = "CustomerGlu_user_id"
+    static let CustomerGluCrash_OLD = "CustomerGluCrash"
+    static let CustomerGluPopupDict_OLD = "CustomerGluPopupDict"
+    
+    static let default_whitelist_doamin = "customerglu.com"
+    static var default_redirect_url = "https://end-user-ui.customerglu.com/error/?source=native-sdk&"
+    static let customerglu_encryptedKey = "customerglu_encryptedKey"
 }
 
 // Default APIParameterKey

@@ -74,6 +74,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
         CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: true)
         CustomerGlu.getInstance.enableEntryPoints(enabled: true)
+        CustomerGlu.getInstance.enableAnalyticsEvent(event: true)
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

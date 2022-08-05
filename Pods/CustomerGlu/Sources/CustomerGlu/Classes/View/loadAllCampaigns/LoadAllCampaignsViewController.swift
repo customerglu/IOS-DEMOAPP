@@ -58,7 +58,7 @@ public class LoadAllCampaignsViewController: UIViewController {
                 if success {
                     self.getCampaign()
                 } else {
-                    print("error")
+                    CustomerGlu.getInstance.printlog(cglog: "updateProfile API fail", isException: false, methodName: "LoadAllCampaignsViewController-viewDidLoad", posttoserver: true)
                 }
             }
         }
@@ -84,7 +84,7 @@ public class LoadAllCampaignsViewController: UIViewController {
                 }
             } else {
                 CustomerGlu.getInstance.loaderHide()
-                print("error")
+                CustomerGlu.getInstance.printlog(cglog: "loadAllCampaignsApi API fail", isException: false, methodName: "LoadAllCampaignsViewController-getCampaign", posttoserver: true)
             }
         }
     }
@@ -148,9 +148,6 @@ extension LoadAllCampaignsViewController: UITableViewDataSource, UITableViewDele
         // Deselect Table Row
         tableView.deselectRow(at: indexPath, animated: true)
         if campaigns.count != 0 {
-            if let topVC = UIApplication.getTopViewController() {
-                print(topVC)
-            }
             let customerWebViewVC = StoryboardType.main.instantiate(vcType: CustomerWebViewController.self)
             customerWebViewVC.auto_close_webview = self.auto_close_webview
             customerWebViewVC.urlStr = campaigns[indexPath.row].url

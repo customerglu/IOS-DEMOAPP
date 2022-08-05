@@ -7,7 +7,7 @@ target 'CustomerGluDemo' do
 
   # Pods for CustomerGluDemo
     pod 'SwiftLint', '0.45.0'
-#    pod 'CustomerGlu', :path => '../CG-iOS-SDK'
-   pod 'CustomerGlu', '2.0.4'
+    pod 'CustomerGlu', :path => '../CG-iOS-SDK'
+#   pod 'CustomerGlu', '2.0.5'
 
 end

@@ -20,7 +20,7 @@ extension Dictionary {
     }
     
     func printJson() {
-        print(json)
+        CustomerGlu.getInstance.printlog(cglog: json, isException: false, methodName: "printJson", posttoserver: false)
     }
 }
 
@@ -122,7 +122,7 @@ extension UIImageView {
             success?(image)
         } else {
             guard let url = URL(string: urlString) else {
-                print("failed to create url")
+                CustomerGlu.getInstance.printlog(cglog: "failed to create url", isException: false, methodName: "Extensions-downloadImage", posttoserver: false)
                 return
             }
             
