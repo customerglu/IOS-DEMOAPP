@@ -16,6 +16,8 @@ struct LoginScreen: View {
     @State var userid: String = ""
     @State var username: String = ""
     @State var referId: String = ""
+    @State var anonymousId: String = ""
+    
     
     @State var isActive = false
     @State var attemptingLogin = false
@@ -43,18 +45,34 @@ struct LoginScreen: View {
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
                     .padding(.bottom, 20)
-                HStack {
+                TextField("AnonymousId", text: $anonymousId)
+                    .padding()
+                    .background(lightGreyColor)
+                    .cornerRadius(5.0)
+                    .padding(.bottom, 20)
+//                HStack {
                     NavigationLink(destination: HomeScreen(), isActive: $isActive) {
                         Button(action: {
-                            if userid.isEmpty || username.isEmpty {
-                                return
-                            }
-                            submitActionClicked(userId: userid, userName: username, referenceId: referId)
+//                            if userid.isEmpty || username.isEmpty {
+//                                return
+//                            }
+                            submitActionClicked(userId: userid, userName: username, referenceId: referId, anonymousId:anonymousId)
                         }) {
-                            LoginButtonContent()
+                            LoginButtonContentAPI()
                         }
                     }
+                NavigationLink(destination: HomeScreen(), isActive: $isActive) {
+                    Button(action: {
+                       var token = UserDefaults.standard.object(forKey: "CustomerGlu_Token_Encrypt")
+                        if(token != nil){
+                            isActive = true
+                        }
+                    }) {
+                        LoginButtonContent()
+                    }
                 }
+
+//                }
             }
             .padding()
         }.ignoresSafeArea(.all)
@@ -63,11 +81,12 @@ struct LoginScreen: View {
             .navigationBarHidden(true)
     }
     
-    func submitActionClicked(userId: String, userName: String, referenceId: String) {
+    func submitActionClicked(userId: String, userName: String, referenceId: String, anonymousId:String) {
         var userData = [String: AnyHashable]()
         userData["userId"] = userId
         userData["username"] = userName
         userData["referId"] = referenceId
+        userData["anonymousId"] = anonymousId
         
         CustomerGlu.getInstance.registerDevice(userdata: userData) { success in
             if success {
@@ -98,6 +117,16 @@ struct UserImage: View {
     }
 }
 
+struct LoginButtonContentAPI: View {
+    var body: some View {
+        return Text("SUBMIT (API)")
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: 220, height: 60)
+            .background(Color.black)
+    }
+}
 struct LoginButtonContent: View {
     var body: some View {
         return Text("SUBMIT")

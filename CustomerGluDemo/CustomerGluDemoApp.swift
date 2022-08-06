@@ -7,13 +7,20 @@
 
 import SwiftUI
 import UIKit
+import CustomerGlu
 @main
 struct CustomerGluDemoApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
         WindowGroup {
-            if UserDefaults.standard.object(forKey: "CustomerGlu_Token_Encrypt") != nil {
+            
+            let token = UserDefaults.standard.object(forKey: "CustomerGlu_Token_Encrypt") as? String ?? ""
+                
+            let uid = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: "CustomerGlu_user_id_Encrypt")
+            let uanonid = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: "CustomerGluAnonymousId_Encrypt")
+            
+            if (token.count > 0 && uid.count > 0 && ((uanonid.count <= 0) || (uid != uanonid))){
                 HomeScreen()
                     .onOpenURL { url in
                         // URL handling
