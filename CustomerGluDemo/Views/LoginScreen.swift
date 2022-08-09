@@ -87,8 +87,10 @@ struct LoginScreen: View {
         userData["username"] = userName
         userData["referId"] = referenceId
         userData["anonymousId"] = anonymousId
+        userData["customAttributes"] = ["CGCampaignElibility":"true"]
         
-        CustomerGlu.getInstance.registerDevice(userdata: userData) { success in
+        
+        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { success in
             if success {
                 self.isActive = true
             } else {

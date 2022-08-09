@@ -77,6 +77,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         CustomerGlu.getInstance.enableAnalyticsEvent(event: true)
         CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: true)
         
+        print(CustomerGlu.getInstance.cgUserData)
+        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self

@@ -42,6 +42,7 @@ struct HomeScreen: View {
                     .navigationBarHidden(true)
                 HStack {
                     Button(action: {
+                        print(CustomerGlu.getInstance.cgUserData)
                         CustomerGlu.getInstance.openWallet()
                     }) {
                         productCard(image: "purse", title: "Wallet")
