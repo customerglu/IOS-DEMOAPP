@@ -16,6 +16,7 @@ struct HomeScreen: View {
             
     var body: some View {
         NavigationView {
+            ScrollView {
             VStack {
                 ZStack {
                     Color.black.ignoresSafeArea()
@@ -42,20 +43,49 @@ struct HomeScreen: View {
                     .navigationBarHidden(true)
                 HStack {
                     Button(action: {
-                        print(CustomerGlu.getInstance.cgUserData)
-                        CustomerGlu.getInstance.openWallet()
+                        
+                        let nudgeConfiguration = CGNudgeConfiguration()
+                        nudgeConfiguration.closeOnDeepLink = false
+                        nudgeConfiguration.opacity = 0.5
+                        nudgeConfiguration.layout = "middle-default"
+                        nudgeConfiguration.url = "http://google.com/"
+
+
+                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
+                        
+//                        CustomerGlu.getInstance.openNudge(nudgeId: "referral-fragment", nudgeConfiguration: nudgeConfiguration)
+                        
+//                        CustomerGlu.getInstance.loadCampaignById(campaign_id: "bf63e1f4-90c3-42a9-ad95-ef98226758ac", nudgeConfiguration: nudgeConfiguration)
+//                        CustomerGlu.getInstance.loadCampaignById(campaign_id: "", auto_close_webview: false)
+//                        CustomerGlu.getInstance.openNudge(nudgeId: "referral-fragment", layout: "middle-popup", bg_opacity: 0.1)
+//                        CustomerGlu.getInstance.openNudge(nudgeId: <#T##String#>, layout: <#T##String#>, bg_opacity: <#T##Double#>, closeOnDeeplink: <#T##Bool#>)
+//                        CustomerGlu.getInstance.openWallet()
+//                        CustomerGlu.getInstance.openWalletWithURL(url:"https://tatacliq.end-ui.customerglu.com/fragment-map/?fragmentMapId=referral-fragment&userId=glutest-3222&writeKey=4Qu4j4oMnirDEdoQsJlSaQsgoXuFjrG3lTgrRqMj")
+//                        CustomerGlu.getInstance.openWalletWithURL(nudgeConfiguration: nudgeConfiguration)
                     }) {
                         productCard(image: "purse", title: "Wallet")
                     }
                     Spacer()
                     Button(action: {
-                        CustomerGlu.getInstance.loadAllCampaigns()
+//                        CustomerGlu.getInstance.loadAllCampaigns()
+                        
+                        let nudgeConfiguration = CGNudgeConfiguration()
+                        nudgeConfiguration.closeOnDeepLink = false
+                        nudgeConfiguration.opacity = 0.9
+                        nudgeConfiguration.layout = "bottom-default"
+                        nudgeConfiguration.url = "http://google.com/"
+                        nudgeConfiguration.absoluteHeight = 100
+                        nudgeConfiguration.relativeHeight = 70
+                        
+//                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
+                        customerglu.openNudge(nudgeId: "nudgeId", nudgeConfiguration: nudgeConfiguration);
                     }) {
                         productCard(image: "coin", title: "Rewards")
                     }
                 }.padding(.horizontal, 10)
                 VStack {
                     BannerViewAdd()
+//                    EmbedViewAdd()
                 }.padding(.horizontal, 10)
                 HStack {
                     NavigationLink(
@@ -75,6 +105,8 @@ struct HomeScreen: View {
             }.onAppear(perform: {
                 CustomerGlu.getInstance.setCurrentClassName(className: String(describing: type(of: self)))
             })
+            
+        }
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarBackButtonHidden(true)
@@ -100,3 +132,17 @@ struct BannerViewAdd: UIViewRepresentable {
         return view
     }
 }
+
+struct EmbedViewAdd: UIViewRepresentable {
+    func updateUIView(_ uiView: CGEmbedView, context: Context) {
+    }
+    
+    func makeUIView(context: Context) -> CGEmbedView {
+        let view = CGEmbedView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), embedId: "embedded1")
+        view.setContentHuggingPriority(.required, for: .horizontal) // << here !!
+        view.setContentHuggingPriority(.required, for: .vertical)
+        // the same for compression if needed
+        return view
+    }
+}
+

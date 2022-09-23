@@ -99,7 +99,7 @@ public class CustomerWebViewController: UIViewController, WKNavigationDelegate, 
                             self.setupWebViewCustomFrame(url: self.campaign_id)
                         }
                     } else {
-                        let campaigns: [Campaigns] = (campaignsModel?.campaigns)!
+                        let campaigns: [CGCampaigns] = (campaignsModel?.campaigns)!
                         let filteredArray = campaigns.filter{($0.campaignId.elementsEqual(self.campaign_id)) || ($0.banner != nil && $0.banner?.tag != nil && $0.banner?.tag != "" && ($0.banner!.tag!.elementsEqual(self.campaign_id)))}
                         if filteredArray.count > 0 {
                             DispatchQueue.main.async {

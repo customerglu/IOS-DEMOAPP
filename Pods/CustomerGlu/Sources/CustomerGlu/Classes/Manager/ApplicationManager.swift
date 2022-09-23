@@ -15,7 +15,7 @@ class ApplicationManager {
     public static var operationQueue = OperationQueue()
     public static var appSessionId = UUID().uuidString
     
-    public static func openWalletApi(completion: @escaping (Bool, CampaignsModel?) -> Void) {
+    public static func openWalletApi(completion: @escaping (Bool, CGCampaignsModel?) -> Void) {
         if CustomerGlu.sdk_disable! == true {
             return
         }
@@ -31,7 +31,7 @@ class ApplicationManager {
         }
     }
     
-    public static func loadAllCampaignsApi(type: String, value: String, loadByparams: NSDictionary, completion: @escaping (Bool, CampaignsModel?) -> Void) {
+    public static func loadAllCampaignsApi(type: String, value: String, loadByparams: NSDictionary, completion: @escaping (Bool, CGCampaignsModel?) -> Void) {
         if CustomerGlu.sdk_disable! == true {
             return
         }
@@ -58,13 +58,14 @@ class ApplicationManager {
         }
     }
     
-    public static func sendEventData(eventName: String, eventProperties: [String: Any]?, completion: @escaping (Bool, AddCartModel?) -> Void) {
+    public static func sendEventData(eventName: String, eventProperties: [String: Any]?, completion: @escaping (Bool, CGAddCartModel?) -> Void) {
         if CustomerGlu.sdk_disable! == true {
             return
         }
         let event_id = UUID().uuidString
         let timestamp = fetchTimeStamp(dateFormat: Constants.DATE_FORMAT)
         let user_id = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: Constants.CUSTOMERGLU_USERID)
+        
         let eventData = [
             APIParameterKey.event_id: event_id,
             APIParameterKey.event_name: eventName,
@@ -108,7 +109,7 @@ class ApplicationManager {
         }
     }
     
-    private static func crashReport(parameters: NSDictionary, completion: @escaping (Bool, AddCartModel?) -> Void) {
+    private static func crashReport(parameters: NSDictionary, completion: @escaping (Bool, CGAddCartModel?) -> Void) {
         if CustomerGlu.sdk_disable! == true {
             return
         }

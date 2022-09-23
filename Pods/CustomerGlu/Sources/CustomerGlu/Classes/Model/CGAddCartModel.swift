@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AddCartModel: Codable {
+public class CGAddCartModel: Codable {
     public var ShardId: String?
     public var SequenceNumber: String?
 }

@@ -19,7 +19,7 @@ public class LoadAllCampaignsViewController: UIViewController {
     @IBOutlet weak var bottomHeight: NSLayoutConstraint!
 
     @IBOutlet weak var tblRewardList: UITableView!
-    var campaigns: [Campaigns] = []
+    var campaigns: [CGCampaigns] = []
     var bannerDefaultUrl = CustomerGlu.defaultBannerUrl
     var loadCampignType = ""
     var loadCampignValue = ""

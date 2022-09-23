@@ -13,10 +13,16 @@ struct CartScreen: View {
     @State var active = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
+        ScrollView {
         VStack {
             CartCell(image: "donut", title: "Donut", type: "Snacks", price: 20)
             CartCell(image: "apple", title: "Apple", type: "Snacks", price: 10)
             Spacer()
+                VStack {
+                    EmbedViewAdd()
+                }
+            Spacer()
+
             HStack {
                 Spacer()
                 Text("Total")
@@ -44,7 +50,7 @@ struct CartScreen: View {
                     //
                     //                })
                     Button(action: {
-                        CustomerGlu.getInstance.sendEventData(eventName: "completePurchase1", eventProperties: ["state": "1"])
+                        CustomerGlu.getInstance.sendEventData(eventName: "completePurchase2", eventProperties: ["state": "1"])
                     }, label: {
                         Text("CheckOut")
                             .font(.system(size: 20))
@@ -60,7 +66,7 @@ struct CartScreen: View {
         }.navigationTitle("My Cart")
         .onAppear(perform: {
             CustomerGlu.getInstance.setCurrentClassName(className: "CartScreen")
-        })
+        })}
     }
 }
 
@@ -80,3 +86,17 @@ struct TestController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
     }
 }
+
+//struct EmbedViewAdd: UIViewRepresentable {
+//    func updateUIView(_ uiView: CGEmbedView, context: Context) {
+//    }
+//
+//    func makeUIView(context: Context) -> CGEmbedView {
+//        let view = CGEmbedView(frame: CGRect(x: 20, y: 0, width: UIScreen.main.bounds.width-40, height: 0), embedId: "embedded1")
+//        view.setContentHuggingPriority(.required, for: .horizontal) // << here !!
+//        view.setContentHuggingPriority(.required, for: .vertical)
+//        // the same for compression if needed
+//        return view
+//    }
+//}
+

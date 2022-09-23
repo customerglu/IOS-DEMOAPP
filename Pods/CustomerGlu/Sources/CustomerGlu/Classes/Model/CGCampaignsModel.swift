@@ -7,27 +7,27 @@
 
 import Foundation
 
-public struct CampaignsModel: Codable {
+public class CGCampaignsModel: Codable {
     public var success: Bool?
     public var defaultUrl = ""
-    public var campaigns: [Campaigns]?
-    public var defaultBanner: DefaultBanner?
+    public var campaigns: [CGCampaigns]?
+    public var defaultBanner: CGDefaultBanner?
 }
 
-public struct Campaigns: Codable {
+public class CGCampaigns: Codable {
     public var campaignId = ""
     public var url: String = ""
     public var type: String = ""
     public var status: String = ""
-    public var banner: Banner?
+    public var banner: CGBanner?
 }
 
-public struct DefaultBanner: Codable {
+public class CGDefaultBanner: Codable {
     public var liveCampaignCount: Int?
     public var totalRewardCount: Int?
 }
 
-public struct Banner: Codable {
+public class CGBanner: Codable {
     public var title: String?
     public var body: String?
     public var totalUsers: String?

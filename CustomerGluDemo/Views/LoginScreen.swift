@@ -85,12 +85,13 @@ struct LoginScreen: View {
         var userData = [String: AnyHashable]()
         userData["userId"] = userId
         userData["username"] = userName
-        userData["referId"] = referenceId
-        userData["anonymousId"] = anonymousId
-        userData["customAttributes"] = ["CGCampaignElibility":"true"]
+//        userData["referId"] = referenceId
+//        userData["anonymousId"] = anonymousId
+//        userData["referredBy"] = "Glutest009"
+        userData["customAttributes"] = ["CGCampaignEligibility":"true"]
         
         
-        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { success in
+        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: false) { success in
             if success {
                 self.isActive = true
             } else {

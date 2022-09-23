@@ -152,7 +152,7 @@ class APIManager {
         //   }
     }
     
-    static func userRegister(queryParameters: NSDictionary, completion: @escaping (Result<RegistrationModel, Error>) -> Void) {
+    static func userRegister(queryParameters: NSDictionary, completion: @escaping (Result<CGRegistrationModel, Error>) -> Void) {
         // create a blockOperation for avoiding miltiple API call at same time
         let blockOperation = BlockOperation()
         
@@ -171,7 +171,7 @@ class APIManager {
          ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
-    static func getWalletRewards(queryParameters: NSDictionary, completion: @escaping (Result<CampaignsModel, Error>) -> Void) {
+    static func getWalletRewards(queryParameters: NSDictionary, completion: @escaping (Result<CGCampaignsModel, Error>) -> Void) {
         // Call Get Wallet and Rewards List
 
         // create a blockOperation for avoiding miltiple API call at same time
@@ -191,7 +191,7 @@ class APIManager {
         ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
-    static func addToCart(queryParameters: NSDictionary, completion: @escaping (Result<AddCartModel, Error>) -> Void) {
+    static func addToCart(queryParameters: NSDictionary, completion: @escaping (Result<CGAddCartModel, Error>) -> Void) {
         
         // create a blockOperation for avoiding miltiple API call at same time
         let blockOperation = BlockOperation()
@@ -211,7 +211,7 @@ class APIManager {
         ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
-    static func crashReport(queryParameters: NSDictionary, completion: @escaping (Result<AddCartModel, Error>) -> Void) {
+    static func crashReport(queryParameters: NSDictionary, completion: @escaping (Result<CGAddCartModel, Error>) -> Void) {
         // create a blockOperation for avoiding miltiple API call at same time
         let blockOperation = BlockOperation()
         

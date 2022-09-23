@@ -21,6 +21,9 @@ struct Constants {
     static let FCM_APN = "fcm_apn"
     static let CustomerGluCrash = "CustomerGluCrash_Encrypt"
     static let CustomerGluPopupDict = "CustomerGluPopupDict_Encrypt"
+    static let CUSTOMERGLU_ANONYMOUSID = "CustomerGluAnonymousId_Encrypt"
+    static let CUSTOMERGLU_USERDATA = "CustomerGluUserData_Encrypt"
+
     
     static let CUSTOMERGLU_TOKEN_OLD = "CustomerGlu_Token"
     static let CUSTOMERGLU_USERID_OLD = "CustomerGlu_user_id"
