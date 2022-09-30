@@ -72,11 +72,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
         CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
         CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
-        CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: true)
         CustomerGlu.getInstance.enableEntryPoints(enabled: true)
         CustomerGlu.getInstance.enableAnalyticsEvent(event: true)
         CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: true)
-        CustomerGlu.getInstance.closeWebviewOnDeeplinkEvent(close: true)
+//        CustomerGlu.getInstance.closeWebviewOnDeeplinkEvent(close: true)
         
 //        print(CustomerGlu.getInstance.cgUserData.userName)
         
@@ -101,6 +100,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print(userInfo)
         CustomerGlu.getInstance.cgapplication(application, didReceiveRemoteNotification: userInfo, backgroundAlpha: 0.5, fetchCompletionHandler: completionHandler)
+//        let string = CustomerGlu.getInstance.parseJSON(remoteMessage: userInfo as? [String: AnyHashable] ?? ["CGCG": "d"])
+//        print("\(string)")
      }
 }
 
@@ -152,6 +153,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         print(userInfo)
         CustomerGlu.getInstance.displayBackgroundNotification(remoteMessage: userInfo as? [String: AnyHashable] ?? ["glu_message_type": "glu"])
+//        let string = CustomerGlu.getInstance.parseJSON(remoteMessage: userInfo as? [String: AnyHashable] ?? ["CGCG": "d"])
+        
         completionHandler()
     }
     

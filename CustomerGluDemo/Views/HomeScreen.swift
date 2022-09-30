@@ -45,10 +45,13 @@ struct HomeScreen: View {
                     Button(action: {
                         
                         let nudgeConfiguration = CGNudgeConfiguration()
-                        nudgeConfiguration.closeOnDeepLink = false
+                        nudgeConfiguration.closeOnDeepLink = true
                         nudgeConfiguration.opacity = 0.5
-                        nudgeConfiguration.layout = "middle-default"
+                        nudgeConfiguration.layout = "middle-popup"
                         nudgeConfiguration.url = "http://google.com/"
+                        
+//                        nudgeConfiguration.absoluteHeight = 600
+//                        nudgeConfiguration.relativeHeight = 20.0
 
 
                         CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
