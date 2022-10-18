@@ -18,7 +18,7 @@ class CustomerGluDemoTests: XCTestCase {
         let promise = expectation(description: "ValidRequest_Returns_ValidResponse")
         
         //Arrange
-        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: false) { (success, loginResponse) in
+        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: true) { (success, loginResponse) in
             
             XCTAssertNotNil(loginResponse)
             XCTAssertEqual("1Test", loginResponse?.data?.user?.userId)

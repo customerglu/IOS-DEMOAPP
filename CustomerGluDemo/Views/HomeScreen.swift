@@ -128,7 +128,7 @@ struct BannerViewAdd: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> BannerView {
-        let view = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), bannerId: "entry1")
+        let view = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), bannerId: "homescreen_banner") //cart_banner
         view.setContentHuggingPriority(.required, for: .horizontal) // << here !!
         view.setContentHuggingPriority(.required, for: .vertical)
         // the same for compression if needed

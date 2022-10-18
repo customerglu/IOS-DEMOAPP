@@ -91,7 +91,7 @@ struct LoginScreen: View {
         userData["customAttributes"] = ["CGCampaignEligibility":"true"]
         
         
-        CustomerGlu.getInstance.registerDevice(userdata: userData, loadcampaigns: false) { success in
+        CustomerGlu.getInstance.registerDevice(userdata: userData) { success in
             if success {
                 self.isActive = true
             } else {

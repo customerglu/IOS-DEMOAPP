@@ -69,7 +69,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         
         CustomerGlu.getInstance.disableGluSdk(disable: false)
-        CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
+//        CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
+        CustomerGlu.getInstance.isFcmApn(fcmApn: "apn")
         CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
         CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
         CustomerGlu.getInstance.enableEntryPoints(enabled: true)

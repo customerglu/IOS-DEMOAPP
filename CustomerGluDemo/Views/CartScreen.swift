@@ -65,7 +65,7 @@ struct CartScreen: View {
             .padding()
         }.navigationTitle("My Cart")
         .onAppear(perform: {
-            CustomerGlu.getInstance.setCurrentClassName(className: "CartScreen")
+            CustomerGlu.getInstance.setCurrentClassName(className: "Cart")
         })}
     }
 }
