@@ -16,6 +16,8 @@ private enum HTTPHeaderField: String {
     case xapikey = "x-api-key"
     case platform = "platform"
     case xgluauth = "X-GLU-AUTH"
+    case cgsdkversionkey = "cg-sdk-version"
+    case sandbox = "sandbox"
 }
 
 // HTTP Header Value's for API's
@@ -45,6 +47,8 @@ private struct MethodNameandPath {
     static let entryPointdata = MethodandPath(method: "GET", path: "entrypoints/v1/list?consumer=MOBILE")
     static let publish_nudge = MethodandPath(method: "POST", path: "v4/nudge")
     static let entrypoints_config = MethodandPath(method: "POST", path: "entrypoints/v1/config")
+    static let send_analytics_event = MethodandPath(method: "POST", path: "v4/analytics")
+    static let appconfig = MethodandPath(method: "POST", path: "v4/analytics")
 }
 
 // Parameter Key's for all API's
@@ -87,12 +91,14 @@ class APIManager {
         
         // Common Headers
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+        urlRequest.setValue(Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String, forHTTPHeaderField: HTTPHeaderField.xapikey.rawValue)
+        urlRequest.setValue("ios", forHTTPHeaderField: HTTPHeaderField.platform.rawValue)
+        urlRequest.setValue(CustomerGlu.isDebugingEnabled.description, forHTTPHeaderField: HTTPHeaderField.sandbox.rawValue)
+        urlRequest.setValue(APIParameterKey.cgsdkversionvalue, forHTTPHeaderField: HTTPHeaderField.cgsdkversionkey.rawValue)
         
-        if UserDefaults.standard.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
-            urlRequest.setValue("\(APIParameterKey.bearer) " + CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: Constants.CUSTOMERGLU_TOKEN), forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
-            urlRequest.setValue("\(APIParameterKey.bearer) " + CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: Constants.CUSTOMERGLU_TOKEN), forHTTPHeaderField: HTTPHeaderField.xgluauth.rawValue)
-            urlRequest.setValue(Bundle.main.object(forInfoDictionaryKey: "CUSTOMERGLU_WRITE_KEY") as? String, forHTTPHeaderField: HTTPHeaderField.xapikey.rawValue)
-            urlRequest.setValue("ios", forHTTPHeaderField: HTTPHeaderField.platform.rawValue)
+        if UserDefaults.standard.object(forKey: CGConstants.CUSTOMERGLU_TOKEN) != nil {
+            urlRequest.setValue("\(APIParameterKey.bearer) " + CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_TOKEN), forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
+            urlRequest.setValue("\(APIParameterKey.bearer) " + CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_TOKEN), forHTTPHeaderField: HTTPHeaderField.xgluauth.rawValue)
         }
         
         if parametersDict!.count > 0 { // Check Parameters & Move Accordingly
@@ -158,7 +164,7 @@ class APIManager {
         
         // Added Task into Queue
         blockOperation.addExecutionBlock {
-        // Call Login API with API Router
+            // Call Login API with API Router
             performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.userRegister, parametersDict: queryParameters, completion: completion)
         }
         
@@ -166,14 +172,14 @@ class APIManager {
         if(ApplicationManager.operationQueue.operations.count > 0){
             blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
         }
-         
-         //Added task into Queue
-         ApplicationManager.operationQueue.addOperation(blockOperation)
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
     static func getWalletRewards(queryParameters: NSDictionary, completion: @escaping (Result<CGCampaignsModel, Error>) -> Void) {
         // Call Get Wallet and Rewards List
-
+        
         // create a blockOperation for avoiding miltiple API call at same time
         let blockOperation = BlockOperation()
         
@@ -182,10 +188,10 @@ class APIManager {
             performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.getWalletRewards, parametersDict: queryParameters,completion: completion)
         }
         
-       // Add dependency to finish previus task before starting new one
-       if(ApplicationManager.operationQueue.operations.count > 0){
-           blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
-       }
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
         
         //Added task into Queue
         ApplicationManager.operationQueue.addOperation(blockOperation)
@@ -236,7 +242,7 @@ class APIManager {
         
         // Added Task into Queue
         blockOperation.addExecutionBlock {
-        // Call Get Wallet and Rewards List
+            // Call Get Wallet and Rewards List
             performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.entryPointdata, parametersDict: queryParameters, completion: completion)
         }
         
@@ -249,13 +255,13 @@ class APIManager {
         ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
-    static func publishNudge(queryParameters: NSDictionary, completion: @escaping (Result<PublishNudgeModel, Error>) -> Void) {
+    static func publishNudge(queryParameters: NSDictionary, completion: @escaping (Result<CGPublishNudgeModel, Error>) -> Void) {
         // create a blockOperation for avoiding miltiple API call at same time
         let blockOperation = BlockOperation()
         
         // Added Task into Queue
         blockOperation.addExecutionBlock {
-        // Call Put PublishNudge
+            // Call Put PublishNudge
             performRequest(baseurl: BaseUrls.streamurl, methodandpath: MethodNameandPath.publish_nudge, parametersDict: queryParameters, completion: completion)
         }
         
@@ -274,7 +280,7 @@ class APIManager {
         
         // Added Task into Queue
         blockOperation.addExecutionBlock {
-        // Call Put EntryPoints_Config
+            // Call Put EntryPoints_Config
             performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.entrypoints_config, parametersDict: queryParameters, completion: completion)
         }
         
@@ -287,6 +293,45 @@ class APIManager {
         ApplicationManager.operationQueue.addOperation(blockOperation)
     }
     
+    static func sendAnalyticsEvent(queryParameters: NSDictionary, completion: @escaping (Result<CGAddCartModel, Error>) -> Void) {
+        
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
+            // Call Get Wallet and Rewards List
+            performRequest(baseurl: BaseUrls.streamurl, methodandpath: MethodNameandPath.send_analytics_event, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
+    }
+    
+    static func appConfig(queryParameters: NSDictionary, completion: @escaping (Result<CGAppConfig, Error>) -> Void) {
+        // create a blockOperation for avoiding miltiple API call at same time
+        let blockOperation = BlockOperation()
+        
+        // Added Task into Queue
+        blockOperation.addExecutionBlock {
+            // Call Login API with API Router
+            performRequest(baseurl: BaseUrls.baseurl, methodandpath: MethodNameandPath.appconfig, parametersDict: queryParameters, completion: completion)
+        }
+        
+        // Add dependency to finish previus task before starting new one
+        if(ApplicationManager.operationQueue.operations.count > 0){
+            blockOperation.addDependency(ApplicationManager.operationQueue.operations.last!)
+        }
+        
+        //Added task into Queue
+        ApplicationManager.operationQueue.addOperation(blockOperation)
+    }
+
     // MARK: - Private Class Methods
     
     // Recursive Method

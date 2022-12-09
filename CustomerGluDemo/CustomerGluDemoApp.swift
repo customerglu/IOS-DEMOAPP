@@ -20,10 +20,12 @@ struct CustomerGluDemoApp: App {
             let uid = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: "CustomerGlu_user_id_Encrypt")
             let uanonid = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: "CustomerGluAnonymousId_Encrypt")
             
-            if (token.count > 0 && uid.count > 0 && ((uanonid.count <= 0) || (uid != uanonid))){
+            if (token.count > 0 && uid.count > 0 && ((uanonid.count <= 0) || (uid != uanonid))) {
+
                 HomeScreen()
                     .onOpenURL { url in
                         // URL handling
+
                         print(url)
                         if let scheme = url.scheme,
                             scheme.localizedCaseInsensitiveCompare("https") == .orderedSame,

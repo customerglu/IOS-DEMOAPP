@@ -1,5 +1,5 @@
 PODS:
-  - CustomerGlu (2.1.1)
+  - CustomerGlu (2.1.2)
   - SwiftLint (0.45.0)
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../CG-iOS-SDK"
 
 SPEC CHECKSUMS:
-  CustomerGlu: fb2f6fd9beb4d024e68480e14672e8c468c4b5be
+  CustomerGlu: 16ebfbdcb326a11a360df4181baf9e83bf9d50ff
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
 PODFILE CHECKSUM: 8e85b910eeebab747c2fbb776724cdfaa618a6a0

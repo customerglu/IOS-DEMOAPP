@@ -33,9 +33,9 @@ public class BannerView: UIView, UIScrollViewDelegate {
                 object: nil)
         }
     }
-
+    
     @objc private func entryPointLoaded(notification: NSNotification) {
-            self.reloadBannerView()
+        self.reloadBannerView()
     }
     
     var commonBannerId: String {
@@ -46,7 +46,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
             bannerId = newWeight
         }
     }
-
+    
     public init(frame: CGRect, bannerId: String) {
         //CODE
         super.init(frame: frame)
@@ -66,7 +66,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
         self.layoutIfNeeded()
         return CGSize(width: UIView.noIntrinsicMetric, height: CGFloat(finalHeight))
     }
-        
+    
     // MARK: - Nib handlers
     private func xibSetup() {
         self.autoresizesSubviews = true
@@ -90,22 +90,20 @@ public class BannerView: UIView, UIScrollViewDelegate {
         pageControl.currentPageIndicatorTintColor = .black
         pageControl.pageIndicatorTintColor = .lightGray
         view.addSubview(pageControl)
-
+        
         addSubview(view)
     }
     
     public func reloadBannerView() {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
-//        DispatchQueue.main.async { [self] in
-            
             
             if self.imgScrollView != nil {
                 self.imgScrollView.subviews.forEach({ $0.removeFromSuperview() })
             }
             
-        let bannerViews = CustomerGlu.entryPointdata.filter {
-            $0.mobile.container.type == "BANNER" && $0.mobile.container.bannerId == self.bannerId
+            let bannerViews = CustomerGlu.entryPointdata.filter {
+                $0.mobile.container.type == "BANNER" && $0.mobile.container.bannerId == self.bannerId
             }
             
             if bannerViews.count != 0 {
@@ -129,19 +127,18 @@ public class BannerView: UIView, UIScrollViewDelegate {
     }
     
     private func bannerviewHeightZero() {
-
+        
         finalHeight = 0
         
         self.constraints.filter{$0.firstAttribute == .height}.forEach({ $0.constant = CGFloat(finalHeight) })
         self.frame.size.height = CGFloat(finalHeight)
-        if self.view != nil {
-            self.view.frame.size.height = CGFloat(finalHeight)
-        }
+        self.view.frame.size.height = CGFloat(finalHeight)
+        
         if self.imgScrollView != nil {
             self.imgScrollView.frame.size.height = CGFloat(finalHeight)
         }
-
-        let postInfo: [String: Any] = ["finalheight": finalHeight]
+        
+        let postInfo: [String: Any] = [self.bannerId ?? "" : finalHeight]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.Name("CGBANNER_FINAL_HEIGHT").rawValue), object: nil, userInfo: postInfo)
         
         invalidateIntrinsicContentSize()
@@ -149,19 +146,18 @@ public class BannerView: UIView, UIScrollViewDelegate {
     }
     
     private func setBannerView(height: Int, isAutoScrollEnabled: Bool, autoScrollSpeed: Int){
-
+        
         let screenWidth = self.frame.size.width
         let screenHeight = UIScreen.main.bounds.height
         finalHeight = (Int(screenHeight) * height)/100
         
-        let postInfo: [String: Any] = ["finalheight": finalHeight]
+        let postInfo: [String: Any] = [self.bannerId ?? "" : finalHeight]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notification.Name("CGBANNER_FINAL_HEIGHT").rawValue), object: nil, userInfo: postInfo)
-  
+        
         self.constraints.filter{$0.firstAttribute == .height}.forEach({ $0.constant = CGFloat(finalHeight) })
         self.frame.size.height = CGFloat(finalHeight)
-        if self.view != nil {
-            self.view.frame.size.height = CGFloat(finalHeight)
-        }
+        self.view.frame.size.height = CGFloat(finalHeight)
+        
         if self.imgScrollView != nil {
             self.imgScrollView.frame.size.height = CGFloat(finalHeight)
         }
@@ -191,7 +187,7 @@ public class BannerView: UIView, UIScrollViewDelegate {
                 webView.isUserInteractionEnabled = false
                 webView.tag = i
                 let urlStr = dict.url
-//                webView.load(URLRequest(url: URL(string: urlStr!)!))
+                //                webView.load(URLRequest(url: URL(string: urlStr!)!))
                 webView.load(URLRequest(url: CustomerGlu.getInstance.validateURL(url: URL(string: urlStr!)!)))
                 containerView.addSubview(webView)
                 self.imgScrollView.addSubview(containerView)
@@ -248,18 +244,18 @@ public class BannerView: UIView, UIScrollViewDelegate {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-
+        
         let dict = arrContent[sender?.view?.tag ?? 0]
         if dict.campaignId != nil {
-            if dict.openLayout == "FULL-DEFAULT" {
-                CustomerGlu.getInstance.openCampaignById(campaign_id: dict.campaignId, page_type: Constants.FULL_SCREEN_NOTIFICATION, backgroundAlpha: condition?.backgroundOpacity ?? 0.5)
-            } else if dict.openLayout == "BOTTOM-DEFAULT" {
-                CustomerGlu.getInstance.openCampaignById(campaign_id: dict.campaignId, page_type: Constants.BOTTOM_DEFAULT_NOTIFICATION, backgroundAlpha: condition?.backgroundOpacity ?? 0.5)
-            }  else if dict.openLayout == "BOTTOM-SLIDER" {
-                CustomerGlu.getInstance.openCampaignById(campaign_id: dict.campaignId, page_type: Constants.BOTTOM_SHEET_NOTIFICATION, backgroundAlpha: condition?.backgroundOpacity ?? 0.5)
-            } else {
-                CustomerGlu.getInstance.openCampaignById(campaign_id: dict.campaignId, page_type: Constants.MIDDLE_NOTIFICATIONS, backgroundAlpha: condition?.backgroundOpacity ?? 0.5)
-            }
+            
+            let nudgeConfiguration = CGNudgeConfiguration()
+            nudgeConfiguration.layout = dict.openLayout.lowercased()
+            nudgeConfiguration.opacity = condition?.backgroundOpacity ?? 0.5
+            nudgeConfiguration.closeOnDeepLink = dict.closeOnDeepLink ?? CustomerGlu.auto_close_webview!
+            nudgeConfiguration.relativeHeight = dict.relativeHeight ?? 0.0
+            nudgeConfiguration.absoluteHeight = dict.absoluteHeight ?? 0.0
+            
+            CustomerGlu.getInstance.openCampaignById(campaign_id: dict.campaignId, nudgeConfiguration: nudgeConfiguration)
             
             var actionTarget = ""
             if dict.campaignId.count == 0 {

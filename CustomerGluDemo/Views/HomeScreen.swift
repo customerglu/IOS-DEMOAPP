@@ -44,17 +44,30 @@ struct HomeScreen: View {
                 HStack {
                     Button(action: {
                         
+                        CustomerGlu.getInstance.getappconfig(userdata: [:]) { result in
+                            
+                        }
+                        
+                        
                         let nudgeConfiguration = CGNudgeConfiguration()
                         nudgeConfiguration.closeOnDeepLink = true
                         nudgeConfiguration.opacity = 0.5
-                        nudgeConfiguration.layout = "middle-popup"
-                        nudgeConfiguration.url = "http://google.com/"
+//                        nudgeConfiguration.layout = "bottom-default"
+//                        nudgeConfiguration.layout = "middle-popup"
+                        nudgeConfiguration.layout = "bottom-slider"
+//                        nudgeConfiguration.layout = "full-default"
+                        nudgeConfiguration.absoluteHeight = 300.0
                         
+                        nudgeConfiguration.url = "https://coindcx.end-ui.customerglu.com/reward/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHUtdGVzdC0wMTIzIiwiZ2x1SWQiOiI4YTUwZTVmOS00YzY2LTQ5MGItODNlNi00OTU3ZGI2ZTkyNDAiLCJjbGllbnQiOiJjOThkNWEwNC1kZTljLTRmYTQtYjVhZC0zN2RmOGZhMzk3NWMiLCJkZXZpY2VJZCI6ImdsdS10ZXN0LTAxMjNfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjY4MDc4MDcyLCJleHAiOjE2OTk2MTQwNzJ9.gLuNKYD04TYeziH7ia-77_D7s0tydsF7TCYQZzrxSio&rewardUserId=0958ae55-54a5-412e-ba73-883119fd62a5"
+                        
+//                        CustomerGlu.getInstance.openWalletWithURL(url: "https://coindcx.end-ui.customerglu.com/reward/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHUtdGVzdC0wMTIzIiwiZ2x1SWQiOiI4YTUwZTVmOS00YzY2LTQ5MGItODNlNi00OTU3ZGI2ZTkyNDAiLCJjbGllbnQiOiJjOThkNWEwNC1kZTljLTRmYTQtYjVhZC0zN2RmOGZhMzk3NWMiLCJkZXZpY2VJZCI6ImdsdS10ZXN0LTAxMjNfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjY4MDc4MDcyLCJleHAiOjE2OTk2MTQwNzJ9.gLuNKYD04TYeziH7ia-77_D7s0tydsF7TCYQZzrxSio&rewardUserId=0958ae55-54a5-412e-ba73-883119fd62a5")
 //                        nudgeConfiguration.absoluteHeight = 600
 //                        nudgeConfiguration.relativeHeight = 20.0
 
-
+//                        CustomerGlu.getInstance.configureSafeArea(topHeight: 35, bottomHeight: 34, topSafeAreaColor:.systemPink, bottomSafeAreaColor: .brown)
+//                        CustomerGlu.getInstance.configureLoadingScreenColor(color: UIColor(red: 255.0, green: 255.0, blue: 0.0, alpha: 1.0))
                         CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
+
                         
 //                        CustomerGlu.getInstance.openNudge(nudgeId: "referral-fragment", nudgeConfiguration: nudgeConfiguration)
                         
@@ -128,7 +141,7 @@ struct BannerViewAdd: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> BannerView {
-        let view = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), bannerId: "homescreen_banner") //cart_banner
+        let view = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), bannerId: "entry1") //cart_banner
         view.setContentHuggingPriority(.required, for: .horizontal) // << here !!
         view.setContentHuggingPriority(.required, for: .vertical)
         // the same for compression if needed

@@ -87,16 +87,4 @@ struct TestController: UIViewControllerRepresentable {
     }
 }
 
-//struct EmbedViewAdd: UIViewRepresentable {
-//    func updateUIView(_ uiView: CGEmbedView, context: Context) {
-//    }
-//
-//    func makeUIView(context: Context) -> CGEmbedView {
-//        let view = CGEmbedView(frame: CGRect(x: 20, y: 0, width: UIScreen.main.bounds.width-40, height: 0), embedId: "embedded1")
-//        view.setContentHuggingPriority(.required, for: .horizontal) // << here !!
-//        view.setContentHuggingPriority(.required, for: .vertical)
-//        // the same for compression if needed
-//        return view
-//    }
-//}
 

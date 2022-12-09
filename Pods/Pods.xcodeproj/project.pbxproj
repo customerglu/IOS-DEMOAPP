@@ -15,162 +15,165 @@
 			dependencies = (
 			);
 			name = SwiftLint;
+			productName = SwiftLint;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		05F42CD70C8E18DAA279D09218310D79 /* CGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16BA0E5C46F8778FCD0270551FE9C21 /* CGConstants.swift */; };
-		09C838CD764D236C812E7B16ED813BD2 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62DBE3829F18CBE38C1395F8EA2F45 /* BannerView.swift */; };
-		11B8A956F548112327FADE60558B7F37 /* CGAndroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB0F16A226437AADB75F6A871A1D5A /* CGAndroid.swift */; };
+		04A55190D02C254B02E354B086556B27 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49841472CA4D4A0549E85FF5A3A6BE8 /* Extensions.swift */; };
+		057B26924BAE8457916F4A217B0893CD /* FloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11094641B9DA46B5131B001C98525A4 /* FloatingViewController.swift */; };
+		05AB47A2FAF9760CEBABF35974C89CC8 /* LoadAllCampaignsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EA6BA29173A5B178754DB9823119C8 /* LoadAllCampaignsViewModel.swift */; };
+		06780375FBB5DB02CBAC64F1541F05C1 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F153EE12F70CF5A99F7AD8CD6070ECB /* Reachability.swift */; };
+		0CBB5797D467582D2F48583875F4CBF9 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6513514F0DEBE2433C92022A007527 /* SpinnerView.swift */; };
 		141272229290A530860FCDF14FB2FA48 /* Pods-CustomerGluDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3470B8AB67D5C70D207EBD291F65390 /* Pods-CustomerGluDemo-dummy.m */; };
-		14429A9880199C23D6408F6C28157A72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC20654D368C222F08BF9E1FA4C4D7 /* Extensions.swift */; };
-		1BFFEF0BD61472DA1085381D839AE782 /* FloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E537294FE47F381B732E73AFF96DA0CF /* FloatingViewController.swift */; };
-		2CA6A16CFD2549B074E0500CC5BE25DB /* CGEventShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C814FD767F56A36CB3A5AC23C37C80 /* CGEventShareModel.swift */; };
-		307D200AA7ADB67627DA3240B812134B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AA3CC5F96237549D74928640305307 /* Reachability.swift */; };
-		30DAA59AAE6E8E376A73A4F5B3AC7780 /* ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71E66770201676688DFF4C435D9BD67 /* ObjectSavable.swift */; };
+		14FFA943EEBB54B2D13977947FA15CD4 /* CGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA5CC1D3FE680B2107D8EF42B1F3C08 /* CGConstants.swift */; };
+		1B7D3CF7727FD0CFCBAE0E24580CE920 /* CustomerGlu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1268F77AA6E551E66D1ABB293BB5E561 /* CustomerGlu.swift */; };
+		22130EA36303478DBA50196D7F61EF98 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E4A067F3BA5FA0E081B615AD4E5A92 /* BannerView.swift */; };
+		288CB72D136660F2B2AAB198C39A53E7 /* CGAddCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C45933DD9B763A9FE7B43738C2F02D1 /* CGAddCartModel.swift */; };
+		32B47D91EBEB3840AE2067F5E7C1A46F /* ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D612B367564116D4469B201BAB3FD1 /* ObjectSavable.swift */; };
+		32BAB5F06B4BEFD7923EEE7B57A34898 /* imagedismissred.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F555DD68AA373B464C136366CA118F /* imagedismissred.png */; };
+		32BAB87D489076A51FE4536AB28660EF /* CGContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7888AC07FC6B9F73DBC16CE2E10710B /* CGContainer.swift */; };
 		33B99492170655CFDADF27CA7CFFD2F9 /* Pods-CustomerGluDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A8170B11ED8C585F4E42A13347CC4B14 /* Pods-CustomerGluDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		36101538ED68B5465E25705634A205A0 /* OtherUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47A137A61D912DF70728F1AC473168 /* OtherUtils.swift */; };
-		40251BF495F2943CEEE846AF385FD652 /* imagedismissred.png in Resources */ = {isa = PBXBuildFile; fileRef = 5804DD7A9A9B1E754FF3BF4C170A9396 /* imagedismissred.png */; };
-		43FF2B4411BF68203D883A921A0D89BB /* CustomerGluCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC54410596ED142ED17DB0E3D06F60E /* CustomerGluCrash.swift */; };
-		471726E0CB527CFAF14D5B118F7EFDE7 /* BannerCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 54F0B98302FDA696B1D041FC6FAA3CE8 /* BannerCell.xib */; };
-		4E8903BEC0E2D94ABE21C1626FB69A59 /* CustomerGlu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DB23C3532B7D3A770FFC35E741B5D /* CustomerGlu.swift */; };
-		5B386A5B55A8054A0A29C6148C348090 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4868D5D5FC2551FF7624E519ADDC9C2B /* UIImage+Gif.swift */; };
-		634F77B5E2D04E76F70CE03F0873C435 /* CGCampaignsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648276864FD7160D8D7DB88C114633DA /* CGCampaignsModel.swift */; };
-		677B7C4A04CE86EBFCDDAE05ABF71D02 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856E28CDE52DAF8D19F4FFD9AEBD8FE2 /* BannerCell.swift */; };
-		6A11D61A108025B628F4F1A35BB2E368 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E8898C43524DE9B4FD224DEA455AB6 /* Storyboard.storyboard */; };
-		6FA16A6935C1B6053482A9E924DAC692 /* CGContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D1F9FBC471DF5FF36844EF5BE2A07 /* CGContent.swift */; };
-		788C8615DC29DD2816E7D262FEE0B55A /* CGDeepLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E9CD98829DA4DF331A719B7FBBA7AA /* CGDeepLinkModel.swift */; };
-		7998EB78CB655EA4A9A203D1242B5F44 /* CGData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25080C5891D73E2B58AE7541FA15DED /* CGData.swift */; };
-		7B6CA3FBB9402AF3B71ED7D9377B432A /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB091A4057816D7119263371D19429DB /* ApplicationManager.swift */; };
-		83F319B8D86EC551B55DC776BD1E06F9 /* CustomerGlu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 502E215731A9DDB8E4D69BF3BA405C61 /* CustomerGlu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8617C7AA0CBAEAC1F5D8BAE350D24A57 /* CGShowCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3F24761A9C0F8111AAFDEF18FB95DB /* CGShowCount.swift */; };
-		89F35782E298BFCFC9345CEB288600B2 /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2FFB5CCD2EE9C07C4409F137672B9D /* Enumeration.swift */; };
-		9138B75E6E501D0AB7F7907C54C8D351 /* LoadAllCampaignsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCD9E9582F00ED90307674FB36DCB4A /* LoadAllCampaignsViewModel.swift */; };
-		92F30A3488DEC4E132D865602C5332AC /* EntryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8383E551F07B6AC8EC5DB3C5D77806 /* EntryConfig.swift */; };
-		930FB2C9DF4B54D737C177B7FEFBCF6D /* CustomerGlu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24365541E019BE6F9E5D83C6C1BBDABF /* CustomerGlu-dummy.m */; };
-		94E31B05DB14588683FE34C4E733612E /* CGRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D4DB50063BD636CF2CCF14C499F545 /* CGRegistrationModel.swift */; };
-		9803DA635CEEAD5D7A3D451FE1589CB0 /* CGCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616AB008C2D05FFF9AF36B67B79FA108 /* CGCondition.swift */; };
-		A8654FC8CFCD3E051D1B9DC09C2A715E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A4A53A1DD33ABF51B2076E115E076 /* APIManager.swift */; };
-		B3810427C5E525AED9F58776AF876FE9 /* CGContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE39E6BF538CB9926A473E2839B2F85 /* CGContainer.swift */; };
-		B583D70E429AECF855E340339672F9E9 /* imagedismissblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 810ADCFFE68E9033C46AEE0799B106F1 /* imagedismissblack.png */; };
-		B8AB9B6D09CDAD6DE28075EFD337F7A0 /* CustomerWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19B2B1A4E7AD5842FD31EC646D848D1 /* CustomerWebViewController.swift */; };
-		CCA22F0D0E7D8A7B603D1DC349922983 /* CGEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61A38B65BD40E656752D44CCD4FDA9A /* CGEntryPoint.swift */; };
-		CCCC6335F114456E094429CF05C95E9B /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582BB4A5C37D5B9BD2D20D24C76CA9CB /* SpinnerView.swift */; };
-		D4EE9E644745F3CC85632623451A3F65 /* JWTDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB03B415726FD553E94C9D372A0B901A /* JWTDecode.swift */; };
-		D746909E6B4504A8694CF74D792FDB4C /* CGEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AFB49A66F90CD832F73DD688F2A78 /* CGEventModel.swift */; };
-		D7E7FA5E077E724E4A1A0B8DD4314DC5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B30C2C9ABAA4B76ACF469CC8A5B24D /* MockData.swift */; };
-		DDBC395E6EDFBBBD9B2621E4CEAADCF8 /* CGEmbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0E68F3AF525FC5CE0E9C6B114B262 /* CGEmbedView.swift */; };
-		E1199B41B333A4FB8535CACFC05F1BAC /* EncryptDecrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5A6A71A6927365E6815858F01391CA /* EncryptDecrypt.swift */; };
-		E313AA8B453DE17632EFEEA8A9FCA220 /* CGPublishNudgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD5AC8E01CCC0476FA7F2EB3D8FF4A0 /* CGPublishNudgeModel.swift */; };
-		EA2E4EED6CDB15F914765B5B8E6063C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		EC7FB1C97F755FFB308567CCAA93F97A /* CGNudgeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA2637757A879AC8C921FBC572C68AF /* CGNudgeConfiguration.swift */; };
+		38BC6A265DF84A7B6C8F29417BEBA30E /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2D2D38DB3BF9E1897B26287CC08658 /* BannerCell.swift */; };
+		41503B7072248FB953CDE67E7CBD3C99 /* CGEventShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F682F97D2A33C1137D4664649F935CA /* CGEventShareModel.swift */; };
+		41AA0C389AA5AA07E2A565281168E3D8 /* CGEntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BAA4CB0D5E87D4D4621DACB386A29D /* CGEntryPoint.swift */; };
+		431D79CD659FC381E393F35451410A66 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BF7F4998382204C766718E68C8DAA32 /* Storyboard.storyboard */; };
+		447EEB941B569D5F140D31FB2BA3972F /* CGCampaignsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE1120B170EBB3110BF7D2A8F6BC6D /* CGCampaignsModel.swift */; };
+		470A921EFC4389F6AAB45FFF13AF58CF /* CGMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D05F83625D87ED3FB4AE9765EAC7D /* CGMobile.swift */; };
+		4B237F6CB6238A78A13A6FB4E49F4F53 /* CGCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82D6332953644B11F69F682DF5C1451 /* CGCondition.swift */; };
+		4E3E33F9F5FE4BB1A9A362174CE4CA44 /* CGAndroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA9694247CE0534E65155218887703B /* CGAndroid.swift */; };
+		62C43FA8857A9EF54FD240D4F41C2924 /* CGData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B25C58B8B8805028F7E2E504AAE4B3 /* CGData.swift */; };
+		671DA0CD293F43E000437079 /* CGAppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671DA0C8293F43E000437079 /* CGAppConfig.swift */; };
+		6792BD48A91F6CB17933F94295930786 /* CGNudgeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADAD4253B81772038B241151D1EDB198 /* CGNudgeConfiguration.swift */; };
+		6A9D7E31EA02EA5B566347099C351617 /* CGEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20376485695D8BA669DC59193F02EE45 /* CGEventModel.swift */; };
+		6C7FD7478152A5D980D051FF03F70299 /* CGRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2890BE0538D2BCE758BF679E5C31B650 /* CGRegistrationModel.swift */; };
+		6DFB7DBC3FA65AED77B981F7F8E481B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		77625193347B946CC469179CF5010328 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D43A6F3C1D67C3417B4D184E4342D /* MockData.swift */; };
+		7804D9B422AD19B22A5786992C35A645 /* CGEmbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF04F774EA88A5A13BDA0E08E7FF1AE /* CGEmbedView.swift */; };
+		8F96EC38130EC3B6DAC8B38C90D2B046 /* JWTDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A869A8230960E38784208DFE65453996 /* JWTDecode.swift */; };
+		916A2C4AC1000C97C78B0E4DD82B0218 /* CGDeepLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6794204CA8822B5AD4A79B3C2CEF396 /* CGDeepLinkModel.swift */; };
+		93CCF519FDB0520CBFE45D48289FE91A /* CustomerWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B781DF5DA7DA23CEF7A9221F1C7C257 /* CustomerWebViewController.swift */; };
+		945BDA232581690810916A70B5CB9BC1 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E1BF48FB76B3AB558219CC868AFBB1 /* UIImage+Gif.swift */; };
+		99F3873A09FE63D4E281976E9130641B /* CGPublishNudgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10F72537195D5D61FEC36ABCE28D0E7 /* CGPublishNudgeModel.swift */; };
+		9C5B68F6ABB30F9FDCCF34145EB71443 /* BannerCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 4F258889C8B953DD7BD1D05FDADEFDF3 /* BannerCell.xib */; };
+		A2B529B6F777C167A5B0E5760E9051D4 /* imagedismissblack.png in Resources */ = {isa = PBXBuildFile; fileRef = F912318824E8652AF579446A42ADDBFA /* imagedismissblack.png */; };
+		A60C4C558A1CE69F88EAA5890326D737 /* CustomerGlu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F37D69B7BBB8A9782D14ABFBBF6FD71 /* CustomerGlu-dummy.m */; };
+		ADCE84B1FE097B50E89E861E590795A1 /* LoadAllCampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5089AB9D79E9DE2334BB0F8B32227BAA /* LoadAllCampaignsViewController.swift */; };
+		AF2A6766912F1720924328C314EB4AD4 /* CustomerGluCrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92083707F1E67BA54BDF73565D591456 /* CustomerGluCrash.swift */; };
+		B8136D7798A71F1356DD8BAE7D921F43 /* Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1944E351BE546F3EE778607E8D396BF4 /* Enumeration.swift */; };
+		C5998DFB8B163C6EB7FBDAFF96181B81 /* EncryptDecrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB28281D83B858DCB996B5F2485ED435 /* EncryptDecrypt.swift */; };
+		C699E062696254AD7C23D5E02641FCE9 /* CustomerGlu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ADA425CB8429FC9577DF7BCDE0080D9E /* CustomerGlu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD69E9A7D0748E553E1BB2500DF49EAE /* OtherUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3402183C127E97319A71F679D8306783 /* OtherUtils.swift */; };
+		CDD90C5BFA3B409F34B5F445DD238366 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68239BA97DC61227C0DD9CE38B92F954 /* APIManager.swift */; };
+		D2CC404B201F7C9904B2416466520FE5 /* CGContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C32EA347D661E06D1B42BF539BC187 /* CGContent.swift */; };
+		D3F40B9CD964F35B2F930C5876867057 /* EntryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C96563EBCAB466B9BDEDFE287FACA2 /* EntryConfig.swift */; };
 		EFF561E701C2B304AF2D8BF265CA94CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		FB09996172A8A66A0D01CA4F78222173 /* CGMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1CBDA05DFB40B72BA8E8DDD49A0282 /* CGMobile.swift */; };
-		FB4FA1E3F2874830495692ED3A9A31AF /* LoadAllCampaignsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A695563D43C2345F6A5FB0CA7D5C97FF /* LoadAllCampaignsViewController.swift */; };
-		FFD3FE484B90F4388B8739F67A51B073 /* CGAddCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AA7CC109EF41FC7C46380A88F8AB13 /* CGAddCartModel.swift */; };
+		F13C46C29737C4AF436721B64BCA19B0 /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD85A2A2553AEDE62D39E58D018CB6D1 /* ApplicationManager.swift */; };
+		FEF684C8E674377B5ED23318C1344E2D /* CGShowCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E9AAFDD574EBD125F2B8AFCAB2A3E /* CGShowCount.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0EE87D9336CBB35F6E5B5D91CDBDFC49 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B9F1270719EB830F73D98E78E2316643;
-			remoteInfo = CustomerGlu;
-		};
-		4EE0C8A9E4B51AD4D04075EBA0CE5938 /* PBXContainerItemProxy */ = {
+		2B5145F126A3B473F4E4D56FA83D1AE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
 			remoteInfo = SwiftLint;
 		};
+		826AEE68DBC301FD4CE99AAAB59BD3A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9F1270719EB830F73D98E78E2316643;
+			remoteInfo = CustomerGlu;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0AE39E6BF538CB9926A473E2839B2F85 /* CGContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGContainer.swift; sourceTree = "<group>"; };
-		0B5A6A71A6927365E6815858F01391CA /* EncryptDecrypt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EncryptDecrypt.swift; sourceTree = "<group>"; };
+		0F153EE12F70CF5A99F7AD8CD6070ECB /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		1268F77AA6E551E66D1ABB293BB5E561 /* CustomerGlu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomerGlu.swift; path = Sources/CustomerGlu/Classes/CustomerGlu.swift; sourceTree = "<group>"; };
+		1944E351BE546F3EE778607E8D396BF4 /* Enumeration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
+		19B25C58B8B8805028F7E2E504AAE4B3 /* CGData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGData.swift; sourceTree = "<group>"; };
 		19E682C8C893D0E91FDDFBC9DD2A91B1 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
-		23342D8931589ECFAE940DAD040837B2 /* CustomerGlu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomerGlu.debug.xcconfig; sourceTree = "<group>"; };
-		24365541E019BE6F9E5D83C6C1BBDABF /* CustomerGlu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CustomerGlu-dummy.m"; sourceTree = "<group>"; };
-		28E9CD98829DA4DF331A719B7FBBA7AA /* CGDeepLinkModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGDeepLinkModel.swift; sourceTree = "<group>"; };
+		1EA60155126DD77809B9C34F470AD85B /* CustomerGlu.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = CustomerGlu.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		20376485695D8BA669DC59193F02EE45 /* CGEventModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEventModel.swift; sourceTree = "<group>"; };
+		259D43A6F3C1D67C3417B4D184E4342D /* MockData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		2890BE0538D2BCE758BF679E5C31B650 /* CGRegistrationModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGRegistrationModel.swift; sourceTree = "<group>"; };
+		2BF7F4998382204C766718E68C8DAA32 /* Storyboard.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Sources/CustomerGlu/Resources/Storyboard.storyboard; sourceTree = "<group>"; };
+		32562DC32836F57A0B900A2EDA94BE53 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		331F49946398BD763608A370C44B631E /* Pods-CustomerGluDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CustomerGluDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		35E8898C43524DE9B4FD224DEA455AB6 /* Storyboard.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Sources/CustomerGlu/Resources/Storyboard.storyboard; sourceTree = "<group>"; };
+		3402183C127E97319A71F679D8306783 /* OtherUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OtherUtils.swift; sourceTree = "<group>"; };
 		37812CB061D8B1B1228EE37E6CF05015 /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		37D612B367564116D4469B201BAB3FD1 /* ObjectSavable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ObjectSavable.swift; sourceTree = "<group>"; };
 		38457913D9CF48448DF90BA80B28BACE /* Pods-CustomerGluDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CustomerGluDemo.modulemap"; sourceTree = "<group>"; };
 		38AF2590087C3093D142B6BEFCB37EC9 /* Pods-CustomerGluDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CustomerGluDemo-frameworks.sh"; sourceTree = "<group>"; };
-		3C6D1F9FBC471DF5FF36844EF5BE2A07 /* CGContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGContent.swift; sourceTree = "<group>"; };
+		3C3E9AAFDD574EBD125F2B8AFCAB2A3E /* CGShowCount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGShowCount.swift; sourceTree = "<group>"; };
 		3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
 		3FB346B628320021C6678CA564B27808 /* Pods-CustomerGluDemo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CustomerGluDemo-Info.plist"; sourceTree = "<group>"; };
-		4868D5D5FC2551FF7624E519ADDC9C2B /* UIImage+Gif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
-		502E215731A9DDB8E4D69BF3BA405C61 /* CustomerGlu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomerGlu-umbrella.h"; sourceTree = "<group>"; };
-		50AA3CC5F96237549D74928640305307 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		54F0B98302FDA696B1D041FC6FAA3CE8 /* BannerCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = BannerCell.xib; sourceTree = "<group>"; };
-		5804DD7A9A9B1E754FF3BF4C170A9396 /* imagedismissred.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = imagedismissred.png; path = Sources/CustomerGlu/Resources/imagedismissred.png; sourceTree = "<group>"; };
-		582BB4A5C37D5B9BD2D20D24C76CA9CB /* SpinnerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		46533510C4FD5ED769BF4F7276DB1040 /* CustomerGlu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CustomerGlu-Info.plist"; sourceTree = "<group>"; };
+		4C5DB21C4BC45DB8DA3F186CEBAF1D7B /* CustomerGlu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomerGlu.debug.xcconfig; sourceTree = "<group>"; };
+		4F258889C8B953DD7BD1D05FDADEFDF3 /* BannerCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = BannerCell.xib; sourceTree = "<group>"; };
+		5089AB9D79E9DE2334BB0F8B32227BAA /* LoadAllCampaignsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadAllCampaignsViewController.swift; sourceTree = "<group>"; };
 		5837D6B3385A311EE098345E50A39BCA /* Pods-CustomerGluDemo */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CustomerGluDemo"; path = Pods_CustomerGluDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F62DBE3829F18CBE38C1395F8EA2F45 /* BannerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
-		616AB008C2D05FFF9AF36B67B79FA108 /* CGCondition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGCondition.swift; sourceTree = "<group>"; };
-		648276864FD7160D8D7DB88C114633DA /* CGCampaignsModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGCampaignsModel.swift; sourceTree = "<group>"; };
-		6C2FFB5CCD2EE9C07C4409F137672B9D /* Enumeration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Enumeration.swift; sourceTree = "<group>"; };
+		5AF04F774EA88A5A13BDA0E08E7FF1AE /* CGEmbedView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEmbedView.swift; sourceTree = "<group>"; };
+		5F682F97D2A33C1137D4664649F935CA /* CGEventShareModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEventShareModel.swift; sourceTree = "<group>"; };
+		60E4A067F3BA5FA0E081B615AD4E5A92 /* BannerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		61C32EA347D661E06D1B42BF539BC187 /* CGContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGContent.swift; sourceTree = "<group>"; };
+		671DA0C8293F43E000437079 /* CGAppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGAppConfig.swift; sourceTree = "<group>"; };
+		68239BA97DC61227C0DD9CE38B92F954 /* APIManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		6C6513514F0DEBE2433C92022A007527 /* SpinnerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
+		71F555DD68AA373B464C136366CA118F /* imagedismissred.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = imagedismissred.png; path = Sources/CustomerGlu/Resources/imagedismissred.png; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7B8A32C824057C6E4AA777A69560DDE8 /* CustomerGlu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CustomerGlu-Info.plist"; sourceTree = "<group>"; };
+		7B781DF5DA7DA23CEF7A9221F1C7C257 /* CustomerWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerWebViewController.swift; sourceTree = "<group>"; };
 		7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
-		810ADCFFE68E9033C46AEE0799B106F1 /* imagedismissblack.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = imagedismissblack.png; path = Sources/CustomerGlu/Resources/imagedismissblack.png; sourceTree = "<group>"; };
-		81AA7CC109EF41FC7C46380A88F8AB13 /* CGAddCartModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGAddCartModel.swift; sourceTree = "<group>"; };
-		82B30C2C9ABAA4B76ACF469CC8A5B24D /* MockData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
-		856E28CDE52DAF8D19F4FFD9AEBD8FE2 /* BannerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
-		85B1048F0FF1F330243E820834AFB5C7 /* CustomerGlu.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = CustomerGlu.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		86CC20654D368C222F08BF9E1FA4C4D7 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8C47A137A61D912DF70728F1AC473168 /* OtherUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OtherUtils.swift; sourceTree = "<group>"; };
-		94AB0F16A226437AADB75F6A871A1D5A /* CGAndroid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGAndroid.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DCD9E9582F00ED90307674FB36DCB4A /* LoadAllCampaignsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadAllCampaignsViewModel.swift; sourceTree = "<group>"; };
-		A695563D43C2345F6A5FB0CA7D5C97FF /* LoadAllCampaignsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadAllCampaignsViewController.swift; sourceTree = "<group>"; };
+		82BE1120B170EBB3110BF7D2A8F6BC6D /* CGCampaignsModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGCampaignsModel.swift; sourceTree = "<group>"; };
+		8F37D69B7BBB8A9782D14ABFBBF6FD71 /* CustomerGlu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CustomerGlu-dummy.m"; sourceTree = "<group>"; };
+		92083707F1E67BA54BDF73565D591456 /* CustomerGluCrash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerGluCrash.swift; sourceTree = "<group>"; };
+		93E1BF48FB76B3AB558219CC868AFBB1 /* UIImage+Gif.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		9C45933DD9B763A9FE7B43738C2F02D1 /* CGAddCartModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGAddCartModel.swift; sourceTree = "<group>"; };
+		9CA5CC1D3FE680B2107D8EF42B1F3C08 /* CGConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGConstants.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A49841472CA4D4A0549E85FF5A3A6BE8 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A6BAA4CB0D5E87D4D4621DACB386A29D /* CGEntryPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEntryPoint.swift; sourceTree = "<group>"; };
+		A7D936182C474C179D9B3AB719EBC61D /* CustomerGlu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CustomerGlu.modulemap; sourceTree = "<group>"; };
 		A8170B11ED8C585F4E42A13347CC4B14 /* Pods-CustomerGluDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CustomerGluDemo-umbrella.h"; sourceTree = "<group>"; };
-		AA1DB23C3532B7D3A770FFC35E741B5D /* CustomerGlu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomerGlu.swift; path = Sources/CustomerGlu/Classes/CustomerGlu.swift; sourceTree = "<group>"; };
-		AAC54410596ED142ED17DB0E3D06F60E /* CustomerGluCrash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerGluCrash.swift; sourceTree = "<group>"; };
-		B4CB0A85CDD1C54778161C87431BB18A /* CustomerGlu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomerGlu-prefix.pch"; sourceTree = "<group>"; };
-		BB03B415726FD553E94C9D372A0B901A /* JWTDecode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JWTDecode.swift; sourceTree = "<group>"; };
-		BB091A4057816D7119263371D19429DB /* ApplicationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
-		BD3A4A53A1DD33ABF51B2076E115E076 /* APIManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		C3C814FD767F56A36CB3A5AC23C37C80 /* CGEventShareModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEventShareModel.swift; sourceTree = "<group>"; };
-		C49E972BD5947EBAC259A0EBE0CA11AB /* CustomerGlu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CustomerGlu.modulemap; sourceTree = "<group>"; };
-		CA8383E551F07B6AC8EC5DB3C5D77806 /* EntryConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EntryConfig.swift; sourceTree = "<group>"; };
-		CC3F24761A9C0F8111AAFDEF18FB95DB /* CGShowCount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGShowCount.swift; sourceTree = "<group>"; };
-		CCD5AC8E01CCC0476FA7F2EB3D8FF4A0 /* CGPublishNudgeModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPublishNudgeModel.swift; sourceTree = "<group>"; };
-		CEB0E68F3AF525FC5CE0E9C6B114B262 /* CGEmbedView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEmbedView.swift; sourceTree = "<group>"; };
-		D16BA0E5C46F8778FCD0270551FE9C21 /* CGConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGConstants.swift; sourceTree = "<group>"; };
+		A869A8230960E38784208DFE65453996 /* JWTDecode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JWTDecode.swift; sourceTree = "<group>"; };
+		A8C96563EBCAB466B9BDEDFE287FACA2 /* EntryConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EntryConfig.swift; sourceTree = "<group>"; };
+		ADA425CB8429FC9577DF7BCDE0080D9E /* CustomerGlu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomerGlu-umbrella.h"; sourceTree = "<group>"; };
+		ADAD4253B81772038B241151D1EDB198 /* CGNudgeConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGNudgeConfiguration.swift; sourceTree = "<group>"; };
+		AEA9694247CE0534E65155218887703B /* CGAndroid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGAndroid.swift; sourceTree = "<group>"; };
+		B82D6332953644B11F69F682DF5C1451 /* CGCondition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGCondition.swift; sourceTree = "<group>"; };
+		BE2CA066350FB33695AF16105D87890C /* CustomerGlu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomerGlu.release.xcconfig; sourceTree = "<group>"; };
+		C61D05F83625D87ED3FB4AE9765EAC7D /* CGMobile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGMobile.swift; sourceTree = "<group>"; };
+		C7888AC07FC6B9F73DBC16CE2E10710B /* CGContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGContainer.swift; sourceTree = "<group>"; };
+		CD85A2A2553AEDE62D39E58D018CB6D1 /* ApplicationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
+		CF2D2D38DB3BF9E1897B26287CC08658 /* BannerCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		D10F72537195D5D61FEC36ABCE28D0E7 /* CGPublishNudgeModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPublishNudgeModel.swift; sourceTree = "<group>"; };
 		D3470B8AB67D5C70D207EBD291F65390 /* Pods-CustomerGluDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CustomerGluDemo-dummy.m"; sourceTree = "<group>"; };
-		D72AD7E57487241D3D8784EB702C804F /* CustomerGlu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomerGlu.release.xcconfig; sourceTree = "<group>"; };
-		DB1CBDA05DFB40B72BA8E8DDD49A0282 /* CGMobile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGMobile.swift; sourceTree = "<group>"; };
-		E19B2B1A4E7AD5842FD31EC646D848D1 /* CustomerWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomerWebViewController.swift; sourceTree = "<group>"; };
-		E25080C5891D73E2B58AE7541FA15DED /* CGData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGData.swift; sourceTree = "<group>"; };
-		E537294FE47F381B732E73AFF96DA0CF /* FloatingViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FloatingViewController.swift; sourceTree = "<group>"; };
-		E61A38B65BD40E656752D44CCD4FDA9A /* CGEntryPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEntryPoint.swift; sourceTree = "<group>"; };
-		E71E66770201676688DFF4C435D9BD67 /* ObjectSavable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ObjectSavable.swift; sourceTree = "<group>"; };
+		D8AD41B37333071239C434ECBFC29835 /* CustomerGlu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomerGlu-prefix.pch"; sourceTree = "<group>"; };
+		E11094641B9DA46B5131B001C98525A4 /* FloatingViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FloatingViewController.swift; sourceTree = "<group>"; };
+		E3EA6BA29173A5B178754DB9823119C8 /* LoadAllCampaignsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadAllCampaignsViewModel.swift; sourceTree = "<group>"; };
+		E6794204CA8822B5AD4A79B3C2CEF396 /* CGDeepLinkModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGDeepLinkModel.swift; sourceTree = "<group>"; };
 		E72C143C34A219BD5A1CB0E96E61507F /* Pods-CustomerGluDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CustomerGluDemo-acknowledgements.plist"; sourceTree = "<group>"; };
+		EB28281D83B858DCB996B5F2485ED435 /* EncryptDecrypt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EncryptDecrypt.swift; sourceTree = "<group>"; };
 		ECCA9A2F4EB81AB3D61C17CD2ED12C67 /* CustomerGlu */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CustomerGlu; path = CustomerGlu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8D4DB50063BD636CF2CCF14C499F545 /* CGRegistrationModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGRegistrationModel.swift; sourceTree = "<group>"; };
-		FC5AFB49A66F90CD832F73DD688F2A78 /* CGEventModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGEventModel.swift; sourceTree = "<group>"; };
-		FCA2637757A879AC8C921FBC572C68AF /* CGNudgeConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGNudgeConfiguration.swift; sourceTree = "<group>"; };
-		FDC3C315A44283BBC827C4FD100B5ECF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		F912318824E8652AF579446A42ADDBFA /* imagedismissblack.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = imagedismissblack.png; path = Sources/CustomerGlu/Resources/imagedismissblack.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		38DC86CCE47B6B7BD074610A431B3CD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DFB7DBC3FA65AED77B981F7F8E481B4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F36481A39B90FF3C321310FB9E42690A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EFF561E701C2B304AF2D8BF265CA94CC /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5A9D91B485B773352679379E1822424 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA2E4EED6CDB15F914765B5B8E6063C3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,55 +197,20 @@
 			path = "Target Support Files/Pods-CustomerGluDemo";
 			sourceTree = "<group>";
 		};
-		24AFE35F7125E69B046077DC22386501 /* Support Files */ = {
+		2A21AF932C6561C159BC3BD5C982D516 /* customerWebView */ = {
 			isa = PBXGroup;
 			children = (
-				C49E972BD5947EBAC259A0EBE0CA11AB /* CustomerGlu.modulemap */,
-				24365541E019BE6F9E5D83C6C1BBDABF /* CustomerGlu-dummy.m */,
-				7B8A32C824057C6E4AA777A69560DDE8 /* CustomerGlu-Info.plist */,
-				B4CB0A85CDD1C54778161C87431BB18A /* CustomerGlu-prefix.pch */,
-				502E215731A9DDB8E4D69BF3BA405C61 /* CustomerGlu-umbrella.h */,
-				23342D8931589ECFAE940DAD040837B2 /* CustomerGlu.debug.xcconfig */,
-				D72AD7E57487241D3D8784EB702C804F /* CustomerGlu.release.xcconfig */,
+				7B781DF5DA7DA23CEF7A9221F1C7C257 /* CustomerWebViewController.swift */,
 			);
-			name = "Support Files";
-			path = "../IOS-DEMOAPP/Pods/Target Support Files/CustomerGlu";
-			sourceTree = "<group>";
-		};
-		2B3D563F5BB88E1FD13BD9E3DA171D64 /* MockResponse */ = {
-			isa = PBXGroup;
-			children = (
-				82B30C2C9ABAA4B76ACF469CC8A5B24D /* MockData.swift */,
-			);
-			name = MockResponse;
-			path = Sources/CustomerGlu/Classes/MockResponse;
+			path = customerWebView;
 			sourceTree = "<group>";
 		};
 		39ED627099E912A4B15DC45FF4BFC788 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				90B534C176C93C5945D7815F14CC6E03 /* CustomerGlu */,
+				7C343F1F68AB18296B4C80CC587719AB /* CustomerGlu */,
 			);
 			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		41163D2E637ACDC14A83A5B97954AE09 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				856E28CDE52DAF8D19F4FFD9AEBD8FE2 /* BannerCell.swift */,
-				54F0B98302FDA696B1D041FC6FAA3CE8 /* BannerCell.xib */,
-			);
-			name = Cells;
-			path = Sources/CustomerGlu/Classes/Cells;
-			sourceTree = "<group>";
-		};
-		49B957CFBD0F1FCB2E976F4E2BB6F149 /* FloatingButton */ = {
-			isa = PBXGroup;
-			children = (
-				E537294FE47F381B732E73AFF96DA0CF /* FloatingViewController.swift */,
-			);
-			name = FloatingButton;
-			path = FloatingButton;
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -253,27 +221,53 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		601222F38B99521F4E5660045DBE301C /* Utils */ = {
+		671DA0C6293F43E000437079 /* AppConfig */ = {
 			isa = PBXGroup;
 			children = (
-				D16BA0E5C46F8778FCD0270551FE9C21 /* CGConstants.swift */,
-				0B5A6A71A6927365E6815858F01391CA /* EncryptDecrypt.swift */,
-				6C2FFB5CCD2EE9C07C4409F137672B9D /* Enumeration.swift */,
-				86CC20654D368C222F08BF9E1FA4C4D7 /* Extensions.swift */,
-				E71E66770201676688DFF4C435D9BD67 /* ObjectSavable.swift */,
-				8C47A137A61D912DF70728F1AC473168 /* OtherUtils.swift */,
+				671DA0C8293F43E000437079 /* CGAppConfig.swift */,
 			);
-			name = Utils;
-			path = Sources/CustomerGlu/Classes/Utils;
+			path = AppConfig;
 			sourceTree = "<group>";
 		};
-		68F1DF8DCF0DFBA64A1DB34B05F7CA89 /* CGEmbedView */ = {
+		72BA8C1FE636D7FCD99005B51A93B39E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CEB0E68F3AF525FC5CE0E9C6B114B262 /* CGEmbedView.swift */,
+				D38CB38854C480FAE6B40F7CE5DE7BFB /* BannerView */,
+				AD319EA21484CACA319D43D9D04CF87B /* CGEmbedView */,
+				2A21AF932C6561C159BC3BD5C982D516 /* customerWebView */,
+				7656BC0A63B515F290A437D15D0663E8 /* FloatingButton */,
+				81E8AE500F2DD87F1B7B5D43A484BCA9 /* loadAllCampaigns */,
 			);
-			name = CGEmbedView;
-			path = CGEmbedView;
+			name = View;
+			path = Sources/CustomerGlu/Classes/View;
+			sourceTree = "<group>";
+		};
+		7656BC0A63B515F290A437D15D0663E8 /* FloatingButton */ = {
+			isa = PBXGroup;
+			children = (
+				E11094641B9DA46B5131B001C98525A4 /* FloatingViewController.swift */,
+			);
+			path = FloatingButton;
+			sourceTree = "<group>";
+		};
+		7C343F1F68AB18296B4C80CC587719AB /* CustomerGlu */ = {
+			isa = PBXGroup;
+			children = (
+				1268F77AA6E551E66D1ABB293BB5E561 /* CustomerGlu.swift */,
+				F912318824E8652AF579446A42ADDBFA /* imagedismissblack.png */,
+				71F555DD68AA373B464C136366CA118F /* imagedismissred.png */,
+				2BF7F4998382204C766718E68C8DAA32 /* Storyboard.storyboard */,
+				88420A14B091AEE9437E5669C3529A7B /* Cells */,
+				B15B36DA45E9D9D369AD273167CB202C /* Manager */,
+				ADDB5CD4ED62F7D213CA737928134241 /* MockResponse */,
+				EC6246C5BABA48FB0D2D00FCC6C98451 /* Model */,
+				8CCEB3B66F093AD84565772A67E530BB /* Pod */,
+				881AECAF8B135562342F2DCA0F1E4B6E /* Support Files */,
+				CB188EECD562DCF540C351B78BFD4007 /* Utils */,
+				72BA8C1FE636D7FCD99005B51A93B39E /* View */,
+			);
+			name = CustomerGlu;
+			path = "../../CG-iOS-SDK";
 			sourceTree = "<group>";
 		};
 		7C352C67AF133A82F68C327B51798DA3 /* Products */ = {
@@ -295,24 +289,47 @@
 			path = "../Target Support Files/SwiftLint";
 			sourceTree = "<group>";
 		};
-		90B534C176C93C5945D7815F14CC6E03 /* CustomerGlu */ = {
+		81E8AE500F2DD87F1B7B5D43A484BCA9 /* loadAllCampaigns */ = {
 			isa = PBXGroup;
 			children = (
-				AA1DB23C3532B7D3A770FFC35E741B5D /* CustomerGlu.swift */,
-				810ADCFFE68E9033C46AEE0799B106F1 /* imagedismissblack.png */,
-				5804DD7A9A9B1E754FF3BF4C170A9396 /* imagedismissred.png */,
-				35E8898C43524DE9B4FD224DEA455AB6 /* Storyboard.storyboard */,
-				41163D2E637ACDC14A83A5B97954AE09 /* Cells */,
-				B856E859B5E8495FF6ACFC2A3A0FB79D /* Manager */,
-				2B3D563F5BB88E1FD13BD9E3DA171D64 /* MockResponse */,
-				DB115EDD8E5A7C1479AA538CEDA48636 /* Model */,
-				E32969A39314DF4A7A981515A9F619B0 /* Pod */,
-				24AFE35F7125E69B046077DC22386501 /* Support Files */,
-				601222F38B99521F4E5660045DBE301C /* Utils */,
-				A25DB92E1F1D0A15AC2534A221890727 /* View */,
+				5089AB9D79E9DE2334BB0F8B32227BAA /* LoadAllCampaignsViewController.swift */,
+				E3EA6BA29173A5B178754DB9823119C8 /* LoadAllCampaignsViewModel.swift */,
 			);
-			name = CustomerGlu;
-			path = "../../CG-iOS-SDK";
+			path = loadAllCampaigns;
+			sourceTree = "<group>";
+		};
+		881AECAF8B135562342F2DCA0F1E4B6E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A7D936182C474C179D9B3AB719EBC61D /* CustomerGlu.modulemap */,
+				8F37D69B7BBB8A9782D14ABFBBF6FD71 /* CustomerGlu-dummy.m */,
+				46533510C4FD5ED769BF4F7276DB1040 /* CustomerGlu-Info.plist */,
+				D8AD41B37333071239C434ECBFC29835 /* CustomerGlu-prefix.pch */,
+				ADA425CB8429FC9577DF7BCDE0080D9E /* CustomerGlu-umbrella.h */,
+				4C5DB21C4BC45DB8DA3F186CEBAF1D7B /* CustomerGlu.debug.xcconfig */,
+				BE2CA066350FB33695AF16105D87890C /* CustomerGlu.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../IOS-DEMOAPP/Pods/Target Support Files/CustomerGlu";
+			sourceTree = "<group>";
+		};
+		88420A14B091AEE9437E5669C3529A7B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CF2D2D38DB3BF9E1897B26287CC08658 /* BannerCell.swift */,
+				4F258889C8B953DD7BD1D05FDADEFDF3 /* BannerCell.xib */,
+			);
+			name = Cells;
+			path = Sources/CustomerGlu/Classes/Cells;
+			sourceTree = "<group>";
+		};
+		8CCEB3B66F093AD84565772A67E530BB /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				1EA60155126DD77809B9C34F470AD85B /* CustomerGlu.podspec */,
+				32562DC32836F57A0B900A2EDA94BE53 /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		965877409E01FB3D85D85E90E6B30185 /* Pods */ = {
@@ -323,50 +340,73 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		98ED2A1FD5D4DFD30798B54B56598D61 /* customerWebView */ = {
+		970B1A1ECC899797BD8CDBE375630CBB /* EntryConfig */ = {
 			isa = PBXGroup;
 			children = (
-				E19B2B1A4E7AD5842FD31EC646D848D1 /* CustomerWebViewController.swift */,
+				A8C96563EBCAB466B9BDEDFE287FACA2 /* EntryConfig.swift */,
 			);
-			name = customerWebView;
-			path = customerWebView;
+			path = EntryConfig;
 			sourceTree = "<group>";
 		};
-		A25DB92E1F1D0A15AC2534A221890727 /* View */ = {
+		AD319EA21484CACA319D43D9D04CF87B /* CGEmbedView */ = {
 			isa = PBXGroup;
 			children = (
-				EC1FEB2FA120CB268B170BC526C1A8D3 /* BannerView */,
-				68F1DF8DCF0DFBA64A1DB34B05F7CA89 /* CGEmbedView */,
-				98ED2A1FD5D4DFD30798B54B56598D61 /* customerWebView */,
-				49B957CFBD0F1FCB2E976F4E2BB6F149 /* FloatingButton */,
-				FDDBDE0BC591B2CDC5A3D52C96FA2394 /* loadAllCampaigns */,
+				5AF04F774EA88A5A13BDA0E08E7FF1AE /* CGEmbedView.swift */,
 			);
-			name = View;
-			path = Sources/CustomerGlu/Classes/View;
+			path = CGEmbedView;
 			sourceTree = "<group>";
 		};
-		B856E859B5E8495FF6ACFC2A3A0FB79D /* Manager */ = {
+		ADDB5CD4ED62F7D213CA737928134241 /* MockResponse */ = {
 			isa = PBXGroup;
 			children = (
-				BD3A4A53A1DD33ABF51B2076E115E076 /* APIManager.swift */,
-				BB091A4057816D7119263371D19429DB /* ApplicationManager.swift */,
-				AAC54410596ED142ED17DB0E3D06F60E /* CustomerGluCrash.swift */,
-				BB03B415726FD553E94C9D372A0B901A /* JWTDecode.swift */,
-				50AA3CC5F96237549D74928640305307 /* Reachability.swift */,
-				582BB4A5C37D5B9BD2D20D24C76CA9CB /* SpinnerView.swift */,
-				4868D5D5FC2551FF7624E519ADDC9C2B /* UIImage+Gif.swift */,
+				259D43A6F3C1D67C3417B4D184E4342D /* MockData.swift */,
+			);
+			name = MockResponse;
+			path = Sources/CustomerGlu/Classes/MockResponse;
+			sourceTree = "<group>";
+		};
+		B15B36DA45E9D9D369AD273167CB202C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				68239BA97DC61227C0DD9CE38B92F954 /* APIManager.swift */,
+				CD85A2A2553AEDE62D39E58D018CB6D1 /* ApplicationManager.swift */,
+				92083707F1E67BA54BDF73565D591456 /* CustomerGluCrash.swift */,
+				A869A8230960E38784208DFE65453996 /* JWTDecode.swift */,
+				0F153EE12F70CF5A99F7AD8CD6070ECB /* Reachability.swift */,
+				6C6513514F0DEBE2433C92022A007527 /* SpinnerView.swift */,
+				93E1BF48FB76B3AB558219CC868AFBB1 /* UIImage+Gif.swift */,
 			);
 			name = Manager;
 			path = Sources/CustomerGlu/Classes/Manager;
 			sourceTree = "<group>";
 		};
-		C69DEF79937941539C7C11FD815CC476 /* EntryConfig */ = {
+		BAE4F66B4D7B9D5AB7BE5F12C3CCCBFF /* EntryPoints */ = {
 			isa = PBXGroup;
 			children = (
-				CA8383E551F07B6AC8EC5DB3C5D77806 /* EntryConfig.swift */,
+				AEA9694247CE0534E65155218887703B /* CGAndroid.swift */,
+				B82D6332953644B11F69F682DF5C1451 /* CGCondition.swift */,
+				C7888AC07FC6B9F73DBC16CE2E10710B /* CGContainer.swift */,
+				61C32EA347D661E06D1B42BF539BC187 /* CGContent.swift */,
+				19B25C58B8B8805028F7E2E504AAE4B3 /* CGData.swift */,
+				A6BAA4CB0D5E87D4D4621DACB386A29D /* CGEntryPoint.swift */,
+				C61D05F83625D87ED3FB4AE9765EAC7D /* CGMobile.swift */,
+				3C3E9AAFDD574EBD125F2B8AFCAB2A3E /* CGShowCount.swift */,
 			);
-			name = EntryConfig;
-			path = EntryConfig;
+			path = EntryPoints;
+			sourceTree = "<group>";
+		};
+		CB188EECD562DCF540C351B78BFD4007 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9CA5CC1D3FE680B2107D8EF42B1F3C08 /* CGConstants.swift */,
+				EB28281D83B858DCB996B5F2485ED435 /* EncryptDecrypt.swift */,
+				1944E351BE546F3EE778607E8D396BF4 /* Enumeration.swift */,
+				A49841472CA4D4A0549E85FF5A3A6BE8 /* Extensions.swift */,
+				37D612B367564116D4469B201BAB3FD1 /* ObjectSavable.swift */,
+				3402183C127E97319A71F679D8306783 /* OtherUtils.swift */,
+			);
+			name = Utils;
+			path = Sources/CustomerGlu/Classes/Utils;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -389,65 +429,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D38CB38854C480FAE6B40F7CE5DE7BFB /* BannerView */ = {
+			isa = PBXGroup;
+			children = (
+				60E4A067F3BA5FA0E081B615AD4E5A92 /* BannerView.swift */,
+			);
+			path = BannerView;
+			sourceTree = "<group>";
+		};
 		D96179D43A67C5D5323B0682D32C133C /* SwiftLint */ = {
 			isa = PBXGroup;
 			children = (
 				7FDA596DBE0337ACDFE55A210D54EF26 /* Support Files */,
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
-		DB115EDD8E5A7C1479AA538CEDA48636 /* Model */ = {
+		EC6246C5BABA48FB0D2D00FCC6C98451 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				81AA7CC109EF41FC7C46380A88F8AB13 /* CGAddCartModel.swift */,
-				648276864FD7160D8D7DB88C114633DA /* CGCampaignsModel.swift */,
-				28E9CD98829DA4DF331A719B7FBBA7AA /* CGDeepLinkModel.swift */,
-				FC5AFB49A66F90CD832F73DD688F2A78 /* CGEventModel.swift */,
-				C3C814FD767F56A36CB3A5AC23C37C80 /* CGEventShareModel.swift */,
-				FCA2637757A879AC8C921FBC572C68AF /* CGNudgeConfiguration.swift */,
-				CCD5AC8E01CCC0476FA7F2EB3D8FF4A0 /* CGPublishNudgeModel.swift */,
-				F8D4DB50063BD636CF2CCF14C499F545 /* CGRegistrationModel.swift */,
-				C69DEF79937941539C7C11FD815CC476 /* EntryConfig */,
-				F8BCA5EDCAA34365EA11C6B8B24FE423 /* EntryPoints */,
+				671DA0C6293F43E000437079 /* AppConfig */,
+				9C45933DD9B763A9FE7B43738C2F02D1 /* CGAddCartModel.swift */,
+				82BE1120B170EBB3110BF7D2A8F6BC6D /* CGCampaignsModel.swift */,
+				E6794204CA8822B5AD4A79B3C2CEF396 /* CGDeepLinkModel.swift */,
+				20376485695D8BA669DC59193F02EE45 /* CGEventModel.swift */,
+				5F682F97D2A33C1137D4664649F935CA /* CGEventShareModel.swift */,
+				ADAD4253B81772038B241151D1EDB198 /* CGNudgeConfiguration.swift */,
+				D10F72537195D5D61FEC36ABCE28D0E7 /* CGPublishNudgeModel.swift */,
+				2890BE0538D2BCE758BF679E5C31B650 /* CGRegistrationModel.swift */,
+				970B1A1ECC899797BD8CDBE375630CBB /* EntryConfig */,
+				BAE4F66B4D7B9D5AB7BE5F12C3CCCBFF /* EntryPoints */,
 			);
 			name = Model;
 			path = Sources/CustomerGlu/Classes/Model;
-			sourceTree = "<group>";
-		};
-		E32969A39314DF4A7A981515A9F619B0 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				85B1048F0FF1F330243E820834AFB5C7 /* CustomerGlu.podspec */,
-				FDC3C315A44283BBC827C4FD100B5ECF /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		EC1FEB2FA120CB268B170BC526C1A8D3 /* BannerView */ = {
-			isa = PBXGroup;
-			children = (
-				5F62DBE3829F18CBE38C1395F8EA2F45 /* BannerView.swift */,
-			);
-			name = BannerView;
-			path = BannerView;
-			sourceTree = "<group>";
-		};
-		F8BCA5EDCAA34365EA11C6B8B24FE423 /* EntryPoints */ = {
-			isa = PBXGroup;
-			children = (
-				94AB0F16A226437AADB75F6A871A1D5A /* CGAndroid.swift */,
-				616AB008C2D05FFF9AF36B67B79FA108 /* CGCondition.swift */,
-				0AE39E6BF538CB9926A473E2839B2F85 /* CGContainer.swift */,
-				3C6D1F9FBC471DF5FF36844EF5BE2A07 /* CGContent.swift */,
-				E25080C5891D73E2B58AE7541FA15DED /* CGData.swift */,
-				E61A38B65BD40E656752D44CCD4FDA9A /* CGEntryPoint.swift */,
-				DB1CBDA05DFB40B72BA8E8DDD49A0282 /* CGMobile.swift */,
-				CC3F24761A9C0F8111AAFDEF18FB95DB /* CGShowCount.swift */,
-			);
-			name = EntryPoints;
-			path = EntryPoints;
 			sourceTree = "<group>";
 		};
 		FB9ECCFA5D1BB216B3CF943A220CDEB5 /* Targets Support Files */ = {
@@ -456,16 +470,6 @@
 				1B267E8EFB816CA69F0E97B42B6B8010 /* Pods-CustomerGluDemo */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		FDDBDE0BC591B2CDC5A3D52C96FA2394 /* loadAllCampaigns */ = {
-			isa = PBXGroup;
-			children = (
-				A695563D43C2345F6A5FB0CA7D5C97FF /* LoadAllCampaignsViewController.swift */,
-				9DCD9E9582F00ED90307674FB36DCB4A /* LoadAllCampaignsViewModel.swift */,
-			);
-			name = loadAllCampaigns;
-			path = loadAllCampaigns;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -479,11 +483,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E67D06A2AF8D6212E0DB9D4D8B03939D /* Headers */ = {
+		9CBFA491B9386CBD52A1ABFCFEEEB5EA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83F319B8D86EC551B55DC776BD1E06F9 /* CustomerGlu-umbrella.h in Headers */,
+				C699E062696254AD7C23D5E02641FCE9 /* CustomerGlu-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,8 +506,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				A21866F93E24712065E64C77AE411A55 /* PBXTargetDependency */,
-				D849E8E1FBECFCFCB391DDD9B0360EEC /* PBXTargetDependency */,
+				5BF76FDE537E10A519FC5F518798D11E /* PBXTargetDependency */,
+				672A57AF783BFDCDE995E61A38EFC2E9 /* PBXTargetDependency */,
 			);
 			name = "Pods-CustomerGluDemo";
 			productName = Pods_CustomerGluDemo;
@@ -512,12 +516,12 @@
 		};
 		B9F1270719EB830F73D98E78E2316643 /* CustomerGlu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 63EE4F767CB56DFCC05299EFEEAAD983 /* Build configuration list for PBXNativeTarget "CustomerGlu" */;
+			buildConfigurationList = 2F5E24925D7C0D5325A22CC323F82DDA /* Build configuration list for PBXNativeTarget "CustomerGlu" */;
 			buildPhases = (
-				E67D06A2AF8D6212E0DB9D4D8B03939D /* Headers */,
-				7CF6FA998661AC18E9351646425629EA /* Sources */,
-				F5A9D91B485B773352679379E1822424 /* Frameworks */,
-				768B091735379BC6AC502D7A24C24F93 /* Resources */,
+				9CBFA491B9386CBD52A1ABFCFEEEB5EA /* Headers */,
+				DFA2B3F9CF0422FB2BAE741C09D1F4D0 /* Sources */,
+				38DC86CCE47B6B7BD074610A431B3CD8 /* Frameworks */,
+				EBB3CE99DC23FF276DC5F4CF8ECB0E6A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -565,64 +569,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		768B091735379BC6AC502D7A24C24F93 /* Resources */ = {
+		EBB3CE99DC23FF276DC5F4CF8ECB0E6A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B583D70E429AECF855E340339672F9E9 /* imagedismissblack.png in Resources */,
-				40251BF495F2943CEEE846AF385FD652 /* imagedismissred.png in Resources */,
-				6A11D61A108025B628F4F1A35BB2E368 /* Storyboard.storyboard in Resources */,
+				A2B529B6F777C167A5B0E5760E9051D4 /* imagedismissblack.png in Resources */,
+				32BAB5F06B4BEFD7923EEE7B57A34898 /* imagedismissred.png in Resources */,
+				431D79CD659FC381E393F35451410A66 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7CF6FA998661AC18E9351646425629EA /* Sources */ = {
+		DFA2B3F9CF0422FB2BAE741C09D1F4D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8654FC8CFCD3E051D1B9DC09C2A715E /* APIManager.swift in Sources */,
-				7B6CA3FBB9402AF3B71ED7D9377B432A /* ApplicationManager.swift in Sources */,
-				677B7C4A04CE86EBFCDDAE05ABF71D02 /* BannerCell.swift in Sources */,
-				471726E0CB527CFAF14D5B118F7EFDE7 /* BannerCell.xib in Sources */,
-				09C838CD764D236C812E7B16ED813BD2 /* BannerView.swift in Sources */,
-				FFD3FE484B90F4388B8739F67A51B073 /* CGAddCartModel.swift in Sources */,
-				11B8A956F548112327FADE60558B7F37 /* CGAndroid.swift in Sources */,
-				634F77B5E2D04E76F70CE03F0873C435 /* CGCampaignsModel.swift in Sources */,
-				9803DA635CEEAD5D7A3D451FE1589CB0 /* CGCondition.swift in Sources */,
-				05F42CD70C8E18DAA279D09218310D79 /* CGConstants.swift in Sources */,
-				B3810427C5E525AED9F58776AF876FE9 /* CGContainer.swift in Sources */,
-				6FA16A6935C1B6053482A9E924DAC692 /* CGContent.swift in Sources */,
-				7998EB78CB655EA4A9A203D1242B5F44 /* CGData.swift in Sources */,
-				788C8615DC29DD2816E7D262FEE0B55A /* CGDeepLinkModel.swift in Sources */,
-				DDBC395E6EDFBBBD9B2621E4CEAADCF8 /* CGEmbedView.swift in Sources */,
-				CCA22F0D0E7D8A7B603D1DC349922983 /* CGEntryPoint.swift in Sources */,
-				D746909E6B4504A8694CF74D792FDB4C /* CGEventModel.swift in Sources */,
-				2CA6A16CFD2549B074E0500CC5BE25DB /* CGEventShareModel.swift in Sources */,
-				FB09996172A8A66A0D01CA4F78222173 /* CGMobile.swift in Sources */,
-				EC7FB1C97F755FFB308567CCAA93F97A /* CGNudgeConfiguration.swift in Sources */,
-				E313AA8B453DE17632EFEEA8A9FCA220 /* CGPublishNudgeModel.swift in Sources */,
-				94E31B05DB14588683FE34C4E733612E /* CGRegistrationModel.swift in Sources */,
-				8617C7AA0CBAEAC1F5D8BAE350D24A57 /* CGShowCount.swift in Sources */,
-				4E8903BEC0E2D94ABE21C1626FB69A59 /* CustomerGlu.swift in Sources */,
-				930FB2C9DF4B54D737C177B7FEFBCF6D /* CustomerGlu-dummy.m in Sources */,
-				43FF2B4411BF68203D883A921A0D89BB /* CustomerGluCrash.swift in Sources */,
-				B8AB9B6D09CDAD6DE28075EFD337F7A0 /* CustomerWebViewController.swift in Sources */,
-				E1199B41B333A4FB8535CACFC05F1BAC /* EncryptDecrypt.swift in Sources */,
-				92F30A3488DEC4E132D865602C5332AC /* EntryConfig.swift in Sources */,
-				89F35782E298BFCFC9345CEB288600B2 /* Enumeration.swift in Sources */,
-				14429A9880199C23D6408F6C28157A72 /* Extensions.swift in Sources */,
-				1BFFEF0BD61472DA1085381D839AE782 /* FloatingViewController.swift in Sources */,
-				D4EE9E644745F3CC85632623451A3F65 /* JWTDecode.swift in Sources */,
-				FB4FA1E3F2874830495692ED3A9A31AF /* LoadAllCampaignsViewController.swift in Sources */,
-				9138B75E6E501D0AB7F7907C54C8D351 /* LoadAllCampaignsViewModel.swift in Sources */,
-				D7E7FA5E077E724E4A1A0B8DD4314DC5 /* MockData.swift in Sources */,
-				30DAA59AAE6E8E376A73A4F5B3AC7780 /* ObjectSavable.swift in Sources */,
-				36101538ED68B5465E25705634A205A0 /* OtherUtils.swift in Sources */,
-				307D200AA7ADB67627DA3240B812134B /* Reachability.swift in Sources */,
-				CCCC6335F114456E094429CF05C95E9B /* SpinnerView.swift in Sources */,
-				5B386A5B55A8054A0A29C6148C348090 /* UIImage+Gif.swift in Sources */,
+				CDD90C5BFA3B409F34B5F445DD238366 /* APIManager.swift in Sources */,
+				F13C46C29737C4AF436721B64BCA19B0 /* ApplicationManager.swift in Sources */,
+				38BC6A265DF84A7B6C8F29417BEBA30E /* BannerCell.swift in Sources */,
+				9C5B68F6ABB30F9FDCCF34145EB71443 /* BannerCell.xib in Sources */,
+				22130EA36303478DBA50196D7F61EF98 /* BannerView.swift in Sources */,
+				288CB72D136660F2B2AAB198C39A53E7 /* CGAddCartModel.swift in Sources */,
+				4E3E33F9F5FE4BB1A9A362174CE4CA44 /* CGAndroid.swift in Sources */,
+				447EEB941B569D5F140D31FB2BA3972F /* CGCampaignsModel.swift in Sources */,
+				4B237F6CB6238A78A13A6FB4E49F4F53 /* CGCondition.swift in Sources */,
+				14FFA943EEBB54B2D13977947FA15CD4 /* CGConstants.swift in Sources */,
+				32BAB87D489076A51FE4536AB28660EF /* CGContainer.swift in Sources */,
+				D2CC404B201F7C9904B2416466520FE5 /* CGContent.swift in Sources */,
+				62C43FA8857A9EF54FD240D4F41C2924 /* CGData.swift in Sources */,
+				916A2C4AC1000C97C78B0E4DD82B0218 /* CGDeepLinkModel.swift in Sources */,
+				7804D9B422AD19B22A5786992C35A645 /* CGEmbedView.swift in Sources */,
+				41AA0C389AA5AA07E2A565281168E3D8 /* CGEntryPoint.swift in Sources */,
+				6A9D7E31EA02EA5B566347099C351617 /* CGEventModel.swift in Sources */,
+				41503B7072248FB953CDE67E7CBD3C99 /* CGEventShareModel.swift in Sources */,
+				470A921EFC4389F6AAB45FFF13AF58CF /* CGMobile.swift in Sources */,
+				6792BD48A91F6CB17933F94295930786 /* CGNudgeConfiguration.swift in Sources */,
+				99F3873A09FE63D4E281976E9130641B /* CGPublishNudgeModel.swift in Sources */,
+				6C7FD7478152A5D980D051FF03F70299 /* CGRegistrationModel.swift in Sources */,
+				FEF684C8E674377B5ED23318C1344E2D /* CGShowCount.swift in Sources */,
+				1B7D3CF7727FD0CFCBAE0E24580CE920 /* CustomerGlu.swift in Sources */,
+				A60C4C558A1CE69F88EAA5890326D737 /* CustomerGlu-dummy.m in Sources */,
+				AF2A6766912F1720924328C314EB4AD4 /* CustomerGluCrash.swift in Sources */,
+				93CCF519FDB0520CBFE45D48289FE91A /* CustomerWebViewController.swift in Sources */,
+				C5998DFB8B163C6EB7FBDAFF96181B81 /* EncryptDecrypt.swift in Sources */,
+				D3F40B9CD964F35B2F930C5876867057 /* EntryConfig.swift in Sources */,
+				B8136D7798A71F1356DD8BAE7D921F43 /* Enumeration.swift in Sources */,
+				04A55190D02C254B02E354B086556B27 /* Extensions.swift in Sources */,
+				057B26924BAE8457916F4A217B0893CD /* FloatingViewController.swift in Sources */,
+				8F96EC38130EC3B6DAC8B38C90D2B046 /* JWTDecode.swift in Sources */,
+				ADCE84B1FE097B50E89E861E590795A1 /* LoadAllCampaignsViewController.swift in Sources */,
+				05AB47A2FAF9760CEBABF35974C89CC8 /* LoadAllCampaignsViewModel.swift in Sources */,
+				671DA0CD293F43E000437079 /* CGAppConfig.swift in Sources */,
+				77625193347B946CC469179CF5010328 /* MockData.swift in Sources */,
+				32B47D91EBEB3840AE2067F5E7C1A46F /* ObjectSavable.swift in Sources */,
+				CD69E9A7D0748E553E1BB2500DF49EAE /* OtherUtils.swift in Sources */,
+				06780375FBB5DB02CBAC64F1541F05C1 /* Reachability.swift in Sources */,
+				0CBB5797D467582D2F48583875F4CBF9 /* SpinnerView.swift in Sources */,
+				945BDA232581690810916A70B5CB9BC1 /* UIImage+Gif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,21 +642,56 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A21866F93E24712065E64C77AE411A55 /* PBXTargetDependency */ = {
+		5BF76FDE537E10A519FC5F518798D11E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CustomerGlu;
 			target = B9F1270719EB830F73D98E78E2316643 /* CustomerGlu */;
-			targetProxy = 0EE87D9336CBB35F6E5B5D91CDBDFC49 /* PBXContainerItemProxy */;
+			targetProxy = 826AEE68DBC301FD4CE99AAAB59BD3A4 /* PBXContainerItemProxy */;
 		};
-		D849E8E1FBECFCFCB391DDD9B0360EEC /* PBXTargetDependency */ = {
+		672A57AF783BFDCDE995E61A38EFC2E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftLint;
 			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
-			targetProxy = 4EE0C8A9E4B51AD4D04075EBA0CE5938 /* PBXContainerItemProxy */;
+			targetProxy = 2B5145F126A3B473F4E4D56FA83D1AE1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3513E1EE3520D7547B937819DA893F80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C5DB21C4BC45DB8DA3F186CEBAF1D7B /* CustomerGlu.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CustomerGlu/CustomerGlu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CustomerGlu/CustomerGlu-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CustomerGlu/CustomerGlu.modulemap";
+				PRODUCT_MODULE_NAME = CustomerGlu;
+				PRODUCT_NAME = CustomerGlu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		4BC7450F9457737EE3E637BA155B56F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -718,6 +758,42 @@
 			};
 			name = Debug;
 		};
+		71C8972367A61A20CF19121051A7C84A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE2CA066350FB33695AF16105D87890C /* CustomerGlu.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CustomerGlu/CustomerGlu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CustomerGlu/CustomerGlu-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/CustomerGlu/CustomerGlu.modulemap";
+				PRODUCT_MODULE_NAME = CustomerGlu;
+				PRODUCT_NAME = CustomerGlu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8B5A46FF8D3C1289CDEE3BAFACABCD2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -779,41 +855,6 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
-		};
-		94E8BB1E74CBB66B30E6AF6892E8533F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23342D8931589ECFAE940DAD040837B2 /* CustomerGlu.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CustomerGlu/CustomerGlu-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CustomerGlu/CustomerGlu-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/CustomerGlu/CustomerGlu.modulemap";
-				PRODUCT_MODULE_NAME = CustomerGlu;
-				PRODUCT_NAME = CustomerGlu;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		AD81E62ACCB0B7A923FC8AA288F9921E /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -923,42 +964,6 @@
 			};
 			name = Debug;
 		};
-		EF1812382AE5570E7D5F607FE9DD46E4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D72AD7E57487241D3D8784EB702C804F /* CustomerGlu.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CustomerGlu/CustomerGlu-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CustomerGlu/CustomerGlu-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/CustomerGlu/CustomerGlu.modulemap";
-				PRODUCT_MODULE_NAME = CustomerGlu;
-				PRODUCT_NAME = CustomerGlu;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -971,20 +976,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		2F5E24925D7C0D5325A22CC323F82DDA /* Build configuration list for PBXNativeTarget "CustomerGlu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3513E1EE3520D7547B937819DA893F80 /* Debug */,
+				71C8972367A61A20CF19121051A7C84A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BC7450F9457737EE3E637BA155B56F7 /* Debug */,
 				8B5A46FF8D3C1289CDEE3BAFACABCD2A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		63EE4F767CB56DFCC05299EFEEAAD983 /* Build configuration list for PBXNativeTarget "CustomerGlu" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				94E8BB1E74CBB66B30E6AF6892E8533F /* Debug */,
-				EF1812382AE5570E7D5F607FE9DD46E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

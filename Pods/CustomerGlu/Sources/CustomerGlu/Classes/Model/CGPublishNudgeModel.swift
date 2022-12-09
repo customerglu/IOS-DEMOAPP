@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct PublishNudgeModel: Codable {
+class CGPublishNudgeModel: Codable {
     var message: String?
-    var data: PublishNudgeData?
+    var data: CGPublishNudgeData?
 }
 
-struct PublishNudgeData: Codable {
+class CGPublishNudgeData: Codable {
 }

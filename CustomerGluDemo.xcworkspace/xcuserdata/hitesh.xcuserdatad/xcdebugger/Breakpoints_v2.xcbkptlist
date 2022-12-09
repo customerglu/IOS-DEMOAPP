@@ -3,4 +3,69 @@
    uuid = "5EC6E8AF-AFEA-427F-9E69-579447B23066"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AFB3E7E2-386C-4DCA-9830-1AD25B6E0D2E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/View/customerWebView/CustomerWebViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "timeoutforpageload(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AFB3E7E2-386C-4DCA-9830-1AD25B6E0D2E - 97de371cc84bc14b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CustomerGlu.CustomerWebViewController.closePage(animated: Swift.Bool, dismissaction: Swift.String) -&gt; ()"
+                  moduleName = "CustomerGlu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/View/customerWebView/CustomerWebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  uuid = "AFB3E7E2-386C-4DCA-9830-1AD25B6E0D2E - 324f5cac50b90616"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CustomerGlu.CustomerWebViewController.timeoutforpageload(sender: __C.NSTimer) -&gt; ()"
+                  moduleName = "CustomerGlu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/View/customerWebView/CustomerWebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "AFB3E7E2-386C-4DCA-9830-1AD25B6E0D2E - 324f5cac50b90616"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CustomerGlu.CustomerWebViewController.timeoutforpageload(sender: __C.NSTimer) -&gt; ()"
+                  moduleName = "CustomerGlu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/View/customerWebView/CustomerWebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -172,13 +172,13 @@ class EncryptDecrypt {
     
     func encryptText(str: String) -> String {
         do {
-            if let encrypted_key = KeychainService.retrive(for: Constants.customerglu_encryptedKey) {
+            if let encrypted_key = KeychainService.retrive(for: CGConstants.customerglu_encryptedKey) {
                 let aes = try AES(keyString: encrypted_key)
                 let encryptedData: Data = try aes.encrypt(str)
                 return encryptedData.base64EncodedString()
             } else {
                 let randomStr = randomString(length: 32)
-                KeychainService.save(randomStr, for: Constants.customerglu_encryptedKey)
+                KeychainService.save(randomStr, for: CGConstants.customerglu_encryptedKey)
                 let aes = try AES(keyString: randomStr)
                 let encryptedData: Data = try aes.encrypt(str)
                 return encryptedData.base64EncodedString()
@@ -191,7 +191,7 @@ class EncryptDecrypt {
     
     func decryptText(str: String) -> String {
         do {
-            if let encrypted_key = KeychainService.retrive(for: Constants.customerglu_encryptedKey) {
+            if let encrypted_key = KeychainService.retrive(for: CGConstants.customerglu_encryptedKey) {
                 let aes = try AES(keyString: encrypted_key)
                 let decryptedData: String = try aes.decrypt(str)
                 return decryptedData

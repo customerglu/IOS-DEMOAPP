@@ -12,6 +12,10 @@ public struct CGContent: Codable{
 	var openLayout : String!
 	var type : String!
 	var url : String!
+    
+    var relativeHeight : Double? = 0.0
+    var absoluteHeight : Double? = 0.0
+    var closeOnDeepLink : Bool? = CustomerGlu.auto_close_webview!
 
 
 	/**
@@ -23,6 +27,16 @@ public struct CGContent: Codable{
 		openLayout = dictionary["openLayout"] as? String
 		type = dictionary["type"] as? String
 		url = dictionary["url"] as? String
+        if(dictionary["relativeHeight"] != nil){
+            relativeHeight = dictionary["relativeHeight"] as? Double
+        }
+        if(dictionary["absoluteHeight"] != nil){
+            absoluteHeight = dictionary["absoluteHeight"] as? Double
+        }
+        if(dictionary["closeOnDeepLink"] != nil){
+            closeOnDeepLink = dictionary["closeOnDeepLink"] as? Bool
+        }
+
 	}
 
 	/**
@@ -46,6 +60,16 @@ public struct CGContent: Codable{
 		if url != nil{
 			dictionary["url"] = url
 		}
+        
+        if relativeHeight != nil{
+            dictionary["relativeHeight"] = relativeHeight
+        }
+        if absoluteHeight != nil{
+            dictionary["absoluteHeight"] = absoluteHeight
+        }
+        if closeOnDeepLink != nil{
+            dictionary["closeOnDeepLink"] = closeOnDeepLink
+        }
 		return dictionary
 	}
 

@@ -63,8 +63,8 @@ class ApplicationManager {
             return
         }
         let event_id = UUID().uuidString
-        let timestamp = fetchTimeStamp(dateFormat: Constants.DATE_FORMAT)
-        let user_id = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: Constants.CUSTOMERGLU_USERID)
+        let timestamp = fetchTimeStamp(dateFormat: CGConstants.DATE_FORMAT)
+        let user_id = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_USERID)
         
         let eventData = [
             APIParameterKey.event_id: event_id,
@@ -101,7 +101,7 @@ class ApplicationManager {
         params![APIParameterKey.version] = "1.0.0"
         crashReport(parameters: (params as NSDictionary?)!) { success, _ in
             if success {
-                UserDefaults.standard.removeObject(forKey: Constants.CustomerGluCrash)
+                UserDefaults.standard.removeObject(forKey: CGConstants.CustomerGluCrash)
                 UserDefaults.standard.synchronize()
             } else {
                 CustomerGlu.getInstance.printlog(cglog: "crashReport API fail", isException: false, methodName: "ApplicationManager-callCrashReport", posttoserver: false)
@@ -126,8 +126,8 @@ class ApplicationManager {
     }
     
     public static func doValidateToken() -> Bool {
-        if UserDefaults.standard.object(forKey: Constants.CUSTOMERGLU_TOKEN) != nil {
-            let arr = JWTDecode.shared.decode(jwtToken: CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: Constants.CUSTOMERGLU_TOKEN))
+        if UserDefaults.standard.object(forKey: CGConstants.CUSTOMERGLU_TOKEN) != nil {
+            let arr = JWTDecode.shared.decode(jwtToken: CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_TOKEN))
             let expTime = Date(timeIntervalSince1970: (arr["exp"] as? Double)!)
             let currentDateTime = Date()
             if currentDateTime < expTime {
@@ -139,13 +139,13 @@ class ApplicationManager {
         return false
     }
     
-    public static func publishNudge(eventNudge: [String: AnyHashable], completion: @escaping (Bool, PublishNudgeModel?) -> Void) {
+    public static func publishNudge(eventNudge: [String: AnyHashable], completion: @escaping (Bool, CGPublishNudgeModel?) -> Void) {
         if CustomerGlu.sdk_disable! == true {
             return
         }
      
         var eventInfo = eventNudge
-        eventInfo[APIParameterKey.timestamp] = fetchTimeStamp(dateFormat: Constants.Analitics_DATE_FORMAT)
+        eventInfo[APIParameterKey.timestamp] = fetchTimeStamp(dateFormat: CGConstants.Analitics_DATE_FORMAT)
         
         eventInfo[APIParameterKey.appSessionId] = ApplicationManager.appSessionId
         eventInfo[APIParameterKey.userAgent] = "APP"
@@ -168,7 +168,37 @@ class ApplicationManager {
         }
     }
     
-    private static func fetchTimeStamp(dateFormat: String) -> String {
+    public static func sendAnalyticsEvent(eventNudge: [String: Any], completion: @escaping (Bool, CGAddCartModel?) -> Void) {
+        if CustomerGlu.sdk_disable! == true {
+            return
+        }
+     
+        var eventInfo = eventNudge
+//        eventInfo[APIParameterKey.timestamp] = fetchTimeStamp(dateFormat: CGConstants.Analitics_DATE_FORMAT)
+//
+//        eventInfo[APIParameterKey.appSessionId] = ApplicationManager.appSessionId
+//        eventInfo[APIParameterKey.userAgent] = "APP"
+//        eventInfo[APIParameterKey.deviceType] = "iOS"
+//        eventInfo[APIParameterKey.eventId] = UUID().uuidString
+//      eventInfo[APIParameterKey.eventName] = "NUDGE_INTERACTION"
+////        eventInfo["actionStore"] = "NUDGE_INTERACTION"
+//        eventInfo["version"] = "4.0.0"
+        
+                
+        APIManager.sendAnalyticsEvent(queryParameters: eventInfo as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                completion(true, response)
+                    
+            case .failure(let error):
+                CustomerGlu.getInstance.printlog(cglog: error.localizedDescription, isException: false, methodName: "ApplicationManager-sendAnalyticsEvent", posttoserver: true)
+                completion(false, nil)
+            }
+        }
+    }
+
+    
+    public static func fetchTimeStamp(dateFormat: String) -> String {
         let date = Date()
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = dateFormat

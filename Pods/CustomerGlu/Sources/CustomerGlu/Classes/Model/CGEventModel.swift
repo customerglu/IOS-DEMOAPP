@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct EventModel: Codable {
+class CGEventModel: Codable {
     var eventName = ""
-    var data: EventData?
+    var data: CGEventData?
 }
 
-struct EventData: Codable {
+class CGEventData: Codable {
 }

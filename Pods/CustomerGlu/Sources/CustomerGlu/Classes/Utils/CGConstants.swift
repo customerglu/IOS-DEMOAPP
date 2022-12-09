@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Constants {
+struct CGConstants {
     static let ERROR = "CUSTOMERGLU Error:"
     static let JSON_ERROR = "CUSTOMERGLU: json parsing error:"
     static let CUSTOMERGLU_TOKEN = "CustomerGlu_Token_Encrypt"
@@ -18,6 +18,8 @@ struct Constants {
     static let FULL_SCREEN_NOTIFICATION = "full-default"
     static let BOTTOM_SHEET_NOTIFICATION = "bottom-slider"
     static let BOTTOM_DEFAULT_NOTIFICATION = "bottom-default"
+    static let MIDDLE_NOTIFICATIONS_POPUP = "middle-popup"
+    static let BOTTOM_DEFAULT_NOTIFICATION_POPUP     = "bottom-popup"
     static let FCM_APN = "fcm_apn"
     static let CustomerGluCrash = "CustomerGluCrash_Encrypt"
     static let CustomerGluPopupDict = "CustomerGluPopupDict_Encrypt"
@@ -33,6 +35,7 @@ struct Constants {
     static let default_whitelist_doamin = "customerglu.com"
     static var default_redirect_url = "https://end-user-ui.customerglu.com/error/?source=native-sdk&"
     static let customerglu_encryptedKey = "customerglu_encryptedKey"
+    static let CGOPENWALLET = "CG-OPEN-WALLET"
 }
 
 // Default APIParameterKey
@@ -78,7 +81,21 @@ struct APIParameterKey {
     static let appSessionId = "appSessionId"
     static let userAgent = "userAgent"
     static let eventName = "eventName"
-
+    static let cgsdkversionvalue = "2.1.2"
+    static let analytics_version_value = "4.1.0"
+    static let analytics_version = "analytics_version"
+    static let dismiss_trigger = "dismiss_trigger"
+    static let webview_content = "webview_content"
+    static let webview_url = "webview_url"
+    static let webview_layout = "webview_layout"
+    static let absolute_height = "absolute_height"
+    static let relative_height = "relative_height"
+    static let platform_details = "platform_details"
+    static let device_type = "device_type"
+    static let os = "os"
+    static let app_platform = "app_platform"
+    static let sdk_version = "sdk_version"
+    static let messagekey = "message"
     
 }
 
@@ -91,6 +108,9 @@ struct NotificationsKey {
     static let nudge_url = "nudge_url"
     static let page_type = "page_type"
     static let CustomerGlu = "CustomerGlu"
+    static let absoluteHeight = "absoluteHeight"
+    static let relativeHeight = "relativeHeight"
+    static let closeOnDeepLink = "closeOnDeepLink"
 }
 
 // Default WebViewsKey
@@ -100,9 +120,18 @@ struct WebViewsKey {
     static let open_deeplink = "OPEN_DEEPLINK"
     static let analytics = "ANALYTICS"
     static let share = "SHARE"
+    static let updateheight = "DIMENSIONS_UPDATE"
 }
 
 // TableView Identifiers Used Throught App
 struct TableViewID {
     static let BannerCell = "BannerCell"
+}
+
+// Default WebViewsKey
+struct CGDismissAction {
+    static let PHYSICAL_BUTTON = "PHYSICAL_BUTTON"
+    static let UI_BUTTON = "UI_BUTTON"
+    static let CTA_REDIRECT = "CTA_REDIRECT"
+    static let DEFAULT = "DEFAULT"
 }
