@@ -25,7 +25,7 @@ struct CustomerGluDemoApp: App {
                 HomeScreen()
                     .onOpenURL { url in
                         // URL handling
-
+                        CustomerGlu.getInstance.openDeepLink(deepurl: url)
                         print(url)
                         if let scheme = url.scheme,
                             scheme.localizedCaseInsensitiveCompare("https") == .orderedSame,

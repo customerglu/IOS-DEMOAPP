@@ -7,6 +7,9 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:modpod.page.link/shop</string>
+		<string>applinks:edzuv3j.cglu.us/shop</string>
+		<string>applinks:1234e2e.cglu.us</string>
+		<string>applinks:app1.cglu.us</string>
 	</array>
 </dict>
 </plist>

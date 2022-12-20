@@ -23,6 +23,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         let handled = DynamicLinks.dynamicLinks() .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, error in
             print(error as Any)
+            print("fgshg")
             print(dynamiclink as Any)
             if dynamiclink != nil {
                 self.handleDynamicLink(dynamiclink!)
@@ -39,6 +40,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
             // Handle URL
+            print("srftd")
             print(url)
         }
     }
@@ -73,9 +75,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 ////        CustomerGlu.getInstance.isFcmApn(fcmApn: "apn")
         CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
 //        CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
-//        CustomerGlu.getInstance.enableEntryPoints(enabled: true)
-        CustomerGlu.getInstance.enableAnalyticsEvent(event: true)
-        CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: false)
+        CustomerGlu.getInstance.enableEntryPoints(enabled: true)
+//        CustomerGlu.getInstance.enableAnalyticsEvent(event: true)
+        CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: true)
         CustomerGlu.getInstance.initializeSdk()
 //        CustomerGlu.getInstance.closeWebviewOnDeeplinkEvent(close: true)
         
