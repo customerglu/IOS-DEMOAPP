@@ -68,14 +68,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
-        CustomerGlu.getInstance.disableGluSdk(disable: false)
+//        CustomerGlu.getInstance.disableGluSdk(disable: false)
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
-//        CustomerGlu.getInstance.isFcmApn(fcmApn: "apn")
+////        CustomerGlu.getInstance.isFcmApn(fcmApn: "apn")
         CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
-        CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
-        CustomerGlu.getInstance.enableEntryPoints(enabled: true)
+//        CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])
+//        CustomerGlu.getInstance.enableEntryPoints(enabled: true)
         CustomerGlu.getInstance.enableAnalyticsEvent(event: true)
-        CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: true)
+        CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: false)
+        CustomerGlu.getInstance.initializeSdk()
 //        CustomerGlu.getInstance.closeWebviewOnDeeplinkEvent(close: true)
         
 //        print(CustomerGlu.getInstance.cgUserData.userName)
