@@ -9,5 +9,6 @@ target 'CustomerGluDemo' do
     pod 'SwiftLint', '0.45.0'
     pod 'CustomerGlu', :path => '../CG-iOS-SDK'
 #   pod 'CustomerGlu', '2.0.6'
+    pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '7.31.4'
 
 end

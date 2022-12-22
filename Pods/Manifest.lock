@@ -1,9 +1,14 @@
 PODS:
-  - CustomerGlu (2.1.2)
+  - CustomerGlu (2.1.3):
+    - Sentry
+  - Sentry (7.31.4):
+    - Sentry/Core (= 7.31.4)
+  - Sentry/Core (7.31.4)
   - SwiftLint (0.45.0)
 
 DEPENDENCIES:
   - CustomerGlu (from `../CG-iOS-SDK`)
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `7.31.4`)
   - SwiftLint (= 0.45.0)
 
 SPEC REPOS:
@@ -13,11 +18,20 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   CustomerGlu:
     :path: "../CG-iOS-SDK"
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 7.31.4
+
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 7.31.4
 
 SPEC CHECKSUMS:
-  CustomerGlu: 16ebfbdcb326a11a360df4181baf9e83bf9d50ff
+  CustomerGlu: 5f7ab494654533f2a77ed65073b698e3848c11f3
+  Sentry: d9567fc53799651f79593c69054c58d436930213
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
-PODFILE CHECKSUM: 8e85b910eeebab747c2fbb776724cdfaa618a6a0
+PODFILE CHECKSUM: 8f3eff20a828f7bb53f6acc02955324a0cc504d1
 
 COCOAPODS: 1.11.3

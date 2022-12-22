@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/CustomerGlu/CustomerGlu.framework
+${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework
