@@ -25,7 +25,18 @@ struct CustomerGluDemoApp: App {
                 HomeScreen()
                     .onOpenURL { url in
                         // URL handling
-                        CustomerGlu.getInstance.openDeepLink(deepurl: url)
+//                        { success in
+//                            if success {
+//                                self.isActive = true
+//                            } else {
+//                                self.attemptingLogin = false
+//                                print("error")
+//                            }
+//                        }
+                        CustomerGlu.getInstance.openDeepLink(deepurl: url){
+                            success, string in
+                            
+                        }
                         print(url)
                         if let scheme = url.scheme,
                             scheme.localizedCaseInsensitiveCompare("https") == .orderedSame,
@@ -41,6 +52,25 @@ struct CustomerGluDemoApp: App {
                     }
             } else {
                 LoginScreen()
+                    .onOpenURL { url in
+                        // URL handling
+                        CustomerGlu.getInstance.openDeepLink(deepurl: url){
+                            success, string in
+                            
+                        }
+                        print(url)
+                        if let scheme = url.scheme,
+                            scheme.localizedCaseInsensitiveCompare("https") == .orderedSame,
+                            let view = url.host {
+
+                            var parameters: [String: String] = [:]
+                            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                                parameters[$0.name] = $0.value
+                            }
+
+                           // redirect(to: view, with: parameters)
+                        }
+                    }
             }
         }
     }

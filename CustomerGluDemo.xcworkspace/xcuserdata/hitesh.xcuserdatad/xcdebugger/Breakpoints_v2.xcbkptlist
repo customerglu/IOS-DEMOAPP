@@ -7,346 +7,129 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FC92EDA5-D6A0-4813-97EF-C4BC3CAC2894"
+            uuid = "0E2E7C05-5CE7-4B42-81B9-872AD1B65963"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
+            filePath = "CustomerGluDemo/CustomerGluDemoApp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "940"
-            endingLineNumber = "940"
-            landmarkName = "openDeepLink(deepurl:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FC92EDA5-D6A0-4813-97EF-C4BC3CAC2894 - 334468b4a0ac0005"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "940"
-                  endingLineNumber = "940"
-                  offsetFromSymbolStart = "2993">
-               </Location>
-               <Location
-                  uuid = "FC92EDA5-D6A0-4813-97EF-C4BC3CAC2894 - 334468b4a0ac0005"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "940"
-                  endingLineNumber = "940"
-                  offsetFromSymbolStart = "2606">
-               </Location>
-               <Location
-                  uuid = "FC92EDA5-D6A0-4813-97EF-C4BC3CAC2894 - 334468b4a0ac0005"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "940"
-                  endingLineNumber = "940"
-                  offsetFromSymbolStart = "3100">
-               </Location>
-               <Location
-                  uuid = "FC92EDA5-D6A0-4813-97EF-C4BC3CAC2894 - 334468b4a0ac0005"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "940"
-                  endingLineNumber = "940"
-                  offsetFromSymbolStart = "3039">
-               </Location>
-            </Locations>
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "810FA5B3-CA1E-4893-9C6A-5F510C0748E0"
-            shouldBeEnabled = "Yes"
+            uuid = "9EE4FA9F-1632-44DC-9448-93D32A5AA083"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "936"
-            endingLineNumber = "936"
-            landmarkName = "openDeepLink(deepurl:)"
+            startingLineNumber = "1020"
+            endingLineNumber = "1020"
+            landmarkName = "openDeepLink(deepurl:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "810FA5B3-CA1E-4893-9C6A-5F510C0748E0 - 334468b4a0ac0081"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "936"
-                  endingLineNumber = "936"
-                  offsetFromSymbolStart = "246">
-               </Location>
-               <Location
-                  uuid = "810FA5B3-CA1E-4893-9C6A-5F510C0748E0 - 334468b4a0ac0081"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "936"
-                  endingLineNumber = "936"
-                  offsetFromSymbolStart = "268">
-               </Location>
-               <Location
-                  uuid = "810FA5B3-CA1E-4893-9C6A-5F510C0748E0 - 334468b4a0ac0081"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "936"
-                  endingLineNumber = "936"
-                  offsetFromSymbolStart = "431">
-               </Location>
-               <Location
-                  uuid = "810FA5B3-CA1E-4893-9C6A-5F510C0748E0 - 334468b4a0ac0081"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "936"
-                  endingLineNumber = "936"
-                  offsetFromSymbolStart = "376">
-               </Location>
-               <Location
-                  uuid = "810FA5B3-CA1E-4893-9C6A-5F510C0748E0 - 334468b4a0ac0081"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "936"
-                  endingLineNumber = "936"
-                  offsetFromSymbolStart = "411">
-               </Location>
-               <Location
-                  uuid = "810FA5B3-CA1E-4893-9C6A-5F510C0748E0 - 334468b4a0ac0081"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "936"
-                  endingLineNumber = "936"
-                  offsetFromSymbolStart = "408">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3D3DB445-8129-4829-8A6D-705EAA950DB1"
-            shouldBeEnabled = "Yes"
+            uuid = "31E222DB-EDCD-43DE-885B-E01CD11DAE84"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "944"
-            endingLineNumber = "944"
-            landmarkName = "openDeepLink(deepurl:)"
+            startingLineNumber = "1034"
+            endingLineNumber = "1034"
+            landmarkName = "openDeepLink(deepurl:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3D3DB445-8129-4829-8A6D-705EAA950DB1 - cf29d6c056013447"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.CGDeeplink, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "944"
-                  endingLineNumber = "944"
-                  offsetFromSymbolStart = "170">
-               </Location>
-               <Location
-                  uuid = "3D3DB445-8129-4829-8A6D-705EAA950DB1 - cf29d6c056013447"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.CGDeeplink, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "944"
-                  endingLineNumber = "944"
-                  offsetFromSymbolStart = "228">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1B9B7E54-6F18-4F39-A8FF-FB6970349C12"
-            shouldBeEnabled = "Yes"
+            uuid = "31D929BC-BF27-407E-BBFC-FBDB35B04937"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "946"
-            endingLineNumber = "946"
-            landmarkName = "openDeepLink(deepurl:)"
+            startingLineNumber = "1032"
+            endingLineNumber = "1032"
+            landmarkName = "openDeepLink(deepurl:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1B9B7E54-6F18-4F39-A8FF-FB6970349C12 - cf29d6c056013405"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.CGDeeplink, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "946"
-                  endingLineNumber = "946"
-                  offsetFromSymbolStart = "275">
-               </Location>
-               <Location
-                  uuid = "1B9B7E54-6F18-4F39-A8FF-FB6970349C12 - cf29d6c056013405"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.CGDeeplink, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "946"
-                  endingLineNumber = "946"
-                  offsetFromSymbolStart = "329">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F886E43B-059F-4479-AF6B-0202BCBE3978"
+            uuid = "17849358-A5F8-4295-B014-B31F259ABD88"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1018"
+            endingLineNumber = "1018"
+            landmarkName = "openDeepLink(deepurl:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0042393-DC04-4A60-A28D-D516F213C6C4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/Manager/ApplicationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "loadAllCampaignsApi(type:value:loadByparams:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "175490F6-6918-4074-A0A8-17F1D93DC3B2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "960"
-            endingLineNumber = "960"
-            landmarkName = "openDeepLink(deepurl:)"
+            startingLineNumber = "991"
+            endingLineNumber = "991"
+            landmarkName = "excecuteDeepLink(firstpath:cgdeeplink:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F886E43B-059F-4479-AF6B-0202BCBE3978 - cf29d6c05601352e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.CGDeeplink, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "953"
-                  endingLineNumber = "953"
-                  offsetFromSymbolStart = "1250">
-               </Location>
-               <Location
-                  uuid = "F886E43B-059F-4479-AF6B-0202BCBE3978 - cf29d6c056013589"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.CGDeeplink, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "958"
-                  endingLineNumber = "958"
-                  offsetFromSymbolStart = "1256">
-               </Location>
-               <Location
-                  uuid = "F886E43B-059F-4479-AF6B-0202BCBE3978 - cf29d6c056013637"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;CustomerGlu.CGDeeplink, Swift.Error&gt;) -&gt; () in CustomerGlu.CustomerGlu.openDeepLink(deepurl: Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "CustomerGlu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hitesh/Documents/ClientGit/CustomerGlu/CG-iOS-SDK/Sources/CustomerGlu/Classes/CustomerGlu.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "960"
-                  endingLineNumber = "960"
-                  offsetFromSymbolStart = "1373">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32483C88-C3BF-41BC-9BF0-D1C9A9AF5B16"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CustomerGluDemo/CustomerGluDemoApp.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
