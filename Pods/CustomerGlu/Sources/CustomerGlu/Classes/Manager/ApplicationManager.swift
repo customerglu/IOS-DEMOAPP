@@ -89,6 +89,9 @@ class ApplicationManager {
         if user_id.count < 0 {
             return
         }
+        if CustomerGlu.sdk_disable != true {
+            CGSentryHelper.shared.captureExceptionEvent(exceptionLog: cglog)
+        }
         var params = OtherUtils.shared.getCrashInfo()
         if isException {
             params![APIParameterKey.type] = "Crash"
@@ -111,6 +114,7 @@ class ApplicationManager {
     
     private static func crashReport(parameters: NSDictionary, completion: @escaping (Bool, CGAddCartModel?) -> Void) {
         if CustomerGlu.sdk_disable! == true {
+            
             return
         }
         APIManager.crashReport(queryParameters: parameters) { result in
@@ -139,33 +143,17 @@ class ApplicationManager {
         return false
     }
     
-    public static func publishNudge(eventNudge: [String: AnyHashable], completion: @escaping (Bool, CGPublishNudgeModel?) -> Void) {
-        if CustomerGlu.sdk_disable! == true {
-            return
-        }
-     
-        var eventInfo = eventNudge
-        eventInfo[APIParameterKey.timestamp] = fetchTimeStamp(dateFormat: CGConstants.Analitics_DATE_FORMAT)
-        
-        eventInfo[APIParameterKey.appSessionId] = ApplicationManager.appSessionId
-        eventInfo[APIParameterKey.userAgent] = "APP"
-        eventInfo[APIParameterKey.deviceType] = "iOS"
-        eventInfo[APIParameterKey.eventId] = UUID().uuidString
-      eventInfo[APIParameterKey.eventName] = "NUDGE_INTERACTION"
-//        eventInfo["actionStore"] = "NUDGE_INTERACTION"
-        eventInfo["version"] = "4.0.0"
-        
-                
-        APIManager.publishNudge(queryParameters: eventInfo as NSDictionary) { result in
-            switch result {
-            case .success(let response):
-                completion(true, response)
-                    
-            case .failure(let error):
-                CustomerGlu.getInstance.printlog(cglog: error.localizedDescription, isException: false, methodName: "ApplicationManager-publishNudge", posttoserver: true)
-                completion(false, nil)
+    public static func isAnonymousUesr() -> Bool {
+        if UserDefaults.standard.object(forKey: CGConstants.CUSTOMERGLU_TOKEN) != nil {
+            let arr = JWTDecode.shared.decode(jwtToken: CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_TOKEN))
+            let userId = arr[APIParameterKey.userId] as? String
+            let anonymousId = arr[APIParameterKey.anonymousId] as? String
+            
+            if(userId != nil && anonymousId != nil && userId!.count > 0 && anonymousId!.count > 0 && userId == anonymousId){
+                return true
             }
         }
+        return false
     }
     
     public static func sendAnalyticsEvent(eventNudge: [String: Any], completion: @escaping (Bool, CGAddCartModel?) -> Void) {
@@ -174,15 +162,19 @@ class ApplicationManager {
         }
      
         var eventInfo = eventNudge
-//        eventInfo[APIParameterKey.timestamp] = fetchTimeStamp(dateFormat: CGConstants.Analitics_DATE_FORMAT)
-//
-//        eventInfo[APIParameterKey.appSessionId] = ApplicationManager.appSessionId
-//        eventInfo[APIParameterKey.userAgent] = "APP"
-//        eventInfo[APIParameterKey.deviceType] = "iOS"
-//        eventInfo[APIParameterKey.eventId] = UUID().uuidString
-//      eventInfo[APIParameterKey.eventName] = "NUDGE_INTERACTION"
-////        eventInfo["actionStore"] = "NUDGE_INTERACTION"
-//        eventInfo["version"] = "4.0.0"
+        
+        eventInfo[APIParameterKey.analytics_version] = APIParameterKey.analytics_version_value
+        eventInfo[APIParameterKey.event_id] = UUID().uuidString
+        eventInfo[APIParameterKey.user_id] = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_USERID)
+        eventInfo[APIParameterKey.timestamp] = ApplicationManager.fetchTimeStamp(dateFormat: CGConstants.DATE_FORMAT)
+        eventInfo[APIParameterKey.type] = "track"
+        
+        var platform_details = [String: String]()
+        platform_details[APIParameterKey.device_type] = "MOBILE"
+        platform_details[APIParameterKey.os] = "IOS"
+        platform_details[APIParameterKey.app_platform] = CustomerGlu.app_platform
+        platform_details[APIParameterKey.sdk_version] = CustomerGlu.sdk_version
+        eventInfo[APIParameterKey.platform_details] = platform_details
         
                 
         APIManager.sendAnalyticsEvent(queryParameters: eventInfo as NSDictionary) { result in

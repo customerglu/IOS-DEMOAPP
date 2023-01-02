@@ -34,7 +34,7 @@ struct CustomerGluDemoApp: App {
 //                            }
 //                        }
                         CustomerGlu.getInstance.openDeepLink(deepurl: url){
-                            success, string in
+                            success, string, deeplinkdata in
                             
                         }
                         print(url)
@@ -55,7 +55,7 @@ struct CustomerGluDemoApp: App {
                     .onOpenURL { url in
                         // URL handling
                         CustomerGlu.getInstance.openDeepLink(deepurl: url){
-                            success, string in
+                            success, string, deeplinkdata in
                             
                         }
                         print(url)

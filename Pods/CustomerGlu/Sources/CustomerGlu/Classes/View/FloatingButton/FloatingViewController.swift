@@ -163,13 +163,14 @@ class FloatingButtonController: UIViewController {
             dismisview.isHidden = true
             if dismisimageview.globalFrame!.intersects(imageview.globalFrame!){
                 self.dismissFloatingButton(is_remove: true)
+                CustomerGlu.getInstance.callEventPublishNudge(data: floatInfo!, className: CustomerGlu.getInstance.activescreenname, actionType: "DISMISS",event_name: "ENTRY_POINT_DISMISS")
             }
         }
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         
-        CustomerGlu.getInstance.callEventPublishNudge(data: floatInfo!, className: CustomerGlu.getInstance.activescreenname, actionType: "OPEN")
+        CustomerGlu.getInstance.callEventPublishNudge(data: floatInfo!, className: CustomerGlu.getInstance.activescreenname, actionType: "OPEN",event_name: "ENTRY_POINT_CLICK")
         
         let nudgeConfiguration = CGNudgeConfiguration()
         nudgeConfiguration.layout = floatInfo?.mobile.content[0].openLayout.lowercased() ?? CGConstants.FULL_SCREEN_NOTIFICATION

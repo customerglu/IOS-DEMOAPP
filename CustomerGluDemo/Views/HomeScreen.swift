@@ -62,6 +62,7 @@ struct HomeScreen: View {
 
 //                        CustomerGlu.getInstance.configureSafeArea(topHeight: 35, bottomHeight: 34, topSafeAreaColor:.systemPink, bottomSafeAreaColor: .brown)
 //                        CustomerGlu.getInstance.configureLoadingScreenColor(color: UIColor(red: 255.0, green: 255.0, blue: 0.0, alpha: 1.0))
+//                        CustomerGlu.getInstance.configureLoaderColour(color: [.red])
                         CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
 
                         

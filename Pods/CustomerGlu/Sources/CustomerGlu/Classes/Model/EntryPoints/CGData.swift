@@ -16,6 +16,7 @@ public struct CGData: Codable{
 	var status : String!
 	var updatedAt : String!
 	var visible : Bool!
+    var name : String!
 
 	/**
 	 * Instantiate the instance using the passed dictionary values to set the properties values
@@ -32,6 +33,7 @@ public struct CGData: Codable{
 		status = dictionary["status"] as? String
 		updatedAt = dictionary["updatedAt"] as? String
 		visible = dictionary["visible"] as? Bool
+        name = dictionary["name"] as? String
 	}
 
 	/**
@@ -67,6 +69,9 @@ public struct CGData: Codable{
 		if visible != nil{
 			dictionary["visible"] = visible
 		}
+        if name != nil{
+            dictionary["name"] = name
+        }
 		return dictionary
 	}
 

@@ -12,6 +12,7 @@ struct CGConstants {
     static let JSON_ERROR = "CUSTOMERGLU: json parsing error:"
     static let CUSTOMERGLU_TOKEN = "CustomerGlu_Token_Encrypt"
     static let CUSTOMERGLU_USERID = "CustomerGlu_user_id_Encrypt"
+    static let CUSTOMERGLU_LOTTIE_FILE_PATH = "CustomerGlu_Lottiepath"
     static let DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ"
     static let Analitics_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     static let MIDDLE_NOTIFICATIONS = "middle-default"
@@ -49,8 +50,15 @@ struct APIParameterKey {
     static let event_name = "event_name"
     static let user_id = "user_id"
     static let timestamp = "timestamp"
+    static let nudge = "nudge"
+    static let nudge_id = "nudge_id"
+    static let title = "title"
+    static let body = "body"
+    static let nudge_layout = "nudge_layout"
+    static let click_action = "click_action"
     static let event_properties = "event_properties"
     static let userId = "userId"
+    static let anonymousId = "anonymousId"
     static let bearer = "Bearer"
     static let apnsDeviceToken = "apnsDeviceToken"
     static let firebaseToken = "firebaseToken"
@@ -81,8 +89,8 @@ struct APIParameterKey {
     static let appSessionId = "appSessionId"
     static let userAgent = "userAgent"
     static let eventName = "eventName"
-    static let cgsdkversionvalue = "2.1.2"
-    static let analytics_version_value = "4.1.0"
+    static let cgsdkversionvalue = "2.2.0"
+    static let analytics_version_value = "4.0.0"
     static let analytics_version = "analytics_version"
     static let dismiss_trigger = "dismiss_trigger"
     static let webview_content = "webview_content"
@@ -96,6 +104,29 @@ struct APIParameterKey {
     static let app_platform = "app_platform"
     static let sdk_version = "sdk_version"
     static let messagekey = "message"
+    
+    static let entry_point_data = "entry_point_data"
+    static let entry_point_id = "entry_point_id"
+    static let entry_point_name = "entry_point_name"
+    static let entry_point_location = "entry_point_location"
+    static let entry_point_container = "entry_point_container"
+    static let entry_point_content = "entry_point_content"
+    static let static_url = "static_url"
+    static let entry_point_action = "entry_point_action"
+    static let action_type = "action_type"
+    static let open_container = "open_container"
+    static let open_content = "open_content"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 
@@ -121,6 +152,8 @@ struct WebViewsKey {
     static let analytics = "ANALYTICS"
     static let share = "SHARE"
     static let updateheight = "DIMENSIONS_UPDATE"
+    static let hideloader = "HIDE_LOADER"
+    static let opencgwebview = "OPEN_CG_WEBVIEW"
 }
 
 // TableView Identifiers Used Throught App

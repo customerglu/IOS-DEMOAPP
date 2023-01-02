@@ -1,11 +1,24 @@
 import Foundation
 import SwiftUI
 import UIKit
+import Lottie
 
 let gcmMessageIDKey = "gcm.message_id"
 
 struct EntryPointPopUpModel: Codable {
     public var popups: [PopUpModel]?
+}
+
+@objc(CGSTATE)
+public enum CGSTATE:Int {
+    case     SUCCESS,
+             USER_NOT_SIGNED_IN,
+             INVALID_URL,
+             INVALID_CAMPAIGN,
+             CAMPAIGN_UNAVAILABLE,
+             NETWORK_EXCEPTION,
+             DEEPLINK_URL,
+             EXCEPTION
 }
 
 struct PopUpModel: Codable {
@@ -24,11 +37,15 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     
     // MARK: - Global Variable
     var spinner = SpinnerView()
+    var progressView = LottieAnimationView()
     var arrFloatingButton = [FloatingButtonController]()
     
     // Singleton Instance
     @objc public static var getInstance = CustomerGlu()
     public static var sdk_disable: Bool? = false
+    public static var sentry_enable: Bool? = true
+    public static var enableDarkMode: Bool? = false
+    public static var listenToSystemDarkMode: Bool? = false
     @objc public static var fcm_apn = ""
     public static var analyticsEvent: Bool? = false
     let userDefaults = UserDefaults.standard
@@ -46,13 +63,16 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     @objc public static var isEntryPointEnabled = false
     @objc public static var activeViewController = ""
     @objc public static var app_platform = "IOS"
-    @objc public static var defaultBGCollor = UIColor.white//UIColor(red: 255.0, green: 255.0, blue: 0.0, alpha: 0.1)
+    @objc public static var defaultBGCollor = UIColor.white
+    @objc public static var lightBackground = UIColor.white
+    @objc public static var darkBackground = UIColor.black
     @objc public static var sdk_version = APIParameterKey.cgsdkversionvalue
     
     internal var activescreenname = ""
     public static var bannersHeight: [String: Any]? = nil
     public static var embedsHeight: [String: Any]? = nil
     
+    internal var appconfigdata: CGMobileData? = nil
     internal var popupDict = [PopUpModel]()
     internal var entryPointPopUpModel = EntryPointPopUpModel()
     internal var popupDisplayScreens = [String]()
@@ -61,6 +81,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     public static var whiteListedDomains = [CGConstants.default_whitelist_doamin]
     public static var doamincode = 404
     public static var textMsg = "Requested-page-is-not-valid"
+    public static var lottieLoaderURL = ""
     @objc public var cgUserData = CGUser()
     
     private override init() {
@@ -138,6 +159,18 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         CustomerGlu.sdk_disable = disable
     }
     
+    @objc public func enableDarkMode(isDarkModeEnabled: Bool){
+        CustomerGlu.enableDarkMode = isDarkModeEnabled
+    }
+    
+    @objc public func isDarkModeEnabled()-> Bool {
+        return CustomerGlu.getInstance.checkIsDarkMode()
+    }
+    
+    @objc public func listenToDarkMode(allowToListenDarkMode: Bool){
+        CustomerGlu.listenToSystemDarkMode = allowToListenDarkMode
+    }
+    
     @objc public func isFcmApn(fcmApn: String) {
         CustomerGlu.fcm_apn = fcmApn
     }
@@ -152,14 +185,55 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     @objc public func configureLoadingScreenColor(color: UIColor) {
         CustomerGlu.defaultBGCollor = color
     }
+    @objc public func configureLightBackgroundColor(color: UIColor) {
+        CustomerGlu.lightBackground = color
+    }
+    @objc public func configureDarkBackgroundColor(color: UIColor) {
+        CustomerGlu.darkBackground = color
+    }
 
+    internal func checkIsDarkMode() -> Bool{
+
+        if (true == CustomerGlu.enableDarkMode){
+            return true
+        }else{
+            if(true == CustomerGlu.listenToSystemDarkMode){
+                if #available(iOS 12.0, *) {
+                    if let controller = topMostController() {
+                        if controller.traitCollection.userInterfaceStyle == .dark {
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
     func loaderShow(withcoordinate x: CGFloat, y: CGFloat) {
         DispatchQueue.main.async { [self] in
             if let controller = topMostController() {
                 controller.view.isUserInteractionEnabled = false
-                spinner = SpinnerView(frame: CGRect(x: x, y: y, width: 60, height: 60))
-                controller.view.addSubview(spinner)
-                controller.view.bringSubviewToFront(spinner)
+                
+                let path = decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_LOTTIE_FILE_PATH)
+                if (path != nil && path.count > 0 && URL(string: path) != nil){
+                    progressView = LottieAnimationView(filePath: decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_LOTTIE_FILE_PATH))
+                    
+                    let size = (UIScreen.main.bounds.width <= UIScreen.main.bounds.height) ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
+                    
+                    progressView.frame = CGRect(x: x-(size/2), y: y-(size/2), width: size, height: size)
+                    progressView.contentMode = .scaleAspectFit
+                    progressView.loopMode = .loop
+                    progressView.play()
+                    controller.view.addSubview(progressView)
+                    controller.view.bringSubviewToFront(progressView)
+                }else{
+                        spinner = SpinnerView(frame: CGRect(x: x-30, y: y-30, width: 60, height: 60))
+                        controller.view.addSubview(spinner)
+                        controller.view.bringSubviewToFront(spinner)
+                }
+
+
             }
         }
     }
@@ -183,6 +257,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             if let controller = topMostController() {
                 controller.view.isUserInteractionEnabled = true
                 spinner.removeFromSuperview()
+                progressView.removeFromSuperview()
             }
         }
     }
@@ -222,7 +297,9 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         // Change this to your preferred presentation option
         if CustomerGlu.getInstance.notificationFromCustomerGlu(remoteMessage: userInfo as? [String: AnyHashable] ?? [NotificationsKey.customerglu: "d"]) {
             if userInfo[NotificationsKey.glu_message_type] as? String == "push" {
+                
                 if UIApplication.shared.applicationState == .active {
+                    self.postAnalyticsEventForNotification(userInfo: userInfo as! [String:AnyHashable])
                     completionHandler([[.alert, .badge, .sound]])
                 }
             }
@@ -279,6 +356,9 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 } else {
                     presentToCustomerWebViewController(nudge_url: (nudge_url as? String)!, page_type: CGConstants.FULL_SCREEN_NOTIFICATION, backgroundAlpha: backgroundAlpha,auto_close_webview: auto_close_webview, nudgeConfiguration: nudgeConfiguration)
                 }
+                
+                self.postAnalyticsEventForNotification(userInfo: userInfo as! [String:AnyHashable])
+                
             } else {
                 
                 return
@@ -373,6 +453,8 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             } else {
                 presentToCustomerWebViewController(nudge_url: (nudge_url as? String)!, page_type: CGConstants.FULL_SCREEN_NOTIFICATION, backgroundAlpha: 0.5,auto_close_webview: auto_close_webview, nudgeConfiguration: nudgeConfiguration)
             }
+            
+            self.postAnalyticsEventForNotification(userInfo: remoteMessage)
         } else {
         }
     }
@@ -400,13 +482,108 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         userDefaults.removeObject(forKey: CGConstants.CustomerGluCrash)
         userDefaults.removeObject(forKey: CGConstants.CustomerGluPopupDict)
         userDefaults.removeObject(forKey: CGConstants.CUSTOMERGLU_USERDATA)
+        userDefaults.removeObject(forKey: CGConstants.CUSTOMERGLU_LOTTIE_FILE_PATH)
         CustomerGlu.getInstance.cgUserData = CGUser()
         ApplicationManager.appSessionId = UUID().uuidString
     }
     
     // MARK: - API Calls Methods
+    
+    @objc public func initializeSdk() {
+        self.getAppConfig { result in
+
+        }
+    }
+    @objc internal func getAppConfig(completion: @escaping (Bool) -> Void) {
+        
+        var eventInfo = [String: String]()
+        
+                
+        APIManager.appConfig(queryParameters: eventInfo as NSDictionary) { result in
+            switch result {
+            case .success(let response):
+                if (response != nil && response.data != nil && response.data?.mobile != nil){
+                    self.appconfigdata = (response.data?.mobile)!
+                    self.updatedAllConfigParam()
+                }
+                completion(true)
+                    
+            case .failure(let error):
+                CustomerGlu.getInstance.printlog(cglog: error.localizedDescription, isException: false, methodName: "CustomerGlu-getAppConfig", posttoserver: true)
+                completion(false)
+            }
+        }
+
+        
+    }
+    func updatedAllConfigParam() -> Void{
+        if(self.appconfigdata != nil)
+        {
+            if(self.appconfigdata!.disableSdk != nil){
+                CustomerGlu.getInstance.disableGluSdk(disable: (self.appconfigdata!.disableSdk ?? CustomerGlu.sdk_disable)!)
+            }
+            
+            if(self.appconfigdata!.enableAnalytics != nil){
+                CustomerGlu.getInstance.enableAnalyticsEvent(event: (self.appconfigdata!.enableAnalytics ?? CustomerGlu.analyticsEvent)!)
+            }
+            
+            if self.appconfigdata!.enableSentry != nil  {
+                CustomerGlu.sentry_enable =  self.appconfigdata?.enableSentry ?? false
+                if CustomerGlu.sentry_enable ?? false {
+                    CGSentryHelper.shared.setupSentry()
+                }
+            }
+            
+            if(self.appconfigdata!.enableEntryPoints != nil){
+                CustomerGlu.getInstance.enableEntryPoints(enabled: self.appconfigdata!.enableEntryPoints ?? CustomerGlu.isEntryPointEnabled)
+            }
+            
+            if self.appconfigdata!.enableDarkMode != nil {
+                CustomerGlu.getInstance.enableDarkMode(isDarkModeEnabled: (self.appconfigdata!.enableDarkMode ?? CustomerGlu.enableDarkMode)!)
+            }
+            
+            if self.appconfigdata!.listenToSystemDarkLightMode != nil {
+                CustomerGlu.getInstance.listenToDarkMode(allowToListenDarkMode: (self.appconfigdata!.listenToSystemDarkLightMode ?? CustomerGlu.listenToSystemDarkMode)!)
+            }
+            
+            if(self.appconfigdata!.errorCodeForDomain != nil && self.appconfigdata!.errorMessageForDomain != nil){
+                CustomerGlu.getInstance.configureDomainCodeMsg(code: self.appconfigdata!.errorCodeForDomain ?? CustomerGlu.doamincode , message: self.appconfigdata!.errorMessageForDomain ?? CustomerGlu.textMsg)
+            }
+            
+            if(self.appconfigdata!.iosSafeArea != nil){
+                                
+                CustomerGlu.getInstance.configureSafeArea(topHeight: Int(self.appconfigdata!.iosSafeArea?.topHeight ?? CustomerGlu.topSafeAreaHeight) , bottomHeight: Int(self.appconfigdata!.iosSafeArea?.bottomHeight ?? CustomerGlu.bottomSafeAreaHeight) , topSafeAreaColor: UIColor(hex: self.appconfigdata!.iosSafeArea?.topColor ?? CustomerGlu.topSafeAreaColor.hexString) ?? CustomerGlu.topSafeAreaColor, bottomSafeAreaColor: UIColor(hex: self.appconfigdata!.iosSafeArea?.bottomColor ?? CustomerGlu.bottomSafeAreaColor.hexString) ?? CustomerGlu.bottomSafeAreaColor)
+            }
+            
+            if(self.appconfigdata!.loadScreenColor != nil){
+                CustomerGlu.getInstance.configureLoadingScreenColor(color: UIColor(hex: self.appconfigdata!.loadScreenColor ?? CustomerGlu.defaultBGCollor.hexString) ?? CustomerGlu.defaultBGCollor)
+                
+            }
+            
+            if(self.appconfigdata!.lightBackground != nil){
+                CustomerGlu.getInstance.configureLightBackgroundColor(color: UIColor(hex: self.appconfigdata!.lightBackground ?? CustomerGlu.lightBackground.hexString) ?? CustomerGlu.lightBackground)
+            }
+            
+            if(self.appconfigdata!.darkBackground != nil){
+                CustomerGlu.getInstance.configureDarkBackgroundColor(color: UIColor(hex: self.appconfigdata!.darkBackground ?? CustomerGlu.darkBackground.hexString) ?? CustomerGlu.darkBackground)
+            }
+            
+            if(self.appconfigdata!.loaderColor != nil){
+                CustomerGlu.getInstance.configureLoaderColour(color: [UIColor(hex: self.appconfigdata!.loaderColor ?? CustomerGlu.arrColor[0].hexString) ?? CustomerGlu.arrColor[0]])
+            }
+            
+            if(self.appconfigdata!.whiteListedDomains != nil){
+                CustomerGlu.getInstance.configureWhiteListedDomains(domains: self.appconfigdata!.whiteListedDomains ?? CustomerGlu.whiteListedDomains)
+            }
+            
+            if(self.appconfigdata!.lottieLoaderURL != nil){
+
+                CustomerGlu.getInstance.connfigLottieLoaderURL(locallottieLoaderURL: self.appconfigdata!.lottieLoaderURL ?? "")
+            }
+        }
+    }
     @objc public func registerDevice(userdata: [String: AnyHashable], completion: @escaping (Bool) -> Void) {
-        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userdata["userId"] == nil {
+        if CustomerGlu.sdk_disable! == true || Reachability.shared.isConnectedToNetwork() != true || userdata[APIParameterKey.userId] == nil {
             CustomerGlu.getInstance.printlog(cglog: "Fail to call registerDevice", isException: false, methodName: "CustomerGlu-registerDevice-1", posttoserver: true)
             CustomerGlu.bannersHeight = [String:Any]()
             CustomerGlu.embedsHeight = [String:Any]()
@@ -436,31 +613,31 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
         
         // Manage UserID & AnonymousId
-        let t_userid = userData["userId"] as! String? ?? ""
-        let t_anonymousIdP = userData["anonymousId"] as! String? ?? ""
+        let t_userid = userData[APIParameterKey.userId] as! String? ?? ""
+        let t_anonymousIdP = userData[APIParameterKey.anonymousId] as! String? ?? ""
         let t_anonymousIdS = self.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_ANONYMOUSID) as String? ?? ""
         
         if(t_userid.count <= 0){
             // Pass only anonymousId and removed UserID
             if (t_anonymousIdP.count > 0){
-                userData["anonymousId"] = t_anonymousIdP
+                userData[APIParameterKey.anonymousId] = t_anonymousIdP
                 
                 // Remove old user stored data
                 if(t_anonymousIdS.count > 0 && t_anonymousIdS != t_anonymousIdP){
                     self.clearGluData()
                 }
             }else if(t_anonymousIdS.count > 0){
-                userData["anonymousId"] = t_anonymousIdS
+                userData[APIParameterKey.anonymousId] = t_anonymousIdS
             }else{
-                userData["anonymousId"] = UUID().uuidString
+                userData[APIParameterKey.anonymousId] = UUID().uuidString
             }
-            userData.removeValue(forKey: "userId")
+            userData.removeValue(forKey: APIParameterKey.userId)
         }else if (t_anonymousIdS.count > 0){
             // Pass anonymousId and UserID Both
-            userData["anonymousId"] = t_anonymousIdS
+            userData[APIParameterKey.anonymousId] = t_anonymousIdS
         }else{
             // Pass only UserID and removed anonymousId
-            userData.removeValue(forKey: "anonymousId")
+            userData.removeValue(forKey: APIParameterKey.anonymousId)
         }
         
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
@@ -578,10 +755,10 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         let t_anonymousIdS = self.decryptUserDefaultKey(userdefaultKey: CGConstants.CUSTOMERGLU_ANONYMOUSID) as String? ?? ""
         if (t_anonymousIdS.count > 0){
             // Pass anonymousId and UserID Both
-            userData["anonymousId"] = t_anonymousIdS
+            userData[APIParameterKey.anonymousId] = t_anonymousIdS
         }else{
             // Pass only UserID and removed anonymousId
-            userData.removeValue(forKey: "anonymousId")
+            userData.removeValue(forKey: APIParameterKey.anonymousId)
         }
         
         APIManager.userRegister(queryParameters: userData as NSDictionary) { result in
@@ -848,6 +1025,156 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
     }
     
+    @objc private func excecuteDeepLink(firstpath:String, cgdeeplink:CGDeeplinkData, completion: @escaping (CGSTATE, String, CGDeeplinkData? ) -> Void){
+        
+        let nudgeConfiguration = CGNudgeConfiguration()
+        nudgeConfiguration.closeOnDeepLink = cgdeeplink.content!.closeOnDeepLink!
+        nudgeConfiguration.relativeHeight = cgdeeplink.container?.relativeHeight ?? 0.0
+        nudgeConfiguration.absoluteHeight = cgdeeplink.container?.absoluteHeight ?? 0.0
+        nudgeConfiguration.layout = cgdeeplink.container?.type ?? ""
+        
+                CustomerGlu.getInstance.loaderShow(withcoordinate: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+                ApplicationManager.loadAllCampaignsApi(type: "", value: "", loadByparams: [:]) { success, campaignsModel in
+                    CustomerGlu.getInstance.loaderHide()
+                    if success {
+                        
+                        let defaultwalleturl = String(campaignsModel?.defaultUrl ?? "")
+                        var cgstate = CGSTATE.EXCEPTION
+                        if(firstpath == "u"){
+                            completion(CGSTATE.DEEPLINK_URL, "", cgdeeplink)
+                            return
+                        }
+                        else if(firstpath == "c"){
+                            let local_id = firstpath == "c" ? (cgdeeplink.content?.campaignId ?? "") : (cgdeeplink.content?.url ?? "")
+                            if local_id.count == 0 {
+                                // load wallet defaultwalleturl
+                                nudgeConfiguration.url = defaultwalleturl
+                                cgstate = firstpath == "c" ? CGSTATE.INVALID_CAMPAIGN : CGSTATE.INVALID_URL
+
+                            } else if local_id.contains("http://") || local_id.contains("https://") {
+                                    // Load url local_id
+                                nudgeConfiguration.url = local_id
+                                if (local_id.count > 0 && (URL(string: local_id) != nil)){
+                                    cgstate = CGSTATE.SUCCESS
+                                }else{
+                                    cgstate = CGSTATE.INVALID_URL
+                                }
+                            } else {
+                                let campaigns: [CGCampaigns] = (campaignsModel?.campaigns)!
+                                let filteredArray = campaigns.filter{($0.campaignId.elementsEqual(local_id)) || ($0.banner != nil && $0.banner?.tag != nil && $0.banner?.tag != "" && ($0.banner!.tag!.elementsEqual(local_id)))}
+                                if filteredArray.count > 0 {
+                                    nudgeConfiguration.url = filteredArray[0].url
+                                    if (filteredArray[0].url.count > 0 && (URL(string: filteredArray[0].url) != nil)){
+                                        cgstate = CGSTATE.SUCCESS
+                                    }else{
+                                        cgstate = CGSTATE.INVALID_CAMPAIGN
+                                    }
+
+                                } else {
+                                    // load wallet defaultwalleturl
+                                    nudgeConfiguration.url = defaultwalleturl
+                                    cgstate = CGSTATE.INVALID_CAMPAIGN
+                                }
+                            }
+                        }else{
+                            // load wallet defaultwalleturl
+                            nudgeConfiguration.url = defaultwalleturl
+                            cgstate = CGSTATE.SUCCESS
+                        }
+                        DispatchQueue.main.async { [self] in // Make sure you're on the main thread here
+                                self.presentToCustomerWebViewController(nudge_url: nudgeConfiguration.url, page_type: nudgeConfiguration.layout, backgroundAlpha: nudgeConfiguration.opacity,auto_close_webview: nudgeConfiguration.closeOnDeepLink)
+                            
+                            if (CGSTATE.SUCCESS == cgstate){
+                                completion(cgstate, "", cgdeeplink)
+
+                            }else{
+                                completion(cgstate, "", nil)
+
+                            }
+                            
+                        }
+
+                    } else {
+                        completion(CGSTATE.EXCEPTION, "Fail to call loadAllCampaignsApi / Invalid response", nil)
+                        CustomerGlu.getInstance.printlog(cglog: "Fail to load loadAllCampaignsApi", isException: false, methodName: "CustomerGlu-excecuteDeepLink", posttoserver: true)
+                    }
+            }
+    }
+//    getCGDeeplinkData
+    //(eventNudge: [String: Any], completion: @escaping (Bool, CGAddCartModel?) -> Void)
+    @objc public func openDeepLink(deepurl:URL!, completion: @escaping (CGSTATE, String, CGDeeplinkData?) -> Void) {
+        
+//            SUCCESS,
+//            USER_NOT_SIGNED_IN,
+//            INVALID_URL,
+//            INVALID_CAMPAIGN,
+//            CAMPAIGN_UNAVAILABLE,
+//            NETWORK_EXCEPTION,
+//            EXCEPTION
+        if(deepurl != nil && deepurl.scheme != nil && deepurl.scheme!.count > 0 && (((deepurl.scheme!.lowercased() == "http") || deepurl.scheme!.lowercased() == "https") == true) && deepurl.host != nil && deepurl.host!.count > 0 && (deepurl.host!.lowercased().contains(".cglu.") == true)){
+
+            let firstpath = deepurl.pathComponents.count > 1 ? deepurl.pathComponents[1].lowercased() : ""
+            let secondpath = deepurl.pathComponents.count > 2 ? deepurl.pathComponents[2] : ""
+
+            if((firstpath.count > 0 && (firstpath == "c" || firstpath == "w" || firstpath == "u")) && secondpath.count > 0){
+                CustomerGlu.getInstance.loaderShow(withcoordinate: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+                APIManager.getCGDeeplinkData(queryParameters: ["id":secondpath]) { result in
+                    CustomerGlu.getInstance.loaderHide()
+                    switch result {
+                    case .success(let response):
+                        if(response.success == true){
+                            if (response.data != nil){
+                                if(response.data!.anonymous == true){
+                                    if UserDefaults.standard.object(forKey: CGConstants.CUSTOMERGLU_TOKEN) != nil{
+                                        self.excecuteDeepLink(firstpath: firstpath, cgdeeplink: response.data!, completion: completion)
+                                    }else{
+                                        // Reg Call then exe
+                                        var userData = [String: AnyHashable]()
+                                        userData["userId"] = ""
+                                        CustomerGlu.getInstance.loaderShow(withcoordinate: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+                                        self.registerDevice(userdata: userData) { success in
+                                            CustomerGlu.getInstance.loaderHide()
+                                            if success {
+                                                self.excecuteDeepLink(firstpath: firstpath, cgdeeplink: response.data!, completion: completion)
+                                            } else {
+                                                CustomerGlu.getInstance.printlog(cglog: "Fail to call getCGDeeplinkData", isException: false, methodName: "CustomerGlu-openDeepLink-5", posttoserver: false)
+                                                completion(CGSTATE.EXCEPTION,"Fail to calll register user", nil)
+                                            }
+                                        }
+                                    }
+                                }else{
+                                    if UserDefaults.standard.object(forKey: CGConstants.CUSTOMERGLU_TOKEN) != nil && false == ApplicationManager.isAnonymousUesr(){
+                                        self.excecuteDeepLink(firstpath: firstpath, cgdeeplink: response.data!, completion: completion)
+                                    }else{
+                                        CustomerGlu.getInstance.printlog(cglog: "Fail to call getCGDeeplinkData", isException: false, methodName: "CustomerGlu-openDeepLink-5", posttoserver: false)
+                                        completion(CGSTATE.USER_NOT_SIGNED_IN,"", nil)
+                                    }
+                                }
+
+                            }else{
+                                CustomerGlu.getInstance.printlog(cglog: "Fail to call getCGDeeplinkData", isException: false, methodName: "CustomerGlu-openDeepLink-4", posttoserver: false)
+                                completion(CGSTATE.EXCEPTION, "Invalid Response", nil)
+                            }
+
+                        }else{
+                            CustomerGlu.getInstance.printlog(cglog: "Fail to call getCGDeeplinkData", isException: false, methodName: "CustomerGlu-openDeepLink-2", posttoserver: false)
+                            completion(CGSTATE.EXCEPTION, response.message ?? "", nil)
+                        }
+
+                    case .failure(let error):
+                        CustomerGlu.getInstance.printlog(cglog: "Fail to call getCGDeeplinkData", isException: false, methodName: "CustomerGlu-openDeepLink-3", posttoserver: false)
+                        completion(CGSTATE.EXCEPTION, "Fail to call getCGDeeplinkData / Invalid response", nil)
+                    }
+            }
+
+            }else{
+                completion(CGSTATE.INVALID_URL, "Incorrect URL", nil)
+            }
+
+        }else{
+            completion(CGSTATE.EXCEPTION, "Incorrect Invalide URL", nil)
+        }
+    }
     @objc public func openWallet(nudgeConfiguration: CGNudgeConfiguration) {
         CustomerGlu.getInstance.loadCampaignById(campaign_id: CGConstants.CGOPENWALLET, nudgeConfiguration:nudgeConfiguration)
         
@@ -1040,7 +1367,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         let host = url.host
         if(host != nil && host!.count > 0){
             for str_url in CustomerGlu.whiteListedDomains {
-                if (host!.hasSuffix(str_url)){
+                if (str_url.count > 0 && host!.hasSuffix(str_url)){
                     return url
                 }
             }
@@ -1054,6 +1381,18 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         CustomerGlu.whiteListedDomains.append(CGConstants.default_whitelist_doamin)
     }
     
+    public func connfigLottieLoaderURL(locallottieLoaderURL: String){
+        
+        if(locallottieLoaderURL.count > 0 && URL(string: locallottieLoaderURL) != nil){
+            CustomerGlu.lottieLoaderURL = locallottieLoaderURL
+            let url = URL(string: locallottieLoaderURL)
+            CGFileDownloader.loadFileAsync(url: url!) { [self] (path, error) in
+                if (error == nil){
+                    encryptUserDefaultKey(str: path ?? "", userdefaultKey: CGConstants.CUSTOMERGLU_LOTTIE_FILE_PATH)
+                }
+            }
+        }
+    }
     public func configureDomainCodeMsg(code: Int, message: String){
         CustomerGlu.doamincode = code
         CustomerGlu.textMsg = message
@@ -1096,17 +1435,17 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
                 if (floatBtn.floatInfo?.mobile.container.ios.allowedActitivityList.count)! > 0 && (floatBtn.floatInfo?.mobile.container.ios.disallowedActitivityList.count)! > 0 {
                     if  !(floatBtn.floatInfo?.mobile.container.ios.disallowedActitivityList.contains(className))! {
                         floatBtn.hideFloatingButton(ishidden: false)
-                        callEventPublishNudge(data: floatBtn.floatInfo!, className: className, actionType: "LOADED")
+                        callEventPublishNudge(data: floatBtn.floatInfo!, className: className, actionType: "LOADED", event_name: "ENTRY_POINT_LOAD")
                     }
                 } else if (floatBtn.floatInfo?.mobile.container.ios.allowedActitivityList.count)! > 0 {
                     if (floatBtn.floatInfo?.mobile.container.ios.allowedActitivityList.contains(className))! {
                         floatBtn.hideFloatingButton(ishidden: false)
-                        callEventPublishNudge(data: floatBtn.floatInfo!, className: className, actionType: "LOADED")
+                        callEventPublishNudge(data: floatBtn.floatInfo!, className: className, actionType: "LOADED",event_name: "ENTRY_POINT_LOAD")
                     }
                 } else if (floatBtn.floatInfo?.mobile.container.ios.disallowedActitivityList.count)! > 0 {
                     if !(floatBtn.floatInfo?.mobile.container.ios.disallowedActitivityList.contains(className))! {
                         floatBtn.hideFloatingButton(ishidden: false)
-                        callEventPublishNudge(data: floatBtn.floatInfo!, className: className, actionType: "LOADED")
+                        callEventPublishNudge(data: floatBtn.floatInfo!, className: className, actionType: "LOADED", event_name: "ENTRY_POINT_LOAD")
                     }
                 }
             }
@@ -1291,12 +1630,13 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             
             self.popupDisplayScreens.append(CustomerGlu.getInstance.activescreenname)
             updateShowCount(showCount: showCount, eventData: finalPopUp)
-            callEventPublishNudge(data: finalPopUp, className: CustomerGlu.getInstance.activescreenname, actionType: "OPEN")
+            callEventPublishNudge(data: finalPopUp, className: CustomerGlu.getInstance.activescreenname, actionType: "OPEN", event_name: "ENTRY_POINT_LOAD")
             
         }
     }
     
-    internal func callEventPublishNudge(data: CGData, className: String, actionType: String) {
+    internal func callEventPublishNudge(data: CGData, className: String, actionType: String, event_name:String) {
+        
         var actionTarget = ""
         if data.mobile.content[0].campaignId.count == 0 {
             actionTarget = "WALLET"
@@ -1306,7 +1646,12 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             actionTarget = "CAMPAIGN"
         }
         
-        eventPublishNudge(pageName: className, nudgeId: data.mobile.content[0]._id, actionType: actionType, actionTarget: actionTarget, pageType: data.mobile.content[0].openLayout, campaignId: data.mobile.content[0].campaignId,nudgeType: data.mobile.container.type)
+        if(event_name == "ENTRY_POINT_LOAD" && data.mobile.container.type == "POPUP"){
+            postAnalyticsEventForEntryPoints(event_name: event_name, entry_point_id: data.mobile.content[0]._id, entry_point_name: data.name ?? "", entry_point_container: data.mobile.container.type, content_campaign_id: data.mobile.content[0].campaignId, open_container: data.mobile.content[0].openLayout, action_c_campaign_id: data.mobile.content[0].campaignId)
+        }else{
+            postAnalyticsEventForEntryPoints(event_name: event_name, entry_point_id: data.mobile.content[0]._id, entry_point_name: data.name ?? "", entry_point_container: data.mobile.container.type, content_campaign_id: data.mobile.content[0].url, open_container: data.mobile.content[0].openLayout, action_c_campaign_id: data.mobile.content[0].campaignId)
+        }
+        
     }
     
     internal func openCampaignById(campaign_id: String, nudgeConfiguration : CGNudgeConfiguration) {
@@ -1351,34 +1696,128 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         }
     }
     
-    private func eventPublishNudge(pageName: String, nudgeId: String, actionType: String, actionTarget: String, pageType: String, campaignId: String, nudgeType:String ) {
-        var eventInfo = [String: AnyHashable]()
-        eventInfo[APIParameterKey.nudgeType] = nudgeType
-        
-        eventInfo[APIParameterKey.pageName] = pageName
-        eventInfo[APIParameterKey.nudgeId] = nudgeId
-        eventInfo[APIParameterKey.actionTarget] = actionTarget
-        eventInfo[APIParameterKey.actionType] = actionType
-        eventInfo[APIParameterKey.pageType] = pageType
-        
-        
-        
-        eventInfo[APIParameterKey.campaignId] = "CAMPAIGNID_NOTPRESENT"
-        if actionTarget == "CAMPAIGN" {
-            if campaignId.count > 0 {
-                if !(campaignId.contains("http://") || campaignId.contains("https://")) {
-                    eventInfo[APIParameterKey.campaignId] = campaignId
+    internal func postAnalyticsEventForEntryPoints(event_name:String, entry_point_id:String, entry_point_name:String, entry_point_container:String, content_campaign_id:String = "", action_type: String = "OPEN", open_container:String, action_c_campaign_id:String) {
+        if (false == CustomerGlu.analyticsEvent) {
+            return
+        }
+
+        if(("ENTRY_POINT_DISMISS" == event_name) || ("ENTRY_POINT_LOAD" == event_name) || ("ENTRY_POINT_CLICK" == event_name)){
+            
+            var eventInfo = [String: Any]()
+            eventInfo[APIParameterKey.event_name] = event_name
+            var entry_point_data = [String: Any]()
+            
+            entry_point_data[APIParameterKey.entry_point_id] = entry_point_id
+            entry_point_data[APIParameterKey.entry_point_name] = entry_point_name
+            entry_point_data[APIParameterKey.entry_point_location] = CustomerGlu.getInstance.activescreenname
+            
+            if(("ENTRY_POINT_LOAD" == event_name) || ("ENTRY_POINT_CLICK" == event_name)){
+                
+                entry_point_data[APIParameterKey.entry_point_container] = entry_point_container
+                var entry_point_content = [String: String]()
+
+                
+                var static_url_ec = ""
+                var campaign_id_ec = ""
+                var type_ec = ""
+                if content_campaign_id.count == 0 {
+                    type_ec = "WALLET"
+                } else if content_campaign_id.contains("http://") || content_campaign_id.contains("https://"){
+                    type_ec = "STATIC"
+                    static_url_ec = content_campaign_id
+                } else {
+                    type_ec = "CAMPAIGN"
+                    campaign_id_ec = content_campaign_id
+                }
+                entry_point_content[APIParameterKey.type] = type_ec
+                entry_point_content[APIParameterKey.campaign_id] = campaign_id_ec
+                entry_point_content[APIParameterKey.static_url] = static_url_ec
+                
+                entry_point_data[APIParameterKey.entry_point_content] = entry_point_content
+                
+                if(("ENTRY_POINT_CLICK" == event_name)){
+                    
+                    var entry_point_action = [String: Any]()
+                    entry_point_action[APIParameterKey.action_type] = action_type
+                    entry_point_action[APIParameterKey.open_container] = open_container
+                    
+                    var open_content = [String: String]()
+                    var static_url = ""
+                    var campaign_id = ""
+                    var type = ""
+                    if action_c_campaign_id.count == 0 {
+                        type = "WALLET"
+                    } else if action_c_campaign_id.contains("http://") || action_c_campaign_id.contains("https://"){
+                        type = "STATIC"
+                        static_url = action_c_campaign_id
+                    } else {
+                        type = "CAMPAIGN"
+                        campaign_id = action_c_campaign_id
+                    }
+                    open_content[APIParameterKey.type] = type
+                    open_content[APIParameterKey.static_url] = static_url
+                    open_content[APIParameterKey.campaign_id] = campaign_id
+                    
+                    entry_point_action[APIParameterKey.open_content] = open_content
+                    entry_point_data[APIParameterKey.entry_point_action] = entry_point_action
                 }
             }
+            eventInfo[APIParameterKey.entry_point_data] = entry_point_data
+            ApplicationManager.sendAnalyticsEvent(eventNudge: eventInfo) { success, _ in
+                if success {
+                    print(success)
+                } else {
+                    CustomerGlu.getInstance.printlog(cglog: "Fail to call sendAnalyticsEvent ", isException: false, methodName: "postAnalyticsEventForBanner", posttoserver: true)
+                }
+            }
+            
+        }else{
+            CustomerGlu.getInstance.printlog(cglog: "Invalid event_name", isException: false, methodName: "postAnalyticsEventForBanner", posttoserver: true)
+            return
         }
+    }
+    
+    internal func postAnalyticsEventForNotification(userInfo: [String: AnyHashable]) {
+        if (false == CustomerGlu.analyticsEvent) {
+            return
+        }
+        var eventInfo = [String: Any]()
+        var nudge = [String: String]()
+
+        let nudge_id = userInfo[APIParameterKey.nudge_id] as? String ?? ""
+        let campaign_id = userInfo[APIParameterKey.campaign_id] as? String ?? ""
+        let title = userInfo[APIParameterKey.title] as? String ?? ""
+        let body = userInfo[APIParameterKey.body] as? String ?? ""
         
-        eventInfo[APIParameterKey.optionalPayload] = [String: String]() as [String: String]
-        
-        ApplicationManager.publishNudge(eventNudge: eventInfo) { success, _ in
+        let nudge_url = userInfo[NotificationsKey.nudge_url] as? String ?? ""
+        let nudge_layout = userInfo[NotificationsKey.page_type] as? String ?? ""
+        let type = userInfo[NotificationsKey.glu_message_type] as? String ?? ""
+
+        nudge[APIParameterKey.nudgeId] = type
+        if(type == NotificationsKey.in_app){
+            eventInfo[APIParameterKey.event_name] = "NOTIFICATION_LOAD"
+        }else{
+            if (UIApplication.shared.applicationState == .active){
+                eventInfo[APIParameterKey.event_name] = "NOTIFICATION_LOAD"
+            }else{
+                eventInfo[APIParameterKey.event_name] = "PUSH_NOTIFICATION_CLICK"
+            }
+        }
+
+        nudge[APIParameterKey.nudgeId] = nudge_id
+        nudge[APIParameterKey.campaign_id] = campaign_id
+        nudge[APIParameterKey.title] = title
+        nudge[APIParameterKey.body] = body
+        nudge[APIParameterKey.nudge_layout] = nudge_layout
+        nudge[APIParameterKey.click_action] = nudge_url
+        nudge[APIParameterKey.type] = type
+        eventInfo[APIParameterKey.nudge] = nudge
+                     
+        ApplicationManager.sendAnalyticsEvent(eventNudge: eventInfo) { success, _ in
             if success {
-                
+                print(success)
             } else {
-                CustomerGlu.getInstance.printlog(cglog: "Fail to call publishNudge", isException: false, methodName: "CustomerGlu-eventPublishNudge", posttoserver: true)
+                CustomerGlu.getInstance.printlog(cglog: "Fail to call sendAnalyticsEvent ", isException: false, methodName: "postAnalyticsEventForNotification", posttoserver: true)
             }
         }
     }

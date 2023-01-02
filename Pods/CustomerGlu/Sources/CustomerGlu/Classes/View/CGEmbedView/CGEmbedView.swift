@@ -271,7 +271,7 @@ public class CGEmbedView: UIView, WKNavigationDelegate, WKScriptMessageHandler {
                     
                     finalHeight = getconfiguredheight()
                     loadAllCampaignsApi()
-                    //                    callLoadEmbedAnalytics()
+                    callLoadEmbedAnalytics()
                 } else {
                     embedviewHeightchanged(height: 0.0)
                 }
@@ -325,7 +325,7 @@ public class CGEmbedView: UIView, WKNavigationDelegate, WKScriptMessageHandler {
         //        embedviewHeightchanged(height: 0.0)
         ApplicationManager.loadAllCampaignsApi(type: "", value: "", loadByparams: [:]) { [self] success, campaignsModel in
             if success {
-                CustomerGlu.getInstance.loaderHide()
+//                CustomerGlu.getInstance.loaderHide()
                 if arrContent.first?.campaignId.count == 0 {
                     DispatchQueue.main.async { [self] in // Make sure you're on the main thread here
                         self.setEmbedView(height: finalHeight, url: campaignsModel?.defaultUrl ?? "")
@@ -349,7 +349,7 @@ public class CGEmbedView: UIView, WKNavigationDelegate, WKScriptMessageHandler {
                     }
                 }
             } else {
-                CustomerGlu.getInstance.loaderHide()
+//                CustomerGlu.getInstance.loaderHide()
                 CustomerGlu.getInstance.printlog(cglog: "Fail to load loadAllCampaignsApi", isException: false, methodName: "CGEmbedView-setEmbedView", posttoserver: true)
             }
         }
@@ -378,66 +378,27 @@ public class CGEmbedView: UIView, WKNavigationDelegate, WKScriptMessageHandler {
         return finalheight
     }
     
+        private func callLoadEmbedAnalytics(){
     
-    //    private func eventPublishNudge(pageName: String, nudgeId: String, actionType: String, actionTarget: String, pageType: String, campaignId: String) {
-    //        var eventInfo = [String: AnyHashable]()
-    //        eventInfo[APIParameterKey.nudgeType] = "EMBED"
-    //
-    //        eventInfo[APIParameterKey.pageName] = pageName
-    //        eventInfo[APIParameterKey.nudgeId] = nudgeId
-    //        eventInfo[APIParameterKey.actionTarget] = actionTarget
-    //        eventInfo[APIParameterKey.actionType] = actionType
-    //        eventInfo[APIParameterKey.pageType] = pageType
-    //
-    //        eventInfo[APIParameterKey.campaignId] = "CAMPAIGNID_NOTPRESENT"
-    //        if actionTarget == "CAMPAIGN" {
-    //            if campaignId.count > 0 {
-    //                if !(campaignId.contains("http://") || campaignId.contains("https://")) {
-    //                    eventInfo[APIParameterKey.campaignId] = campaignId
-    //                }
-    //            }
-    //        }
-    //
-    //        eventInfo[APIParameterKey.optionalPayload] = [String: String]() as [String: String]
-    //
-    //        ApplicationManager.publishNudge(eventNudge: eventInfo) { success, _ in
-    //            if success {
-    //
-    //            } else {
-    //                CustomerGlu.getInstance.printlog(cglog: "Fail to call eventPublishNudge", isException: false, methodName: "EmbedView-eventPublishNudge", posttoserver: true)
-    //            }
-    //        }
-    //    }
+            if (false == loadedapicalled){
+                let embedViews = CustomerGlu.entryPointdata.filter {
+                    $0.mobile.container.type == "EMBEDDED" && $0.mobile.container.bannerId == self.embedId ?? ""
+                }
     
-    //    private func callLoadEmbedAnalytics(){
-    //
-    //        if (false == loadedapicalled){
-    //            let embedViews = CustomerGlu.entryPointdata.filter {
-    //                $0.mobile.container.type == "EMBED" && $0.mobile.container.embedId == self.embedId ?? ""
-    //            }
-    //
-    //            if embedViews.count != 0 {
-    //                let mobile = embedViews[0].mobile!
-    //                arrContent = [CGContent]()
-    //                condition = mobile.conditions
-    //
-    //                if mobile.content.count != 0 {
-    //                    for content in mobile.content {
-    //                        arrContent.append(content)
-    //                        var actionTarget = ""
-    //                        if content.campaignId.count == 0 {
-    //                            actionTarget = "WALLET"
-    //                        } else if content.campaignId.contains("http://") || content.campaignId.contains("https://"){
-    //                            actionTarget = "CUSTOM_URL"
-    //                        } else {
-    //                            actionTarget = "CAMPAIGN"
-    //                        }
-    //
-    //                        eventPublishNudge(pageName: CustomerGlu.getInstance.activescreenname, nudgeId: content._id, actionType: "LOADED", actionTarget: actionTarget, pageType: content.openLayout, campaignId: content.campaignId)
-    //                    }
-    //                    loadedapicalled = true
-    //                }
-    //            }
-    //        }
-    //    }
+                if embedViews.count != 0 {
+                    let mobile = embedViews[0].mobile!
+                    arrContent = [CGContent]()
+                    condition = mobile.conditions
+    
+                    if mobile.content.count != 0 {
+                        for content in mobile.content {
+                            arrContent.append(content)
+    
+                            CustomerGlu.getInstance.postAnalyticsEventForEntryPoints(event_name: "ENTRY_POINT_LOAD", entry_point_id: content._id, entry_point_name: embedViews[0].name ?? "", entry_point_container: mobile.container.type, content_campaign_id: content.campaignId, open_container:content.openLayout, action_c_campaign_id: content.campaignId)
+                        }
+                        loadedapicalled = true
+                    }
+                }
+            }
+        }
 }

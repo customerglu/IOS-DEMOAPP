@@ -73,7 +73,7 @@ public class LoadAllCampaignsViewController: UIViewController {
         }
     }
     func getCampaign() {
-        CustomerGlu.getInstance.loaderShow(withcoordinate: self.view.frame.midX - 30, y: self.view.frame.midY - 30)
+        CustomerGlu.getInstance.loaderShow(withcoordinate: self.view.frame.midX, y: self.view.frame.midY)
                 
         ApplicationManager.loadAllCampaignsApi(type: loadCampignType, value: loadCampignValue, loadByparams: loadByparams) { success, campaignsModel in
             if success {
