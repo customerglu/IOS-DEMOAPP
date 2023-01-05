@@ -43,7 +43,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
     // Singleton Instance
     @objc public static var getInstance = CustomerGlu()
     public static var sdk_disable: Bool? = false
-    public static var sentry_enable: Bool? = true
+    public static var sentry_enable: Bool? = false
     public static var enableDarkMode: Bool? = false
     public static var listenToSystemDarkMode: Bool? = false
     @objc public static var fcm_apn = ""
@@ -485,6 +485,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
         userDefaults.removeObject(forKey: CGConstants.CUSTOMERGLU_LOTTIE_FILE_PATH)
         CustomerGlu.getInstance.cgUserData = CGUser()
         ApplicationManager.appSessionId = UUID().uuidString
+        CGSentryHelper.shared.logoutSentryUser()
     }
     
     // MARK: - API Calls Methods
@@ -529,9 +530,7 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             
             if self.appconfigdata!.enableSentry != nil  {
                 CustomerGlu.sentry_enable =  self.appconfigdata?.enableSentry ?? false
-                if CustomerGlu.sentry_enable ?? false {
                     CGSentryHelper.shared.setupSentry()
-                }
             }
             
             if(self.appconfigdata!.enableEntryPoints != nil){
@@ -644,6 +643,8 @@ public class CustomerGlu: NSObject, CustomerGluCrashDelegate {
             switch result {
             case .success(let response):
                 if response.success! {
+                    // Setup Sentry user
+                    CGSentryHelper.shared.setupUser(userId: response.data?.user?.userId ?? "", clientId: response.data?.user?.client ?? "")
                     self.encryptUserDefaultKey(str: response.data?.token ?? "", userdefaultKey: CGConstants.CUSTOMERGLU_TOKEN)
                     self.encryptUserDefaultKey(str: response.data?.user?.userId ?? "", userdefaultKey: CGConstants.CUSTOMERGLU_USERID)
                     self.encryptUserDefaultKey(str: response.data?.user?.anonymousId ?? "", userdefaultKey: CGConstants.CUSTOMERGLU_ANONYMOUSID)
