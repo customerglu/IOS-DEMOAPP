@@ -70,6 +70,7 @@
 		1B77ADBF26CBE05B0086859F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BB1792A26B9255B0058E02C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.release.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.release.xcconfig"; sourceTree = "<group>"; };
+		67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = CGConfigSetting.xcconfig; path = CustomerGluDemo/CGConfigSetting.xcconfig; sourceTree = "<group>"; };
 		82699B09278715AA0020D2B4 /* CustomerGluDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoUITests.swift; sourceTree = "<group>"; usesTabs = 0; };
 		8284D4582754CE8200CEF827 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		1B3D7CA726A6BDDC00EA1587 = {
 			isa = PBXGroup;
 			children = (
+				67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */,
 				1B3D7CB226A6BDDC00EA1587 /* CustomerGluDemo */,
 				82699B0A278715AA0020D2B4 /* CustomerGluDemoUITests */,
 				82875A6C27883979005EC40D /* CustomerGluDemoTests */,
@@ -473,6 +475,7 @@
 /* Begin XCBuildConfiguration section */
 		1B3D7CBD26A6BDDC00EA1587 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -534,6 +537,7 @@
 		};
 		1B3D7CBE26A6BDDC00EA1587 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -616,7 +620,7 @@
 		};
 		1B3D7CC126A6BDDC00EA1587 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26EEC90D25C9E085DA4FFF85 /* Pods-CustomerGluDemo.release.xcconfig */;
+			baseConfigurationReference = 67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -643,6 +647,7 @@
 		};
 		82699B11278715AA0020D2B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -672,6 +677,7 @@
 		};
 		82699B12278715AA0020D2B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -701,6 +707,7 @@
 		};
 		82875A7127883979005EC40D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -726,6 +733,7 @@
 		};
 		82875A7227883979005EC40D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67BA8B58296FEA8100ED5C02 /* CGConfigSetting.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
