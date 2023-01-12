@@ -1,5 +1,5 @@
 PODS:
-  - CustomerGlu (2.2.1):
+  - CustomerGlu (2.2.2):
     - lottie-ios
     - Sentry
   - lottie-ios (4.0.1)
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
     :path: "../CG-iOS-SDK"
 
 SPEC CHECKSUMS:
-  CustomerGlu: 6f2ada656f200222b69d44201885605e9217c988
+  CustomerGlu: db52eca5bf4e199d59e45f48407be5a88601689e
   lottie-ios: 54d22edf55b839f0929cabbfe609c9aa548b1145
   Sentry: 4c9babff9034785067c896fd580b1f7de44da020
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7

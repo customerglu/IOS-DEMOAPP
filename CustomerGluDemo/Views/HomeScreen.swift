@@ -47,14 +47,14 @@ struct HomeScreen: View {
                         let nudgeConfiguration = CGNudgeConfiguration()
                         nudgeConfiguration.closeOnDeepLink = false
                         nudgeConfiguration.opacity = -0.0
-                        nudgeConfiguration.layout = "bottom-default"
+                        nudgeConfiguration.layout = "full-default"
 //                        nudgeConfiguration.layout = "middle-popup"
 //                        nudgeConfiguration.layout = "bottom-slider"
 //                        nudgeConfiguration.layout = "full-default"
                         nudgeConfiguration.absoluteHeight = -0.0
                         nudgeConfiguration.relativeHeight = 40.0
                         
-//                        nudgeConfiguration.url = "https://coindcx.end-ui.customerglu.com/reward/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHUtdGVzdC0wMTIzIiwiZ2x1SWQiOiI4YTUwZTVmOS00YzY2LTQ5MGItODNlNi00OTU3ZGI2ZTkyNDAiLCJjbGllbnQiOiJjOThkNWEwNC1kZTljLTRmYTQtYjVhZC0zN2RmOGZhMzk3NWMiLCJkZXZpY2VJZCI6ImdsdS10ZXN0LTAxMjNfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjY4MDc4MDcyLCJleHAiOjE2OTk2MTQwNzJ9.gLuNKYD04TYeziH7ia-77_D7s0tydsF7TCYQZzrxSio&rewardUserId=0958ae55-54a5-412e-ba73-883119fd62a5"
+                        nudgeConfiguration.url = "https://coindcx.end-ui.customerglu.com/reward/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHUtdGVzdC1jb2luZGN4IiwiZ2x1SWQiOiI3NjU4YTQ4NC1jZDIwLTQzZTItYmYxYS05OTcyNDUzN2NlNDMiLCJjbGllbnQiOiJjOThkNWEwNC1kZTljLTRmYTQtYjVhZC0zN2RmOGZhMzk3NWMiLCJkZXZpY2VJZCI6ImdsdS10ZXN0LWNvaW5kY3hfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjczMDk3NzcyLCJleHAiOjE3MDQ2MzM3NzJ9.JMiSGm93BN7qp86kgUryRz6woDJPCljQmZgvox6vGBQ&rewardUserId=84527b58-95ae-49fa-9a55-ceb2e4dfaab2"
                         
 //                        CustomerGlu.getInstance.openWalletWithURL(url: "https://q6305i.csb.app/")
 //                        nudgeConfiguration.absoluteHeight = 600
@@ -64,6 +64,7 @@ struct HomeScreen: View {
 //                        CustomerGlu.getInstance.configureLoadingScreenColor(color: UIColor(red: 255.0, green: 255.0, blue: 0.0, alpha: 1.0))
 //                        CustomerGlu.getInstance.configureLoaderColour(color: [.red])
                         CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
+//                        CustomerGlu.getInstance.openWalletWithURL(nudgeConfiguration: nudgeConfiguration)
 
                         
 //                        CustomerGlu.getInstance.openNudge(nudgeId: "referral-fragment", nudgeConfiguration: nudgeConfiguration)
