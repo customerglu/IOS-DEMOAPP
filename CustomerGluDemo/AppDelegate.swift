@@ -70,6 +70,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
+        // To handle the Deeplink events
+        self.handlerNotificationCenterObserver()
+        
 //        CustomerGlu.getInstance.disableGluSdk(disable: false)
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
 ////        CustomerGlu.getInstance.isFcmApn(fcmApn: "apn")
@@ -107,6 +110,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //        let string = CustomerGlu.getInstance.parseJSON(remoteMessage: userInfo as? [String: AnyHashable] ?? ["CGCG": "d"])
 //        print("\(string)")
      }
+}
+
+// MARK: - NotificationCenter addObserver
+extension AppDelegate {
+    
+    func handlerNotificationCenterObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.catchDeeplinkNotification),
+            name: Notification.Name("CUSTOMERGLU_DEEPLINK_EVENT"),
+            object: nil)
+    }
+    
+    @objc func catchDeeplinkNotification(notification: NSNotification) {
+        //do stuff using the userInfo property of the notification object
+        if let userInfo = notification.userInfo as? [String: Any] // or use if you know the type  [AnyHashable : Any]
+        {
+            print(userInfo)
+        }
+    }
 }
 
 extension AppDelegate: MessagingDelegate {
