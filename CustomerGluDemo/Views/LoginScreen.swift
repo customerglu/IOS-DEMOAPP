@@ -83,12 +83,13 @@ struct LoginScreen: View {
     
     func submitActionClicked(userId: String, userName: String, referenceId: String, anonymousId:String) {
         var userData = [String: AnyHashable]()
-        userData["userId"] = userId
+        userData["userId"] = "glutest-432122"
         userData["username"] = userName
 //        userData["referId"] = referenceId
 //        userData["anonymousId"] = anonymousId
 //        userData["referredBy"] = "Glutest009"
-        userData["customAttributes"] = ["CGCampaignEligibility":"true"]
+        
+ //       userData["customAttributes"] = ["tag":"test_new"]
         
         
         CustomerGlu.getInstance.registerDevice(userdata: userData) { success in

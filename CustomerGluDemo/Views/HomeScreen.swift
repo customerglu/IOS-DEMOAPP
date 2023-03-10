@@ -7,6 +7,7 @@
 import SwiftUI
 import CustomerGlu
 import Firebase
+import Lottie
 
 struct HomeScreen: View {
     @State var active = false
@@ -54,7 +55,7 @@ struct HomeScreen: View {
                         nudgeConfiguration.absoluteHeight = -0.0
                         nudgeConfiguration.relativeHeight = 40.0
                         
-                        nudgeConfiguration.url = "https://coindcx.end-ui.customerglu.com/reward/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHUtdGVzdC1jb2luZGN4IiwiZ2x1SWQiOiI3NjU4YTQ4NC1jZDIwLTQzZTItYmYxYS05OTcyNDUzN2NlNDMiLCJjbGllbnQiOiJjOThkNWEwNC1kZTljLTRmYTQtYjVhZC0zN2RmOGZhMzk3NWMiLCJkZXZpY2VJZCI6ImdsdS10ZXN0LWNvaW5kY3hfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjczMDk3NzcyLCJleHAiOjE3MDQ2MzM3NzJ9.JMiSGm93BN7qp86kgUryRz6woDJPCljQmZgvox6vGBQ&rewardUserId=84527b58-95ae-49fa-9a55-ceb2e4dfaab2"
+                        nudgeConfiguration.url = "https://pre-prod-constellation.customerglu.com/program/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHV0ZXN0LWRlZXBsaW5rIiwiZ2x1SWQiOiI4Y2RkODg2Ny03OGNmLTRiYWUtYjZkMi03YzM0ZTVmYzY4OTUiLCJjbGllbnQiOiJiOTk1MWQ2ZS1mY2MxLTQ0MTQtOTE3Ni1lZDRkZDE0YTY5NGYiLCJkZXZpY2VJZCI6ImdsdXRlc3QtZGVlcGxpbmtfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjc4MzkwNjQwLCJleHAiOjE3MDk5MjY2NDB9.q_IVag2XUNKUqao-g_ruf71spOi-uukVtlRZcIUu1Fs&campaignId=0ef6ed33-8646-463b-bd9b-721a02b1b458"
                         
 //                        CustomerGlu.getInstance.openWalletWithURL(url: "https://q6305i.csb.app/")
 //                        nudgeConfiguration.absoluteHeight = 600
@@ -83,16 +84,20 @@ struct HomeScreen: View {
                     Button(action: {
 //                        CustomerGlu.getInstance.loadAllCampaigns()
                         
-                        let nudgeConfiguration = CGNudgeConfiguration()
-                        nudgeConfiguration.closeOnDeepLink = false
-                        nudgeConfiguration.opacity = 0.9
-                        nudgeConfiguration.layout = "bottom-default"
-//                        nudgeConfiguration.url = "http://google.com/"
-                        nudgeConfiguration.absoluteHeight = 100
-                        nudgeConfiguration.relativeHeight = 70
+//                        let nudgeConfiguration = CGNudgeConfiguration()
+//                        nudgeConfiguration.closeOnDeepLink = false
+//                        nudgeConfiguration.opacity = 0.9
+//                        nudgeConfiguration.layout = "bottom-default"
+////                        nudgeConfiguration.url = "http://google.com/"
+//                        nudgeConfiguration.absoluteHeight = 100
+//                        nudgeConfiguration.relativeHeight = 70
+//
+////                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
+//                        customerglu.openNudge(nudgeId: "nudgeId", nudgeConfiguration: nudgeConfiguration);
                         
-//                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
-                        customerglu.openNudge(nudgeId: "nudgeId", nudgeConfiguration: nudgeConfiguration);
+                        
+                        CustomerGlu.getInstance.openWalletWithURL(url: "https://pre-prod-constellation.customerglu.com/program/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHV0ZXN0LWRlZXBsaW5rIiwiZ2x1SWQiOiI4Y2RkODg2Ny03OGNmLTRiYWUtYjZkMi03YzM0ZTVmYzY4OTUiLCJjbGllbnQiOiJiOTk1MWQ2ZS1mY2MxLTQ0MTQtOTE3Ni1lZDRkZDE0YTY5NGYiLCJkZXZpY2VJZCI6ImdsdXRlc3QtZGVlcGxpbmtfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjc4MzkwNjQwLCJleHAiOjE3MDk5MjY2NDB9.q_IVag2XUNKUqao-g_ruf71spOi-uukVtlRZcIUu1Fs&campaignId=0ef6ed33-8646-463b-bd9b-721a02b1b458")
+                        
                     }) {
                         productCard(image: "coin", title: "Rewards")
                     }
@@ -117,7 +122,7 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
-                CustomerGlu.getInstance.setCurrentClassName(className: String(describing: type(of: self)))
+                CustomerGlu.getInstance.setCurrentClassName(className: "CGHomeScreen")
             })
             
         }
@@ -139,7 +144,7 @@ struct BannerViewAdd: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> BannerView {
-        let view = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), bannerId: "entry1") //cart_banner
+        let view = BannerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0), bannerId: "demo-quiz-banner1") //cart_banner
         view.setContentHuggingPriority(.required, for: .horizontal) // << here !!
         view.setContentHuggingPriority(.required, for: .vertical)
         // the same for compression if needed
