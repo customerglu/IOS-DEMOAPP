@@ -21,6 +21,10 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>customerglu</string>
@@ -101,5 +105,19 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>branch_universal_link_domains</key>
+	<array>
+		<string>vpg7u-alternate.test.app.link</string>
+		<string>vpg7u.test.app.link</string>
+		<string>vpg7u-alternate.app.link</string>
+		<string>vpg7u.app.link</string>
+	</array>
+	<key>branch_key</key>
+	<dict>
+		<key>test</key>
+		<string>key_live_fygadNeWU6hxf4NXZkmUBgpfDwoU5Eto</string>
+		<key>live</key>
+		<string>key_live_fygadNeWU6hxf4NXZkmUBgpfDwoU5Eto</string>
+	</dict>
 </dict>
 </plist>

@@ -10,5 +10,6 @@ target 'CustomerGluDemo' do
     pod 'CustomerGlu', :path => '../CG-iOS-SDK'
     # pod 'CustomerGluRN', :path => '../CG-iOS-SDK-RN'
     pod 'lottie-ios' , '4.1.3'
+    pod 'BranchSDK'
 
 end

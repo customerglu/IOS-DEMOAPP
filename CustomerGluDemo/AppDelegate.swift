@@ -10,6 +10,7 @@ import Firebase
 import FirebaseMessaging
 import FirebaseAnalytics
 import CustomerGlu
+import BranchSDK
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -85,6 +86,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //        CustomerGlu.getInstance.closeWebviewOnDeeplinkEvent(close: true)
         
 //        print(CustomerGlu.getInstance.cgUserData.userName)
+        
+        Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+                // do stuff with deep link data (nav to page, display content, etc)
+                print(params as? [String: AnyObject] ?? {})
+            }
         
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

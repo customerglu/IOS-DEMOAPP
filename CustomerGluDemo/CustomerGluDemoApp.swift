@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 import CustomerGlu
+import BranchSDK
 @main
 struct CustomerGluDemoApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -24,6 +25,7 @@ struct CustomerGluDemoApp: App {
 
                 HomeScreen()
                     .onOpenURL { url in
+                        Branch.getInstance().handleDeepLink(url)
                         // URL handling
 //                        { success in
 //                            if success {
@@ -54,6 +56,7 @@ struct CustomerGluDemoApp: App {
                 LoginScreen()
                     .onOpenURL { url in
                         // URL handling
+                        Branch.getInstance().handleDeepLink(url)
                         CustomerGlu.getInstance.openDeepLink(deepurl: url){
                             success, string, deeplinkdata in
                             

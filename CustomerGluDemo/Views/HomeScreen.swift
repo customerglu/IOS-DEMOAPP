@@ -95,8 +95,10 @@ struct HomeScreen: View {
 ////                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
 //                        customerglu.openNudge(nudgeId: "nudgeId", nudgeConfiguration: nudgeConfiguration);
                         
+                       
+                       CustomerGlu.getInstance.openWallet()
                         
-                        CustomerGlu.getInstance.openWalletWithURL(url: "https://pre-prod-constellation.customerglu.com/program/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHV0ZXN0LWRlZXBsaW5rIiwiZ2x1SWQiOiI4Y2RkODg2Ny03OGNmLTRiYWUtYjZkMi03YzM0ZTVmYzY4OTUiLCJjbGllbnQiOiJiOTk1MWQ2ZS1mY2MxLTQ0MTQtOTE3Ni1lZDRkZDE0YTY5NGYiLCJkZXZpY2VJZCI6ImdsdXRlc3QtZGVlcGxpbmtfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjc4MzkwNjQwLCJleHAiOjE3MDk5MjY2NDB9.q_IVag2XUNKUqao-g_ruf71spOi-uukVtlRZcIUu1Fs&campaignId=0ef6ed33-8646-463b-bd9b-721a02b1b458")
+//                        CustomerGlu.getInstance.openWalletWithURL(url: "https://pre-prod-constellation.customerglu.com/program/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHV0ZXN0LWRlZXBsaW5rIiwiZ2x1SWQiOiI4Y2RkODg2Ny03OGNmLTRiYWUtYjZkMi03YzM0ZTVmYzY4OTUiLCJjbGllbnQiOiJiOTk1MWQ2ZS1mY2MxLTQ0MTQtOTE3Ni1lZDRkZDE0YTY5NGYiLCJkZXZpY2VJZCI6ImdsdXRlc3QtZGVlcGxpbmtfZGVmYXVsdCIsImRldmljZVR5cGUiOiJkZWZhdWx0IiwiaXNMb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjc4MzkwNjQwLCJleHAiOjE3MDk5MjY2NDB9.q_IVag2XUNKUqao-g_ruf71spOi-uukVtlRZcIUu1Fs&campaignId=0ef6ed33-8646-463b-bd9b-721a02b1b458",auto_close_webview: true)
                         
                     }) {
                         productCard(image: "coin", title: "Rewards")

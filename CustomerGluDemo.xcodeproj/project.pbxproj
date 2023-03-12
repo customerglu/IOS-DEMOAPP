@@ -30,6 +30,16 @@
 		82699B0C278715AA0020D2B4 /* CustomerGluDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82699B0B278715AA0020D2B4 /* CustomerGluDemoUITests.swift */; };
 		8284D4592754CE8200CEF827 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284D4582754CE8200CEF827 /* LoginScreen.swift */; };
 		82875A6E27883979005EC40D /* CustomerGluDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */; };
+		FD4D4F9A29BC4E8A00C4E6D9 /* CustomerGluDemo.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 1B00394C26CC014E00F57414 /* CustomerGluDemo.entitlements */; };
+		FD4D4F9C29BC51BC00C4E6D9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4F9B29BC51BB00C4E6D9 /* CoreServices.framework */; };
+		FD4D4F9E29BC51C800C4E6D9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4F9D29BC51C800C4E6D9 /* SystemConfiguration.framework */; };
+		FD4D4FA029BC51E100C4E6D9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4F9F29BC51E100C4E6D9 /* CoreTelephony.framework */; };
+		FD4D4FA229BC51E600C4E6D9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4FA129BC51E600C4E6D9 /* WebKit.framework */; };
+		FD4D4FA429BC51FB00C4E6D9 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4FA329BC51FB00C4E6D9 /* CoreSpotlight.framework */; };
+		FD4D4FA629BC520B00C4E6D9 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4FA529BC520B00C4E6D9 /* AdServices.framework */; };
+		FD4D4FA829BC521100C4E6D9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4FA729BC521100C4E6D9 /* AdSupport.framework */; };
+		FD4D4FAA29BC521B00C4E6D9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4FA929BC521B00C4E6D9 /* StoreKit.framework */; };
+		FD4D4FAC29BC522200C4E6D9 /* LinkPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD4D4FAB29BC522200C4E6D9 /* LinkPresentation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +88,15 @@
 		82875A6B27883979005EC40D /* CustomerGluDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomerGluDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82875A6D27883979005EC40D /* CustomerGluDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerGluDemoTests.swift; sourceTree = "<group>"; };
 		CAABE97CE33325786C014A6E /* Pods-CustomerGluDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerGluDemo.debug.xcconfig"; path = "Target Support Files/Pods-CustomerGluDemo/Pods-CustomerGluDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		FD4D4F9B29BC51BB00C4E6D9 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		FD4D4F9D29BC51C800C4E6D9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FD4D4F9F29BC51E100C4E6D9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		FD4D4FA129BC51E600C4E6D9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FD4D4FA329BC51FB00C4E6D9 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		FD4D4FA529BC520B00C4E6D9 /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = System/Library/Frameworks/AdServices.framework; sourceTree = SDKROOT; };
+		FD4D4FA729BC521100C4E6D9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		FD4D4FA929BC521B00C4E6D9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		FD4D4FAB29BC522200C4E6D9 /* LinkPresentation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LinkPresentation.framework; path = System/Library/Frameworks/LinkPresentation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +104,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD4D4FAC29BC522200C4E6D9 /* LinkPresentation.framework in Frameworks */,
+				FD4D4FAA29BC521B00C4E6D9 /* StoreKit.framework in Frameworks */,
+				FD4D4FA829BC521100C4E6D9 /* AdSupport.framework in Frameworks */,
+				FD4D4FA629BC520B00C4E6D9 /* AdServices.framework in Frameworks */,
+				FD4D4FA429BC51FB00C4E6D9 /* CoreSpotlight.framework in Frameworks */,
+				FD4D4FA229BC51E600C4E6D9 /* WebKit.framework in Frameworks */,
+				FD4D4FA029BC51E100C4E6D9 /* CoreTelephony.framework in Frameworks */,
+				FD4D4F9E29BC51C800C4E6D9 /* SystemConfiguration.framework in Frameworks */,
+				FD4D4F9C29BC51BC00C4E6D9 /* CoreServices.framework in Frameworks */,
 				1B77ADBA26CBDF100086859F /* FirebaseMessaging in Frameworks */,
 				1B77ADB826CBDF100086859F /* FirebaseAnalytics in Frameworks */,
 				1B77ADBC26CBDF100086859F /* FirebaseDynamicLinks in Frameworks */,
@@ -210,6 +238,15 @@
 		84025D7A4A9AF42B0CA19E81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD4D4FAB29BC522200C4E6D9 /* LinkPresentation.framework */,
+				FD4D4FA929BC521B00C4E6D9 /* StoreKit.framework */,
+				FD4D4FA729BC521100C4E6D9 /* AdSupport.framework */,
+				FD4D4FA529BC520B00C4E6D9 /* AdServices.framework */,
+				FD4D4FA329BC51FB00C4E6D9 /* CoreSpotlight.framework */,
+				FD4D4FA129BC51E600C4E6D9 /* WebKit.framework */,
+				FD4D4F9F29BC51E100C4E6D9 /* CoreTelephony.framework */,
+				FD4D4F9D29BC51C800C4E6D9 /* SystemConfiguration.framework */,
+				FD4D4F9B29BC51BB00C4E6D9 /* CoreServices.framework */,
 				5D3C2770B80D887AAA52CDFF /* Pods_CustomerGluDemo.framework */,
 			);
 			name = Frameworks;
@@ -320,7 +357,7 @@
 			);
 			mainGroup = 1B3D7CA726A6BDDC00EA1587;
 			packageReferences = (
-				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 1B3D7CB126A6BDDC00EA1587 /* Products */;
 			projectDirPath = "";
@@ -338,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD4D4F9A29BC4E8A00C4E6D9 /* CustomerGluDemo.entitlements in Resources */,
 				1B3D7CBB26A6BDDC00EA1587 /* Preview Assets.xcassets in Resources */,
 				1827E7692726C09D00A7B38B /* GoogleService-Info.plist in Resources */,
 				1B3D7CB826A6BDDC00EA1587 /* Assets.xcassets in Resources */,
@@ -799,7 +837,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -812,17 +850,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		1B77ADB726CBDF100086859F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
 		1B77ADB926CBDF100086859F /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
 		1B77ADBB26CBDF100086859F /* FirebaseDynamicLinks */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 1B77ADB626CBDF100086859F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDynamicLinks;
 		};
 /* End XCSwiftPackageProductDependency section */

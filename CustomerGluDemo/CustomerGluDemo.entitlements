@@ -8,6 +8,8 @@
 	<array>
 		<string>applinks:modpod.page.link/shop</string>
 		<string>applinks:app1.cglu.us</string>
+		<string>applinks:vpg7u.app.link</string>
+		<string>applinks:vpg7u-alternate.app.link</string>
 	</array>
 </dict>
 </plist>
