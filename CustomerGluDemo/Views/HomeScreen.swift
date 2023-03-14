@@ -104,7 +104,7 @@ struct HomeScreen: View {
                 }.padding(.horizontal, 10)
                 VStack {
                     BannerViewAdd()
-//                    EmbedViewAdd()
+                    EmbedViewAdd()
                 }.padding(.horizontal, 10)
                 HStack {
                     NavigationLink(

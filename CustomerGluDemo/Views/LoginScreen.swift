@@ -83,7 +83,7 @@ struct LoginScreen: View {
     
     func submitActionClicked(userId: String, userName: String, referenceId: String, anonymousId:String) {
         var userData = [String: AnyHashable]()
-        userData["userId"] = "glutest-432122"
+        userData["userId"] = userId//"test5656"
         userData["username"] = userName
 //        userData["referId"] = referenceId
 //        userData["anonymousId"] = anonymousId
