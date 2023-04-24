@@ -1,39 +1,35 @@
 PODS:
-  - CustomerGlu (2.2.6):
-    - lottie-ios (>= 4.0.0)
+  - CustomerGluRN (1.1.4):
+    - lottie-ios (~> 3.4.0)
     - Sentry
-  - lottie-ios (4.0.1)
-  - Sentry (8.3.0):
-    - Sentry/Core (= 8.3.0)
-    - SentryPrivate (= 8.3.0)
-  - Sentry/Core (8.3.0):
-    - SentryPrivate (= 8.3.0)
-  - SentryPrivate (8.3.0)
+  - lottie-ios (3.4.4)
+  - Sentry (8.5.0):
+    - Sentry/Core (= 8.5.0)
+    - SentryPrivate (= 8.5.0)
+  - Sentry/Core (8.5.0):
+    - SentryPrivate (= 8.5.0)
+  - SentryPrivate (8.5.0)
   - SwiftLint (0.45.0)
 
 DEPENDENCIES:
-  - CustomerGlu (from `../CG-iOS-SDK`)
-  - lottie-ios (= 4.0.1)
+  - CustomerGluRN
   - SwiftLint (= 0.45.0)
 
 SPEC REPOS:
   trunk:
+    - CustomerGluRN
     - lottie-ios
     - Sentry
     - SentryPrivate
     - SwiftLint
 
-EXTERNAL SOURCES:
-  CustomerGlu:
-    :path: "../CG-iOS-SDK"
-
 SPEC CHECKSUMS:
-  CustomerGlu: ccc177503453e02d2b5377457bcf3baea214b495
-  lottie-ios: 54d22edf55b839f0929cabbfe609c9aa548b1145
-  Sentry: 757565eb01e2a6ef6b26e897e4e47e8213e12f06
-  SentryPrivate: 668d6ce46835769b32e61dc8b5c78ef0b6cdcef8
+  CustomerGluRN: 8350c0acbd41008b35ed71018ad7dc9d9f488163
+  lottie-ios: 8f97d3271e155c2d688875c29cd3c74908aef5f8
+  Sentry: 3be3f42e40e5a552935552e115744d5810a216d9
+  SentryPrivate: 8c9463280e282527f938d1a5d1d60f8e10ff279b
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
 
-PODFILE CHECKSUM: 390f0b34a6620f492ee11c170b7e03cc03f44464
+PODFILE CHECKSUM: 77a6b8e5523fd10fb18dacbe2fe581b4c7279cde
 
 COCOAPODS: 1.12.0

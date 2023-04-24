@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 import FirebaseAnalytics
-import CustomerGlu
+import CustomerGluRN
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
@@ -75,6 +75,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
 //        CustomerGlu.getInstance.disableGluSdk(disable: false)
         CustomerGlu.getInstance.isFcmApn(fcmApn: "fcm")
+        CustomerGlu.getInstance.setWriteKey("G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy")
 ////        CustomerGlu.getInstance.isFcmApn(fcmApn: "apn")
         CustomerGlu.getInstance.setDefaultBannerImage(bannerUrl: "https://assets.customerglu.com/demo/quiz/banner-image/Quiz_2.png")
 //        CustomerGlu.getInstance.configureLoaderColour(color: [UIColor.red])

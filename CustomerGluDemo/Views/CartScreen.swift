@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CustomerGlu
+import CustomerGluRN
 
 struct CartScreen: View {
     

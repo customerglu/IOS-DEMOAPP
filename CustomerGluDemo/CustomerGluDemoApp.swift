@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UIKit
-import CustomerGlu
+import CustomerGluRN
 @main
 struct CustomerGluDemoApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate

@@ -5,7 +5,7 @@
 //  Created by Himanshu Trehan on 20/07/21.
 //
 import SwiftUI
-import CustomerGlu
+import CustomerGluRN
 import Firebase
 import Lottie
 

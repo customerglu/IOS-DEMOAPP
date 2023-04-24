@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CustomerGlu
+import CustomerGluRN
 
 @ViewBuilder func productListCell(image: String, title: String) -> some View {
     

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import SwiftUI
-import CustomerGlu
+import CustomerGluRN
 import WebKit
 //storyboard to swiftUI
 
