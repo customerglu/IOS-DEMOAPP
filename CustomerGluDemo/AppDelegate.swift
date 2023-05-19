@@ -81,7 +81,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         CustomerGlu.getInstance.enableEntryPoints(enabled: true)
 //        CustomerGlu.getInstance.enableAnalyticsEvent(event: true)
         CustomerGlu.getInstance.gluSDKDebuggingMode(enabled: true)
-        CustomerGlu.getInstance.initializeSdk()
+     //   CustomerGlu.getInstance.initializeSdk()
 //        CustomerGlu.getInstance.closeWebviewOnDeeplinkEvent(close: true)
         
 //        print(CustomerGlu.getInstance.cgUserData.userName)

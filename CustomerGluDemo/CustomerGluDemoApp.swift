@@ -20,9 +20,10 @@ struct CustomerGluDemoApp: App {
             let uid = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: "CustomerGlu_user_id_Encrypt")
             let uanonid = CustomerGlu.getInstance.decryptUserDefaultKey(userdefaultKey: "CustomerGluAnonymousId_Encrypt")
             
+            
             if (token.count > 0 && uid.count > 0 && ((uanonid.count <= 0) || (uid != uanonid))) {
 
-                HomeScreen()
+                SplashView(isUserRegistered: .constant(true))
                     .onOpenURL { url in
                         // URL handling
 //                        { success in
@@ -33,10 +34,10 @@ struct CustomerGluDemoApp: App {
 //                                print("error")
 //                            }
 //                        }
-                        CustomerGlu.getInstance.openDeepLink(deepurl: url){
-                            success, string, deeplinkdata in
-                            
-                        }
+//                        CustomerGlu.getInstance.openDeepLink(deepurl: url){
+//                            success, string, deeplinkdata in
+//
+//                        }
                         print(url)
                         if let scheme = url.scheme,
                             scheme.localizedCaseInsensitiveCompare("https") == .orderedSame,
@@ -51,13 +52,13 @@ struct CustomerGluDemoApp: App {
                         }
                     }
             } else {
-                LoginScreen()
+                SplashView(isUserRegistered: .constant(false))
                     .onOpenURL { url in
                         // URL handling
-                        CustomerGlu.getInstance.openDeepLink(deepurl: url){
-                            success, string, deeplinkdata in
-                            
-                        }
+//                        CustomerGlu.getInstance.openDeepLink(deepurl: url){
+//                            success, string, deeplinkdata in
+//                            
+//                        }
                         print(url)
                         if let scheme = url.scheme,
                             scheme.localizedCaseInsensitiveCompare("https") == .orderedSame,

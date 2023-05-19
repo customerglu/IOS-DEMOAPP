@@ -17,7 +17,8 @@ struct LoginScreen: View {
     @State var username: String = ""
     @State var referId: String = ""
     @State var anonymousId: String = ""
-    
+    @State private var showSplash = true
+
     
     @State var isActive = false
     @State var attemptingLogin = false
@@ -56,6 +57,7 @@ struct LoginScreen: View {
 //                            if userid.isEmpty || username.isEmpty {
 //                                return
 //                            }
+                        //    CustomerGlu.getInstance.openWallet()
                             submitActionClicked(userId: userid, userName: username, referenceId: referId, anonymousId:anonymousId)
                         }) {
                             LoginButtonContentAPI()
@@ -75,6 +77,7 @@ struct LoginScreen: View {
 //                }
             }
             .padding()
+         
         }.ignoresSafeArea(.all)
             .navigationViewStyle(StackNavigationViewStyle())
             .navigationBarBackButtonHidden(true)
@@ -89,7 +92,7 @@ struct LoginScreen: View {
 //        userData["anonymousId"] = anonymousId
 //        userData["referredBy"] = "Glutest009"
         
- //       userData["customAttributes"] = ["tag":"test_new"]
+        userData["customAttributes"] = ["tag":"uber"]
         
         
         CustomerGlu.getInstance.registerDevice(userdata: userData) { success in
