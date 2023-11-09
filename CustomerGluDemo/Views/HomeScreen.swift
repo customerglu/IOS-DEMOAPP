@@ -65,7 +65,9 @@ struct HomeScreen: View {
 //                        CustomerGlu.getInstance.configureSafeArea(topHeight: 35, bottomHeight: 34, topSafeAreaColor:.systemPink, bottomSafeAreaColor: .brown)
 //                        CustomerGlu.getInstance.configureLoadingScreenColor(color: UIColor(red: 255.0, green: 255.0, blue: 0.0, alpha: 1.0))
 //                        CustomerGlu.getInstance.configureLoaderColour(color: [.red])
-                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
+//                        CustomerGlu.getInstance.openWallet()
+                        CustomerGlu.getInstance.loadCampaignById(campaign_id: "ab0de1e4-3264-4b54-afde-377b948538e7")
+//                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
 //                        CustomerGlu.getInstance.openWalletWithURL(nudgeConfiguration: nudgeConfiguration)
 
                         
@@ -95,9 +97,9 @@ struct HomeScreen: View {
 //
 ////                        CustomerGlu.getInstance.openWallet(nudgeConfiguration: nudgeConfiguration)
 //                        customerglu.openNudge(nudgeId: "nudgeId", nudgeConfiguration: nudgeConfiguration);
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 7.5) {
-                            CustomerGlu.getInstance.openWalletWithURL(url: "https://constellation.customerglu.com/program-nudge/multistep-progress/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJnbHV0ZXN0LTAzLW1heS10MiIsImNsaWVudCI6IjJjYTczZDBlLTVjODYtNGQzMy05ZDk3LTdjMWY5NzAwMzMyOSIsImlhdCI6MTY4MzEzMTM0OSwiZXhwIjoxNzE0NjY3MzQ5fQ.heuIu4jf1z3skWgTAZUGKUNv6uG_gNmG-mwxmL__Jfk&campaignId=21506527-9a6a-44f6-ada6-3400843c559e&activityId=0P-nY1PagVmGnjT0I8iq1",auto_close_webview: false)
-                               }
+                       
+                            CustomerGlu.getInstance.loadCampaignById(campaign_id: "bc7379fa-b610-4537-9bb6-033ba3664dba")
+                               
                         
                         
                         
@@ -118,14 +120,13 @@ struct HomeScreen: View {
                     Spacer()
                     NavigationLink(
                         destination: CartScreen(),
-                        isActive: $active,
                         label: {
                             productCard(image: "trolley", title: "Cart")
                         })
                 }.padding(.horizontal, 10)
                 Spacer()
             }.onAppear(perform: {
-                CustomerGlu.getInstance.setCurrentClassName(className: "Home")
+                CustomerGlu.getInstance.setCurrentClassName(className: "HomeScreen New")
             })
             
         }

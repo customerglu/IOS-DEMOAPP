@@ -56,7 +56,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CUSTOMERGLU_WRITE_KEY</key>
-	<string>$(CUSTOMERGLU_WRITE_KEY)</string>
+	<string>G4VCVVAcLub8hx5SaeqH3pRqLBmDFrwy</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>FirebaseDynamicLinksCustomDomains</key>

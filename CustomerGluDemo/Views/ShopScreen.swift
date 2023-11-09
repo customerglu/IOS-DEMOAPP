@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CustomerGlu
 
 struct ShopScreen: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -25,8 +26,11 @@ struct ShopScreen: View {
                     productListCell(image: "trolley", title: "Shop")
                 }
             }
-            .navigationTitle("Shop Screen")
-        }
+            .navigationTitle("ShoppingScreen")
+        }.onAppear(
+            perform: {
+                CustomerGlu.getInstance.setCurrentClassName(className: "ShoppingScreen")
+            })
     }
 }
 
